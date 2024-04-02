@@ -1,0 +1,5 @@
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DLVD.Application\obj\Debug\net7.0\DLVD.Application.csproj.AssemblyReference.cache
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DLVD.Application\obj\Debug\net7.0\DLVD.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DLVD.Application\obj\Debug\net7.0\DLVD.Application.AssemblyInfoInputs.cache
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DLVD.Application\obj\Debug\net7.0\DLVD.Application.AssemblyInfo.cs
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DLVD.Application\obj\Debug\net7.0\DLVD.Application.csproj.CoreCompileInputs.cache

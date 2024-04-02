@@ -1,0 +1,11 @@
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\obj\Debug\net7.0\DVLD.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\obj\Debug\net7.0\DVLD.Domain.AssemblyInfoInputs.cache
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\obj\Debug\net7.0\DVLD.Domain.AssemblyInfo.cs
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\obj\Debug\net7.0\DVLD.Domain.csproj.CoreCompileInputs.cache
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\bin\Debug\net7.0\DVLD.Domain.deps.json
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\bin\Debug\net7.0\DVLD.Domain.dll
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\bin\Debug\net7.0\DVLD.Domain.pdb
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\obj\Debug\net7.0\DVLD.Domain.dll
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\obj\Debug\net7.0\refint\DVLD.Domain.dll
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\obj\Debug\net7.0\DVLD.Domain.pdb
+C:\Users\H1202\Desktop\ASP.CORE\DVLD\DVLD.Domain\obj\Debug\net7.0\ref\DVLD.Domain.dll
