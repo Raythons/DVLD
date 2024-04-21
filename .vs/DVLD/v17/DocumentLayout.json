@@ -1,0 +1,212 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\localdrivinglicense\\query\\getlocaldrivvinglicenseslist\\getlocaldrivvinglicenseslistcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\localdrivinglicense\\query\\getlocaldrivvinglicenseslist\\getlocaldrivvinglicenseslistcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\localdrivinglicense\\query\\getlocaldrivvinglicenseslist\\getlocaldrivvinglicenseslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\localdrivinglicense\\query\\getlocaldrivvinglicenseslist\\getlocaldrivvinglicenseslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\localdrivinglicense\\query\\getlocaldrivvinglicenseslist\\brieflocaldrivvinglicensereponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\localdrivinglicense\\query\\getlocaldrivvinglicenseslist\\brieflocaldrivvinglicensereponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\localdrivinglicense\\query\\getlocaldriverlicense\\getlocaldriverlicensedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\localdrivinglicense\\query\\getlocaldriverlicense\\getlocaldriverlicensedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\localdrivinglicense\\query\\getlocaldriverlicense\\getlocaldriverlicensequeryhandller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\localdrivinglicense\\query\\getlocaldriverlicense\\getlocaldriverlicensequeryhandller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.domain\\entities\\localdrivinglicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|solutionrelative:dvld.domain\\entities\\localdrivinglicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\users\\queires\\getuserslist\\getuserslistquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\users\\queires\\getuserslist\\getuserslistquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\users\\queires\\getuserslist\\getuserslistqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\users\\queires\\getuserslist\\getuserslistqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.infrastructure\\repositories\\applicationrepositry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|solutionrelative:dvld.infrastructure\\repositories\\applicationrepositry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.domain\\entities\\testappointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|solutionrelative:dvld.domain\\entities\\testappointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetLocalDrivvinglicensesListCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-21T13:37:37.411Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LocalDrivingLicenseApplication.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Entities\\LocalDrivingLicenseApplication.cs",
+              "RelativeDocumentMoniker": "DVLD.Domain\\Entities\\LocalDrivingLicenseApplication.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Entities\\LocalDrivingLicenseApplication.cs",
+              "RelativeToolTip": "DVLD.Domain\\Entities\\LocalDrivingLicenseApplication.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-21T13:34:36.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GetUsersListQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Users\\Queires\\GetUsersList\\GetUsersListQueryHandler.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Users\\Queires\\GetUsersList\\GetUsersListQueryHandler.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Users\\Queires\\GetUsersList\\GetUsersListQueryHandler.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\Users\\Queires\\GetUsersList\\GetUsersListQueryHandler.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-21T11:02:03.666Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BriefLocalDrivvingLicenseReponse.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\BriefLocalDrivvingLicenseReponse.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\BriefLocalDrivvingLicenseReponse.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\BriefLocalDrivvingLicenseReponse.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\BriefLocalDrivvingLicenseReponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-21T11:01:13.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GetUsersListQuery.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Users\\Queires\\GetUsersList\\GetUsersListQuery.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Users\\Queires\\GetUsersList\\GetUsersListQuery.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Users\\Queires\\GetUsersList\\GetUsersListQuery.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\Users\\Queires\\GetUsersList\\GetUsersListQuery.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-21T10:45:41.77Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetLocalDrivvinglicensesList.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesList.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesList.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesList.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesList.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAAAAcAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-21T10:40:22.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GetLocalDriverLicenseDto.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseDto.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseDto.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseDto.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseDto.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAzwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-21T10:38:09.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TestAppointment.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Entities\\TestAppointment.cs",
+              "RelativeDocumentMoniker": "DVLD.Domain\\Entities\\TestAppointment.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Entities\\TestAppointment.cs",
+              "RelativeToolTip": "DVLD.Domain\\Entities\\TestAppointment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-20T03:22:54.536Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ApplicationRepositry.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Repositories\\ApplicationRepositry.cs",
+              "RelativeDocumentMoniker": "DVLD.Infrastructure\\Repositories\\ApplicationRepositry.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Repositories\\ApplicationRepositry.cs",
+              "RelativeToolTip": "DVLD.Infrastructure\\Repositories\\ApplicationRepositry.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-20T03:22:13.274Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GetLocalDriverLicenseQueryHandller.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-19T16:29:59.017Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
