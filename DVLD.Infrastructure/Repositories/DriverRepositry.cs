@@ -2,12 +2,9 @@
 using DVLD.App.Interfaces.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DLVD.App.Features.Common.SharedDtos;
+using DLVD.App.Features.Common;
+using System.Linq.Expressions;
+using DVLD.Domain.Entities.Views;
 
 namespace DVLD.Data.Repositories
 {
@@ -46,24 +43,33 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<PagedList<DriversBreifInfoView>> GetAllPaginatedAsync(
+            Expression<Func<DriversBreifInfoView, bool>> filter = null,
+            Expression<Func<DriversBreifInfoView, object>> orderBy = null,
+            bool descending = true,
+            int page = 1,
+            int pageSize = 20)
+        {
+            var query = _DvldContext.DriversBreifInfoView.AsNoTracking();
+
+            if (filter is not null)
+                query = query.Where(filter);
+
+            orderBy ??= d => d.DriverId;
+
+            query = descending ? query.OrderByDescending(orderBy)
+                              : query.OrderBy(orderBy);
+
+            return await PagedList<DriversBreifInfoView>.CreateAsync(query, page, pageSize);
+        }
+
         public Task<Person> GetAssosiatedPerson(int Id)
         {
             throw new NotImplementedException();
         }
 
         public async Task<Driver?> GetById(int id)
-
         {
-
-
-        //public int Id { get; set; }
-        //public int PersonId { get; set; }
-        //public int CreatedByUserId { get; set; }
-        //public string NationalNo { get; set; }
-        //public string FullName { get; set; }
-        //public DateTime CreatedAt { get; set; }
-        //public string ActiveLicense { get; set; }
-
         var Driver =  _dbSet
                                     .AsNoTracking()
                                     .Join(_DvldContext.Persons,
@@ -76,7 +82,7 @@ namespace DVLD.Data.Repositories
                                                 FullName = p.FirstName + " " + p.SecondName + " " + p.ThirdName + " " + p.LastName,
                                             }
                                         );
-            GetDriverDto
+            
 
             var FoundedDriver = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
 

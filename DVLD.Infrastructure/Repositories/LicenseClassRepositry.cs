@@ -67,7 +67,7 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<int> GetLicenseExpirationYears(int licenseClassId)
+        public async Task<int> GetClassExpirationYears(int licenseClassId)
         {
             var licenseClass = await _dbSet
                             .SingleOrDefaultAsync(l => l.Id == licenseClassId);

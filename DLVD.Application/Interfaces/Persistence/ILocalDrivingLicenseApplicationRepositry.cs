@@ -1,17 +1,31 @@
-﻿using DVLD.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DLVD.App.Features.Common;
+using DVLD.Domain.Entities;
+using DVLD.Domain.Entities.Views;
+using System.Linq.Expressions;
 
 namespace DVLD.App.Interfaces.Persistence
 {
     public interface ILocalDrivingLicenseApplicationRepositry
     {
-        public Task<IEnumerable<LocalDrivingLicenseApplication>> All();
+        public Task<IEnumerable<LocalDrivvingLicenseApplicationsView>> All();
         public Task<bool> HasPassedAllTests(int LocalDrivingLicenseApplicationId);
 
+       public Task<PagedList<LocalDrivvingLicenseApplicationsView>> GetAllPaginatedAsync(
+       Expression<Func<LocalDrivvingLicenseApplicationsView, bool>> filter = null,
+       Expression<Func<LocalDrivvingLicenseApplicationsView, object>> orderBy = null,
+       bool descending = true,
+       int page = 1,
+       int pageSize = 20);
+
+        Task<PagedList<TProjection>> GetAllByProjectionAsync<TProjection>(
+        Expression<Func<LocalDrivingLicenseApplication, TProjection>> selector,
+        Expression<Func<LocalDrivingLicenseApplication, bool>> filter = null,
+        Expression<Func<LocalDrivingLicenseApplication, object>> orderBy = null,
+        bool descending = true,
+        int page = 1,
+        int pageSize = 20);
+
+        public Task<IEnumerable<LocalDrivingLicenseApplication>> GetPaginated(int Page);
         public Task<LocalDrivingLicenseApplication?> GetById(int LocalDrivingLicenseApplicationId);
         public Task<bool> Add(LocalDrivingLicenseApplication entity);
         public Task<bool> Update(LocalDrivingLicenseApplication entity);

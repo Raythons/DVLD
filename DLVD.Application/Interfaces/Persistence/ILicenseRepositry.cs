@@ -27,5 +27,6 @@ namespace DVLD.App.Interfaces.Persistence
         public Task<IEnumerable<DetainedLicense?>> GetDetainedLicenses();
         public Task<User> GetRaisedByUser(int licenseId);
         public Task<Driver> GetAssosiatedDriver(int licenseId);
+        public Task<DateTime> GetExpirationDate(int licenseId);
     }
 }

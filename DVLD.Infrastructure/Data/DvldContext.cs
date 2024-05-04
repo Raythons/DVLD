@@ -1,4 +1,5 @@
 ﻿using DVLD.Domain.Entities;
+using DVLD.Domain.Entities.Views;
 using Microsoft.EntityFrameworkCore;
 
 namespace DVLD.Data;
@@ -20,6 +21,8 @@ public partial class DvldContext : DbContext
     public DbSet<Test> Tests { get; set; }
     public DbSet<TestType> TestTypes { get; set; }
     public DbSet<TestAppointment> TestAppointments { get; set; }
+    public DbSet<LocalDrivvingLicenseApplicationsView> LocalDrivvingLicenseApplicationsView { get; set; }
+    public DbSet<DriversBreifInfoView> DriversBreifInfoView { get; set; }
     public DvldContext(DbContextOptions<DvldContext> options)
         : base(options)
     {

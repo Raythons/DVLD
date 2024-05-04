@@ -1,11 +1,9 @@
 ﻿using DVLD.Domain.Entities;
 using DVLD.App.Interfaces.Persistence;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DVLD.Data.Repositories
 {
@@ -13,6 +11,7 @@ namespace DVLD.Data.Repositories
     {
         protected readonly ILogger _logger;
         private DvldContext _DvldContext;
+        private DbSet<InternationalDrivingLicense> _dbSet;
         public InternationalDrivingLicenseRepositry
             (
             ILogger logger,
@@ -21,16 +20,31 @@ namespace DVLD.Data.Repositories
         {
             _logger = logger;
             _DvldContext = context;
+            _dbSet = _DvldContext.InternationalDrivingLicenses;
 
         }
-        public Task<bool> Add(InternationalDrivingLicense entity)
+        public async Task<bool> Add(InternationalDrivingLicense entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
+            return true;
         }
 
-        public Task<IEnumerable<InternationalDrivingLicense>> All()
+        public async Task<IEnumerable<InternationalDrivingLicense>> All(
+            Expression<Func<InternationalDrivingLicense, bool>> filter = null,
+            Expression<Func<InternationalDrivingLicense, object>> orderBy = null,
+            bool aescending = true)
         {
-            throw new NotImplementedException();
+
+            var query = _dbSet.AsNoTracking();
+
+            if (filter is not null)
+               query = query.Where(filter);
+            orderBy ??= l => l.Id;
+
+            query = aescending ? query.OrderBy(orderBy)
+                              : query.OrderByDescending(orderBy);
+
+            return await query.ToListAsync();
         }
 
         public Task<bool> Delete(InternationalDrivingLicense entity)
@@ -43,9 +57,9 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<InternationalDrivingLicense?> GetById(int id)
+        public async Task<InternationalDrivingLicense?> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
         public Task<User> GetCreatedByUser(int id)
@@ -66,6 +80,17 @@ namespace DVLD.Data.Repositories
         public Task<License> GetRasiedByLicense(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> HasActiveInternationaLicense(int licenseId)
+        {
+            var InternationalLicense = await _dbSet
+                                            .FirstOrDefaultAsync(l => l.License.Id == licenseId);
+
+            if (InternationalLicense is not null)
+                return InternationalLicense.IsActive == true;
+
+            return false;
         }
 
         public Task<bool> Update(InternationalDrivingLicense entity)

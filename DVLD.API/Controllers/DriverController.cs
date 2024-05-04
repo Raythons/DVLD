@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Drivers.Command.CreateDriver;
 using DLVD.App.Features.Drivers.Query.GetDriver;
+using DLVD.App.Features.Drivers.Query.GetDriversList;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
@@ -31,6 +32,20 @@ namespace DVLD.API.Controllers
             return Ok(result.ToResultDto(result.Value));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> CreateDriver([FromQuery] GetDriverListRequest cmd)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Bad Data");
+
+            var result = await _mediator.Send(cmd);
+
+
+            if (result.IsFailed)
+                return BadRequest(result.ToResultDto(result.Errors));
+
+            return Ok(result.ToResultDto(result.Value));
+        }
 
         [HttpPost]
         [Route("")]

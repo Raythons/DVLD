@@ -1,10 +1,8 @@
-﻿using DVLD.Domain.Entities;
-
-namespace DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDriverLicense
+﻿namespace DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDriverLicense
 {
     public class GetLocalDrivvingLicenseDto
     {
-      
+        
         public int Id { get; set; }
         public string LicenseClass { get; set; }
         public short PassedTests { get; set; }

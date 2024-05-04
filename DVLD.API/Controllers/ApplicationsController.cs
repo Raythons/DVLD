@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Applications.Command.CreateApplication;
+using DLVD.App.Features.Applications.Command.UpdateApplicaton;
 using DLVD.App.Features.Applications.Queries.GetApplication;
+using DVLD.Domain.Enums;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
@@ -66,12 +68,30 @@ namespace DVLD.API.Controllers
 
         }
 
-        //public async Task<IActionResult> CreateLocalDrivingLicense(CreateLocalDrivingLicenseCommand command)
-        //{
+        [HttpPut]
+        [Route("{applicationId:int}/Status")]
+        public async Task<IActionResult> UpdateApplicationStatus(int applicationId, [FromBody] EnStatus status )
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Inalid Data");
 
-        //    var result = await _mediator.Send(command);
-        //}
+            var applicationResult = await _mediator.Send(
+                                                    new UpdateApplicationStatusCommand(applicationId, status)
+                                                    );
+
+            if (applicationResult.IsFailed)
+                return BadRequest(applicationResult.ToResultDto(applicationResult.Errors));
+
+            return Ok(applicationResult.ToResultDto(applicationResult.Value));
+
+        }
+
+            //public async Task<IActionResult> CreateLocalDrivingLicense(CreateLocalDrivingLicenseCommand command)
+            //{
+
+            //    var result = await _mediator.Send(command);
+            //}
 
 
+        }
     }
-}

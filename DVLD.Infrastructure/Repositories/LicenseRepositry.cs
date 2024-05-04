@@ -99,5 +99,15 @@ namespace DVLD.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<DateTime> GetExpirationDate(int licenseId)
+        {
+            var ExpirationDate = await _dbSet
+                                        .Where(l => l.Id == licenseId)
+                                        .Select(l => l.ExpirationDate)
+                                        .SingleOrDefaultAsync();
+            return ExpirationDate;
+          
+        }
     }
 }

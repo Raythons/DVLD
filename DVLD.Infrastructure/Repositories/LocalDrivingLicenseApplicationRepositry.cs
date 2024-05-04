@@ -1,13 +1,11 @@
-﻿using DVLD.Domain.Entities;
+﻿using DLVD.App.Features.Common;
 using DVLD.App.Interfaces.Persistence;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using DVLD.Domain;
+using DVLD.Domain.Entities;
+using DVLD.Domain.Entities.Views;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Linq.Expressions;
 
 namespace DVLD.Data.Repositories
 {
@@ -26,20 +24,16 @@ namespace DVLD.Data.Repositories
             _dbSet = context.LocalDrivingLicenseApplications;
 
         }
-     
-    
         public async Task<bool> Add(LocalDrivingLicenseApplication entity)
         {
             await _dbSet.AddAsync(entity);
             return true;
         }
 
-
-        public Task<IEnumerable<LocalDrivingLicenseApplication>> All()
+        public async Task<IEnumerable<LocalDrivvingLicenseApplicationsView>> All()
         {
-            throw new NotImplementedException();
-        }
-
+            return await _DvldContext.LocalDrivvingLicenseApplicationsView.ToListAsync();
+        }    
         public Task<bool> Delete(LocalDrivingLicenseApplication entity)
         {
             throw new NotImplementedException();
@@ -48,6 +42,50 @@ namespace DVLD.Data.Repositories
         public Task<bool> DeleteById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<PagedList<TProjection>> GetAllByProjectionAsync<TProjection>(
+            Expression<Func<LocalDrivingLicenseApplication, TProjection>> selector,
+            Expression<Func<LocalDrivingLicenseApplication, bool>> filter = null,
+            Expression<Func<LocalDrivingLicenseApplication, object>> orderBy  = null,
+            bool descending = true,
+            int page = 1,
+            int pageSize = 2)
+        {
+            ArgumentNullException.ThrowIfNull(selector);
+            var query = _dbSet.AsNoTracking();
+
+            if (filter is not null)
+                query = query.Where(filter);
+
+            orderBy ??= l => l.Id;
+          
+            query = descending ? query.OrderByDescending(orderBy)
+                              : query.OrderBy(orderBy);
+            
+
+            return await PagedList<TProjection>.CreateAsync(query.Select(selector), page, pageSize);
+        }
+
+        public async Task<PagedList<LocalDrivvingLicenseApplicationsView>> GetAllPaginatedAsync(
+            Expression<Func<LocalDrivvingLicenseApplicationsView, bool>> filter = null,
+            Expression<Func<LocalDrivvingLicenseApplicationsView, object>> orderBy = null,
+            bool descending = true,
+            int page = 1,
+            int pageSize = 20)
+        {
+            var query = _DvldContext.LocalDrivvingLicenseApplicationsView.AsNoTracking();
+
+            if (filter is not null)
+                query = query.Where(filter);
+
+            orderBy ??= l => l.Id;
+
+            query = descending ? query.OrderByDescending(orderBy)
+                              : query.OrderBy(orderBy);
+
+            return await PagedList<LocalDrivvingLicenseApplicationsView>.CreateAsync(query, page, pageSize);
+
         }
 
         public Task<Application> GetAssociatedApplication(int id)
@@ -68,6 +106,11 @@ namespace DVLD.Data.Repositories
         public async Task<LocalDrivingLicenseApplication?> GetById(int id)
         {
             return await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public Task<IEnumerable<LocalDrivingLicenseApplication>> GetPaginated(int Page)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<TestAppointment?>> GetTestAppointment(int id)

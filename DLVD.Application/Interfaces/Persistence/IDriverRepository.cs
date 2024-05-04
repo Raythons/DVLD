@@ -1,7 +1,10 @@
-﻿using DVLD.Domain.Entities;
+﻿using DLVD.App.Features.Common;
+using DVLD.Domain.Entities;
+using DVLD.Domain.Entities.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +13,12 @@ namespace DVLD.App.Interfaces.Persistence;
 public interface IDriverRepository
 {
     public Task<IEnumerable<Driver>> All();
+    public Task<PagedList<DriversBreifInfoView>> GetAllPaginatedAsync(
+      Expression<Func<DriversBreifInfoView, bool>> filter = null,
+      Expression<Func<DriversBreifInfoView, object>> orderBy = null,
+      bool descending = true,
+      int page = 1,
+      int pageSize = 20);
     public Task<Driver?> GetById(int id);
     public Task<bool> Add(Driver entity);
     public Task<bool> Update(Driver entity);

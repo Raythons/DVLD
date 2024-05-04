@@ -1,10 +1,5 @@
-﻿using DVLD.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+
 
 namespace DLVD.App.Features.Common
 {
@@ -29,10 +24,10 @@ namespace DLVD.App.Features.Common
         public static  async Task<PagedList<T>> CreateAsync(
             IQueryable<T> query, int Page, int PageSize)
         {
-                int TotalCount = await query.CountAsync();
+            int TotalCount = await query.CountAsync();
 
-                var items = await query.Skip((Page-1) * PageSize).Take(PageSize).ToListAsync();
-
+            var items = await query.Skip((Page-1) * PageSize).Take(PageSize).ToListAsync();
+          
             return new(items, Page, PageSize, TotalCount);
         }
         public static  PagedList<T> Create(

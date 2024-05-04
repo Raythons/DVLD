@@ -71,6 +71,11 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<short> GetTypesCount()
+        {
+            return (short) await _dbSet.CountAsync();
+        }
+
         public Task<bool> Update(TestType entity)
         {
             throw new NotImplementedException();

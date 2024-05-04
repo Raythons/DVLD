@@ -176,17 +176,21 @@ namespace DVLD.Data.Repositories
             return personApplicationsOfLicenseClass;
          }
 
-        public async Task UpdateStatus(int applicationId, EnStatus newStatus)
+
+        public async Task<bool>  UpdateStatus(int applicationId, EnStatus newStatus)
         {
             var application = await _dbSet
-                            .FirstOrDefaultAsync(a => a.Id == applicationId);
+                           .FirstOrDefaultAsync(a => a.Id == applicationId);
 
-            if(application is not null)
-            {
-                application.Status = newStatus;
-                application.LastStatusDate = DateTime.Now;
-            }
-                    
+            if (application is null)
+                return false;
+
+
+            application.Status = newStatus;
+            application.LastStatusDate = DateTime.Now;
+            return true;
+
+
         }
     }   
 }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentResults;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DLVD.App.Features.TestAppointments.Commands.UpdateTestAppointmentDate
 {
-    public class UpdateTestAppointmentDateCommand : IRequest<bool>
+    public class UpdateTestAppointmentDateCommand : IRequest<Result<bool>>
     {
         public UpdateTestAppointmentDateCommand(
             DateTime newDate,

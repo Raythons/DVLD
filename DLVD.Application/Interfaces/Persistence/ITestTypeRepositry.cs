@@ -10,6 +10,7 @@ namespace DVLD.App.Interfaces.Persistence
     public interface ITestTypeRepositry
     {
         public Task<IEnumerable<object>> All();
+        public Task<short> GetTypesCount();
         public Task<TestType?> GetById(int testTypeId);
         public Task<bool> Add(TestType entity);
         public Task<bool> Update(TestType entity);

@@ -26,7 +26,6 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
 
             var LicenseToCreate = _mapper.Map<DVLD.Domain.Entities.License>(request);
 
-
             LicenseToCreate.ExpirationDate = await CalculateExpirationDate(request.LicenseClassId);
 
             var isCreated = await _unitOfWork.LicenseRepositry.Add(LicenseToCreate);         
@@ -34,8 +33,12 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
             if (!isCreated)
                 Result.Fail("Something Went Wrong");
 
-            await _unitOfWork.ApplicationRepositry
+            var isUpdated = await _unitOfWork.ApplicationRepositry
                                 .UpdateStatus(request.ApplicationId, EnStatus.Completed);
+
+            if (!isUpdated)
+                return Result.Fail("Something Went Wrong");
+
 
             await _unitOfWork.CompleteAsync();
 
@@ -58,8 +61,5 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
                                      .LocalDrivingLicenseApplicationRepositry
                                      .HasPassedAllTests(localDrivingLicenseApplicationId);
         }
-
-
-
     }
 }

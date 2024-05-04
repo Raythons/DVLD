@@ -1,7 +1,5 @@
 ﻿#pragma warning disable CS8618
 
-
-
 namespace DVLD.Domain.Entities;
 
 public class InternationalDrivingLicense 

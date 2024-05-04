@@ -15,6 +15,7 @@ namespace DVLD.App.Interfaces.Persistence
         public Task<TestAppointment?> GetById(int id);
         public Task<bool> Add(TestAppointment entity);
         public Task<bool> Update(TestAppointment entity);
+        public Task<bool> UpdateDate(int TestAppointmentId, DateTime newTestDate);
         public Task<bool> Update(int driverId);
         public Task<bool> Delete(TestAppointment entity);
         public Task<bool> DeleteById(int id);

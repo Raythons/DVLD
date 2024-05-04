@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DVLD.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5aec4b230ad62f6baa3832f6589c612dff074132")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11756f99f28209948be4caec0cc440447d472780")]
 [assembly: System.Reflection.AssemblyProductAttribute("DVLD.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DVLD.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
