@@ -96,5 +96,18 @@ namespace DVLD.Data.Repositories
 
              TestAppointment.IsLocked = true;       
         }
+
+        public async Task<bool> UpdateDate(int testAppointmentId, DateTime newTestDate)
+        {
+            var testAppoinment = await _dbSet
+                                    .FirstOrDefaultAsync(t => t.Id == testAppointmentId);
+
+            if (testAppoinment is null)
+                    return false;    
+            
+            testAppoinment.AppointmentDate = newTestDate;
+            return true;
+            
+        }
     }
 }

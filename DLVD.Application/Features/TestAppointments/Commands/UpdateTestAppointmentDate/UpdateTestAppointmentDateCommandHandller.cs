@@ -32,6 +32,8 @@ namespace DLVD.App.Features.TestAppointments.Commands.UpdateTestAppointmentDate
             if (!isUpdated)
                 return Result.Fail("Couldnt Update The Test Appoitnemnt");
 
+
+            return Result.Ok(isUpdated).WithSuccess("Updated Succsefully");
         }
     }
 }

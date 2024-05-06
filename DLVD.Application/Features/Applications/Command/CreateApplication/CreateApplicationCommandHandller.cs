@@ -35,13 +35,13 @@ namespace DLVD.App.Features.Applications.Command.CreateApplication
 
             var result = await _unitOfWork.ApplicationRepositry.Add(applicationToCreate);
 
+
             await _unitOfWork.CompleteAsync();
 
             if (result == false)
                 return  Result.Fail("SomeThing Went Wrong");
-       
-            return Result.Ok(applicationToCreate.Id);
 
+            return Result.Ok(applicationToCreate.Id);
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yllUICU3U3XxD/6P8u3kGhxdipqq5hWeRXrbAXxSlNnLR72R3vFGja4i6yW3tc+5btQWbhE1F6GPP0bM1yM+Lw==",
+  "dgSpecHash": "aRPQng42JVLaeUi4qc7XWqDhkOpO84KQhUbErRSwl4BkIqeDBiLeGLDPlRBSJ86QtOnWEoYNj2T/BSYrxb/sEQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj",
+  "projectFilePath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\H1202\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\H1202\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

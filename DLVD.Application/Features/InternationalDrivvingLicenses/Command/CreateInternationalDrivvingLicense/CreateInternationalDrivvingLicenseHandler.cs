@@ -2,6 +2,7 @@
 using DLVD.App.Features.Common;
 using DVLD.App.Interfaces.Persistence;
 using DVLD.Domain.Entities;
+using DVLD.Domain.Enums;
 using FluentResults;
 using MediatR;
 
@@ -11,10 +12,13 @@ namespace DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternat
     public class CreateInternationalDrivvingLicenseHandler : BaseHandler,
         IRequestHandler<CreateInternationalDrivvingLicenseRequest, Result<bool>>
     {
+        private readonly IMediator _mediator;
         public CreateInternationalDrivvingLicenseHandler(
             IUnitOfWork unitOfWork,
-            IMapper mapper) : base(unitOfWork, mapper)
+            IMapper mapper,
+            IMediator mediator) : base(unitOfWork, mapper)
         {
+            _mediator = mediator;
         }
 
 
@@ -22,18 +26,19 @@ namespace DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternat
             CreateInternationalDrivvingLicenseRequest request,
             CancellationToken cancellationToken)
         {
-
             if (!await SatisfiesRequirements(request.IssueUsingLocalDrivingLicenseId))
                 Result.Fail("Either The License Is InActive Or Its Expired Please Check It");
 
-            var applicationToCreate = _mapper.Map<Application>(request.CreateApplicationCommand);
 
-            await _unitOfWork.CompleteAsync();
+            // override default value 
+            request.CreateApplicationCommand.Status = EnStatus.Completed;
+            var applicationIdResult = await _mediator.Send(request.CreateApplicationCommand, cancellationToken);
 
-            var res = new Result<bool>();
-            // Magic Number Should Be Refactored Later
-            if ((request.ApplicationId = await CreateApplication(applicationToCreate)) == 0)
-                return res.WithError("Something Went Worng While Creating The Application ");
+            if (applicationIdResult.IsFailed)
+                return Result.Fail("Something Went Wrong");
+
+
+            request.ApplicationId = applicationIdResult.Value;
 
             var InterNationalLicenseToCreate = _mapper.Map<InternationalDrivingLicense>(request);
 
@@ -47,21 +52,14 @@ namespace DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternat
 
             await _unitOfWork.CompleteAsync();
 
-            return res.WithSuccess("InterNationalDrivvingLicense Created Succefully");
+            return Result.Ok(true).WithSuccess("InterNationalDrivvingLicense Created Succefully");
 
         }
-        // 0 Means It Failed
-        private async Task<int> CreateApplication(Application application)
-        {
-            bool isSucess = await _unitOfWork.
-                                        ApplicationRepositry
-                                       .Add(application);
-            return isSucess ? application.Id : 0;
-        }
+     
         private async Task <bool> SatisfiesRequirements(int licenseId)
         {
 
-            return  await HasActiveInternationalLicense(licenseId) && ! await DidLicenseExpired(licenseId);
+            return  !(await HasActiveInternationalLicense(licenseId)) && ! (await DidLicenseExpired(licenseId) );
 
         }
 

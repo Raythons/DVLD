@@ -15,9 +15,7 @@ namespace DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternat
         public DateTime IssueDate { get; } = DateTime.Now;
         public DateTime ExpirationDate { get; set; }
         public bool IsActive { get;  } = true;
-        public int CreatedByUserId { get; set; } 
-
-
+        public int CreatedByUserId { get;  } 
 
         public CreateInternationalDrivvingLicenseRequest(
             int issueUsingLocalDrivingLicenseId,

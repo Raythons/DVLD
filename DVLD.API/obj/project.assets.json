@@ -4083,11 +4083,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
+      "projectUniqueName": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
       "projectName": "DVLD.API",
-      "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
+      "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
       "packagesPath": "C:\\Users\\H1202\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\obj\\",
+      "outputPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\H1202\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4104,14 +4104,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj": {
-              "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj"
+            "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj": {
+              "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj"
             },
-            "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
-              "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj"
+            "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
+              "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj"
             },
-            "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj"
+            "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj": {
+              "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj"
             }
           }
         }

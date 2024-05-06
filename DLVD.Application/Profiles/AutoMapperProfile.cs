@@ -5,6 +5,7 @@ using DLVD.App.Features.Applications.Queries.GetApplication;
 using DLVD.App.Features.Applications.Queries.GetApplicationsList;
 using DLVD.App.Features.Common.SharedDtos;
 using DLVD.App.Features.Drivers.Command.CreateDriver;
+using DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternationalDrivvingLicense;
 using DLVD.App.Features.LicenseClasses.Query.GetAllLicenseClasses;
 using DLVD.App.Features.Licenses.Command.CreateLicense;
 using DLVD.App.Features.Licenses.Query;
@@ -30,7 +31,9 @@ namespace DLVD.App.Profiles
 
         public AutoMapperProfile() 
         {
-
+            // InterNationalDrivvingLicense
+            CreateMap<CreateInternationalDrivvingLicenseRequest, InternationalDrivingLicense>()
+                .ReverseMap();
             // License
             CreateMap<CreateLicenseCommand, License>();
 
