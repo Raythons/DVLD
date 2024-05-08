@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Common;
 using DVLD.App.Interfaces.Persistence;
+using DVLD.Domain.Entities;
 using DVLD.Domain.Enums;
 using FluentResults;
 using MediatR;
@@ -20,7 +21,7 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
         public async Task<Result<bool>> Handle(CreateLicenseCommand request, 
             CancellationToken cancellationToken)
         {
-
+            
             if (!await HasPassedAllTests(request.LocalDrivingLicenseApplicationId))
                 return Result.Fail("The Person Didnt Passed All Of The Tests Required");
 

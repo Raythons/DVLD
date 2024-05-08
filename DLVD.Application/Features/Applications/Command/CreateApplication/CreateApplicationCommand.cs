@@ -12,7 +12,7 @@ namespace DLVD.App.Features.Applications.Command.CreateApplication
         public EnStatus Status { get; set; } = EnStatus.New;
         public DateTime CreatedAt { get; } = DateTime.Now;
         public DateTime LastStatus { get; } = DateTime.Now;
-        public float PaidFees { get;} = 15.5f;
+        public float PaidFees { get; set; } = 15.5f;
         public int CreatedByUserId { get; set; } 
         public int ApplicationTypeId { get; set; }
         public CreateApplicationCommand() { }
