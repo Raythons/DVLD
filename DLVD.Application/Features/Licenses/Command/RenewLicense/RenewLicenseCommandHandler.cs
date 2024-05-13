@@ -1,16 +1,11 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Applications.Command.CreateApplication;
 using DLVD.App.Features.Common;
+using DLVD.App.Features.LicenseClasses.Query.GetAllLicenseClasses;
 using DVLD.App.Interfaces.Persistence;
 using DVLD.Domain.Entities;
 using FluentResults;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using License = DVLD.Domain.Entities.License;
 
 namespace DLVD.App.Features.Licenses.Command.RenewLicense
@@ -31,11 +26,11 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
             RenewLicenseRerquest request,
             CancellationToken cancellationToken)
         {
-            
-            var isExpired = await DidLicenseExpired(request.PreviousLicenseId);
+            var SatisfyRulesResult = await ValidLicenseToRenew(request.PreviousLicenseId);
 
-            if (!isExpired)
-                return Result.Fail("Cannot Re-New UnExpired License");
+
+            if (SatisfyRulesResult.IsFailed)
+                return Result.Fail(SatisfyRulesResult.Errors);
 
             try
             {
@@ -46,9 +41,11 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
                 return Result.Fail("Coldnt Create Application To The License");
             }
 
+            request.ExpirationDate = await GetExpirationDate(request.LicenseClassId);
+
             var CreatedLicenseId = await CreateLicense(request);
 
-
+            await DeActivedLicense(request.PreviousLicenseId);
 
             var respopnse = new RenewLicenseResponse(request.CreatedByApplicationId,
                                                      request.PreviousLicenseId,
@@ -58,10 +55,36 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
 
         }
 
-        private async Task<int> CreateLicense(RenewLicenseRerquest request)
+        private async Task<Result<bool>> ValidLicenseToRenew(int previousLicenseId)
         {
-            var LicenseToCreate = _mapper.Map<License>(request);
+            var res = new Result<bool>();
 
+            var isExpired = await DidLicenseExpired(previousLicenseId);
+            if (!isExpired)
+                res.WithError("Cannot Re-New UnExpired License");
+
+            var IsActive = await IsActiveLicense(previousLicenseId);
+            if (!IsActive)
+                res.WithError("Cannot ReNew DeActivated License");
+
+            return res;
+           
+        }
+
+        private async Task<bool> IsActiveLicense(int previousLicenseId)
+        {
+            return await _unitOfWork.LicenseRepositry.IsActiveLicense(previousLicenseId);
+        }
+
+        private async Task DeActivedLicense(int previousLicenseId)
+        {
+            await _unitOfWork.LicenseRepositry.DeActivateLicense(previousLicenseId);
+        }
+
+        private async Task<int> CreateLicense(RenewLicenseRerquest request)
+        {      
+            var LicenseToCreate = _mapper.Map<License>(request);
+            
             var isSuccess = await _unitOfWork.LicenseRepositry.Add(LicenseToCreate);
             if (!isSuccess)
                 throw new Exception("Couldnt Add The License");
@@ -69,6 +92,17 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
             await _unitOfWork.CompleteAsync();
                 
             return LicenseToCreate.Id;
+        }
+
+        private async Task<DateTime> GetExpirationDate(int licenseClassId)
+        {
+            var ValidatityLengthInYears =  await _unitOfWork
+                                                    .LicenseClassRepositry
+                                                    .GetClassExpirationYears(licenseClassId);
+
+            var ExpirationDate = DateTime.UtcNow.AddYears(ValidatityLengthInYears);
+
+            return ExpirationDate;
         }
 
         private async Task<int> CreateApplication(CreateApplicationCommand createApplicationCommand)
@@ -86,6 +120,5 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
             return ExpirationDate < DateTime.UtcNow;
         }
 
-        
     }
 }

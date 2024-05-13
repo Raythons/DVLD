@@ -1,11 +1,6 @@
 ﻿using DVLD.Domain.Entities;
 using DVLD.App.Interfaces.Persistence;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace DVLD.Data.Repositories
@@ -28,7 +23,6 @@ namespace DVLD.Data.Repositories
 
             return true;
         }
-
         public Task<IEnumerable<License>> All()
         {
             throw new NotImplementedException();
@@ -108,6 +102,19 @@ namespace DVLD.Data.Repositories
                                         .SingleOrDefaultAsync();
             return ExpirationDate;
           
+        }
+
+        public async Task DeActivateLicense(int licenseId)
+        {
+            await _dbSet.Where(l => l.Id == licenseId)
+                       .ExecuteUpdateAsync(l => l.SetProperty(l => l.IsActive, false));
+        }
+
+        public async Task<bool> IsActiveLicense(int licenseId)
+        {
+            return await _dbSet.Where(l => l.Id == licenseId)
+                         .Select(l => l.IsActive)
+                         .SingleOrDefaultAsync();
         }
     }
 }

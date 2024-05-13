@@ -1,4 +1,5 @@
 ﻿using DLVD.App.Features.Applications.Command.CreateApplication;
+using DVLD.Domain.Entities;
 using DVLD.Domain.Enums;
 using FluentResults;
 using MediatR;
@@ -11,12 +12,13 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
         [JsonIgnore]
         public CreateApplicationCommand CreateApplicationCommand { get; } = new CreateApplicationCommand();
         public int PreviousLicenseId { get; set; }
-        public DateTime ApplicationDate { get; set; } = DateTime.Now;
         public DateTime IssueDate { get; set; } = DateTime.Now;
-        public DateTime ExpirationTime { get; set; }
+        [JsonIgnore]
+        public DateTime ExpirationDate { get; set; }
+        public int DriverId { get; set; }
 
         [JsonIgnore]
-        public int CreatedByApplicationId { get; set; } 
+        public int CreatedByApplicationId { get; set; }
         public float ApplicationFees { get; set; }
         public int LicenseFees { get; set; }
         public int CreatedByUserId { get; set; }
@@ -24,37 +26,53 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
         public string Notes { get; set; }
         public int ApplicationTypeId { get; set; }
         public int PersonId { get; set; }
+        public int LicenseClassId { get; set; }
+        public bool IsActive { get; } = true;
 
-        public RenewLicenseRerquest() { }
         public RenewLicenseRerquest(
-                int previousLicenseId,
-                DateTime applicationDate,
-                DateTime issueDate,
-                DateTime expirationTime,
-                int applicationFees,
-                int licenseFees,
-                int createdByUserId,
-                int  applicationTypeId,
-                string issueReason,
-                string notes)
+           int previousLicenseId,
+           DateTime issueDate,
+           DateTime expirationDate,
+           int driverId,
+           int createdByApplicationId,
+           float applicationFees,
+           int licenseFees,
+           int createdByUserId,
+           string issueReason,
+           string notes,
+           int applicationTypeId,
+           int personId,
+           int licenseClassId
+            )
         {
-            // Mapping It Inside Better Than Sendnig The Data
-            //CreateApplicationCommand = creaSteApplicationCommand;
             CreateApplicationCommand.CreatedByUserId = createdByUserId;
             CreateApplicationCommand.ApplicationTypeId = applicationTypeId;
+            CreateApplicationCommand.PersonId = personId;
             CreateApplicationCommand.Status = EnStatus.Completed;
             CreateApplicationCommand.PaidFees = applicationFees;
-            
-            ApplicationTypeId = applicationTypeId;
+
+
             PreviousLicenseId = previousLicenseId;
-            ApplicationDate = applicationDate;
             IssueDate = issueDate;
-            ExpirationTime = expirationTime;
+            ExpirationDate = expirationDate;
+            DriverId = driverId;
+            CreatedByApplicationId = createdByApplicationId;
             ApplicationFees = applicationFees;
             LicenseFees = licenseFees;
             CreatedByUserId = createdByUserId;
             IssueReason = issueReason;
             Notes = notes;
+            ApplicationTypeId = applicationTypeId;
+            PersonId = personId;
+            LicenseClassId = licenseClassId;
         }
+
+
+
+        //public RenewLicenseRerquest() { }
+
     }
 }
+
+// Mapping It Inside Better Than Sendnig The Data
+

@@ -8,6 +8,7 @@ using DLVD.App.Features.Drivers.Command.CreateDriver;
 using DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternationalDrivvingLicense;
 using DLVD.App.Features.LicenseClasses.Query.GetAllLicenseClasses;
 using DLVD.App.Features.Licenses.Command.CreateLicense;
+using DLVD.App.Features.Licenses.Command.RenewLicense;
 using DLVD.App.Features.Licenses.Query;
 using DLVD.App.Features.LocalDrivingLicense.Command.CreateLocalDrivvingLicense;
 using DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDriverLicense;
@@ -31,6 +32,19 @@ namespace DLVD.App.Profiles
 
         public AutoMapperProfile() 
         {
+            // => license fees == paid fees
+            // applicationId == CreatedByApplicationId
+            // ReNewLicenseRequest
+            CreateMap<RenewLicenseRerquest, License>()
+                .ForMember(
+                        dest => dest.PaidFees,
+                        config => config.MapFrom(src => src.LicenseFees)   
+                        )
+                .ForMember(
+                        dest => dest.ApplicationId,
+                        config => config.MapFrom(src => src.CreatedByApplicationId)
+                          )
+                .ReverseMap();
             // InterNationalDrivvingLicense
             CreateMap<CreateInternationalDrivvingLicenseRequest, InternationalDrivingLicense>()
                 .ReverseMap();

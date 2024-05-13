@@ -11,6 +11,8 @@ namespace DVLD.App.Interfaces.Persistence
     {
         // WE Will Never Use This Just In The Begining
         public Task<IEnumerable<License>> All();
+
+        public Task DeActivateLicense(int licenseId);
         public Task<License?> GetById(int id);
         public Task<bool> Add(License entity);
         public Task<bool> Update(License entity);
@@ -28,5 +30,6 @@ namespace DVLD.App.Interfaces.Persistence
         public Task<User> GetRaisedByUser(int licenseId);
         public Task<Driver> GetAssosiatedDriver(int licenseId);
         public Task<DateTime> GetExpirationDate(int licenseId);
+        public Task<bool> IsActiveLicense(int licenseId);
     }
 }
