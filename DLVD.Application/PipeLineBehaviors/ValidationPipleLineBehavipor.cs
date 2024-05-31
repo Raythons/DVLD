@@ -16,16 +16,11 @@ namespace DLVD.App.PipeLineBehaviors
         where Trequest : IRequest<Tresponse>
         where Tresponse : ResultBase , new()
     {
-
-        private readonly IValidator<Trequest> _validator;
-
-        public ValidationPipleLineBehavipor(IValidator<Trequest> validator)
+       private readonly IValidator<Trequest> _validator;
+       public ValidationPipleLineBehavipor(IValidator<Trequest> validator)
         {
             _validator = validator;
-        }
-
-
-        
+        }  
         public async Task<Tresponse> Handle(
             Trequest request,
             RequestHandlerDelegate<Tresponse> next,
@@ -35,7 +30,6 @@ namespace DLVD.App.PipeLineBehaviors
 
             if (!validationResult.IsValid)
             {
-                
                 var err = ValidationError.Create();
                 var r = new Tresponse();
 

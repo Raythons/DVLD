@@ -19,7 +19,7 @@ public class Person
     public string Email { get; set; }
     public int NationalityCountryId { get; set; }
     public Country Country { get; set; }
-    public byte[]? Image { get; set; }
+    public string? Image { get; set; }
     public User? User { get; set; }
     public Driver? Driver { get; set; }
     public ICollection<Application>? Applications { get; set; }

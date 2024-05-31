@@ -13,6 +13,6 @@ namespace DLVD.App.Features.Common.SharedDtos
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public byte[]? Image { get; set; }
+        public string Image { get; set; }
     }
 }

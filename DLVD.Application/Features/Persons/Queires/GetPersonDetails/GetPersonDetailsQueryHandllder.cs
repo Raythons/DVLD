@@ -40,9 +40,7 @@ namespace DLVD.App.Features.Persons.Queires.GetPersonDetails
 
             var personDto = _mapper.Map<GetPersonDetailsDto>(FoundedPerson);
 
-            return Result.Ok(personDto);
-
-                
+            return Result.Ok(personDto);     
         }
     }
 }

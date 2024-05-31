@@ -1,4 +1,4 @@
-﻿ using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using DLVD.App.Features.Persons.Queires.GetPersonDetails;
@@ -9,8 +9,7 @@ using DLVD.App.Features.Persons.Queires.GetPersonsPaginitaed;
 using Microsoft.Extensions.Options;
 using DVLD.API;
 using FluentResults.Samples.WebController;
-using DVLD.Domain.Entities;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 
 
@@ -50,8 +49,7 @@ namespace DVLD.WEB.Controllers
             if(result.IsFailed) 
                 return NotFound(result.ToResultDto(false));
             
-            return Ok(result.ToResultDto());
-            
+            return Ok(result.ToResultDto(result.Value));   
         }
 
 
@@ -71,19 +69,17 @@ namespace DVLD.WEB.Controllers
 
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> CreatePerson([FromForm] CreatePersonCommand command )
+        public async Task<IActionResult> CreatePerson([FromForm] CreatePersonCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Field Or More Not In Correct form");
 
             if (Request.Form.Files.Count > 0)
             {
-                using (var ms = new MemoryStream())
-                {
-                    Request.Form.Files[0].CopyTo(ms);
+                using var ms = new MemoryStream();
+                Request.Form.Files[0].CopyTo(ms);
 
-                    command.Image = ms.ToArray();
-                }
+                command.Image = ms.ToArray();
             }
 
 

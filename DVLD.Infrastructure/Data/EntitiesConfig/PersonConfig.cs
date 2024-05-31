@@ -16,7 +16,7 @@ internal class PersonConfig : IEntityTypeConfiguration<Person>
             .HasColumnName("DateOfBirth");
 
         builder.Property(x=> x.Image)
-            .HasColumnType("varbinary(MAX)");
+            .HasColumnType("varchar(150)");
 
         builder.HasOne(x => x.User)
             .WithOne(x => x.Person)
@@ -59,12 +59,12 @@ internal class PersonConfig : IEntityTypeConfiguration<Person>
                 Phone = "Phone" + i,
                 Email = "email" + i + "@example.com",
                 NationalityCountryId = (i % 150) + 1, // Example country ID calculation
-                Image = null, // You can set it to null if desired
+                Image = "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\uploads\\persons\\daddy-henry.png", // You can set it to null if desired
                 User = null, // You can omit this property if not needed
                 Driver = null, // You can omit this property if not needed
                 Applications = null // You can omit this property if not needed
             };
-            
+            //"C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\uploads\\persons\\daddy-henry.png"
             persons.Add(person);
         }
 

@@ -45,6 +45,7 @@ namespace DLVD.App.Profiles
                         config => config.MapFrom(src => src.CreatedByApplicationId)
                           )
                 .ReverseMap();
+
             // InterNationalDrivvingLicense
             CreateMap<CreateInternationalDrivvingLicenseRequest, InternationalDrivingLicense>()
                 .ReverseMap();
@@ -136,10 +137,13 @@ namespace DLVD.App.Profiles
 
             // DTO TO Person
             CreateMap<CreatePersonCommand, Person>()
+                .ForMember(
+                                dest => dest.Image,
+                                src => src.MapFrom(src => src.ImagePath)
+                           )
                 .ForMember(dest => dest.User, opt => opt.Ignore())
                 .ForMember(dest => dest.Driver, opt => opt.Ignore())
                 .ForMember(dest => dest.Applications, opt => opt.Ignore());
-
 
             CreateMap<UpdatePersonCommand, Person>()
                 .ForMember(dest => dest.User, opt => opt.Ignore())

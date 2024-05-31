@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Applications.Command.CreateApplication;
 using DLVD.App.Features.Common;
-using DLVD.App.Features.LicenseClasses.Query.GetAllLicenseClasses;
 using DVLD.App.Interfaces.Persistence;
-using DVLD.Domain.Entities;
 using FluentResults;
 using MediatR;
 using License = DVLD.Domain.Entities.License;
@@ -32,13 +30,14 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
             if (SatisfyRulesResult.IsFailed)
                 return Result.Fail(SatisfyRulesResult.Errors);
 
+            // jsut For DRY 
             try
             {
                 request.CreatedByApplicationId = await CreateApplication(request.CreateApplicationCommand);
             }
             catch (Exception e)
             {
-                return Result.Fail("Coldnt Create Application To The License");
+                return Result.Fail("couldn't Create Application To The License");
             }
 
             request.ExpirationDate = await GetExpirationDate(request.LicenseClassId);

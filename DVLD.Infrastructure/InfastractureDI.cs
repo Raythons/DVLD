@@ -1,21 +1,17 @@
-﻿using DVLD.App.Interfaces.Persistence;
+﻿using DLVD.App.Interfaces;
+using DVLD.App.Interfaces.Persistence;
 using DVLD.Data;
 using DVLD.Data.Repositories;
-using DVLD.Domain.Entities;
+using DVLD.Infrastructure.FileStorage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DVLD.Infrastructure
 {
     public static class InfastractureDI
-    {
-        
+    {   
         public static IServiceCollection AddInfrastructureServices (
                         this IServiceCollection  services,
                         IConfiguration config)
@@ -26,6 +22,7 @@ namespace DVLD.Infrastructure
                 ); 
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IFileStorageService, LocalFileStorageService>();
             return services;
         }
     }
