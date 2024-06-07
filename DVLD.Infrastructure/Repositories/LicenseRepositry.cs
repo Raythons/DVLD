@@ -2,6 +2,8 @@
 using DVLD.App.Interfaces.Persistence;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using DLVD.App.Features.Common;
+using System.Linq.Expressions;
 
 namespace DVLD.Data.Repositories
 {
@@ -43,6 +45,29 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
+
+
+        public async Task<PagedList<TProjection>> GetAllByProjectionAsync<TProjection>(
+          Expression<Func<License, TProjection>> selector,
+          Expression<Func<License, bool>> filter = null,
+          Expression<Func<License, object>> orderBy = null,
+          bool descending = true,
+          int page = 1,
+          int pageSize = 2)
+        {
+            ArgumentNullException.ThrowIfNull(selector);
+            var query = _dbSet.AsNoTracking();
+
+            if (filter is not null)
+                query = query.Where(filter);
+
+            orderBy ??= l => l.Id;
+
+            query = descending ? query.OrderByDescending(orderBy)
+                              : query.OrderBy(orderBy);
+
+            return await PagedList<TProjection>.CreateAsync(query.Select(selector), page, pageSize);
+        }
         public Task<Driver> GetAssociatedDriver(string licenseId)
         {
             throw new NotImplementedException();
@@ -116,5 +141,12 @@ namespace DVLD.Data.Repositories
                          .Select(l => l.IsActive)
                          .SingleOrDefaultAsync();
         }
+
+        public Task<PagedList<License>> GetAllPaginatedAsync(Expression<Func<License, bool>> filter = null, Expression<Func<License, object>> orderBy = null, bool descending = true, int page = 1, int pageSize = 20)
+        {
+            throw new NotImplementedException();
+        }
+
+       
     }
 }

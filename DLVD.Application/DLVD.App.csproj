@@ -19,8 +19,4 @@
     <ProjectReference Include="..\DVLD.Domain\DVLD.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Licenses\Query\GetLicensesList\" />
-  </ItemGroup>
-
 </Project>

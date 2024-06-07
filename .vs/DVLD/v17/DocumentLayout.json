@@ -3,56 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\command\\detainlicense\\detainlicensecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\command\\detainlicense\\detainlicensecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\query\\getdetainedlicenseslist\\getdetainedlicenseslistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\query\\getdetainedlicenseslist\\getdetainedlicenseslistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.infrastructure\\data\\entitiesconfig\\detainedlicenseconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|solutionrelative:dvld.infrastructure\\data\\entitiesconfig\\detainedlicenseconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\query\\getdetainedlicenseslist\\getdetainedlicenseslistrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\query\\getdetainedlicenseslist\\getdetainedlicenseslistrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.infrastructure\\repositories\\detainedlicenserepositry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|solutionrelative:dvld.infrastructure\\repositories\\detainedlicenserepositry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\query\\getpersonlicenseslist\\getpersonlicenseslistrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\query\\getpersonlicenseslist\\getpersonlicenseslistrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.domain\\entities\\detainedlicense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|solutionrelative:dvld.domain\\entities\\detainedlicense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\command\\detainlicense\\detainlicenseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\command\\detainlicense\\detainlicenseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\command\\detainlicense\\detainlicenserequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\command\\detainlicense\\detainlicenserequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.infrastructure\\data\\dvldcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|solutionrelative:dvld.infrastructure\\data\\dvldcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\command\\renewlicense\\renewlicensecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\command\\renewlicense\\renewlicensecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\command\\renewlicense\\renewlicenseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\command\\renewlicense\\renewlicenseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\profiles\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\profiles\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\applicationdi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\applicationdi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\command\\renewlicense\\renewlicensecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\command\\renewlicense\\renewlicensecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.infrastructure\\data\\entitiesconfig\\licenseclassconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|solutionrelative:dvld.infrastructure\\data\\entitiesconfig\\licenseclassconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\licenses\\query\\getdetainedlicenseslist\\getdetainedlicenseslistqueryhandller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\licenses\\query\\getdetainedlicenseslist\\getdetainedlicenseslistqueryhandller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,8 +26,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GetDetainedLicensesListQueryHandller.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListQueryHandller.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListQueryHandller.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListQueryHandller.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListQueryHandller.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T14:40:26.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetDetainedLicensesListRequest.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListRequest.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListRequest.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListRequest.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T14:40:26.008Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetDetainedLicensesListResponse.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListResponse.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListResponse.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListResponse.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Query\\GetDetainedLicensesList\\GetDetainedLicensesListResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T14:40:25.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GetPersonLicensesListRequest.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Query\\GetPersonLicensesList\\GetPersonLicensesListRequest.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Query\\GetPersonLicensesList\\GetPersonLicensesListRequest.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Query\\GetPersonLicensesList\\GetPersonLicensesListRequest.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Query\\GetPersonLicensesList\\GetPersonLicensesListRequest.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T14:12:40.4Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
@@ -75,163 +91,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DetainedLicenseRepositry.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Repositories\\DetainedLicenseRepositry.cs",
-              "RelativeDocumentMoniker": "DVLD.Infrastructure\\Repositories\\DetainedLicenseRepositry.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Repositories\\DetainedLicenseRepositry.cs",
-              "RelativeToolTip": "DVLD.Infrastructure\\Repositories\\DetainedLicenseRepositry.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAQwCQAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:23:14.654Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DetainedLicense.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Entities\\DetainedLicense.cs",
-              "RelativeDocumentMoniker": "DVLD.Domain\\Entities\\DetainedLicense.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Entities\\DetainedLicense.cs",
-              "RelativeToolTip": "DVLD.Domain\\Entities\\DetainedLicense.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAUAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:08:41.553Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DvldContext.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\DvldContext.cs",
-              "RelativeDocumentMoniker": "DVLD.Infrastructure\\Data\\DvldContext.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\DvldContext.cs",
-              "RelativeToolTip": "DVLD.Infrastructure\\Data\\DvldContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:11:42.903Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AutoMapperProfile.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Profiles\\AutoMapperProfile.cs",
-              "RelativeDocumentMoniker": "DLVD.Application\\Profiles\\AutoMapperProfile.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Profiles\\AutoMapperProfile.cs",
-              "RelativeToolTip": "DLVD.Application\\Profiles\\AutoMapperProfile.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAAACoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:10:19.702Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ApplicationDI.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\ApplicationDI.cs",
-              "RelativeDocumentMoniker": "DLVD.Application\\ApplicationDI.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\ApplicationDI.cs",
-              "RelativeToolTip": "DLVD.Application\\ApplicationDI.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:10:15.197Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RenewLicenseCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseCommandHandler.cs",
-              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseCommandHandler.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseCommandHandler.cs",
-              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseCommandHandler.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAA3wEMAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:04:51.164Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RenewLicenseResponse.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseResponse.cs",
-              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseResponse.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseResponse.cs",
-              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:04:50.418Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "RenewLicenseCommand.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseCommand.cs",
-              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseCommand.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseCommand.cs",
-              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Command\\RenewLicense\\RenewLicenseCommand.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAA5wAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:04:46.677Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DetainLicenseCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseCommandHandler.cs",
-              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseCommandHandler.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseCommandHandler.cs",
-              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseCommandHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:03:48.387Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DetainLicenseResponse.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseResponse.cs",
-              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseResponse.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseResponse.cs",
-              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:03:46.369Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DetainLicenseRequest.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseRequest.cs",
-              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseRequest.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseRequest.cs",
-              "RelativeToolTip": "DLVD.Application\\Features\\Licenses\\Command\\DetainLicense\\DetainLicenseRequest.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:03:42.908Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DetainedLicenseConfig.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\EntitiesConfig\\DetainedLicenseConfig.cs",
-              "RelativeDocumentMoniker": "DVLD.Infrastructure\\Data\\EntitiesConfig\\DetainedLicenseConfig.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\EntitiesConfig\\DetainedLicenseConfig.cs",
-              "RelativeToolTip": "DVLD.Infrastructure\\Data\\EntitiesConfig\\DetainedLicenseConfig.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAQwA0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:03:36.619Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "LicenseClassConfig.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\EntitiesConfig\\LicenseClassConfig.cs",
-              "RelativeDocumentMoniker": "DVLD.Infrastructure\\Data\\EntitiesConfig\\LicenseClassConfig.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\EntitiesConfig\\LicenseClassConfig.cs",
-              "RelativeToolTip": "DVLD.Infrastructure\\Data\\EntitiesConfig\\LicenseClassConfig.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T11:00:57.945Z"
             }
           ]
         },

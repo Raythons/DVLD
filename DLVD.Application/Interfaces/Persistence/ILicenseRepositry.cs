@@ -1,9 +1,7 @@
-﻿using DVLD.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DLVD.App.Features.Common;
+using DVLD.Domain.Entities;
+using System.Linq.Expressions;
+
 
 namespace DVLD.App.Interfaces.Persistence
 {
@@ -15,6 +13,21 @@ namespace DVLD.App.Interfaces.Persistence
         public Task DeActivateLicense(int licenseId);
         public Task<License?> GetById(int id);
         public Task<bool> Add(License entity);
+
+        public Task<PagedList<License>> GetAllPaginatedAsync(
+           Expression<Func<License, bool>> filter = null,
+           Expression<Func<License, object>> orderBy = null,
+           bool descending = true,
+           int page = 1,
+           int pageSize = 20);
+
+        Task<PagedList<TProjection>> GetAllByProjectionAsync<TProjection>(
+          Expression<Func<License, TProjection>> selector,
+          Expression<Func<License, bool>> filter = null,
+          Expression<Func<License, object>> orderBy = null,
+          bool descending = true,
+          int page = 1,
+          int pageSize = 20);
         public Task<bool> Update(License entity);
         public Task<bool> Update(int licenseId);
         public Task<bool> Delete(License entity);
