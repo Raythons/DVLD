@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DVLD.Data.Repositories
 {
@@ -14,19 +15,26 @@ namespace DVLD.Data.Repositories
         protected readonly ILogger _logger;
 
         private DvldContext _DvldContext;
+        private DbSet<DetainedLicense> _dbSet;
         public DetainedLicenseRepositry(ILogger logger, DvldContext context)
         {
             _logger = logger;
             _DvldContext = context;
+            _dbSet = _DvldContext.DetainedLicenses;
         }
-        public Task<bool> Add(DetainedLicense entity)
+        public async Task<bool> Add(DetainedLicense entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
+            return true;
         }
-
-        public Task<IEnumerable<DetainedLicense>> All()
+        
+        public async Task<bool> IsDetained(int licenseId)
         {
-            throw new NotImplementedException();
+            var IsReleased = await _dbSet 
+                                    .Where(dl => dl.LicenseId == licenseId)
+                                    .Select(dl => dl.IsReleased)
+                                    .SingleOrDefaultAsync();
+            return !IsReleased;
         }
 
         public Task<bool> Delete(DetainedLicense entity)

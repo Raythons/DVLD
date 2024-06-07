@@ -57,7 +57,6 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
         private async Task<Result<bool>> ValidLicenseToRenew(int previousLicenseId)
         {
             var res = new Result<bool>();
-
             var isExpired = await DidLicenseExpired(previousLicenseId);
             if (!isExpired)
                 res.WithError("Cannot Re-New UnExpired License");

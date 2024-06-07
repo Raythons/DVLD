@@ -19,7 +19,7 @@ public class Application
     public int CreatedByUserId { set; get; }
     public User User { get; set; }
     public License? License { set; get; }
-    public ICollection<DetainedLicense>? DetainedLicense { set; get; }
+    public DetainedLicense DetainedLicense { set; get; }
     public LocalDrivingLicenseApplication? LocalDrivingLicenseApplication { get; set; }
 
     public InternationalDrivingLicense? InternationalDrivingLicenseApplication { set; get; }

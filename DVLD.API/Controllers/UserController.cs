@@ -3,13 +3,10 @@ using DLVD.App.Features.Users.Commands.CreateUser;
 using DLVD.App.Features.Users.Commands.UpdateUser;
 using DLVD.App.Features.Users.Queires.GetUserQuery;
 using DLVD.App.Features.Users.Queires.GetUsersList;
-using DVLD.Domain.Entities;
 using FluentResults.Samples.WebController;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
 
 namespace DVLD.WEB.Controllers
 {

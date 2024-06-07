@@ -31,10 +31,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services
         .AddControllers()
-        .AddJsonOptions
-            (
-                x=> x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
-            );
+        .AddJsonOptions(opt =>
+        {
+            opt.JsonSerializerOptions.PropertyNamingPolicy = null;
+            opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        });
+           
 
 builder.Services.AddAppServices();
 builder.Services.AddCors(options =>
@@ -82,6 +84,7 @@ builder.Services.AddAuthentication(o =>
    });
 
 
+
    //.AddScheme<AuthenticationSchemeOptions, BasicAuths>("Basic", null)
    //.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
    //.AddCookie("cookie", o =>
@@ -104,7 +107,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseMiddleware<ProfillingMiddleWare>();
-app.UseMiddleware<ExceptionHandlerMiddleware>();
+//app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

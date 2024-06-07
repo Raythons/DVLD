@@ -8,8 +8,10 @@ using DLVD.App.Features.Drivers.Command.CreateDriver;
 using DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternationalDrivvingLicense;
 using DLVD.App.Features.LicenseClasses.Query.GetAllLicenseClasses;
 using DLVD.App.Features.Licenses.Command.CreateLicense;
+using DLVD.App.Features.Licenses.Command.DetainLicense;
 using DLVD.App.Features.Licenses.Command.RenewLicense;
-using DLVD.App.Features.Licenses.Query;
+using DLVD.App.Features.Licenses.Command.ReplaceLicense;
+using DLVD.App.Features.Licenses.Query.GetLicense;
 using DLVD.App.Features.LocalDrivingLicense.Command.CreateLocalDrivvingLicense;
 using DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDriverLicense;
 using DLVD.App.Features.Persons.Commands.CreatePerson;
@@ -27,18 +29,34 @@ using DVLD.Domain.Entities;
 
 namespace DLVD.App.Profiles
 {
-    public class AutoMapperProfile: Profile
+    public class AutoMapperProfile : Profile
     {
 
-        public AutoMapperProfile() 
+        public AutoMapperProfile()
         {
             // => license fees == paid fees
             // applicationId == CreatedByApplicationId
+
+
+            // DetainedLicense
+            CreateMap<DetainLicenseRequest, DetainedLicense>().ReverseMap();
+
+            // ReplaceLicenseRequest 
+            CreateMap<ReplaceLicenseRequest, License>()
+               .ForMember(
+                       dest => dest.PaidFees,
+                       config => config.MapFrom(src => src.LicenseFees)
+                       )
+               .ForMember(
+                       dest => dest.ApplicationId,
+                       config => config.MapFrom(src => src.CreatedByApplicationId)
+                         )
+               .ReverseMap();
             // ReNewLicenseRequest
             CreateMap<RenewLicenseRerquest, License>()
                 .ForMember(
                         dest => dest.PaidFees,
-                        config => config.MapFrom(src => src.LicenseFees)   
+                        config => config.MapFrom(src => src.LicenseFees)
                         )
                 .ForMember(
                         dest => dest.ApplicationId,
@@ -46,21 +64,22 @@ namespace DLVD.App.Profiles
                           )
                 .ReverseMap();
 
-            // InterNationalDrivvingLicense
+            //InterNationalDrivvingLicense
             CreateMap<CreateInternationalDrivvingLicenseRequest, InternationalDrivingLicense>()
                 .ReverseMap();
-            // License
+
+            //License
             CreateMap<CreateLicenseCommand, License>();
 
-            CreateMap<GetLicenseDto, License>().ReverseMap();
-            // Driver
+            CreateMap<GetLicenseResponse, License>().ReverseMap();
+            //Driver
             CreateMap<CreateDriverCommand, Driver>();
             CreateMap<Driver, GetDriverDto>();
 
-            // Test 
+            //Test
             CreateMap<Test, GetTestDto>().ReverseMap();
             CreateMap<Test, CreateTestCommand>().ReverseMap();
-            //TestAppointments 
+            //TestAppointments
             CreateMap<TestAppointment, CreateTestAppointmentCommand>().ReverseMap();
 
             //LocalDrivvingLicenseAppliciation
@@ -69,7 +88,10 @@ namespace DLVD.App.Profiles
 
             CreateMap<GetLocalDrivvingLicenseDto, LocalDrivingLicenseApplication>()
                 .ReverseMap();
-            // Application TO Dto 
+
+            CreateMap<CreateApplicationCommand, Application>().ReverseMap();
+
+            //Application TO Dto
             CreateMap<Application, GetApplicationDto>()
                 .ForMember
                     (
@@ -78,7 +100,7 @@ namespace DLVD.App.Profiles
                                 (
                                    src => src.User.UserName
                                 )
-                    )               
+                    )
                     .ReverseMap();
 
             CreateMap<Application, GetApplicationListDto>()
@@ -118,11 +140,11 @@ namespace DLVD.App.Profiles
 
             CreateMap<Person, GetPersonDetailsDto>()
                 .ForMember(
-                            dest => dest.FullName ,
+                            dest => dest.FullName,
                             opts => opts.MapFrom
                                 (
                                 src => src.FirstName + " " + src.SecondName
-                                + " " + src.ThirdName + " "+ src.LastName
+                                + " " + src.ThirdName + " " + src.LastName
                                 )
                            )
                 .ForMember
@@ -151,11 +173,11 @@ namespace DLVD.App.Profiles
                 .ForMember(dest => dest.Applications, opt => opt.Ignore())
                 .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.PersonId));
 
-            // User To DTO
+            //User To DTO
             CreateMap<User, GetUserDto>().ReverseMap();
 
             CreateMap<User, AuthenticateUserDto>().ReverseMap();
-              
+
 
             CreateMap<CreateUserCommand, User>()
                 .ForMember(
@@ -166,16 +188,15 @@ namespace DLVD.App.Profiles
             CreateMap<UpdateUserCommand, User>().ReverseMap();
 
 
-            // Licenses Class Dto
+            //Licenses Class Dto
             CreateMap<LicenseClass, LicenseClassDto>().ReverseMap();
 
             // Application ClassDto
-            CreateMap<CreateApplicationCommand, Application>().ReverseMap();
 
-            // Test Appointments
+            //Test Appointments
             CreateMap<CreateTestAppointmentCommand, Application>().ReverseMap();
 
-                    
+
         }
     }
 }

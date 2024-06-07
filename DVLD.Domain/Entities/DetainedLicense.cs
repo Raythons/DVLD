@@ -15,7 +15,7 @@ public class DetainedLicense
     public bool IsReleased { get; set; }
     public DateTime ReleaseDate { get; set; }
     public int ReleasedByUserId { get; set; }
-    public User ReleaseUser { get; set; }
+    public User? ReleasedByUser { get; set; }
     public int ReleaseApplicationId { get; set; } 
     public Application? Application { get; set; }
 }

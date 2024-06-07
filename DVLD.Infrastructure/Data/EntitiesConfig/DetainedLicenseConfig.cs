@@ -17,7 +17,7 @@ internal class DetainedLicenseConfig : IEntityTypeConfiguration<DetainedLicense>
             .HasForeignKey(x => x.LicenseId)
             .OnDelete(DeleteBehavior.NoAction);
 
-        builder.HasOne(x => x.ReleaseUser)
+        builder.HasOne(x => x.ReleasedByUser)
             .WithMany(x => x.DetainedLicensesReleased)
             .HasForeignKey(x => x.ReleasedByUserId)
             .OnDelete(DeleteBehavior.NoAction);
@@ -29,10 +29,16 @@ internal class DetainedLicenseConfig : IEntityTypeConfiguration<DetainedLicense>
 
 
         builder.HasOne(x => x.Application)
-            .WithMany(x => x.DetainedLicense)
-           .HasForeignKey(x => x.ReleaseApplicationId);
+            .WithOne(x => x.DetainedLicense)
+           .HasForeignKey<DetainedLicense>(x => x.ReleaseApplicationId);
+
+
 
         builder.Property(x => x.FineFees).HasColumnType("smallmoney");
+
+        builder.Property(x => x.IsReleased).HasDefaultValue(false);
+        builder.Property(x => x.ReleaseDate).HasDefaultValue(DateTime.MinValue);
+        //builder.Property(x => x.ReleaseApplicationId).HasDefaultValue(0);
 
     }
 

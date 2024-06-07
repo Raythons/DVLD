@@ -19,7 +19,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DVLD.WEB.Controllers
 {
-
     public class PersonController : BaseControllerr
     {
 
@@ -117,8 +116,6 @@ namespace DVLD.WEB.Controllers
         [Route("{personId:int}")]
         public async Task<IActionResult> UpdatePerson([FromBody] UpdatePersonCommand updatePersonCommand)
         {
-            Console.WriteLine(updatePersonCommand.SecondName);
-            Console.WriteLine(updatePersonCommand.FirstName);
             
             var query = new UpdatePersonCommand(updatePersonCommand);
 
