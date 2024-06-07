@@ -4,7 +4,6 @@ namespace DVLD.App.Interfaces.Persistence
 {
     public interface IDetainedLicenseRepositry
     {
-        public Task<IEnumerable<DetainedLicense>> All();
         public Task<DetainedLicense?> GetById(int id);
         public Task<bool> Add(DetainedLicense entity);
         public Task<bool> Update(DetainedLicense entity);

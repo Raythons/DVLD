@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Licenses.Command.CreateLicense;
 using DLVD.App.Features.Licenses.Command.RenewLicense;
-using DLVD.App.Features.Licenses.Query;
+using DLVD.App.Features.Licenses.Query.GetLicense;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;

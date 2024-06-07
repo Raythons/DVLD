@@ -1,6 +1,5 @@
 ﻿using DLVD.App.extensions;
 using DLVD.App.Features.Persons.Commands.CreatePerson;
-using DLVD.App.Features.Persons.Commands.DeletePerson;
 using DLVD.App.Features.Persons.Commands.UpdatePerson;
 using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment;
 using DLVD.App.Features.Users.Commands.CreateUser;
@@ -15,7 +14,7 @@ namespace DLVD.App
 {
     public static class ApplicationDI
     {
-        public static IServiceCollection AddAppServices (this IServiceCollection services)
+        public static IServiceCollection AddAppServices (IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

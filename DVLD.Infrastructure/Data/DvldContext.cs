@@ -23,6 +23,8 @@ public partial class DvldContext : DbContext
     public DbSet<TestAppointment> TestAppointments { get; set; }
     public DbSet<LocalDrivvingLicenseApplicationsView> LocalDrivvingLicenseApplicationsView { get; set; }
     public DbSet<DriversBreifInfoView> DriversBreifInfoView { get; set; }
+    public DbSet<DetainedLicenseView> DetainedLicenseView { get; set; }
+
     public DvldContext(DbContextOptions<DvldContext> options)
         : base(options)
     {
