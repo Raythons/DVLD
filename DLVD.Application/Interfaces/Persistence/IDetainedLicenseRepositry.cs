@@ -10,6 +10,7 @@ namespace DVLD.App.Interfaces.Persistence
         public Task <TProjection> GetById<TProjection>(int id ,
             Expression<Func<DetainedLicense, TProjection>> selector);
 
+        public  Task<bool> IsDetained(int licenseId);
         public Task<DetainedLicense?> GetById(int id);
         public  Task<PagedList<DetainedLicenseView>> GetAllPaginatedAsync(
           Expression<Func<DetainedLicenseView, bool>> filter = null,
