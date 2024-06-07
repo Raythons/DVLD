@@ -1,4 +1,3 @@
-using DLVD.App;
 using DVLD.Infrastructure;
 using DVLD.API.MiddleWares;
 using DVLD.API;
@@ -7,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using DVLD.API.Config;
 using System.Text;
 using System.Text.Json.Serialization;
+using DLVD.App;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +36,7 @@ builder.Services
             opt.JsonSerializerOptions.PropertyNamingPolicy = null;
             opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         });
-           
+
 
 builder.Services.AddAppServices();
 builder.Services.AddCors(options =>

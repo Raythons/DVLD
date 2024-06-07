@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\applicationdi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\applicationdi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|solutionrelative:dvld.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\applicationdi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\applicationdi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.api\\dvld.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|solutionrelative:dvld.api\\dvld.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,28 +38,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Program.cs",
-              "RelativeDocumentMoniker": "DVLD.API\\Program.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Program.cs",
-              "RelativeToolTip": "DVLD.API\\Program.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAApwCgAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T15:49:34.131Z",
+              "DocumentIndex": 2,
+              "Title": "DVLD.API",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
+              "RelativeDocumentMoniker": "DVLD.API\\DVLD.API.csproj",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
+              "RelativeToolTip": "DVLD.API\\DVLD.API.csproj",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-07T16:55:39.206Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ApplicationDI.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\ApplicationDI.cs",
               "RelativeDocumentMoniker": "DLVD.Application\\ApplicationDI.cs",
               "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\ApplicationDI.cs",
               "RelativeToolTip": "DLVD.Application\\ApplicationDI.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAAABAAAABUAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABgAAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-07T15:44:48.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Program.cs",
+              "RelativeDocumentMoniker": "DVLD.API\\Program.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Program.cs",
+              "RelativeToolTip": "DVLD.API\\Program.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAmwCcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T15:49:34.131Z",
               "EditorCaption": ""
             }
           ]

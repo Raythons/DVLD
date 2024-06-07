@@ -14,7 +14,7 @@ namespace DLVD.App
 {
     public static class ApplicationDI
     {
-        public static IServiceCollection AddAppServices (IServiceCollection services)
+        public static IServiceCollection AddAppServices (this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
