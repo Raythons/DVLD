@@ -1,10 +1,22 @@
-﻿using DVLD.Domain.Entities;
+﻿using DLVD.App.Features.Common;
+using DVLD.Domain.Entities;
+using DVLD.Domain.Entities.Views;
+using System.Linq.Expressions;
 
 namespace DVLD.App.Interfaces.Persistence
 {
     public interface IDetainedLicenseRepositry
     {
+        public Task <TProjection> GetById<TProjection>(int id ,
+            Expression<Func<DetainedLicense, TProjection>> selector);
+
         public Task<DetainedLicense?> GetById(int id);
+        public  Task<PagedList<DetainedLicenseView>> GetAllPaginatedAsync(
+          Expression<Func<DetainedLicenseView, bool>> filter = null,
+          Expression<Func<DetainedLicenseView, object>> orderBy = null,
+          bool descending = true,
+          int page = 1,
+          int pageSize = 20);
         public Task<bool> Add(DetainedLicense entity);
         public Task<bool> Update(DetainedLicense entity);
         public Task<bool> Update(int driverId);

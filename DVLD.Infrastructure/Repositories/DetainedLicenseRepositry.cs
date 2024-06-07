@@ -1,12 +1,10 @@
 ﻿using DVLD.Domain.Entities;
 using DVLD.App.Interfaces.Persistence;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using DLVD.App.Features.Common;
+using DVLD.Domain.Entities.Views;
+using System.Linq.Expressions;
 
 namespace DVLD.Data.Repositories
 {
@@ -27,7 +25,39 @@ namespace DVLD.Data.Repositories
             await _dbSet.AddAsync(entity);
             return true;
         }
-        
+        public async Task<TProjection> GetById<TProjection>(int licenseId,
+            Expression<Func<DetainedLicense, TProjection>> selector)
+        {
+            ArgumentNullException.ThrowIfNull(selector);
+
+            var ProjectedValue = await _dbSet
+                                        .Where(l => l.LicenseId == licenseId)
+                                        .Select(selector)
+                                        .SingleOrDefaultAsync();
+            return ProjectedValue;
+
+        }
+        public async Task<PagedList<DetainedLicenseView>> GetAllPaginatedAsync(
+            Expression<Func<DetainedLicenseView, bool>> filter = null,
+            Expression<Func<DetainedLicenseView, object>> orderBy = null,
+            bool descending = true,
+            int page = 1,
+            int pageSize = 20)
+        {
+            var query = _DvldContext.DetainedLicenseView.AsNoTracking();
+
+            if (filter is not null)
+                query = query.Where(filter);
+
+            orderBy ??= l => l.Id;
+
+            query = descending ? query.OrderByDescending(orderBy)
+                              : query.OrderBy(orderBy);
+
+            return await PagedList<DetainedLicenseView>.CreateAsync(query, page, pageSize);
+
+        }
+
         public async Task<bool> IsDetained(int licenseId)
         {
             var IsReleased = await _dbSet 
@@ -106,5 +136,7 @@ namespace DVLD.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

@@ -33,21 +33,19 @@ namespace DLVD.App.Features.Licenses.Command.DetainLicense
             await _unitOfWork.DetainedLicenseRepositry.Add(LicenseToDetain);
             await DeActivateLicense(request.LicenseId);
 
+
+            await _unitOfWork.CompleteAsync();
             var respopnse = new DetainLicenseResponse(LicenseToDetain.Id);
 
             return Result.Ok(respopnse);
 
         }
 
-        private async Task<Result<bool>> ValidLicenseToDetain(int previousLicenseId)
+        private async Task<Result<bool>> ValidLicenseToDetain(int LicenseIdToDetain)
         {
             var res = new Result<bool>();
 
-            var isExpired = await DidLicenseExpired(previousLicenseId);
-            if (!isExpired)
-                res.WithError("Cannot Detain UnExpired License");
-
-            var IsActive = await IsActiveLicense(previousLicenseId);
+            var IsActive = await IsActiveLicense(LicenseIdToDetain);
 
             if (!IsActive)
                 res.WithError("Cannot Detain DeActivated License");
@@ -65,12 +63,6 @@ namespace DLVD.App.Features.Licenses.Command.DetainLicense
             await _unitOfWork.LicenseRepositry.DeActivateLicense(previousLicenseId);
         }
 
-        private async Task<bool> DidLicenseExpired(int LicenseId)
-        {
-            var ExpirationDate = await _unitOfWork.LicenseRepositry.GetExpirationDate(LicenseId);
-
-            return ExpirationDate < DateTime.UtcNow;
-        }
 
     }
 }

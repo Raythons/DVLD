@@ -37,7 +37,6 @@ internal class DetainedLicenseConfig : IEntityTypeConfiguration<DetainedLicense>
         builder.Property(x => x.FineFees).HasColumnType("smallmoney");
 
         builder.Property(x => x.IsReleased).HasDefaultValue(false);
-        builder.Property(x => x.ReleaseDate).HasDefaultValue(DateTime.MinValue);
         //builder.Property(x => x.ReleaseApplicationId).HasDefaultValue(0);
 
     }

@@ -46,6 +46,8 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
 
             await DeActivedLicense(request.PreviousLicenseId);
 
+
+
             var respopnse = new RenewLicenseResponse(request.CreatedByApplicationId,
                                                      request.PreviousLicenseId,
                                                      CreatedLicenseId);
