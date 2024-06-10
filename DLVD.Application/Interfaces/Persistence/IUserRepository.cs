@@ -10,6 +10,7 @@ namespace DVLD.App.Interfaces.Persistence;
 public interface IUserRepository
 {
     public Task<bool> AddAsync(User entity);
+    public Task<User> GetByUserName(string UserName);
     public IQueryable<User> GetPaginatedUsers();
     public Task<User?> GetById(int userId);
     public Task<bool> Update(User entity);

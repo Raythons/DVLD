@@ -2,11 +2,6 @@
 using DVLD.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD.Data.Repositories;
 
@@ -26,7 +21,16 @@ public class UserRepository : IUserRepository
     public IQueryable<User> GetPaginatedUsers()
     {
         return  _dbSet;
-    } 
+    }
+
+    public async Task<User?> GetByUserName(string userName)
+    {
+        var user = await _dbSet.Where(u => u.UserName == userName)
+                               .Include(u => u.Person)
+                               .FirstOrDefaultAsync();
+         
+        return user;
+    }
     public  async Task<User?> GetById(int userId)
     {
         try
@@ -162,4 +166,6 @@ public class UserRepository : IUserRepository
     {
         throw new NotImplementedException();
     }
+
+    
 }

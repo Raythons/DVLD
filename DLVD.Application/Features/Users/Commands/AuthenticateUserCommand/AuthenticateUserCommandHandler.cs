@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace DLVD.App.Features.Users.Commands.AuthenticateUserCommand
 {
     public class AuthenticateUserCommandHandler : BaseHandler, 
-        IRequestHandler<AuthenticateUserCommand, Result<AuthenticateUserDto>>
+        IRequestHandler<AuthenticateUserCommand, Result<AuthenticateUserResponse>>
     {
         public AuthenticateUserCommandHandler(
             IUnitOfWork unitOfWork,
@@ -22,14 +22,14 @@ namespace DLVD.App.Features.Users.Commands.AuthenticateUserCommand
         }
 
         
-        public async Task<Result<AuthenticateUserDto>> Handle(
+        public async Task<Result<AuthenticateUserResponse>> Handle(
             AuthenticateUserCommand request,
             CancellationToken cancellationToken)
         {
-            var user = await _unitOfWork.UserRepository.GetById(request.Id);
+            var user = await _unitOfWork.UserRepository.GetByUserName(request.UserName);
 
             if (user is null)
-                  return new Result().WithError("User Not Found");
+                  return new Result().WithError("UserName Or Password Wrong");
 
             if (!user.IsActive)
                 return new Result().WithError("The User Is DeActivated");
@@ -37,7 +37,7 @@ namespace DLVD.App.Features.Users.Commands.AuthenticateUserCommand
             if (user.Password != request.Password)
                 return new Result().WithError("UserName Or Password Wrong");
 
-            var res = _mapper.Map<AuthenticateUserDto>(user);
+            var res = _mapper.Map<AuthenticateUserResponse>(user);
 
             return Result.Ok(res);
         }

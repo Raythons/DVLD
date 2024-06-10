@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj": {}
+    "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj": {}
   },
   "projects": {
-    "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj": {
+    "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj",
+        "projectUniqueName": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj",
         "projectName": "DLVD.App",
-        "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj",
+        "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj",
         "packagesPath": "C:\\Users\\H1202\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\obj\\",
+        "outputPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\H1202\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
-                "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj"
+              "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
+                "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj"
               }
             }
           }
@@ -94,14 +94,14 @@
         }
       }
     },
-    "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj": {
+    "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
+        "projectUniqueName": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
         "projectName": "DVLD.API",
-        "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
+        "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\DVLD.API.csproj",
         "packagesPath": "C:\\Users\\H1202\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\obj\\",
+        "outputPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\H1202\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -118,14 +118,14 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj": {
-                "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj"
+              "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj": {
+                "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj"
               },
-              "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
-                "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj"
+              "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
+                "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj"
               },
-              "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj": {
-                "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj"
+              "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj"
               }
             }
           }
@@ -201,14 +201,14 @@
         }
       }
     },
-    "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
+    "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj",
         "projectName": "DVLD.Domain",
-        "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj",
+        "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj",
         "packagesPath": "C:\\Users\\H1202\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\obj\\",
+        "outputPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\H1202\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -261,14 +261,14 @@
         }
       }
     },
-    "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj": {
+    "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj",
         "projectName": "DVLD.Infrastructure",
-        "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\DVLD.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\H1202\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\H1202\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -285,11 +285,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj": {
-                "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj"
+              "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj": {
+                "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\DLVD.App.csproj"
               },
-              "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
-                "projectPath": "c:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj"
+              "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj": {
+                "projectPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\DVLD.Domain.csproj"
               }
             }
           }

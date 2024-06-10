@@ -11,7 +11,7 @@ internal class UserConfig : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.HasKey(x => x.Id);
-
+        builder.HasIndex(x => x.UserName);
         //builder.HasOne(x => x.Person)
         //    .WithOne(x => x.User)
         //    .HasForeignKey<User>(x=> x.PersonId)

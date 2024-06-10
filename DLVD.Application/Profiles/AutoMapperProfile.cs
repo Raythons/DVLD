@@ -176,7 +176,12 @@ namespace DLVD.App.Profiles
             //User To DTO
             CreateMap<User, GetUserDto>().ReverseMap();
 
-            CreateMap<User, AuthenticateUserDto>().ReverseMap();
+            CreateMap<User, AuthenticateUserResponse>()
+                .ForMember(
+                    dest =>  dest.Image,
+                    src => src.MapFrom(src => src.Person.Image)
+                )
+                .ReverseMap();
 
 
             CreateMap<CreateUserCommand, User>()

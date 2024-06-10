@@ -8,18 +8,16 @@ using System.Threading.Tasks;
 
 namespace DLVD.App.Features.Users.Commands.AuthenticateUserCommand
 {
-    public class AuthenticateUserCommand: IRequest<Result<AuthenticateUserDto>>
+    public class AuthenticateUserCommand: IRequest<Result<AuthenticateUserResponse>>
     {
         public string UserName { get; set; }
         public string Password { get; set; }
-        public int Id { get; set; }
 
         public AuthenticateUserCommand() { }
-        public AuthenticateUserCommand(string userName, string password, int userId)
+        public AuthenticateUserCommand(string userName, string password)
         {
             UserName = userName;
             Password = password;
-            Id = userId;
         }
     }
 }

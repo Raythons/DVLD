@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DLVD.App.Features.Persons.Commands.CreatePerson;
 using DVLD.API.Config;
 using DVLD.WEB.Controllers;
 using MediatR;
@@ -15,7 +14,6 @@ using DVLD.Domain.Entities;
 using DLVD.App.Features.Users.Commands.CreateRefreshToken;
 using FluentResults;
 using DVLD.App.Interfaces.Persistence;
-using Microsoft.AspNetCore.Authorization;
 
 namespace DVLD.API.Controllers
 {
@@ -38,13 +36,13 @@ namespace DVLD.API.Controllers
         }
 
         [HttpPost]
-        [Route("/log-in")]
+        [Route("log-in")]
         public async Task<IActionResult> LogIn([FromBody] AuthenticateUserCommand userData)
         {
-            var Result = await _mediator.Send(userData);
-
-            if (Result.IsFailed)
-                return Unauthorized(Result.ToResultDto(false));
+            var result = await _mediator.Send(userData);
+            Console.WriteLine("logged login");
+            if (result.IsFailed)
+                return Unauthorized(result.ToResultDto(false));
             
             //if (!Result.Value.UserName.Equals(userData.UserName, StringComparison.OrdinalIgnoreCase) && 
             //     Result.Value.Id  == userData.Id) 
@@ -53,9 +51,9 @@ namespace DVLD.API.Controllers
             
             var securityTokenId = Guid.NewGuid().ToString();
         
-            var accessTokenResult =  GenerateJwtToken(Result.Value, securityTokenId);
+            var accessToken =  GenerateJwtToken(result.Value, securityTokenId);
 
-            if (string.IsNullOrEmpty(accessTokenResult))
+            if (string.IsNullOrEmpty(accessToken))
                 return Unauthorized("Error Happened");
 
             var RefreshToken = new RefreshToken()
@@ -65,7 +63,7 @@ namespace DVLD.API.Controllers
                 CreatedOn = DateTime.UtcNow,
                 ExpiresOn = DateTime.UtcNow.AddMonths(6),
                 RevokedOn = null,
-                UserId = Result.Value.Id
+                UserId = result.Value.Id
             };
 
             var createRefreshTokenResult = await _mediator
@@ -74,9 +72,16 @@ namespace DVLD.API.Controllers
             if (createRefreshTokenResult.IsFailed)
                 return BadRequest(createRefreshTokenResult.ToResultDto(createRefreshTokenResult.ValueOrDefault));
 
-            setRefreshToken(RefreshToken); 
+            setRefreshToken(RefreshToken);
 
-            return Ok(accessTokenResult);
+            var gg = new
+            {
+                result.Value.UserName,
+                result.Value.Image,
+                accessToken
+            };
+
+            return Ok(gg);
         }
       
         
@@ -150,7 +155,7 @@ namespace DVLD.API.Controllers
                 var user = await _mediator.Send(new GetUserQuery(storedToken.UserId));
                 
                 return  Result.Ok(GenerateJwtToken(
-                    new AuthenticateUserDto(user.Value.userName, user.Value.Id), storedToken.JwtId));
+                    new AuthenticateUserResponse(user.Value.userName, user.Value.Id), storedToken.JwtId));
 
             }
             catch (Exception)
@@ -170,7 +175,7 @@ namespace DVLD.API.Controllers
         }
         
         private   string GenerateJwtToken(
-            AuthenticateUserDto userData, string securityJwtId)
+            AuthenticateUserResponse userData, string securityJwtId)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             
