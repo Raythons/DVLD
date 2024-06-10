@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DVLD.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7688b991a7fd883d4e28512b09f5b04b5de1d9fc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a20300cb3ab6673163dde8ab7522a5b0c6d45427")]
 [assembly: System.Reflection.AssemblyProductAttribute("DVLD.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DVLD.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.infrastructure\\data\\entitiesconfig\\userconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|solutionrelative:dvld.infrastructure\\data\\entitiesconfig\\userconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.infrastructure\\data\\dvldcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|solutionrelative:dvld.infrastructure\\data\\dvldcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|solutionrelative:dvld.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +58,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "UserConfig.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\EntitiesConfig\\UserConfig.cs",
+              "RelativeDocumentMoniker": "DVLD.Infrastructure\\Data\\EntitiesConfig\\UserConfig.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\EntitiesConfig\\UserConfig.cs",
+              "RelativeToolTip": "DVLD.Infrastructure\\Data\\EntitiesConfig\\UserConfig.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAQwBoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T21:54:34.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DvldContext.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\DvldContext.cs",
+              "RelativeDocumentMoniker": "DVLD.Infrastructure\\Data\\DvldContext.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\DvldContext.cs",
+              "RelativeToolTip": "DVLD.Infrastructure\\Data\\DvldContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T21:54:30.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\appsettings.json",
               "RelativeDocumentMoniker": "DVLD.API\\appsettings.json",
@@ -62,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "OptionsConfigOptions.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\OptionsConfigOptions.cs",
               "RelativeDocumentMoniker": "DVLD.API\\OptionsConfigOptions.cs",
@@ -74,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Program.cs",
               "RelativeDocumentMoniker": "DVLD.API\\Program.cs",
@@ -86,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "AuthenticateUserResponse.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Users\\Commands\\AuthenticateUserCommand\\AuthenticateUserResponse.cs",
               "RelativeDocumentMoniker": "DLVD.Application\\Features\\Users\\Commands\\AuthenticateUserCommand\\AuthenticateUserResponse.cs",
@@ -98,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "DVLD.API\\Controllers\\AuthController.cs",
@@ -111,7 +145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ApplicationTypeRepositry.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Repositories\\ApplicationTypeRepositry.cs",
               "RelativeDocumentMoniker": "DVLD.Infrastructure\\Repositories\\ApplicationTypeRepositry.cs",
