@@ -4,7 +4,7 @@ namespace DVLD.Infrastructure.FileStorage
 {
     public class LocalFileStorageService : IFileStorageService
     {
-        private readonly string _uploadPath = "C:\\Users\\H1202\\Desktop\\DVLD.Client\\public";
+        private readonly string _uploadPath = "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Client\\public";
         
         public async Task<string>  SaveFileAsync(byte[] fileBytes)
         {
