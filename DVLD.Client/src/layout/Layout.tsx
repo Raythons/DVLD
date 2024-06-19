@@ -1,5 +1,4 @@
 import Header from "./Header"
-import Footer from './Footer'
 
 import {  Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -19,12 +18,7 @@ const Layout = () => {
   return (
     <>
         <Header />
-        {/* {token ? */}
-                <Outlet />
-                {/* : */}
-                {/* navigate("/", {replace: true}) */}
-        {/* } */}
-        <Footer />
+        <Outlet />
     </>
   )
 }

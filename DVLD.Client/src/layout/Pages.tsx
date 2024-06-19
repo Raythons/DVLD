@@ -47,10 +47,12 @@ const Pages = ({pages} : props) => {
     e.currentTarget.classList.add("selected_page")
   }
 
+
   return (
     <ul className="flex items-center gap-3 ">
         {pages.map((page) => (
           <li onClick={handlePageClick} 
+              // onMouseLeave={handleMouseLeave}
           key={page.title} 
           className={`${page.hasSubMenu ? "relative" : ""} page  rounded-md transition duration-300 hover:bg-blue-500  py-1 px-1  text-stone-50`}>
             {page.hasSubMenu ?  <MainMenu menu ={page.subMenu}  /> : <></> }

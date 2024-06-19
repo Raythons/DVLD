@@ -9,7 +9,7 @@ export type authState = {
 }
 
 const initialState = {
-    accessToken : "",
+    accessToken : "سسس",
     UserName: "",
     Image: ""
 } as authState

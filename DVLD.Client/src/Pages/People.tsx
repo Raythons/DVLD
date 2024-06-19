@@ -1,7 +1,8 @@
-import React from 'react'
 
 export const People = () => {
   return (
-    <div>People</div>
+    <div className='flex   h-[600px] pt-20 	'>
+      ss
+    </div>
   )
 }

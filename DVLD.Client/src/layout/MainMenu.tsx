@@ -17,15 +17,15 @@ const MainMenu = ( {menu} : props) => {
   // const [showSubMenu, setShowSubMenu] = useState(false);
 
   const handleClassBehavior = (behavior: ClassListBehavior ,element: HTMLElement) => {
-       if(behavior == ClassListBehavior.AddFirst) {
+        if(behavior == ClassListBehavior.AddFirst) {
         element.lastElementChild?.classList.add("flex")
         element.lastElementChild?.classList.remove("hidden")
-      }
-      else 
-      {
-        element.lastElementChild?.classList.remove("flex")
-        element.lastElementChild?.classList.add("hidden")
-      }
+        }
+        else 
+        {
+          element.lastElementChild?.classList.remove("flex")
+          element.lastElementChild?.classList.add("hidden")
+        }
   }
 
   const isLastCHildMenu = (target: HTMLElement): boolean =>{
@@ -42,8 +42,14 @@ const MainMenu = ( {menu} : props) => {
       handleClassBehavior(ClassListBehavior.RemoveFirst , e.currentTarget)
   };
 
+  const handleMenuMouseLeave = (e: MouseEvent) => {
+    e.currentTarget.classList.remove("flex")
+    e.currentTarget.classList.add("hidden")
+    // handleClassBehavior(ClassListBehavior.RemoveFirst,  e.currentTarget)
+  }
+
   return (
-      <menu className=" absolute main-menu  rounded-md top-12  bg-slate-50  hidden flex-col  border-solid border-2">
+      <menu onMouseLeave={handleMenuMouseLeave} className=" absolute main-menu  transition  duration-500  rounded-md top-12  bg-slate-50  hidden flex-col  border-solid border-2">
             {
                 menu.map((menuItem) => (
                     <li key={menuItem.title}

@@ -18,11 +18,13 @@ import UserSettings from './UserSettings';
 
 // import { List, ListItem, ListItemText } from '@mui/material';
 
+
 export type PageType = {
   title: string,
   subMenu: subMenuItem[],
   hasSubMenu: boolean
 }
+
 
 export type subMenuItem = PageType & {
   icon: React.ReactNode
@@ -161,14 +163,14 @@ function Header() {
   ]
 
 return (
- <div className='bg-sky-700	 flex min-h-16 '>
-   <nav className="text-xl min-h-11 bg-inherit flex justify-center items-center container mx-auto xl:px-10  ">
-    <div className= " flex-grow"> 
-        <Pages pages={pages}/>
-    </div>
-    <UserSettings />
-  </nav>
- </div>
+  <div className='bg-sky-700	flex relative min-h-16  shadow-2xl  z-10	 '>
+    <nav className="text-xl min-h-11 bg-inherit flex justify-center items-center container lg mx-auto  xl:px-24    ">
+      <div className= " flex-grow"> 
+          <Pages pages={pages}/>
+      </div>
+      <UserSettings />
+    </nav>
+  </div>
 );
 }
 export default Header;
