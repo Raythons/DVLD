@@ -18,7 +18,9 @@ const Layout = () => {
   return (
     <>
         <Header />
-        <Outlet />
+        <div className="flex justify-center items-center h-[91vh] bg-slate-800 ">
+          <Outlet />
+        </div>
     </>
   )
 }
