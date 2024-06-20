@@ -3,6 +3,7 @@ import SinglePerson from './SinglePerson'
 
 const AllPeople = () => {
 
+  
   const queryParams: GetAllPeopleQueryParams = {Page: 1}
   const {data: PersonList} = useGetAllQuery(queryParams)
 
