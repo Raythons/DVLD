@@ -9,7 +9,6 @@ const myBaseQuery = fetchBaseQuery({
     // credentials: 'include',
     prepareHeaders: (headers , {getState}) => {
         const token = (getState() as RootState).auth.accessToken;
-        console.log(`api slice 12 ${token}`)
         if(token){
             headers.set("authorization", `Bearer ${token}`)
         }

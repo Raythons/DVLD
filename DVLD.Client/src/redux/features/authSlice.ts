@@ -11,7 +11,7 @@ export type authState = {
 const initialState = {
     accessToken : "سسس",
     UserName: "",
-    Image: ""
+    Image: "daddy-henry"
 } as authState
 
 // type UserDisplayData  = Pick<authState, "UserName" | "Image">

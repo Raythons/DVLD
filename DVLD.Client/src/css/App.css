@@ -9,3 +9,29 @@ body,
 #root {
   min-height: 100vh;
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #3b82f6;
+  border-radius: 8px;
+  border: 2px inset #ffffff;
+}
+
+  /* background-color: rgb(68 158 208); */
+
+
+
+
