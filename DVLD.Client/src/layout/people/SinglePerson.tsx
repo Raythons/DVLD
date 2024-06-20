@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GetPersonListData } from '../../redux/api/peopleApi'
 import { TbDots } from "react-icons/tb";
 import { IconContext } from 'react-icons';
+import PersonOperations from './PersonOperations';
 
 type SinglePersonProps =   GetPersonListData
 const SinglePerson = ({Id, FullName , Age, Gender}: SinglePersonProps) => {
-  return (
 
+  const [showPersonOperations, setShowPersonOperations] = useState<boolean>(false)
+
+  return (
     <div className='flex   max-h-full  w-full justify-between items-center p-2 
       rounded-md bg-gray-700  text-slate-50    transition-all duration-300 hover:p-3'>
         <div className=' flex justify-center items-center p-1'>
@@ -41,10 +44,11 @@ const SinglePerson = ({Id, FullName , Age, Gender}: SinglePersonProps) => {
               {Gender}
             </p>
         </div>
-        <button title='Person Config' type='button'>
+        <button className='relative' onClick={() => setShowPersonOperations(!showPersonOperations)} title='Person Config' type='button'>
           <IconContext.Provider value={{className: "hover:text-sky-700 transition-all duration-300", size: "40"}}>
             <TbDots />
           </IconContext.Provider>
+          <PersonOperations show={showPersonOperations} PersonId={Id}/>
         </button>
     </div>
   )

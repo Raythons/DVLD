@@ -49,7 +49,7 @@ const MainMenu = ( {menu} : props) => {
   }
 
   return (
-      <menu onMouseLeave={handleMenuMouseLeave} className=" absolute main-menu  transition  duration-500  rounded-md top-12  bg-slate-50  hidden flex-col  border-solid border-2">
+      <menu onMouseLeave={handleMenuMouseLeave} className=" main-menu  absolute  transition  duration-500  rounded-md top-12  bg-slate-50  hidden flex-col  border-solid border-2">
             {
                 menu.map((menuItem) => (
                     <li key={menuItem.title}
