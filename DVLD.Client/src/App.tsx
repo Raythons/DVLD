@@ -26,9 +26,12 @@ const router = createBrowserRouter([
       },
       {
         path: "People",
-        element: <People />,
         children:
         [
+          {
+            index: true,
+            element: <People />,
+          },
           {
             path: "Details/:personId",
             element: <PersonDetails /> 

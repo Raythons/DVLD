@@ -9,10 +9,9 @@ export const People = () => {
   const {state} = useLocation();
   console.log(state)
   return (
-    <div className='flex justify-center items-center mx-auto container 
-            xl:px-26 lg:px-26   md:px-26  sm:px-26'>
-      <div className=" flex justify-start  gap-4 items-center   flex-col  rounded-lg  h-[78vh]
-              min-h[80%] bg-slate-200  w-[80%] container  white ">
+  
+      <div className=" flex justify-start  gap-4 items-center   flex-col  rounded-lg  h-[85vh]
+               bg-slate-200  w-[80%] container mx-auto white xl:px-26 lg:px-26   md:px-26  sm:px-26 ">
         
         <div  className=" flex flex-col items-center justify-center  w-[100%]">
             <IconContext.Provider  value={{className: "text-sky-700" , size: "120"}}>
@@ -40,8 +39,5 @@ export const People = () => {
             <button type="button" title="close"> close</button>
         </div>
       </div>
-      <Outlet />
-    </div>
-
   )
 }
