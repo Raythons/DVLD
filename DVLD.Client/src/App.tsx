@@ -7,7 +7,8 @@ import Drivers from './Pages/Drivers'
 import Users from './Pages/Users'
 import PersonDetails from './Pages/Person/PersonDetails'
 import EditPerson from './Pages/Person/EditPerson'
-import AddNewPerson from './Pages/Person/AddNewPerson'
+import AddPerson from './Pages/Person/AddPerson'
+import WhiteContainer from './layout/WhiteContainer'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "People",
+        element: <WhiteContainer/> ,
         children:
         [
           {
@@ -42,7 +44,7 @@ const router = createBrowserRouter([
           },
           {
             path: "Add/",
-            element: <AddNewPerson /> 
+            element: <AddPerson /> 
           }
         ]
       },

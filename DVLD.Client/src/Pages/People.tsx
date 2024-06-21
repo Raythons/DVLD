@@ -1,19 +1,18 @@
 import { IconContext } from "react-icons";
 import AllPeople from "../layout/people/AllPeople"
-import { IoPeople } from "react-icons/io5";
-import { IoPersonAddSharp } from "react-icons/io5";
-import { Outlet, useLocation } from "react-router-dom";
+import {IoPeople } from "react-icons/io5";
+import {IoPersonAddSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 
 export const People = () => {
-  const {state} = useLocation();
-  console.log(state)
+  const navigate = useNavigate()
+  const handleAddPersonClick = () => {
+    navigate("Add")
+  }
   return (
-  
-      <div className=" flex justify-start  gap-4 items-center   flex-col  rounded-lg  h-[85vh]
-               bg-slate-200  w-[80%] container mx-auto white xl:px-26 lg:px-26   md:px-26  sm:px-26 ">
-        
-        <div  className=" flex flex-col items-center justify-center  w-[100%]">
+        <>
+          <div  className=" flex flex-col items-center justify-center  w-[100%]">
             <IconContext.Provider  value={{className: "text-sky-700" , size: "120"}}>
                 <IoPeople />
             </IconContext.Provider>
@@ -26,7 +25,7 @@ export const People = () => {
                   <option defaultValue="FN">First Name</option>
                 </select>
               </div>
-              <button className ="bg-gray-700 rounded-lg  transition-all duration-300 hover:bg-slate-50   p-1" type="button" title="Add Person">
+              <button onClick={handleAddPersonClick}className ="bg-gray-700 rounded-lg  transition-all duration-300 hover:bg-slate-50   p-1" type="button" title="Add Person">
               <IconContext.Provider value={{className: "text-slate-50 hover:text-sky-700 transition-all duration-300 ", size:"30",  }}>
                 <IoPersonAddSharp />
               </IconContext.Provider>
@@ -38,6 +37,8 @@ export const People = () => {
             <p> Records</p>
             <button type="button" title="close"> close</button>
         </div>
-      </div>
+        </>
+       
+
   )
 }
