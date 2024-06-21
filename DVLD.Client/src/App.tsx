@@ -5,6 +5,9 @@ import Layout from './layout/Layout'
 import { People } from './Pages/People'
 import Drivers from './Pages/Drivers'
 import Users from './Pages/Users'
+import PersonDetails from './Pages/Person/PersonDetails'
+import EditPerson from './Pages/Person/EditPerson'
+import AddNewPerson from './Pages/Person/AddNewPerson'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +26,22 @@ const router = createBrowserRouter([
       },
       {
         path: "People",
-        element: <People />
+        element: <People />,
+        children:
+        [
+          {
+            path: "Details/:personId",
+            element: <PersonDetails /> 
+          },
+          {
+            path: "Edit/:personId",
+            element: <EditPerson /> 
+          },
+          {
+            path: "Add/",
+            element: <AddNewPerson /> 
+          }
+        ]
       },
       {
         path: "Drivers",

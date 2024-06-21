@@ -1,7 +1,7 @@
 import { apiSlice } from "./apiSlice";
 import { PaginatedQueryParams } from "../../types/PaginatedQueryParams";
 
-const PeopleEndPoint = "Person"
+export const PeopleEndPoint = "Person"
 
 export type GetAllPeopleQueryParams = PaginatedQueryParams;
 

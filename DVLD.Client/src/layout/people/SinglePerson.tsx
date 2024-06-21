@@ -44,12 +44,12 @@ const SinglePerson = ({Id, FullName , Age, Gender}: SinglePersonProps) => {
               {Gender}
             </p>
         </div>
-        <button className='relative' onClick={() => setShowPersonOperations(!showPersonOperations)} title='Person Config' type='button'>
+        <div className='relative cursor-pointer' onClick={() => setShowPersonOperations(!showPersonOperations)} title='Person Config' >
           <IconContext.Provider value={{className: "hover:text-sky-700 transition-all duration-300", size: "40"}}>
             <TbDots />
           </IconContext.Provider>
           <PersonOperations show={showPersonOperations} PersonId={Id}/>
-        </button>
+        </div>
     </div>
   )
 }
