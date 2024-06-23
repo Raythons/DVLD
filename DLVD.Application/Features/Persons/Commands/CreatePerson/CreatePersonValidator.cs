@@ -12,7 +12,7 @@ namespace DLVD.App.Features.Persons.Commands.CreatePerson
                     .NotEmpty().WithState(x => Result.Fail("FirstName required"))
                     .NotNull()
                     .MinimumLength(3).WithState(x => Result.Fail("Minimmun legtnh  is 3"))
-                    .MaximumLength(26).WithState(x => Result.Fail("Maximmumlegtnh  is 26"));
+                    .MaximumLength(26).WithState(x => Result.Fail("Maximum Length is 26 char"));
 
             RuleFor(p => p.SecondName)
                     .NotEmpty().WithState(x => Result.Fail("SecondName required"))

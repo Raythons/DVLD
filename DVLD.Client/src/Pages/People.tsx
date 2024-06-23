@@ -3,13 +3,23 @@ import AllPeople from "../layout/people/AllPeople"
 import {IoPeople } from "react-icons/io5";
 import {IoPersonAddSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { IoCloseCircle } from "react-icons/io5";
+
 
 
 export const People = () => {
   const navigate = useNavigate()
+
+ 
+
+
   const handleAddPersonClick = () => {
     navigate("Add")
   }
+  const handleClose = () => {
+    navigate("/");
+  }
+
   return (
         <>
           <div  className=" flex flex-col items-center justify-center  w-[100%]">
@@ -33,12 +43,15 @@ export const People = () => {
             </div>
         </div>
         <AllPeople />
-        <div>
-            <p> Records</p>
-            <button type="button" title="close"> close</button>
+        <div className="flex items-center  justify-between w-[90%] p-3 ">
+            <p> Records : </p>
+            <button  onClick= {handleClose} className= "flex justify-center text-slate-50 items-center bg-gray-700 rounded-lg  transition-all duration-300 hover:bg-slate-50 hover:text-sky-700  p-2 " type="button" title="close">
+                  <IconContext.Provider  value={{className: "text-red-700" , size: "18"}}>
+                      <IoCloseCircle />
+                  </IconContext.Provider>
+                    <p className=" text-lg">close</p>
+            </button>
         </div>
         </>
-       
-
   )
 }
