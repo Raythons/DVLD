@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DVLD.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73af725c426caa4789a432411dc6e05d2c176e29")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d847e098c9b60e4474cbea3edb347344386525a")]
 [assembly: System.Reflection.AssemblyProductAttribute("DVLD.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DVLD.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

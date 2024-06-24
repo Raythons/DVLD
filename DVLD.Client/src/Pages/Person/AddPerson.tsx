@@ -5,6 +5,8 @@ import { Avatar } from "flowbite-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {z} from "zod"
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from 'react-router-dom';
+import { useCreatePersonMutation } from '../../redux/api/peopleApi';
 
 const schema = z?.object({
   FirstName:  z?.string({required_error: "FirstName Is Required"})
@@ -23,9 +25,9 @@ const schema = z?.object({
               .email({message: "Invalid Email"}),
   NationalNo: z?.string({required_error: "NationalNo Is Required"}),
 
-  BirthDate:  z?.date().optional(),
+  BirthDate:  z.date().pipe(z.coerce.string()).optional(),
 
-  CountryId : z.number(),
+  NationalityCountryId : z.number(),
   Gender : z.union([
     z.literal("Male"),
     z.literal("Female"),
@@ -37,41 +39,67 @@ const schema = z?.object({
             .min(8 , {message: "Address Length Must be More Than 8"})
             .max(40, {message: "Address Length Must be Less Than 40"}),
   Image: z.any()
-          .refine((files) => files.Length >= 1, {message: "Photo is Required"})
+          .refine((files: FileList) => { console.log(files.length); return files.length >= 1}, {message: "Photo is Required"})
 })
 
 
-type FormFelids = z.infer< typeof schema>
+export type CreatePersonFormFields = z.infer< typeof schema>
 
 const AddPerson = () => {
 
-  const {register,
+  const [currentPersonImage, setCurrentPersonImage] = React.useState<string>(""); // Initially no image
+  const navigate = useNavigate();
+
+
+  const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.item(0);
+
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.readAsDataURL(selectedFile); 
+
+      reader.onloadend = () => {
+        setCurrentPersonImage(reader.result as string); 
+      };
+    }
+  };
+
+  const {
+      register,
       handleSubmit,
-      watch,
-      formState:{errors, isSubmitting}} = useForm<FormFelids>({resolver: zodResolver(schema)});
+      formState:{errors, isSubmitting}} = useForm<CreatePersonFormFields>
+      (
+        {
+          resolver: zodResolver(schema),
+          mode: "onBlur"
+        },
+      );
+
+    const [createPerson] = useCreatePersonMutation();
 
   const [birthDate, setBirthDate] = React.useState<Date>(new Date(2003,3,3));
-    console.log(birthDate)
+  const UserImageField = register("Image", { required: true });
 
 
 
-  const onSubmit: SubmitHandler<FormFelids>  = async (data) => {
-    await new Promise((reso) => setTimeout(reso, 1000))
-    data.BirthDate =  birthDate;
-    console.log(data);  
+  const onSubmit: SubmitHandler<CreatePersonFormFields>  = async (data) => {
+    data.Image = data.Image[0]
+    data.BirthDate =  birthDate.toISOString();
+    const res = await createPerson(data)
+    console.log(res)
   }
 
   const customTheme ={
     popup : {
       root: {
-        inner: " absolute rounded-lg bg-white p-4 shadow-lg -top-[406px]"
+        inner: " absolute rounded-lg bg-white p-4 shadow-lg -top-[375px] "
       },
     }
   }
   
   return (
       <div className='flex flex-col justify-around  items-center w-[100%] h-full  '>
-        <h1 className='text-sky-700 text-3xl'>Add New Person</h1>
+          <h1 className='text-sky-700 text-3xl'>Add New Person</h1>
         <form className=" w-[80%] mx-auto " onSubmit={handleSubmit(onSubmit)}>
         {/* <Avatar img="../../../public/daddy-henry.png" size="l" rounded  className='w-1/4 h-1/4  p-4 pb-0'/> */}
         <div className=' flex  items-center gap-4 p-1 w-[100%]'>
@@ -130,19 +158,20 @@ const AddPerson = () => {
                             onSelectedDateChanged={
                               (e) => setBirthDate(e)
                             }
+                            
                             {...register("BirthDate")} />
                   {errors.BirthDate && <p>{errors.BirthDate.message}</p>}
               </div>
               <div className='flex justify-center items-center gap-4 p-1 relative'>
-                    <label htmlFor="country" className="">Country:</label>
-                    <select {...register("CountryId")} title= "countries"  id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <option defaultValue={""}>Choose a country</option>
-                      <option value={1}>United States</option>
-                      <option value="2">Canada</option>
-                      <option value="3">France</option>
-                      <option value="4">Germany</option>
+                    <label htmlFor="NationalityCountryId" className="">Country:</label>
+                    <select {...register("NationalityCountryId", {valueAsNumber: true})} id='NationalityCountryId'   title= "countries"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option defaultValue={0}>Choose a country</option>
+                      <option value={1} >{1}</option>
+                      <option value={2}>Canada</option>
+                      <option value={3}>France</option>
+                      <option value={4}>Germany</option>
                     </select>
-                    {errors.CountryId && <span className="text-red-700 absolute top-11 whitespace-nowrap">{errors.CountryId.message}</span>}
+                    {errors.NationalityCountryId && <span className="text-red-700 absolute top-11 whitespace-nowrap">{errors.NationalityCountryId.message}</span>}
               </div>
 
               <div className="flex flex-wrap items-center">
@@ -178,20 +207,24 @@ const AddPerson = () => {
                   </div>
               </div>
         </div>
-        <div className='w-[70%]  flex justify-between items-center'>
+        <div className='w-[90%]  flex justify-between items-center'>
             <div>
               <div className='flex justify-start items-center gap-7'>
                   <Label htmlFor="file-upload-helper-text" value="Upload Picture" />
                     {errors.Image && <span className="text-red-700">Image Required</span>}
                 </div>
-                <FileInput id="file-upload-helper-text" {...register("Image")} helperText="" />
+                <FileInput  id="file-upload-helper-text" helperText="" {...UserImageField} onChange={(e) => {UserImageField.onChange(e); handleFileChange(e)}}  />
             </div>
-                <Avatar img="../../../public/daddy-henry.png" size="l" rounded  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>
+                <Avatar img= {currentPersonImage || "../../../public/UnknownUser.jpg"}   size="lg"  rounded={true}  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>
           </div>
-
-          <button type="submit" disabled={isSubmitting ? true : false} className="text-white mt-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            {isSubmitting ? "loading" : "Submit"}
+          <div  className='flex items-center justify-between'>
+            <button type="submit" disabled={isSubmitting ? true : false} className="text-white mt-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              {isSubmitting ? "loading" : "Submit"}
             </button>
+            <button type="button" onClick={() => {navigate("..")}}  className="text-white mt-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Go Back
+            </button>
+          </div>
         </form>
       </div>
   )
