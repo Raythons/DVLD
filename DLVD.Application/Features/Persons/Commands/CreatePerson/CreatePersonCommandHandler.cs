@@ -13,7 +13,7 @@ namespace DLVD.App.Features.Persons.Commands.CreatePerson
     
     public class CreatePersonCommandHandler :
         BaseHandler,
-        IRequestHandler<CreatePersonCommand, Result<bool>>
+        IRequestHandler<CreatePersonCommand, Result<int>>
     {
         private readonly IFileStorageService _storageService;
         public CreatePersonCommandHandler(
@@ -23,7 +23,7 @@ namespace DLVD.App.Features.Persons.Commands.CreatePerson
         {
             _storageService = storageService;
         }    
-        public async Task<Result<bool>> Handle(CreatePersonCommand request,
+        public async Task<Result<int>> Handle(CreatePersonCommand request,
             CancellationToken cancellationToken)
         {
             var ImagePath = await _storageService.SaveFileAsync(request.Image);
@@ -33,9 +33,9 @@ namespace DLVD.App.Features.Persons.Commands.CreatePerson
             var Person = _mapper.Map<Person>(request);
 
             bool IsCreated = await _unitOfWork.PersonRepository.Add(Person);
-            await _unitOfWork.CompleteAsync();
 
-            return Result.Ok(IsCreated);
+            await _unitOfWork.CompleteAsync();
+            return Result.Ok(Person.Id);
         }
     }
 }

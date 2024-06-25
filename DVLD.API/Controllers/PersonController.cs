@@ -90,7 +90,7 @@ namespace DVLD.WEB.Controllers
             if (!result.IsSuccess)  
                 return BadRequest(result.ToResultDto());
             
-            return Ok(result.ToResultDto());
+            return Ok(result.ToResultDto(result.Value));
                 //Match<IActionResult>(
                 //    succ => Ok("Person Added Succesfully"),
                 //    fail => BadRequest(result)

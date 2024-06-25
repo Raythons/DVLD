@@ -22,7 +22,7 @@ namespace DLVD.App
 
             services.AddMediatR(cfg
                 => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly())
-                .AddValidation<CreatePersonCommand, Result<bool>>()
+                .AddValidation<CreatePersonCommand, Result<int>>()
                 .AddValidation<UpdatePersonCommand, Result<bool>>()
                 //.AddValidation<DeletePersonCommand, Result<bool>>()
                 // Start Of User Registeration

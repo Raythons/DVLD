@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace DLVD.App.Features.Persons.Commands.CreatePerson
 {
-    public class CreatePersonCommand : IRequest<Result<bool>>
+    public class CreatePersonCommand : IRequest<Result<int>>
     {
         public string NationalNo { get; set; }
         public string FirstName { get; set; }

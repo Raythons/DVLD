@@ -48,7 +48,7 @@ namespace DLVD.App.Features.Persons.Commands.CreatePerson
             RuleFor(p => p.Phone)
                     .NotNull()
                     .NotEmpty()
-                    .Must(x => int.TryParse(x, out var val) && val > 0)
+                    .Must(x => int.TryParse(x, out var val) && val >= 0)
                         .WithMessage("Invalid Number");
 
             RuleFor(p => p.BirthDate)

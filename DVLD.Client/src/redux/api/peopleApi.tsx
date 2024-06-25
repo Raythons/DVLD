@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 import { PaginatedQueryParams } from "../../types/PaginatedQueryParams";
-import { CreatePersonFormFields } from "../../Pages/Person/AddPerson";
+import { CreatePersonFormFields } from "../../types/AddPersonType";
 import fillFormFiles from "../../utils/fillFormFiles";
 
 export const PeopleEndPoint = "Person"
@@ -14,8 +14,9 @@ export type GetPersonListData = {
     Gender: string
 }
 
-
 type CreatePersonBody = CreatePersonFormFields;
+
+// type EditPersonBody = CreatePersonBody;
 
 export const peopleApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -24,27 +25,27 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 url: `${PeopleEndPoint}/`,
                 params: getALLQueryParams,
             }),
-            transformResponse: (response: {Response: GetPersonListData[] }, meta, arg) => {
-                console.log(response.Response)
-                console.log(arg)
+            transformResponse: (response: {Response: GetPersonListData[] }) => {
                 return response.Response
             },
         }),
-        createPerson: builder.mutation<boolean, CreatePersonBody>({
+        createPerson: builder.mutation<number, CreatePersonBody>({
             query: (createPersonBody) => {
-                console.log("formdata here")
                 const formData = fillFormFiles(createPersonBody);
-                console.log(formData)
                 return {
                     url: `${PeopleEndPoint}/`,
                     method: "POST",
                     body: formData
                 }
             },
-            transformErrorResponse: (response) => {
-                console.log(response)
-            }
-        })
+            transformResponse(response: {Response: number }) {
+                return response.Response
+            },
+            // transformErrorResponse: (response) => {
+            //     console.log(response.status)
+            // },
+        }),
+        editPerson: builder.mutation<boolean, EditPersonBody>( )
     })
 })
 

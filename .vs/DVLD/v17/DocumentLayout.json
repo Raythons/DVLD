@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\persons\\commands\\createperson\\createpersoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\persons\\commands\\createperson\\createpersoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.api\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|solutionrelative:dvld.api\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\persons\\commands\\createperson\\createpersoncommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\persons\\commands\\createperson\\createpersoncommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\applicationdi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\applicationdi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\persons\\commands\\createperson\\createpersoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\persons\\commands\\createperson\\createpersoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\persons\\commands\\createperson\\createpersonvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.infrastructure\\data\\entitiesconfig\\userconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|solutionrelative:dvld.infrastructure\\data\\entitiesconfig\\userconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\persons\\commands\\createperson\\createpersoncommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\persons\\commands\\createperson\\createpersoncommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,20 +58,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "ApplicationDI.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\ApplicationDI.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\ApplicationDI.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\ApplicationDI.cs",
+              "RelativeToolTip": "DLVD.Application\\ApplicationDI.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAmwBkAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T01:20:05.72Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "PersonController.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\PersonController.cs",
               "RelativeDocumentMoniker": "DVLD.API\\Controllers\\PersonController.cs",
               "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\PersonController.cs",
               "RelativeToolTip": "DVLD.API\\Controllers\\PersonController.cs",
-              "ViewState": "AQIAAEEAAAAAAAAAAAAgwEcAAAAIAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAAwEcAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-24T16:12:59.983Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Program.cs",
               "RelativeDocumentMoniker": "DVLD.API\\Program.cs",
@@ -75,12 +91,11 @@
               "RelativeToolTip": "DVLD.API\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T16:12:51.069Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-24T16:12:51.069Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "PersonConfig.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\EntitiesConfig\\PersonConfig.cs",
               "RelativeDocumentMoniker": "DVLD.Infrastructure\\Data\\EntitiesConfig\\PersonConfig.cs",
@@ -88,12 +103,11 @@
               "RelativeToolTip": "DVLD.Infrastructure\\Data\\EntitiesConfig\\PersonConfig.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAQwBwAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T06:38:45.995Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-24T06:38:45.995Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "UserConfig.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Data\\EntitiesConfig\\UserConfig.cs",
               "RelativeDocumentMoniker": "DVLD.Infrastructure\\Data\\EntitiesConfig\\UserConfig.cs",
@@ -101,47 +115,43 @@
               "RelativeToolTip": "DVLD.Infrastructure\\Data\\EntitiesConfig\\UserConfig.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T06:38:38.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-24T06:38:38.094Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "CreatePersonCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonCommandHandler.cs",
               "RelativeDocumentMoniker": "DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonCommandHandler.cs",
               "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonCommandHandler.cs",
               "RelativeToolTip": "DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonCommandHandler.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAzwCIAAABJAAAA",
+              "ViewState": "AQIAABkAAAAAAAAAAAAQwCQAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T04:54:52.382Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-23T04:54:52.382Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "CreatePersonCommand.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonCommand.cs",
               "RelativeDocumentMoniker": "DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonCommand.cs",
               "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonCommand.cs",
               "RelativeToolTip": "DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonCommand.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAuwBMAAAAnAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T04:54:50.406Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-23T04:54:50.406Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "CreatePersonValidator.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonValidator.cs",
               "RelativeDocumentMoniker": "DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonValidator.cs",
               "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonValidator.cs",
               "RelativeToolTip": "DLVD.Application\\Features\\Persons\\Commands\\CreatePerson\\CreatePersonValidator.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAQwD4AAAAIAAAA",
+              "ViewState": "AQIAACwAAAAAAAAAAAAQwDIAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T22:32:36.252Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T22:32:36.252Z"
             }
           ]
         },

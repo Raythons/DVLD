@@ -1,68 +1,24 @@
 import React from 'react'
-import { Datepicker } from "flowbite-react";
+import { Datepicker, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { FileInput, Label } from "flowbite-react";
 import { Avatar } from "flowbite-react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import {z} from "zod"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 import { useCreatePersonMutation } from '../../redux/api/peopleApi';
+import { AddPersonSchema } from '../../schema/AddPersonSchema';
+import { CreatePersonFormFields } from '../../types/AddPersonType';
+import { useHandleFileChange } from '../../hooks/useHandleFileChange';
+import SuccessPopUp from '../../layout/SuccessPopUp';
+import { Spinner } from "flowbite-react";
 
-const schema = z?.object({
-  FirstName:  z?.string({required_error: "FirstName Is Required"})
-                .min(2, {  message: "minLength is 2"})
-                .max(14, {message : "Maximum Length is 26 char"}),
-  SecondName: z?.string({required_error: "SecondName Is Required"})
-                .min(2, {  message: "minLength is 2"})
-                .max(14, {message : "Maximum Length is 26 char"}),
-  ThirdName: z?.string({required_error: "ThirdName Is Required"})
-                .min(2, {  message: "minLength is 2"})
-                .max(14, {message : "Maximum Length is 26 char"}),
-  LastName: z?.string({required_error: "LastName Is Required"})
-                .min(2, {  message: "minLength is 2"})
-                .max(14, {message : "Maximum Length is 26 char"}),
-  Email:    z?.string({required_error: "Email Is Required"})
-              .email({message: "Invalid Email"}),
-  NationalNo: z?.string({required_error: "NationalNo Is Required"}),
-
-  BirthDate:  z.date().pipe(z.coerce.string()).optional(),
-
-  NationalityCountryId : z.number(),
-  Gender : z.union([
-    z.literal("Male"),
-    z.literal("Female"),
-  ], {message:"Gender Is Required"}),
-
-  Phone: z.string({required_error: "Phone Is Required"}),
-
-  Address: z.string({required_error: "Address Is Required"})
-            .min(8 , {message: "Address Length Must be More Than 8"})
-            .max(40, {message: "Address Length Must be Less Than 40"}),
-  Image: z.any()
-          .refine((files: FileList) => { console.log(files.length); return files.length >= 1}, {message: "Photo is Required"})
-})
-
-
-export type CreatePersonFormFields = z.infer< typeof schema>
 
 const AddPerson = () => {
 
   const [currentPersonImage, setCurrentPersonImage] = React.useState<string>(""); // Initially no image
   const navigate = useNavigate();
 
-
-  const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.item(0);
-
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.readAsDataURL(selectedFile); 
-
-      reader.onloadend = () => {
-        setCurrentPersonImage(reader.result as string); 
-      };
-    }
-  };
+  const {handleFileChanges} = useHandleFileChange();
 
   const {
       register,
@@ -70,24 +26,34 @@ const AddPerson = () => {
       formState:{errors, isSubmitting}} = useForm<CreatePersonFormFields>
       (
         {
-          resolver: zodResolver(schema),
+          resolver: zodResolver(AddPersonSchema),
           mode: "onBlur"
         },
       );
 
-    const [createPerson] = useCreatePersonMutation();
+  const [createPerson, {isSuccess, isLoading, error}] = useCreatePersonMutation();
+  const [createdPersonId , setCreatedPersonId] = React.useState<number | undefined>()
 
+  const [showSuccessModal, setShowSuccessModal] = React.useState<boolean>(isSuccess);
   const [birthDate, setBirthDate] = React.useState<Date>(new Date(2003,3,3));
   const UserImageField = register("Image", { required: true });
 
 
 
   const onSubmit: SubmitHandler<CreatePersonFormFields>  = async (data) => {
-    data.Image = data.Image[0]
-    data.BirthDate =  birthDate.toISOString();
-    const res = await createPerson(data)
-    console.log(res)
+      data.Image = data.Image[0]
+      data.BirthDate =  birthDate.toISOString();
+      try {
+      const res = await createPerson(data).unwrap();
+      setShowSuccessModal(!isSuccess)
+      setCreatedPersonId(res);
+      console.log(res);
+    } catch (err) {
+        console.log(err);
+        console.log(error)
+    }
   }
+
 
   const customTheme ={
     popup : {
@@ -101,7 +67,6 @@ const AddPerson = () => {
       <div className='flex flex-col justify-around  items-center w-[100%] h-full  '>
           <h1 className='text-sky-700 text-3xl'>Add New Person</h1>
         <form className=" w-[80%] mx-auto " onSubmit={handleSubmit(onSubmit)}>
-        {/* <Avatar img="../../../public/daddy-henry.png" size="l" rounded  className='w-1/4 h-1/4  p-4 pb-0'/> */}
         <div className=' flex  items-center gap-4 p-1 w-[100%]'>
           <p className=' font-medium'>Name:</p>
           <div className="grid md:grid-cols-4 md:gap-6 w-full">
@@ -213,7 +178,7 @@ const AddPerson = () => {
                   <Label htmlFor="file-upload-helper-text" value="Upload Picture" />
                     {errors.Image && <span className="text-red-700">Image Required</span>}
                 </div>
-                <FileInput  id="file-upload-helper-text" helperText="" {...UserImageField} onChange={(e) => {UserImageField.onChange(e); handleFileChange(e)}}  />
+                <FileInput  id="file-upload-helper-text" helperText="" {...UserImageField} onChange={(e) => {UserImageField.onChange(e); handleFileChanges(e, setCurrentPersonImage)}}  />
             </div>
                 <Avatar img= {currentPersonImage || "../../../public/UnknownUser.jpg"}   size="lg"  rounded={true}  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>
           </div>
@@ -226,6 +191,14 @@ const AddPerson = () => {
             </button>
           </div>
         </form>
+        <SuccessPopUp show={showSuccessModal} type="Person" creationId={createdPersonId} setShowPopUp={setShowSuccessModal} />
+        {isSubmitting ? <Modal show={isLoading}>
+                          <ModalHeader />
+                            <ModalBody>
+                              <Spinner className=''/>
+                            </ModalBody>
+                          </Modal> : 
+        <></>}
       </div>
   )
 }
