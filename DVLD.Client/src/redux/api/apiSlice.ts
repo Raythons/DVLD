@@ -1,4 +1,4 @@
-import { fetchBaseQuery, BaseQueryApi, FetchArgs, createApi } from "@reduxjs/toolkit/query/react";
+import { fetchBaseQuery,  FetchArgs, createApi, FetchBaseQueryError, BaseQueryFn } from "@reduxjs/toolkit/query/react";
 import { RootState } from '../store';
 import { setAuthToken, setLoggedOut } from "../features/authSlice";
 
@@ -18,8 +18,36 @@ const myBaseQuery = fetchBaseQuery({
 })
 
 
-const baseQueryWithReAuth = async  (args: string | FetchArgs, api: BaseQueryApi, extraOptions: object) =>{
+// const baseQueryWithReauth: BaseQueryFn<
+//   string | FetchArgs,
+//   unknown,
+//   FetchBaseQueryError
+// > = async (args, api, extraOptions) => {
+//   let result = await myBaseQuery(args, api, extraOptions)
+//   if (result.error && result.error.status === 401) {
+//     // try to get a new token
+//     const refreshResult = await myBaseQuery('/refreshToken', api, extraOptions)
+//     if (refreshResult.data) {
+//       // store the new token
+//       api.dispatch(setAuthToken({} as string))
+//       // retry the initial query
+//       result = await myBaseQuery(args, api, extraOptions)
+//     } else {
+//       api.dispatch(setLoggedOut())
+//     }
+//   }
+//   return result
+// }
+
+
+
+const baseQueryWithReAuth: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+>   = async  (args,  api,  extraOptions) =>{
         let result = await myBaseQuery(args , api, extraOptions)
+
         if  (result?.error?.status === 403){
             console.log("sending refresh Token")
 

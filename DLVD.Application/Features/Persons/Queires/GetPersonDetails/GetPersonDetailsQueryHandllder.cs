@@ -19,13 +19,11 @@ namespace DLVD.App.Features.Persons.Queires.GetPersonDetails
     public class GetpersonDetailsQueryHandllder : BaseHandler,
         IRequestHandler<GetPersonDetailsQuery, Result<GetPersonDetailsDto>>
     {
-       
         public GetpersonDetailsQueryHandllder(
             IUnitOfWork unitOfWork,
             IMapper mapper) : base(unitOfWork, mapper)
         {
         }
-
         public async Task<Result<GetPersonDetailsDto>> Handle(
             GetPersonDetailsQuery request,
             CancellationToken cancellationToken)
@@ -33,10 +31,8 @@ namespace DLVD.App.Features.Persons.Queires.GetPersonDetails
             var FoundedPerson = await _unitOfWork.PersonRepository.GetById(request.Id);
 
             if (FoundedPerson == null)
-            {
-                string errorMessage = $"Person With Id {request.Id} Is Not In The System";
-                throw new PersonNotFound(errorMessage);
-            }
+                return Result.Fail($"Person With Id {request.Id} Is Not In The System");
+            
 
             var personDto = _mapper.Map<GetPersonDetailsDto>(FoundedPerson);
 
