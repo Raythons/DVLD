@@ -33,7 +33,7 @@ namespace DLVD.App.Features.Persons.Queires.GetPersonDetails
             if (FoundedPerson == null)
                 return Result.Fail($"Person With Id {request.Id} Is Not In The System");
             
-
+            
             var personDto = _mapper.Map<GetPersonDetailsDto>(FoundedPerson);
 
             return Result.Ok(personDto);     

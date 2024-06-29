@@ -4,23 +4,24 @@ import { FileInput, Label } from "flowbite-react";
 import { Avatar } from "flowbite-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useCreatePersonMutation, useGetPersonDetailsQuery } from '../../redux/api/peopleApi';
 import { CreatePersonFormFields, EditPersonFormFields } from '../../types/AddPersonType';
 import { useHandleFileChange } from '../../hooks/useHandleFileChange';
 import SuccessPopUp from '../../layout/SuccessPopUp';
 import { Spinner } from "flowbite-react";
 import { EditPersonSchema } from '../../schema/EditPersonSchema';
-import { GetPersonDataResponse } from '../../redux/api/peopleApi';
 
 const EditPerson = () => {
+  
+  const {personId} = useParams();
 
   const [currentPersonImage, setCurrentPersonImage] = React.useState<string>(""); // Initially no image
   const navigate = useNavigate();
   
   const {handleFileChanges} = useHandleFileChange();
 
-  const {data : PersonDetails , isLoading: isLoadingPersonDetails , isError} = useGetPersonDetailsQuery();
+  const {data : PersonDetails , isLoading: isLoadingPersonDetails , isError} = useGetPersonDetailsQuery(personId);
   console.log(PersonDetails);
   console.log(isLoadingPersonDetails);
   console.log(isError);
@@ -31,9 +32,7 @@ const EditPerson = () => {
       formState:{errors, isSubmitting}} = useForm<EditPersonFormFields>
       (
         {
-          defaultValues(payload) {
-              return payload;
-          },
+          defaultValues: () => PersonDetails,
           resolver: zodResolver(EditPersonSchema),
           mode: "onBlur"
         },

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using DVLD.API;
 using FluentResults.Samples.WebController;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using DLVD.App.Features.Persons.Queires.GetPersonEditDetails;
 
 
 
@@ -49,6 +50,21 @@ namespace DVLD.WEB.Controllers
                 return NotFound(result.ToResultDto(false));
             
             return Ok(result.ToResultDto(result.Value));   
+        }
+
+        [HttpGet]
+        [Route("/to-edit/{personId:int}")]
+        public async Task<IActionResult> GetPersonToEdit(int personId)
+        {
+            _logger.LogInformation("Person has been hitten");
+            var query = new GetPersonEditDetailsRequest(personId);
+
+            var result = await _mediator.Send(query);
+
+            if (result.IsFailed)
+                return NotFound(result.ToResultDto(false));
+
+            return Ok(result.ToResultDto(result.Value));
         }
 
 

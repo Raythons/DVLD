@@ -25,7 +25,7 @@ const PersonOperations = ({show, PersonId} : props) => {
         {
             OperationName: "Show Details",
             OperationIcon:  <FaClipboardUser /> ,
-            clickHandler: () => {navigate(`Details/${99999}`)}
+            clickHandler: () => {navigate(`Details/${PersonId}`)}
         },
         {
             OperationName: "Edit",

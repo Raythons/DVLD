@@ -16,6 +16,7 @@ using DLVD.App.Features.LocalDrivingLicense.Command.CreateLocalDrivvingLicense;
 using DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDriverLicense;
 using DLVD.App.Features.Persons.Commands.CreatePerson;
 using DLVD.App.Features.Persons.Commands.UpdatePerson;
+using DLVD.App.Features.Persons.Queires.GetPersonEditDetails;
 using DLVD.App.Features.Persons.Queires.GetPersonsList;
 using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment;
 using DLVD.App.Features.Tests.Command.CreateTestCommand;
@@ -155,6 +156,14 @@ namespace DLVD.App.Profiles
                                 src => src.BirthDate.CalculateAge()
                             )
                      )
+                .ForMember
+                    (
+                        dest => dest.Country,
+                        opts => opts.MapFrom
+                            (
+                                src => src.Country.CountryName
+                            )
+                    )                
                 .ReverseMap();
 
             // DTO TO Person
@@ -201,6 +210,9 @@ namespace DLVD.App.Profiles
             //Test Appointments
             CreateMap<CreateTestAppointmentCommand, Application>().ReverseMap();
 
+            //
+            CreateMap<GetPersonEditDetailsResponse, Person>()
+                .ReverseMap();
 
         }
     }

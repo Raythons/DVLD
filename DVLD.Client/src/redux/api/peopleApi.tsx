@@ -35,6 +35,8 @@ export type GetPersonDataResponse = {
     Id: number,
     FullName: string,
     NationalNo: string ,
+    Gender: string,
+    Country: string,
     Age: number,
     Address: string,
     Phone:string,

@@ -24,7 +24,7 @@ namespace DVLD.Data.Repositories
       
         public async Task<Person?> GetById(int id)
         {
-            return await _dbSet.FindAsync(id);
+            return await _dbSet.Include(p => p.Country).FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<IEnumerable<Person>> GetPaginatedAsync(
