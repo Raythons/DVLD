@@ -4,7 +4,7 @@ function fillFormFiles<T extends Record<string, any>>(data: T): FormData {
 
     for (const key in data) {
     const value = data[key];
-
+        
     if ((value as unknown)  instanceof File) {
         console.log(`typeof key ${key} is : ${data[key]}`)
         formData.append(key, value); // Append file directly

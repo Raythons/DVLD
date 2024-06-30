@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react'
+import React, {useEffect } from 'react'
 import { Datepicker, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { FileInput, Label } from "flowbite-react";
 import { Avatar } from "flowbite-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ApiError, useCreatePersonMutation, useGetPersonEditDetailsQuery } from '../../redux/api/peopleApi';
+import { ApiError, UpdatePersonMutationParams, useGetPersonEditDetailsQuery, useUpdatePersonDetailsMutation } from '../../redux/api/peopleApi';
 import { CreatePersonFormFields, EditPersonFormFields } from '../../types/AddPersonType';
 import { useHandleFileChange } from '../../hooks/useHandleFileChange';
 import SuccessPopUp from '../../layout/SuccessPopUp';
 import { Spinner } from "flowbite-react";
 import { EditPersonSchema } from '../../schema/EditPersonSchema';
 import CustomError from '../../layout/CustomError';
+import { useGetAllCountriesQuery } from '../../redux/api/countriesApi';
 
 const EditPerson = () => {
   
@@ -23,13 +24,14 @@ const EditPerson = () => {
   const {handleFileChanges} = useHandleFileChange();
 
   const {data : PersonDetails , isLoading: isLoadingPersonDetails , isError} = useGetPersonEditDetailsQuery(Number(personId));
-    
-  console.log(PersonDetails);
+  const {data : Countries , isSuccess: isCountriesSuccess  } = useGetAllCountriesQuery({});
+
+  console.log(currentPersonImage);
   
   const {
       register,
       handleSubmit,
-      formState:{errors, isSubmitting},
+      formState:{errors, isSubmitting, dirtyFields},
       reset
     } = useForm<EditPersonFormFields>
       (
@@ -38,7 +40,7 @@ const EditPerson = () => {
           mode: "onBlur"
         },
       );
-
+      
       useEffect(() => {
         const defaultValues: EditPersonFormFields  = {
           FirstName: PersonDetails?.FirstName as string,
@@ -52,15 +54,13 @@ const EditPerson = () => {
           Gender: PersonDetails?.Gender as "Male" | "Female",
           Image: PersonDetails?.Image as string,
           // BirthDate: new Date (PersonDetails?.BirthDate) ,
-          NationalityCountryId: 1,  
+          NationalityCountryId: PersonDetails?.NationalityCountryId as number,  
         }
-        
-        setCurrentPersonImage(PersonDetails?.Image),
-        reset(defaultValues)
+          reset(defaultValues)
       }, [PersonDetails, reset])
       // reset(PersonDetails)
 
-  const [createPerson, {isSuccess, isLoading, error}] = useCreatePersonMutation();
+  const [UpdatePerson, {isSuccess, isLoading, error}] = useUpdatePersonDetailsMutation();
 
 
   const [showSuccessModal, setShowSuccessModal] = React.useState<boolean>(isSuccess);
@@ -69,13 +69,21 @@ const EditPerson = () => {
 
   const UserImageField = register("Image", { required: true });
 
-
-
   const onSubmit: SubmitHandler<CreatePersonFormFields>  = async (data) => {
-      data.Image = data.Image[0]
+      if (!dirtyFields.Image) 
+        data.Image = new Uint8Array(0)
+      else 
+        data.Image = data.Image[0]
+
+      
       data.BirthDate =  birthDate.toISOString();
+      const UpdatePersonParams: UpdatePersonMutationParams  = {
+        body: data,
+        id: Number(personId)
+      }
+
       try {
-      const res = await createPerson(data).unwrap();
+      const res = await UpdatePerson(UpdatePersonParams).unwrap();
       setShowSuccessModal(!isSuccess)
       console.log(res);
     } catch (err) {
@@ -170,12 +178,23 @@ const EditPerson = () => {
               </div>
               <div className='flex justify-center items-center gap-4 p-1 relative'>
                     <label htmlFor="NationalityCountryId" className="">Country:</label>
-                    <select {...register("NationalityCountryId", {valueAsNumber: true})} id='NationalityCountryId'   title= "countries"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <option defaultValue={0}>Choose a country</option>
-                      <option value={1} >{1}</option>
-                      <option value={2}>Canada</option>
-                      <option value={3}>France</option>
-                      <option value={4}>Germany</option>
+                    <select
+                    defaultValue={PersonDetails?.NationalityCountryId}
+                    {...register("NationalityCountryId", {valueAsNumber: true})} id='NationalityCountryId'   title= "countries"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      {
+                        isCountriesSuccess && Countries?.map((country) => {
+                            return (
+                              <option 
+                                defaultChecked={country.Id === PersonDetails?.NationalityCountryId}
+                                key={country.Id}
+                                defaultValue={country.Id}
+                                value={country.Id}
+                                >
+                                  {country.CountryName}
+                                </option>
+                            )
+                        })
+                      }
                     </select>
                     {errors.NationalityCountryId && <span className="text-red-700 absolute top-11 whitespace-nowrap">{errors.NationalityCountryId.message}</span>}
               </div>
@@ -221,7 +240,7 @@ const EditPerson = () => {
                 </div>
                 <FileInput  id="file-upload-helper-text" helperText="" {...UserImageField} onChange={(e) => {UserImageField.onChange(e); handleFileChanges(e, setCurrentPersonImage)}}  />
             </div>
-                <Avatar img= {`/${currentPersonImage}` || "/UnknownUser.jpg"}   size="lg"  rounded={true}  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>
+                <Avatar  img= {`${currentPersonImage}`  || `/${PersonDetails?.Image}` || "/UnknownUser.jpg"}   size="lg"  rounded={true}  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>
           </div>
           <div  className='flex items-center justify-between'>
             <button type="submit" disabled={isSubmitting ? true : false} className="text-white mt-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">

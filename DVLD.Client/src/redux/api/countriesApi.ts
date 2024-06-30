@@ -24,7 +24,7 @@ type CreatePersonBody = CreatePersonFormFields;
 // type EditPersonBody = CreatePersonBody;
 export type Country = {
     Id: number,
-    Country: string,
+    CountryName: string,
 } 
 export const CountryEndPoint = "country"
 
@@ -33,10 +33,13 @@ export type getPersonEditDetailsResponse = CreatePersonBody
 
 export const CountriesApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getAllCountries: builder.query<Country[], undefined>({
+        getAllCountries: builder.query({
                 query:  () => ({
                     url: `${CountryEndPoint}`,
-                })
+                }),
+                transformResponse : (QueryReturnValue: Country[])  => {
+                    return QueryReturnValue
+                },
             
         })
         // editPerson: builder.mutation<boolean, EditPersonBody>( )

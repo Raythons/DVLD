@@ -29,6 +29,12 @@ export type MainApiResponse  =  {
 }
 
 type CreatePersonBody = CreatePersonFormFields;
+export type UpdatePersonBody = CreatePersonBody;
+
+export type UpdatePersonMutationParams = {
+    body: UpdatePersonBody;
+    id: number; // Additional parameter for the ID
+}
 
 // type EditPersonBody = CreatePersonBody;
 export type GetPersonDataResponse = {
@@ -102,7 +108,7 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 const formData = fillFormFiles(createPersonBody);
                 return {
                     url: `${PeopleEndPoint}/`,
-                    method: "POST",
+                    method: "PUT",
                     body: formData
                 }
             },
@@ -113,8 +119,42 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 return response.status
             },
         }),
+        UpdatePersonDetails: builder.mutation<boolean, UpdatePersonMutationParams>({
+            query: ({body, id}) => {
+                console.log("body");
+                
+                console.log(
+                    body
+                );
+                
+                console.log("formData");
+                
+                const formData = fillFormFiles(body);
+                console.log(
+                    formData
+                );
+                return {
+                    url: `${PeopleEndPoint}/${id}`,
+                    method: "PUT",
+                    body: formData
+                }
+            },
+            transformResponse(response: {Response: boolean }) {
+                return response.Response
+            },
+            transformErrorResponse: (response) => {
+                console.log(response);
+                return response.status
+            },
+        }),
         // editPerson: builder.mutation<boolean, EditPersonBody>( )
     })
 })
 
-export const {useGetAllQuery, useGetPersonDetailsQuery, useGetPersonEditDetailsQuery, useCreatePersonMutation } = peopleApi
+export const {
+    useGetAllQuery,
+    useGetPersonDetailsQuery,
+    useGetPersonEditDetailsQuery,
+    useCreatePersonMutation,
+    useUpdatePersonDetailsMutation
+     } = peopleApi
