@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DLVD.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5783c56f6855c032fd8743e0be26e9bbaa514326")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e89d9bfe626a4d3bfaedac0a37ebac9d57b6b8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("DLVD.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DLVD.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

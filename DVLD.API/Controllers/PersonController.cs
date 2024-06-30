@@ -53,7 +53,7 @@ namespace DVLD.WEB.Controllers
         }
 
         [HttpGet]
-        [Route("/to-edit/{personId:int}")]
+        [Route("to-edit/{personId:int}")]
         public async Task<IActionResult> GetPersonToEdit(int personId)
         {
             _logger.LogInformation("Person has been hitten");

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Datepicker, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { FileInput, Label } from "flowbite-react";
 import { Avatar } from "flowbite-react";
@@ -47,7 +47,6 @@ const AddPerson = () => {
       const res = await createPerson(data).unwrap();
       setShowSuccessModal(!isSuccess)
       setCreatedPersonId(res);
-      console.log(res);
     } catch (err) {
         console.log(err);
         console.log(error)
@@ -117,7 +116,8 @@ const AddPerson = () => {
         <div className="grid md:grid-cols-3 md:gap-16">
               <div className='flex  items-center gap-4 p-1  grid-cols-2'>
                 <p className='font-medium whitespace-nowrap'>BirthDate</p>
-                <Datepicker maxDate={new Date(2004,1,1)}
+                <Datepicker 
+                            maxDate={new Date(2004,1,1)}
                             theme= {customTheme} 
                             id='BirthDate'
                             onSelectedDateChanged={
@@ -125,7 +125,7 @@ const AddPerson = () => {
                             }
                             
                             {...register("BirthDate")} />
-                  {errors.BirthDate && <p>{errors.BirthDate.message}</p>}
+                  {errors.BirthDate && <p>{errors.BirthDate.message} </p>}
               </div>
               <div className='flex justify-center items-center gap-4 p-1 relative'>
                     <label htmlFor="NationalityCountryId" className="">Country:</label>

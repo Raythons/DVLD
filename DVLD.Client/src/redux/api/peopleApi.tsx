@@ -44,6 +44,8 @@ export type GetPersonDataResponse = {
     Image: string
 } 
 
+export type getPersonEditDetailsResponse = CreatePersonBody
+
 export const peopleApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getPersonDetails :  builder.query<GetPersonDataResponse, number>({
@@ -53,6 +55,27 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 }
             ),
             transformResponse : (QueryReturnValue: {Response: GetPersonDataResponse})  => {
+                return QueryReturnValue.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                const errorData = handleRtkQueryErrors(error)
+                console.log(error);
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
+        }),
+        getPersonEditDetails :  builder.query<getPersonEditDetailsResponse, number>({
+            query: (personId) => (
+                {
+                    url: `${PeopleEndPoint}/to-edit/${personId}`,
+                }
+            ),
+            transformResponse : (QueryReturnValue: {Response: getPersonEditDetailsResponse})  => {
+                console.log(QueryReturnValue.Response);
+                
                 return QueryReturnValue.Response
             },
             transformErrorResponse: (error) : ApiError  =>{
@@ -94,4 +117,4 @@ export const peopleApi =  apiSlice.injectEndpoints({
     })
 })
 
-export const {useGetAllQuery, useGetPersonDetailsQuery, useCreatePersonMutation } = peopleApi
+export const {useGetAllQuery, useGetPersonDetailsQuery, useGetPersonEditDetailsQuery, useCreatePersonMutation } = peopleApi

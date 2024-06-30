@@ -10,6 +10,9 @@ body,
   min-height: 100vh;
 }
 
+input[disabled]:hover {
+  cursor: not-allowed;
+}
 * {
   scrollbar-width: thin;
   scrollbar-color: #3b82f6 #ffffff;
