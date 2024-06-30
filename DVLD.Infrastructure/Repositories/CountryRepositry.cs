@@ -1,6 +1,7 @@
 ﻿using DVLD.Domain.Entities;
 using DVLD.App.Interfaces.Persistence;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace DVLD.Data.Repositories
@@ -15,9 +16,9 @@ namespace DVLD.Data.Repositories
             _logger = logger;
             _DvldContext = context;
         }
-        public Task<IEnumerable<Country>> GetAll()
+        public async Task<IEnumerable<Country>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _DvldContext.Countries.ToListAsync();
         }
     }
 }
