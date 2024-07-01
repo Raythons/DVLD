@@ -177,6 +177,10 @@ namespace DLVD.App.Profiles
                 .ForMember(dest => dest.Applications, opt => opt.Ignore());
 
             CreateMap<UpdatePersonCommand, Person>()
+                .ForMember(
+                                dest => dest.Image,
+                                opt =>  opt.MapFrom(src => src.ImagePath)
+                          )
                 .ForMember(dest => dest.User, opt => opt.Ignore())
                 .ForMember(dest => dest.Driver, opt => opt.Ignore())
                 .ForMember(dest => dest.Applications, opt => opt.Ignore())

@@ -9,9 +9,7 @@ using DLVD.App.Features.Persons.Queires.GetPersonsPaginitaed;
 using Microsoft.Extensions.Options;
 using DVLD.API;
 using FluentResults.Samples.WebController;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using DLVD.App.Features.Persons.Queires.GetPersonEditDetails;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 
 
@@ -131,19 +129,13 @@ namespace DVLD.WEB.Controllers
 
         [HttpPut]
         [Route("{personId:int}")]
-        public async Task<IActionResult> UpdatePerson([FromForm] UpdatePersonCommand updatePersonCommand)
+        public async Task<IActionResult> UpdatePerson(
+                    [FromForm] UpdatePersonCommand updatePersonCommand,
+                    int personId)
         {
-
+            updatePersonCommand.PersonId = personId;
             updatePersonCommand.Image = HandleImageFile(Request.Form.Files);
-            //if (Request.Form.Files.Count > 0)
-            //{
-            //    using var ms = new MemoryStream();
-            //    Request.Form.Files[0].CopyTo(ms);
-
-            //    updatePersonCommand.Image = ms.ToArray();
-            //}
-
-
+    
             var query = new UpdatePersonCommand(updatePersonCommand);
 
             var result = await _mediator.Send(query);
@@ -152,7 +144,6 @@ namespace DVLD.WEB.Controllers
                 return NotFound(result.ToResultDto());
 
             return Ok(result.ToResultDto());
-
         }
         private static byte[]? HandleImageFile (IFormFileCollection formFiles)
         {

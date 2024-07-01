@@ -121,18 +121,8 @@ export const peopleApi =  apiSlice.injectEndpoints({
         }),
         UpdatePersonDetails: builder.mutation<boolean, UpdatePersonMutationParams>({
             query: ({body, id}) => {
-                console.log("body");
-                
-                console.log(
-                    body
-                );
-                
-                console.log("formData");
-                
                 const formData = fillFormFiles(body);
-                console.log(
-                    formData
-                );
+                
                 return {
                     url: `${PeopleEndPoint}/${id}`,
                     method: "PUT",
@@ -140,6 +130,8 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 }
             },
             transformResponse(response: {Response: boolean }) {
+                console.log(response);
+                
                 return response.Response
             },
             transformErrorResponse: (response) => {

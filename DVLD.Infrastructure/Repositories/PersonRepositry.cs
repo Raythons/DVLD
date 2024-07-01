@@ -85,7 +85,11 @@ namespace DVLD.Data.Repositories
                 FoundPerson.Phone = person.Phone;
                 FoundPerson.NationalityCountryId = person.NationalityCountryId;
                 FoundPerson.Address = person.Address;
+
+                if (person.Image !=  null)      
+                    FoundPerson.Image = person.Image;
                 
+
                 return true;
             }
             catch (Exception e)
