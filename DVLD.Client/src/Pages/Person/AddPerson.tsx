@@ -1,4 +1,3 @@
-import React, { ReactNode } from 'react'
 import { Datepicker, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { FileInput, Label } from "flowbite-react";
 import { Avatar } from "flowbite-react";
@@ -11,6 +10,8 @@ import { CreatePersonFormFields } from '../../types/AddPersonType';
 import { useHandleFileChange } from '../../hooks/useHandleFileChange';
 import SuccessPopUp from '../../layout/SuccessPopUp';
 import { Spinner } from "flowbite-react";
+import LabeledInput from '../../layout/components/LabeledInput';
+import CountriesInput from '../../layout/components/CountriesInput';
 
 
 const AddPerson = () => {
@@ -70,27 +71,16 @@ const AddPerson = () => {
           <p className=' font-medium'>Name:</p>
           <div className="grid md:grid-cols-4 md:gap-6 w-full">
               <div className="relative z-0 w-full mb-5 group">
-                  <input {...register("FirstName")} type="text" id="FirstName" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="FirstName" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
-                  {errors.FirstName && <span className="text-red-700">{errors.FirstName.message}</span>}
+                  <LabeledInput  type='text' id='FirstName' errorMessage={errors.FirstName?.message} register={register}/>
               </div>
               <div className="relative z-0 w-full mb-5 group">
-                  <input  {...register("SecondName")} type="text" name="SecondName" id="SecondName" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="SecondName" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300   -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Second name</label>
-                  {errors.SecondName && <span className="text-red-700">{errors.SecondName.message}</span>}
-
+                  <LabeledInput  type='text' id='SecondName' errorMessage={errors.SecondName?.message} register={register}/>
               </div>
               <div className="relative z-0 w-full mb-5 group">
-                  <input type="text"  {...register("ThirdName")} id="ThirdName" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="ThirdName" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Third name</label>
-                  {errors.ThirdName && <span className="text-red-700">{errors.ThirdName.message}</span>}
-
+                  <LabeledInput  type='text' id='ThirdName' errorMessage={errors.ThirdName?.message} register={register}/>
               </div>
               <div className="relative z-0 w-full mb-5 group">
-                  <input type="text"  {...register("LastName")} id="LastName" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="LastName" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
-                  {errors.LastName && <span className="text-red-700">{errors.LastName.message}</span>}
-
+                  <LabeledInput  type='text' id='LastName' errorMessage={errors.LastName?.message} register={register}/>
               </div>
           </div>
         </div>
@@ -98,18 +88,13 @@ const AddPerson = () => {
             <div className='flex justify-center items-center gap-4 p-1'>
               <p className='font-medium'>Email:</p>
                 <div className="relative z-0 w-full mb-0 group">
-                  <input type="text" {...register("Email")} id="Email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="Email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
-                  {errors.Email && <span className="text-red-700">{errors.Email.message}</span>}
-
+                  <LabeledInput  type='text' id='Email' errorMessage={errors.Email?.message} register={register}/>
                 </div>
               </div>
               <div className='flex justify-center items-center gap-4 p-1'>
                   <p className='font-medium whitespace-nowrap'>National No:</p>
                   <div className="relative z-0 w-full mb-5 group">
-                      <input type="text" {...register("NationalNo")} id="NationalNo" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                      <label htmlFor="NationalNo" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">National No</label>
-                      {errors.NationalNo && <span className="text-red-700">{errors.NationalNo.message}</span>}
+                      <LabeledInput  type='text' id='NationalNo' errorMessage={errors.NationalNo?.message} register={register}/>
                   </div>
               </div>
         </div>
@@ -128,17 +113,9 @@ const AddPerson = () => {
                   {errors.BirthDate && <p>{errors.BirthDate.message} </p>}
               </div>
               <div className='flex justify-center items-center gap-4 p-1 relative'>
-                    <label htmlFor="NationalityCountryId" className="">Country:</label>
-                    <select {...register("NationalityCountryId", {valueAsNumber: true})} id='NationalityCountryId'   title= "countries"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <option defaultValue={0}>Choose a country</option>
-                      <option value={1} >{1}</option>
-                      <option value={2}>Canada</option>
-                      <option value={3}>France</option>
-                      <option value={4}>Germany</option>
-                    </select>
-                    {errors.NationalityCountryId && <span className="text-red-700 absolute top-11 whitespace-nowrap">{errors.NationalityCountryId.message}</span>}
+                <CountriesInput  id='NationalityCountryId'  register={register}
+                      errorMessage={errors.NationalityCountryId?.message} defaultCountryId={0} />
               </div>
-
               <div className="flex flex-wrap items-center">
                 <p className='font-medium whitespace-nowrap' >Gender:</p>
                 <div className=" ml-4 flex items-center me-4">
@@ -150,25 +127,19 @@ const AddPerson = () => {
                     <label htmlFor="female-radio" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
                 </div>
                 {errors.Gender && <span className="text-red-700 whitespace-nowrap">{errors.Gender.message}</span>}
-
               </div>
         </div>
         <div className="grid md:grid-cols-2 md:gap-16 mt-1">
               <div className='flex justify-center items-center gap-4 p-1'>
                   <p className='font-medium whitespace-nowrap'>Phone: </p>
                   <div className="relative z-0 w-full mb-5 group">
-                      <input type="text" {...register("Phone")} id="Phone" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                      <label htmlFor="Phone" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone:</label>
-                      {errors.Phone && <span className="text-red-700">{errors.Phone.message}</span>}
-
+                      <LabeledInput  type='text' id='Phone' errorMessage={errors.Phone?.message} register={register}/>
                   </div>
               </div>
               <div className='flex justify-center items-center gap-4 p-1'>
                   <p className='font-medium whitespace-nowrap'>Address: </p>
                   <div className="relative z-0 w-full mb-5 group">
-                      <input type="text" {...register("Address")} id="Address" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                      <label htmlFor="Address" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address:</label>
-                      {errors.Address && <span className="text-red-700">{errors.Address.message}</span>}
+                      <LabeledInput  type='text' id='Address' errorMessage={errors.Address?.message} register={register}/>
                   </div>
               </div>
         </div>

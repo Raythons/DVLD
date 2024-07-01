@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { UseFormRegister } from 'react-hook-form';
 import { EditPersonFormFields } from '../../types/AddPersonType';
 import { useGetAllCountriesQuery } from '../../redux/api/countriesApi';
