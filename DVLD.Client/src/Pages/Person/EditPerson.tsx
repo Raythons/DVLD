@@ -12,34 +12,30 @@ import SuccessPopUp from '../../layout/SuccessPopUp';
 import { Spinner } from "flowbite-react";
 import { EditPersonSchema } from '../../schema/EditPersonSchema';
 import CustomError from '../../layout/CustomError';
-import { useGetAllCountriesQuery } from '../../redux/api/countriesApi';
+import LabeledInput from '../../layout/components/LabeledInput';
+import CountriesInput from '../../layout/components/CountriesInput';
 
 const EditPerson = () => {
-  
-  const {personId} = useParams();
 
+  const {personId} = useParams();
   const [currentPersonImage, setCurrentPersonImage] = React.useState<string>(""); // Initially no image
-  const navigate = useNavigate();
   
+  const navigate = useNavigate();
   const {handleFileChanges} = useHandleFileChange();
 
   const {data : PersonDetails , isLoading: isLoadingPersonDetails , isError} = useGetPersonEditDetailsQuery(Number(personId));
-  const {data : Countries , isSuccess: isCountriesSuccess  } = useGetAllCountriesQuery({});
+  const [UpdatePerson, {isSuccess, isLoading, error}] = useUpdatePersonDetailsMutation();
 
-  console.log(currentPersonImage);
-  
   const {
       register,
       handleSubmit,
-      formState:{errors, isSubmitting, dirtyFields},
+      formState:{errors, isSubmitting, dirtyFields },
       reset
-    } = useForm<EditPersonFormFields>
-      (
-        {
+      } = useForm<EditPersonFormFields>
+      ({
           resolver: zodResolver(EditPersonSchema),
           mode: "onBlur"
-        },
-      );
+      });
       
       useEffect(() => {
         const defaultValues: EditPersonFormFields  = {
@@ -53,20 +49,15 @@ const EditPerson = () => {
           Email: PersonDetails?.Email as string,
           Gender: PersonDetails?.Gender as "Male" | "Female",
           Image: PersonDetails?.Image as string,
-          // BirthDate: new Date (PersonDetails?.BirthDate) ,
           NationalityCountryId: PersonDetails?.NationalityCountryId as number,  
         }
           reset(defaultValues)
       }, [PersonDetails, reset])
-      // reset(PersonDetails)
-
-  const [UpdatePerson, {isSuccess, isLoading, error}] = useUpdatePersonDetailsMutation();
-
-
+      
   const [showSuccessModal, setShowSuccessModal] = React.useState<boolean>(isSuccess);
 
+  // handle file changes
   const [birthDate, setBirthDate] = React.useState<Date>(new Date(2003,3,3));
-
   const UserImageField = register("Image", { required: true });
 
   const onSubmit: SubmitHandler<CreatePersonFormFields>  = async (data) => {
@@ -75,17 +66,14 @@ const EditPerson = () => {
       else 
         data.Image = data.Image[0]
 
-      
       data.BirthDate =  birthDate.toISOString();
-      const UpdatePersonParams: UpdatePersonMutationParams  = {
+      const UpdatePersonParams: UpdatePersonMutationParams = {
         body: data,
         id: Number(personId)
       }
-
       try {
-      const res = await UpdatePerson(UpdatePersonParams).unwrap();
+      await UpdatePerson(UpdatePersonParams).unwrap();
       setShowSuccessModal(!isSuccess)
-      console.log(res);
     } catch (err) {
         console.log(err);
         console.log(error)
@@ -100,15 +88,13 @@ const EditPerson = () => {
       },
     }
   }
-  
 
- 
   return (
     isLoadingPersonDetails ? 
     <div className=' flex flex-col justify-center  items-center w-[100%]  h-[100%] gap-4'>
       <Spinner  aria-label='loading Person Data' size={"xl"}/>
     </div>
-    :
+    : 
       <div className='flex flex-col justify-around  items-center w-[100%] h-full  '>
           {
             isError &&  <CustomError error={error ? error as ApiError : error}    />
@@ -119,46 +105,31 @@ const EditPerson = () => {
           <p className=' font-medium'>Name:</p>
           <div className="grid md:grid-cols-4 md:gap-6 w-full">
               <div className="relative z-0 w-full mb-5 group">
-                  <input {...register("FirstName")} type="text" id="FirstName" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="FirstName" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
-                  {errors.FirstName && <span className="text-red-700">{errors.FirstName.message}</span>}
+                  <LabeledInput  type='text' id='FirstName' errorMessage={errors.FirstName?.message} register={register}/>
               </div>
               <div className="relative z-0 w-full mb-5 group">
-                  <input  {...register("SecondName")} type="text" name="SecondName" id="SecondName" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="SecondName" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300   -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Second name</label>
-                  {errors.SecondName && <span className="text-red-700">{errors.SecondName.message}</span>}
-
+                  <LabeledInput  type='text' id='SecondName' errorMessage={errors.SecondName?.message} register={register}/>
               </div>
               <div className="relative z-0 w-full mb-5 group">
-                  <input type="text"  {...register("ThirdName")} id="ThirdName" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="ThirdName" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Third name</label>
-                  {errors.ThirdName && <span className="text-red-700">{errors.ThirdName.message}</span>}
-
+                  <LabeledInput  type='text' id='ThirdName' errorMessage={errors.ThirdName?.message} register={register}/>
               </div>
               <div className="relative z-0 w-full mb-5 group">
-                  <input type="text"  {...register("LastName")} id="LastName" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="LastName" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
-                  {errors.LastName && <span className="text-red-700">{errors.LastName.message}</span>}
-
+                  <LabeledInput  type='text' id='LastName' errorMessage={errors.LastName?.message} register={register}/>
               </div>
           </div>
+
         </div>
         <div className="grid md:grid-cols-2 md:gap-16 w-[100%]">
             <div className='flex justify-center items-center gap-4 p-1'>
               <p className='font-medium'>Email:</p>
                 <div className="relative z-0 w-full mb-0 group">
-                  <input type="text" {...register("Email")} id="Email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                  <label htmlFor="Email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
-                  {errors.Email && <span className="text-red-700">{errors.Email.message}</span>}
-
+                  <LabeledInput  type='text' id='Email' errorMessage={errors.Email?.message} register={register}/>
                 </div>
               </div>
               <div className='flex justify-center items-center gap-4 p-1'>
                   <p className='font-medium whitespace-nowrap'>National No:</p>
                   <div className="relative z-0 w-full mb-5 group">
-                      <input type="text" {...register("NationalNo")} id="NationalNo" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                      <label htmlFor="NationalNo" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">National No</label>
-                      {errors.NationalNo && <span className="text-red-700">{errors.NationalNo.message}</span>}
+                      <LabeledInput  type='text' id='NationalNo' errorMessage={errors.NationalNo?.message} register={register}/>
                   </div>
               </div>
         </div>
@@ -172,33 +143,13 @@ const EditPerson = () => {
                             onSelectedDateChanged={
                               (e) => setBirthDate(e)
                             }
-                            
                             {...register("BirthDate")} />
                   {errors.BirthDate && <p>{errors.BirthDate.message}</p>}
               </div>
               <div className='flex justify-center items-center gap-4 p-1 relative'>
-                    <label htmlFor="NationalityCountryId" className="">Country:</label>
-                    <select
-                    defaultValue={PersonDetails?.NationalityCountryId}
-                    {...register("NationalityCountryId", {valueAsNumber: true})} id='NationalityCountryId'   title= "countries"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      {
-                        isCountriesSuccess && Countries?.map((country) => {
-                            return (
-                              <option 
-                                defaultChecked={country.Id === PersonDetails?.NationalityCountryId}
-                                key={country.Id}
-                                defaultValue={country.Id}
-                                value={country.Id}
-                                >
-                                  {country.CountryName}
-                                </option>
-                            )
-                        })
-                      }
-                    </select>
-                    {errors.NationalityCountryId && <span className="text-red-700 absolute top-11 whitespace-nowrap">{errors.NationalityCountryId.message}</span>}
+                    <CountriesInput  id='NationalityCountryId'  register={register}
+                      errorMessage={errors.NationalityCountryId?.message} defaultCountryId={PersonDetails?.NationalityCountryId} />
               </div>
-
               <div className="flex flex-wrap items-center">
                 <p className='font-medium whitespace-nowrap' >Gender:</p>
                 <div className=" ml-4 flex items-center me-4">
@@ -210,25 +161,20 @@ const EditPerson = () => {
                     <label htmlFor="female-radio" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
                 </div>
                 {errors.Gender && <span className="text-red-700 whitespace-nowrap">{errors.Gender.message}</span>}
-
               </div>
+
         </div>
         <div className="grid md:grid-cols-2 md:gap-16 mt-1">
               <div className='flex justify-center items-center gap-4 p-1'>
                   <p className='font-medium whitespace-nowrap'>Phone: </p>
                   <div className="relative z-0 w-full mb-5 group">
-                      <input type="text" {...register("Phone")} id="Phone" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                      <label htmlFor="Phone" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone:</label>
-                      {errors.Phone && <span className="text-red-700">{errors.Phone.message}</span>}
-
+                      <LabeledInput  type='text' id='Phone' errorMessage={errors.Phone?.message} register={register}/>
                   </div>
               </div>
               <div className='flex justify-center items-center gap-4 p-1'>
                   <p className='font-medium whitespace-nowrap'>Address: </p>
                   <div className="relative z-0 w-full mb-5 group">
-                      <input type="text" {...register("Address")} id="Address" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                      <label htmlFor="Address" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address:</label>
-                      {errors.Address && <span className="text-red-700">{errors.Address.message}</span>}
+                      <LabeledInput  type='text' id='Address' errorMessage={errors.Address?.message} register={register}/>
                   </div>
               </div>
         </div>
@@ -251,6 +197,7 @@ const EditPerson = () => {
             </button>
           </div>
         </form>
+
         <SuccessPopUp show={showSuccessModal} type="Person" creationId={0} setShowPopUp={setShowSuccessModal} />
         {isSubmitting ? <Modal show={isLoading}>
                           <ModalHeader />
@@ -262,5 +209,4 @@ const EditPerson = () => {
       </div>
   )
 }
-
 export default EditPerson
