@@ -60,12 +60,12 @@ export const peopleApi =  apiSlice.injectEndpoints({
                     url: `${PeopleEndPoint}/${personId}`,
                 }
             ),
+            providesTags: [`Person`],
             transformResponse : (QueryReturnValue: {Response: GetPersonDataResponse})  => {
                 return QueryReturnValue.Response
             },
             transformErrorResponse: (error) : ApiError  =>{
                 const errorData = handleRtkQueryErrors(error)
-                console.log(error);
                 
                 if(isNumber(error.status)) {
                     errorData.status  = error.status as number;
@@ -79,14 +79,12 @@ export const peopleApi =  apiSlice.injectEndpoints({
                     url: `${PeopleEndPoint}/to-edit/${personId}`,
                 }
             ),
-            transformResponse : (QueryReturnValue: {Response: getPersonEditDetailsResponse})  => {
-                console.log(QueryReturnValue.Response);
-                
+            providesTags: [`Person`],
+            transformResponse : (QueryReturnValue: {Response: getPersonEditDetailsResponse})  => {                
                 return QueryReturnValue.Response
             },
             transformErrorResponse: (error) : ApiError  =>{
                 const errorData = handleRtkQueryErrors(error)
-                console.log(error);
                 
                 if(isNumber(error.status)) {
                     errorData.status  = error.status as number;
@@ -99,6 +97,7 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 url: `${PeopleEndPoint}/`,
                 params: getALLQueryParams,
             }),
+            providesTags: [`AllPeople`],
             transformResponse: (response: {Response: GetPersonListData[] }) => {
                 return response.Response
             },
@@ -112,33 +111,50 @@ export const peopleApi =  apiSlice.injectEndpoints({
                     body: formData
                 }
             },
+            invalidatesTags: [`AllPeople`],
             transformResponse(response: {Response: number }) {
                 return response.Response
             },
-            transformErrorResponse: (response) => {
-                return response.status
+            transformErrorResponse: (error) => {
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
             },
         }),
-        UpdatePersonDetails: builder.mutation<boolean, UpdatePersonMutationParams>({
+        updatePersonDetails: builder.mutation<boolean, UpdatePersonMutationParams>({
             query: ({body, id}) => {
-                const formData = fillFormFiles(body);
-                
+                const formData = fillFormFiles(body); 
                 return {
                     url: `${PeopleEndPoint}/${id}`,
                     method: "PUT",
                     body: formData
                 }
             },
+            invalidatesTags: [`AllPeople`, `Person`],
             transformResponse(response: {Response: boolean }) {
                 console.log(response);
                 
                 return response.Response
             },
-            transformErrorResponse: (response) => {
-                console.log(response);
-                return response.status
+            transformErrorResponse: (error) => {
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
             },
         }),
+        deletePerson: builder.mutation<boolean, number>({
+            query: (personId) => ({
+                url: `${PeopleEndPoint}/${personId}`,
+                method: `Delete`
+            }),
+            invalidatesTags: [`AllPeople`, `Person`],
+        })
         // editPerson: builder.mutation<boolean, EditPersonBody>( )
     })
 })
@@ -148,5 +164,6 @@ export const {
     useGetPersonDetailsQuery,
     useGetPersonEditDetailsQuery,
     useCreatePersonMutation,
-    useUpdatePersonDetailsMutation
-     } = peopleApi
+    useUpdatePersonDetailsMutation,
+    useDeletePersonMutation,
+    } = peopleApi

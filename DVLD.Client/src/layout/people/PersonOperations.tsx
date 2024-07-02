@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react'
+import React, { MouseEventHandler, useState } from 'react'
 import { IconContext } from 'react-icons';
 import { FaClipboardUser } from "react-icons/fa6";
 import { FaUserEdit } from "react-icons/fa";
@@ -6,6 +6,7 @@ import { TiUserDelete } from "react-icons/ti";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import DeletePopUp from '../DeletePopUp';
 
 type props = {
     show: boolean,
@@ -20,6 +21,7 @@ type  PersonOperation = {
 
 const PersonOperations = ({show, PersonId} : props) => {
     const navigate = useNavigate();
+    const [showDeletePopUp, setShowDeletePopUp] = useState<boolean>(false)
 
     const personOperations: PersonOperation[] = [
         {
@@ -38,20 +40,17 @@ const PersonOperations = ({show, PersonId} : props) => {
                     <IconContext.Provider value={{className: "hover: text-red-600"}}> 
                         <TiUserDelete />
                     </IconContext.Provider>,
-            clickHandler: () => {console.log("delete Clicked")}
-            
+            clickHandler: () => {setShowDeletePopUp(!showDeletePopUp)}
         },
         {
             OperationName: "Send Email",
             OperationIcon:  <MdEmail />, 
             clickHandler: () => {console.log("Email Clicked")}
-
         },
         {
             OperationName: "Call Phone",
             OperationIcon:  <FaPhoneVolume /> ,
             clickHandler: () => {console.log("Phone Clicked")}
-
         },
     ]
 
@@ -73,6 +72,7 @@ const PersonOperations = ({show, PersonId} : props) => {
                     </li>
                 ))
             }
+            <DeletePopUp   show ={showDeletePopUp} deletionId={PersonId} setShowPopUp={setShowDeletePopUp} type='Person' />
         </ul>
     )
 }
