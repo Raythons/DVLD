@@ -53,8 +53,8 @@ internal class PersonConfig : IEntityTypeConfiguration<Person>
                 SecondName = "SecondName" + i,
                 ThirdName = "ThirdName" + i,
                 LastName = "LastName" + i,
-                BirthDate = DateTime.Now.AddYears(-25).AddDays(i), // Example birthdate calculation
-                Gender = EnGender.Male, // or EnGender.Female depending on the gender
+                BirthDate = DateTime.Now.AddYears(-25).AddDays(i), 
+                Gender = EnGender.Male, 
                 Address = "Address" + i,
                 Phone = "Phone" + i,
                 Email = "email" + i + "@example.com",

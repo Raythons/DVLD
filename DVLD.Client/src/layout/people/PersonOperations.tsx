@@ -7,6 +7,7 @@ import { MdEmail } from "react-icons/md";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import DeletePopUp from '../DeletePopUp';
+import { ApiError, useDeletePersonMutation } from '../../redux/api/peopleApi';
 
 type props = {
     show: boolean,
@@ -23,6 +24,7 @@ const PersonOperations = ({show, PersonId} : props) => {
     const navigate = useNavigate();
     const [showDeletePopUp, setShowDeletePopUp] = useState<boolean>(false)
 
+    const [deletePerson, {isLoading, isError,  error}] = useDeletePersonMutation()
     const personOperations: PersonOperation[] = [
         {
             OperationName: "Show Details",
@@ -72,7 +74,13 @@ const PersonOperations = ({show, PersonId} : props) => {
                     </li>
                 ))
             }
-            <DeletePopUp   show ={showDeletePopUp} deletionId={PersonId} setShowPopUp={setShowDeletePopUp} type='Person' />
+            <DeletePopUp   
+            show ={showDeletePopUp} deletionId={PersonId} 
+            isLoading={isLoading}
+            isError={isError}
+            error={error as ApiError}
+            setShowPopUp={setShowDeletePopUp} type='Person'
+            mutation = {deletePerson}/>
         </ul>
     )
 }

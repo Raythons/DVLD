@@ -23,6 +23,10 @@ namespace DLVD.App.Features.Persons.Commands.DeletePerson
 
         public async Task<Result<bool>> Handle(DeletePersonCommand request, CancellationToken cancellationToken)
         {
+
+            if (await _unitOfWork.PersonRepository.isConnectedEntity(request.personId))
+                return Result.Fail("Person Conneted In The System You Cant Delete It ");
+
             bool isDeleted = await _unitOfWork.PersonRepository.Delete(request.personId);
             await _unitOfWork.CompleteAsync();
 

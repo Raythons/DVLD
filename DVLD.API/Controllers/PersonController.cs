@@ -115,16 +115,16 @@ namespace DVLD.WEB.Controllers
 
         [HttpDelete]
         [Route("{personId:int}")]
-        public async Task<IActionResult> DeletePerson([FromForm] DeletePersonCommand deletePersonCommand)
+        public async Task<IActionResult> DeletePerson(int personId)
         {
-            var query = new DeletePersonCommand(deletePersonCommand.personId);
+            var query = new DeletePersonCommand(personId);
 
             var result = await _mediator.Send(query);
 
-            if (!result.IsFailed)
-                return NotFound("Delete Failed");
+            if (result.IsFailed)
+                return BadRequest(result.ToResultDto());
 
-            return Ok("Person Deleted Succes way");
+            return Ok(true);
         }
 
         [HttpPut]

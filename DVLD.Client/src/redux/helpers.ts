@@ -38,7 +38,7 @@ export function handleRtkQueryErrors(error: FetchBaseQueryError): ApiError {
           }
           else if (error.status ===  "PARSING_ERROR") {
               return {
-                      Message: "Unhandled Error Happened Please Call The Developer",
+                      Message: `${error.data}`,
                       Code: "",
                       Reasons: []
               }

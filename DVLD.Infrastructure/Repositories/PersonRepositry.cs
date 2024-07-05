@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
 using DLVD.App.extensions;
+using System.Reflection.Metadata.Ecma335;
 
 namespace DVLD.Data.Repositories
 {
@@ -102,12 +103,26 @@ namespace DVLD.Data.Repositories
 
         public async Task<bool> Delete(int id)
         {
-            var result = await _dbSet.Where(p => p.Id == id).ExecuteDeleteAsync();
+            try
+            {
+                var result = await _dbSet.Where(p => p.Id == id).ExecuteDeleteAsync();
+                if (result == 0)
+                    return false;
+                return true;
 
-            if (result  == 0)
-                return false;
-            // TO Do
-            return true;
+            }
+            catch (DbUpdateException e)
+            {
+                {
+                    Console.WriteLine(e);
+                    Console.WriteLine(e.Data.Keys);
+                    Console.WriteLine(e.Data.Values);
+                    throw;
+                }
+
+
+                // TO Do
+            }
         }
 
 
@@ -138,6 +153,16 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
-       
+        public async Task<bool> isConnectedEntity(int personId)
+        {
+            var person = await _dbSet.Where(p => p.Id == personId &&
+                                                  p.User != null ||
+                                                  p.Applications != null ||
+                                                  p.Driver != null
+                                            ).FirstOrDefaultAsync();
+                                                   
+
+            return person != null;
+        }
     }
 }

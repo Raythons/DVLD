@@ -11,6 +11,8 @@ const CustomError = ({error}: props) => {
     const GenerateErrorHeader = (status : number | undefined ): string => {
         if (status === 404)
             return "Not Found"
+        else if (status === 400)
+            return "Bad Request"
         return "Error"
     }
 

@@ -78,6 +78,7 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 {
                     url: `${PeopleEndPoint}/to-edit/${personId}`,
                 }
+                
             ),
             providesTags: [`Person`],
             transformResponse : (QueryReturnValue: {Response: getPersonEditDetailsResponse})  => {                
@@ -149,11 +150,25 @@ export const peopleApi =  apiSlice.injectEndpoints({
             },
         }),
         deletePerson: builder.mutation<boolean, number>({
-            query: (personId) => ({
-                url: `${PeopleEndPoint}/${personId}`,
-                method: `Delete`
-            }),
+            query: (personId) => (
+                
+                {
+                    url: `${PeopleEndPoint}/${personId}`,
+                    method: `Delete`,   
+                }
+            ),
             invalidatesTags: [`AllPeople`, `Person`],
+            transformResponse : (baseQueryReturnValue) => {
+                return baseQueryReturnValue as boolean
+            },
+            transformErrorResponse: (error) =>  {
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }                  
+                return errorData;
+            },
         })
         // editPerson: builder.mutation<boolean, EditPersonBody>( )
     })
