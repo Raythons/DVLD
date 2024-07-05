@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { GetPersonListData } from '../../redux/api/peopleApi'
 import { TbDots } from "react-icons/tb";
 import { IconContext } from 'react-icons';

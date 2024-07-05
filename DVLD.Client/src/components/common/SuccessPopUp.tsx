@@ -12,7 +12,6 @@ type props = {
 const SuccessPopUp = ({show, type, creationId, operation, setShowPopUp} : props) => {
   const navigate = useNavigate();
   
-  console.log(show);
   
   return (
     <Modal show={show} onClose={() => setShowPopUp(!show)} >

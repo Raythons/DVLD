@@ -1,5 +1,5 @@
 import { GetAllPeopleQueryParams, useGetAllQuery } from '../../redux/api/peopleApi'
-import SinglePerson from './SinglePerson'
+import SinglePerson from '../../components/People/SinglePerson'
 
 const AllPeople = () => {
 

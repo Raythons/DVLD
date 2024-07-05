@@ -9,10 +9,10 @@ import { useCreatePersonMutation } from '../../redux/api/peopleApi';
 import { AddPersonSchema } from '../../schema/AddPersonSchema';
 import { CreatePersonFormFields } from '../../types/AddPersonType';
 import { useHandleFileChange } from '../../hooks/useHandleFileChange';
-import SuccessPopUp from '../../layout/SuccessPopUp';
+import SuccessPopUp from '../../components/common/SuccessPopUp';
 import { Spinner } from "flowbite-react";
-import LabeledInput from '../../layout/components/LabeledInput';
-import CountriesInput from '../../layout/components/CountriesInput';
+import LabeledInput from '../../components/common/LabeledInput';
+import CountriesInput from '../../components/common/CountriesInput';
 
 
 const AddPerson = () => {
@@ -163,7 +163,7 @@ const AddPerson = () => {
             </button>
           </div>
         </form>
-        <SuccessPopUp show={showSuccessModal} type="Person" creationId={createdPersonId} setShowPopUp={setShowSuccessModal} />
+        <SuccessPopUp operation='Added' show={showSuccessModal} type="Person" creationId={createdPersonId} setShowPopUp={setShowSuccessModal} />
         {isSubmitting ? <Modal show={isLoading}>
                           <ModalHeader />
                             <ModalBody>

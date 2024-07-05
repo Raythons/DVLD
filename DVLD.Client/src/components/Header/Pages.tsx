@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { PageType } from "./Header"
+import { PageType } from "../../layout/Header"
 import { MouseEvent } from "react"
 import MainMenu from "./MainMenu"
 

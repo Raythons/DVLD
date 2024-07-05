@@ -1,12 +1,11 @@
-import React from 'react'
 import {  useParams } from 'react-router-dom'
 import { useGetPersonDetailsQuery } from '../../redux/api/peopleApi';
 import { ApiError } from '../../redux/api/peopleApi';
 import { Avatar } from 'flowbite-react';
 import { Spinner } from 'flowbite-react';
+import CustomError from '../../components/common/CustomError';
+import EditButton from '../../components/common/EditButton';
 
-import CustomError from '../../layout/CustomError';
-import EditButton from '../../components/EditButton';
 const PersonDetails = () => {
 
     const {personId} = useParams();
@@ -79,9 +78,8 @@ const PersonDetails = () => {
                   <p className='font-medium whitespace-nowrap'>{PersonDetails?.Age}</p>
               </div>
               
-           </div>
+          </div>
 
-           
         <div className="flex flex-col  items-start justify-between gap-4 p-1 ">
             <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Phone:</p>
@@ -96,7 +94,7 @@ const PersonDetails = () => {
               <EditButton  goTo='People'  Id={PersonDetails?.Id ?? 0}/>
               
         </div>
-       </div>
+      </div>
 
         <div className='w-[90%]  flex justify-between items-center'>
                 <Avatar   img= {`../../../public/${PersonDetails?.Image}` || "../../../public/UnknownUser.jpg"}   size="lg"  rounded={true}  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>

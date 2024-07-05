@@ -1,5 +1,5 @@
 import React from 'react'
-import { ApiError } from '../redux/api/peopleApi'
+import { ApiError } from '../../redux/api/peopleApi'
 
 
 type props = {

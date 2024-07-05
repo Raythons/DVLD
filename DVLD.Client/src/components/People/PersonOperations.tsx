@@ -6,7 +6,7 @@ import { TiUserDelete } from "react-icons/ti";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
-import DeletePopUp from '../DeletePopUp';
+import DeletePopUp from '../common/DeletePopUp';
 import { ApiError, useDeletePersonMutation } from '../../redux/api/peopleApi';
 
 type props = {
@@ -34,7 +34,7 @@ const PersonOperations = ({show, PersonId} : props) => {
         {
             OperationName: "Edit",
             OperationIcon:  <FaUserEdit />, 
-            clickHandler: () => {navigate("Edit" , {state: PersonId})}
+            clickHandler: () => {navigate(`Edit/${PersonId}` , {state: PersonId})}
         },
         {
             OperationName: "Delete",

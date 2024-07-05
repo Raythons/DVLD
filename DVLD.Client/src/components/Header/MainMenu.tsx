@@ -1,7 +1,7 @@
-import { subMenuItem } from "./Header"
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { MouseEvent } from "react"; 
 import SubMenu from "./SubMenu";
+import { subMenuItem } from "../../layout/Header";
 
 
 type props = {

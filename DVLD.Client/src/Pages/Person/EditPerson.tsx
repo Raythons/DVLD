@@ -8,12 +8,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ApiError, UpdatePersonMutationParams, useGetPersonEditDetailsQuery, useUpdatePersonDetailsMutation } from '../../redux/api/peopleApi';
 import { CreatePersonFormFields, EditPersonFormFields } from '../../types/AddPersonType';
 import { useHandleFileChange } from '../../hooks/useHandleFileChange';
-import SuccessPopUp from '../../layout/SuccessPopUp';
+import SuccessPopUp from '../../components/common/SuccessPopUp';
 import { Spinner } from "flowbite-react";
 import { EditPersonSchema } from '../../schema/EditPersonSchema';
-import CustomError from '../../layout/CustomError';
-import LabeledInput from '../../layout/components/LabeledInput';
-import CountriesInput from '../../layout/components/CountriesInput';
+import CustomError from '../../components/common/CustomError';
+import LabeledInput from '../../components/common/LabeledInput';
+import CountriesInput from '../../components/common/CountriesInput';
 
 const EditPerson = () => {
 
@@ -79,7 +79,6 @@ const EditPerson = () => {
         console.log(error)
     }
   }
-
 
   const customTheme ={
     popup : {
@@ -198,7 +197,7 @@ const EditPerson = () => {
           </div>
         </form>
 
-        <SuccessPopUp show={showSuccessModal} type="Person" creationId={0} setShowPopUp={setShowSuccessModal} />
+        <SuccessPopUp show={showSuccessModal} operation='Edited' type="Person" creationId={0} setShowPopUp={setShowSuccessModal} />
         {isSubmitting ? <Modal show={isLoading}>
                           <ModalHeader />
                             <ModalBody>

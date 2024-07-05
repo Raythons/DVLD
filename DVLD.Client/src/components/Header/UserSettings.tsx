@@ -1,7 +1,7 @@
-import React, { ReactNode, useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { selectUserData } from '../redux/features/authSlice';
-import { subMenuItem } from './Header';
+import { selectUserData } from '../../redux/features/authSlice';
+import { subMenuItem } from '../../layout/Header';
 import { PiUserCircleDashedFill } from "react-icons/pi";
 import { CgLogOut } from "react-icons/cg";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -78,7 +78,7 @@ const UserSettings = () => {
     onClick={handleUserSettingClick}  
     className='flex relative justify-center cursor-pointer items-center  w-16  h-14  rounded-full  border-solid transition duration-300 border-white hover:border-blue-500   border-2'>
         <img className= "rounded-full  w-full h-full" src={user.Image} alt="" />
-       { showUserSettings && <menu className="absolute main-menu  rounded-md top-12  bg-slate-50 flex flex-col  border-solid border-2">
+      { showUserSettings && <menu className="absolute main-menu  rounded-md top-12  bg-slate-50 flex flex-col  border-solid border-2">
             {
                 settings.map((settingItem) => (
                     <li key={settingItem.title}

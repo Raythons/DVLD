@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FaAddressCard } from "react-icons/fa6";
-import Pages from './Pages';
+import Pages from '../components/Header/Pages';
 import { MdAddToPhotos } from "react-icons/md";
 import { FaHouseUser } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
@@ -12,7 +12,7 @@ import { AiFillStop } from "react-icons/ai";
 import { IoNewspaperSharp } from "react-icons/io5";
 import { PiLockOpenFill } from "react-icons/pi";
 import { BiSolidDoorOpen } from "react-icons/bi";
-import UserSettings from './UserSettings';
+import UserSettings from '../components/Header/UserSettings';
 // import { useSelector } from 'react-redux';
 // import { selectUserData } from '../redux/features/authSlice';
 

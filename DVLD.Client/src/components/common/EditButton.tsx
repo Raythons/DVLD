@@ -1,6 +1,5 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BaseRoute } from '../utils/BaseRoutes'
+import { BaseRoute } from '../../utils/BaseRoutes'
 
 type props  = {
     goTo: string,

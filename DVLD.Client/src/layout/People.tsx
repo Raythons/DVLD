@@ -1,5 +1,5 @@
 import { IconContext } from "react-icons";
-import AllPeople from "../layout/people/AllPeople"
+import AllPeople from "../Pages/Person/AllPeople";
 import {IoPeople } from "react-icons/io5";
 import {IoPersonAddSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,6 @@ import { IoCloseCircle } from "react-icons/io5";
 
 export const People = () => {
   const navigate = useNavigate()
-
- 
-
 
   const handleAddPersonClick = () => {
     navigate("Add")

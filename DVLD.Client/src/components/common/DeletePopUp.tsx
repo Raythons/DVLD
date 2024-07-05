@@ -1,10 +1,10 @@
 import {  } from '@reduxjs/toolkit/query'
 import { Button, Modal, ModalBody, Spinner } from 'flowbite-react'
 import React, { useState } from 'react'
-import { ApiError } from '../redux/api/peopleApi'
+import { ApiError } from '../../redux/api/peopleApi'
 import CustomError from './CustomError'
 import SuccessPopUp from './SuccessPopUp'
-import { isApiError } from '../redux/helpers'
+import { isApiError } from '../../redux/helpers'
 
 type deletePopUpProps = {
     show:boolean
@@ -26,7 +26,7 @@ const DeletePopUp = ({show, type, deletionId, isLoading, isError, error, setShow
 
         setShowResultPopUp(!showResultPopUp)
     }
-
+    
     const [showResultPopUp, setShowResultPopUp] = useState<boolean>(false)
     const [showSuccessPopUp, setShowSuccessPopUp] = useState<boolean>(false)
     
