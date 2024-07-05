@@ -8,7 +8,7 @@ type SinglePersonProps =   GetPersonListData
 const SinglePerson = ({Id, FullName , Age, Gender}: SinglePersonProps) => {
 
   const [showPersonOperations, setShowPersonOperations] = useState<boolean>(false)
-
+  
   return (
     <div className='flex   max-h-full  w-full justify-between items-center p-2 
       rounded-md bg-gray-700  text-slate-50    transition-all duration-300 hover:p-3'>

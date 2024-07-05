@@ -8,7 +8,7 @@ const AllPeople = () => {
   const {data: PersonList} = useGetAllQuery(queryParams)
 
 
-
+  
   return (
     <div className='flex  flex-col  justify-start items-center gap-2 p-4  overflow-y-scroll 
           bg-slate-100 rounded-md w-[90%]  relative overflow-hidden '>

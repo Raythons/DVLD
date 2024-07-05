@@ -57,7 +57,6 @@ const PersonOperations = ({show, PersonId} : props) => {
     ]
 
     return (
-
         <ul className={`absolute  ${show ? "flex" : "hidden"} flex-col justify-center items-center
                 absolute  transition  duration-500 right-10 top-[-11px]  rounded-md   bg-slate-50    border-solid border-2`}>
             {
@@ -75,12 +74,12 @@ const PersonOperations = ({show, PersonId} : props) => {
                 ))
             }
             <DeletePopUp   
-            show ={showDeletePopUp} deletionId={PersonId} 
-            isLoading={isLoading}
-            isError={isError}
-            error={error as ApiError}
-            setShowPopUp={setShowDeletePopUp} type='Person'
-            mutation = {deletePerson}/>
+                show ={showDeletePopUp} deletionId={PersonId} 
+                isLoading={isLoading}
+                isError={isError}
+                error={error as ApiError}
+                setShowPopUp={setShowDeletePopUp} type='Person'
+                mutation = {deletePerson}/>
         </ul>
     )
 }
