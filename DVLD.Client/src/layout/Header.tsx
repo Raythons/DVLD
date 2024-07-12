@@ -13,6 +13,7 @@ import { IoNewspaperSharp } from "react-icons/io5";
 import { PiLockOpenFill } from "react-icons/pi";
 import { BiSolidDoorOpen } from "react-icons/bi";
 import UserSettings from '../components/Header/UserSettings';
+import { useNavigate } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 // import { selectUserData } from '../redux/features/authSlice';
 
@@ -22,7 +23,8 @@ import UserSettings from '../components/Header/UserSettings';
 export type PageType = {
   title: string,
   subMenu: subMenuItem[],
-  hasSubMenu: boolean
+  hasSubMenu: boolean,
+  onClick?: React.MouseEventHandler<unknown> | undefined;
 }
 
 
@@ -31,6 +33,8 @@ export type subMenuItem = PageType & {
 }
 
 function Header() {
+    const navigate = useNavigate();
+
     const pages: PageType[] = 
    [
     {
@@ -134,7 +138,8 @@ function Header() {
             title: "Manage Application Type",
             icon:   <IoNewspaperSharp /> ,
             subMenu: [],
-            hasSubMenu: false
+            hasSubMenu: false,
+            onClick: () =>  navigate("ApplicationTypes")
           },
           {
               title: "Manage Test Types",

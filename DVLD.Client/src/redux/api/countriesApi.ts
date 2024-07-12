@@ -3,9 +3,6 @@ import { CreatePersonFormFields } from "../../types/AddPersonType";
 // import { handleRtkQueryErrors } from "../helpers";
 export const PeopleEndPoint = "Person"
 
-
-
-
 export type ApiError = {
     Code?: string,
     Message: string,

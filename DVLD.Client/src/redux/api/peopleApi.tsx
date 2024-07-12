@@ -134,7 +134,7 @@ export const peopleApi =  apiSlice.injectEndpoints({
                     body: formData
                 }
             },
-            invalidatesTags: [`AllPeople`, `Person`],
+            // invalidatesTags: [`AllPeople`, `Person`],
             transformResponse(response: {Response: boolean }) {
                 console.log(response);
                 

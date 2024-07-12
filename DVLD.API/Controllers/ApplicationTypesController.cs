@@ -22,6 +22,7 @@ namespace DVLD.API.Controllers
      
 
         [HttpGet]
+        [Route("")]
         public async Task<IActionResult> GetApplicationsTypes()
         {
             var values = await _unitOfWork.ApplicationTypeRepositry.All();

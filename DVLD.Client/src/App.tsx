@@ -9,6 +9,7 @@ import PersonDetails from './Pages/Person/PersonDetails'
 import EditPerson from './Pages/Person/EditPerson'
 import AddPerson from './Pages/Person/AddPerson'
 import WhiteContainer from './layout/WhiteContainer'
+import ApplicationsTypes from './Pages/ApplicationsTypes'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,17 @@ const router = createBrowserRouter([
           {
             path: "Add/",
             element: <AddPerson /> 
+          }
+        ]
+      },
+      {
+        path: "ApplicationTypes",
+        element: <WhiteContainer/> ,
+        children:
+        [
+          {
+            index: true,  
+            element: <ApplicationsTypes />,  
           }
         ]
       },
