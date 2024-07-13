@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 import { LoginCredentials } from "../../types/AuthTypes";
-import { authState } from "../features/authSlice";
+import { authState } from "../Slices/authSlice";
 
 export const AuthEndPoint =  "/Auth"
 

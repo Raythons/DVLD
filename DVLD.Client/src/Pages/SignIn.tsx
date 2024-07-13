@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa6";
 
 // import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setLoggedInUser } from "../redux/features/authSlice";
+import { setLoggedInUser } from "../redux/Slices/authSlice";
 import { useLoginMutation } from "../redux/api/authApiSlice";
 import { LoginCredentials } from "../types/AuthTypes";
 import {  useNavigate } from "react-router-dom";

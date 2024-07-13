@@ -10,6 +10,9 @@ import EditPerson from './Pages/Person/EditPerson'
 import AddPerson from './Pages/Person/AddPerson'
 import WhiteContainer from './layout/WhiteContainer'
 import ApplicationsTypes from './Pages/ApplicationsTypes'
+import TestTypes from './Pages/TestTypes'
+import { LDLApplications } from './layout/LDLApplications'
+import AddLDL from './Pages/Applications/LocalDrivvingLicense/AddLDL'
 
 const router = createBrowserRouter([
   {
@@ -50,6 +53,21 @@ const router = createBrowserRouter([
         ]
       },
       {
+        path: "Applications/localDrivingLicenses",
+        element: <WhiteContainer/> ,
+        children:
+        [
+          {
+            index: true,  
+            element: <LDLApplications />,  
+          },
+          {
+            path: "Add/",
+            element: < AddLDL />
+          }
+        ]
+      },
+      {
         path: "ApplicationTypes",
         element: <WhiteContainer/> ,
         children:
@@ -57,6 +75,17 @@ const router = createBrowserRouter([
           {
             index: true,  
             element: <ApplicationsTypes />,  
+          }
+        ]
+      },
+      {
+        path: "TestTypes",
+        element: <WhiteContainer/> ,
+        children:
+        [
+          {
+            index: true,  
+            element: <TestTypes />,  
           }
         ]
       },

@@ -19,14 +19,12 @@ import { useNavigate } from 'react-router-dom';
 
 // import { List, ListItem, ListItemText } from '@mui/material';
 
-
 export type PageType = {
   title: string,
   subMenu: subMenuItem[],
   hasSubMenu: boolean,
   onClick?: React.MouseEventHandler<unknown> | undefined;
 }
-
 
 export type subMenuItem = PageType & {
   icon: React.ReactNode
@@ -36,7 +34,7 @@ function Header() {
     const navigate = useNavigate();
 
     const pages: PageType[] = 
-   [
+  [
     {
         title: "Applications",
         subMenu : [
@@ -53,6 +51,7 @@ function Header() {
                         icon: <FaHouseUser />,
                         subMenu: [],
                         hasSubMenu: false,
+                        onClick: () => navigate("Applications/localDrivingLicenses")
                       },
                       {
                         title: "International License",
@@ -145,7 +144,8 @@ function Header() {
               title: "Manage Test Types",
               icon:  <IoNewspaperSharp />,
               subMenu: [],
-              hasSubMenu: false
+              hasSubMenu: false,
+              onClick: () => navigate("TestTypes")
           },
         ],
         hasSubMenu: true

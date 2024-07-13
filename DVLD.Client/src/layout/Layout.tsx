@@ -2,7 +2,7 @@ import Header from "./Header"
 
 import {  Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectAuthToken } from "../redux/features/authSlice"; 
+import { selectAuthToken } from "../redux/Slices/authSlice"; 
 import { useLayoutEffect } from "react";
 
 

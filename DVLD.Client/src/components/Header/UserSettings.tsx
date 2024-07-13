@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { selectUserData } from '../../redux/features/authSlice';
+import { selectUserData } from '../../redux/Slices/authSlice';
 import { subMenuItem } from '../../layout/Header';
 import { PiUserCircleDashedFill } from "react-icons/pi";
 import { CgLogOut } from "react-icons/cg";

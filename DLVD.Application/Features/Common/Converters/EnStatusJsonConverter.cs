@@ -20,7 +20,6 @@ namespace DLVD.App.Features.Common.Converters
             JsonSerializerOptions options)
         {
             writer.WriteStringValue(value.ToString());
-
         }
     }
 

@@ -12,9 +12,9 @@ namespace DVLD.API.Controllers
 {
     [Route("api/Applications/[controller]")]
     
-    public class LocalDrivvingLicenseController : BaseControllerr
+    public class LocalDrivingLicenseController : BaseControllerr
     {
-        public LocalDrivvingLicenseController(
+        public LocalDrivingLicenseController(
             IMapper mapper,
             IMediator mediator) : base(mapper, mediator)
         {

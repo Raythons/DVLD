@@ -45,5 +45,4 @@ export function handleRtkQueryErrors(error: FetchBaseQueryError): ApiError {
           }
           const errorData = error.data as MainApiResponse
           return errorData.Errors[0] as ApiError
-          
 }

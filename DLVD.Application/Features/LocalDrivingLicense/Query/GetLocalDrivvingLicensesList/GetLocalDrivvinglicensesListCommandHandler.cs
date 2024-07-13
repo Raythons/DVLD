@@ -23,9 +23,6 @@ namespace DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDrivvingLicensesLi
             CancellationToken cancellationToken)
         {
 
-
-
-
             var LocalDrivvingLicenseList = await _unitOfWork
                                                     .LocalDrivingLicenseApplicationRepositry
                                                     .GetAllPaginatedAsync(); 

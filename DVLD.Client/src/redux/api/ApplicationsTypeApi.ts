@@ -3,7 +3,7 @@ import { apiSlice } from "./apiSlice";
 export const ApplicationTypeEndPoint = "ApplicationTypes"
 
 
-type ApplicationType  = {
+export type ApplicationType  = {
     ApplicationTypeId: number,
     ApplicationTypeTitle: string,
     ApplicationTypeFees: number
@@ -16,12 +16,12 @@ export const ApplicationsTypes =  apiSlice.injectEndpoints({
                     url: `${ApplicationTypeEndPoint}`,
                     method: "GET"
                 }),
+                keepUnusedDataFor: Infinity,
                 transformResponse : (QueryReturnValue: ApplicationType[])  => {
                     console.log(QueryReturnValue);
                     
                     return QueryReturnValue
                 },
-            
         })
         // editPerson: builder.mutation<boolean, EditPersonBody>( )
     })

@@ -32,6 +32,7 @@ const SubMenu = ({subMenu} : props) => {
                     <li 
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}
+                      onClick={(e) => menuItem.onClick? menuItem.onClick(e) : null}
                       key={menuItem.title} className={`
                       px-1 py-1 text-blue-600 50 flex items-center transition duration-300 
                       gap-1  border-solid border-b  border-cyan-400 flex-nowrap hover:bg-blue-500 hover:text-white 

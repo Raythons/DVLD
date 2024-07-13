@@ -1,6 +1,6 @@
 import { fetchBaseQuery,  FetchArgs, createApi, FetchBaseQueryError, BaseQueryFn } from "@reduxjs/toolkit/query/react";
 import { RootState } from '../store';
-import { setAuthToken, setLoggedOut } from "../features/authSlice";
+import { setAuthToken, setLoggedOut } from "../Slices/authSlice";
 
 export const BaseApi = "https://localhost:7270/api"
 

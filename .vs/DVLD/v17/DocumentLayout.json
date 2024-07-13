@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.api\\controllers\\applicationtypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|solutionrelative:dvld.api\\controllers\\applicationtypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.domain\\enums\\enstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|solutionrelative:dvld.domain\\enums\\enstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|solutionrelative:dvld.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\localdrivinglicense\\query\\getlocaldrivvinglicenseslist\\getlocaldrivvinglicenseslistcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\localdrivinglicense\\query\\getlocaldrivvinglicenseslist\\getlocaldrivvinglicenseslistcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|solutionrelative:dvld.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.api\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|solutionrelative:dvld.api\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\persons\\commands\\deleteperson\\deletepersoncommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\persons\\commands\\deleteperson\\deletepersoncommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.infrastructure\\repositories\\personrepositry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F46D65EC-1FB2-4FB6-ACAD-3E8480FC6F7C}|DVLD.Infrastructure\\DVLD.Infrastructure.csproj|solutionrelative:dvld.infrastructure\\repositories\\personrepositry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dlvd.application\\features\\localdrivinglicense\\query\\getlocaldriverlicense\\getlocaldriverlicensequeryhandller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CF963D5-5F0E-408D-8D23-F084E6AF11F8}|DLVD.Application\\DLVD.App.csproj|solutionrelative:dlvd.application\\features\\localdrivinglicense\\query\\getlocaldriverlicense\\getlocaldriverlicensequeryhandller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,78 +38,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "DVLD.API\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "DVLD.API\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAAwBwAAABAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-05T17:37:45.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ApplicationTypesController.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\ApplicationTypesController.cs",
-              "RelativeDocumentMoniker": "DVLD.API\\Controllers\\ApplicationTypesController.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\ApplicationTypesController.cs",
-              "RelativeToolTip": "DVLD.API\\Controllers\\ApplicationTypesController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAgAAAAhAAAA",
+              "Title": "EnStatus.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Enums\\EnStatus.cs",
+              "RelativeDocumentMoniker": "DVLD.Domain\\Enums\\EnStatus.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Enums\\EnStatus.cs",
+              "RelativeToolTip": "DVLD.Domain\\Enums\\EnStatus.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-05T17:37:45.457Z",
+              "WhenOpened": "2024-07-13T07:41:48.926Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Program.cs",
-              "RelativeDocumentMoniker": "DVLD.API\\Program.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Program.cs",
-              "RelativeToolTip": "DVLD.API\\Program.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "GetLocalDrivvinglicensesListCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAABZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-05T17:37:42.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-13T06:39:47.711Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PersonRepositry.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Repositories\\PersonRepositry.cs",
-              "RelativeDocumentMoniker": "DVLD.Infrastructure\\Repositories\\PersonRepositry.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Infrastructure\\Repositories\\PersonRepositry.cs",
-              "RelativeToolTip": "DVLD.Infrastructure\\Repositories\\PersonRepositry.cs",
-              "ViewState": "AQIAAJgAAAAAAAAAAAD4v5wAAAAIAAAA",
+              "DocumentIndex": 2,
+              "Title": "GetLocalDriverLicenseQueryHandller.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",
+              "RelativeDocumentMoniker": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",
+              "RelativeToolTip": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAA1wB8AAABEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T01:49:04.616Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PersonController.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\PersonController.cs",
-              "RelativeDocumentMoniker": "DVLD.API\\Controllers\\PersonController.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\PersonController.cs",
-              "RelativeToolTip": "DVLD.API\\Controllers\\PersonController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA9AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T01:49:04.633Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DeletePersonCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Persons\\Commands\\DeletePerson\\DeletePersonCommandHandler.cs",
-              "RelativeDocumentMoniker": "DLVD.Application\\Features\\Persons\\Commands\\DeletePerson\\DeletePersonCommandHandler.cs",
-              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\Persons\\Commands\\DeletePerson\\DeletePersonCommandHandler.cs",
-              "RelativeToolTip": "DLVD.Application\\Features\\Persons\\Commands\\DeletePerson\\DeletePersonCommandHandler.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAMwBoAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T01:48:17.929Z"
+              "WhenOpened": "2024-07-13T06:31:01.009Z"
             }
           ]
         },

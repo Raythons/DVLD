@@ -14,6 +14,7 @@ namespace DLVD.App.Features.Common
             TotalAccount = totalAccount;
         }
 
+
         public List<T> Items { get; }
         public int Page { get; }
         public int PageSize { get; }
