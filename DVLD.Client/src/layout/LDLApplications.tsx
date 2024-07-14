@@ -1,9 +1,9 @@
 import { IconContext } from "react-icons";
-import {IoPersonAddSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { IoCloseCircle } from "react-icons/io5";
 import { LuClipboardList } from "react-icons/lu";
 import AllLDL from "../Pages/Applications/LocalDrivvingLicense/AllLDL";
+import { TbPlaylistAdd } from "react-icons/tb";
 
 
 
@@ -17,9 +17,9 @@ export const LDLApplications = () => {
     navigate("/");
   }
 
-  return (
+    return (
         <>
-          <div  className=" flex flex-col items-center justify-center  w-[100%]">
+        <div  className=" flex flex-col items-center justify-center  w-[100%]">
             <IconContext.Provider  value={{className: "text-sky-700" , size: "120"}}>
                 <LuClipboardList />
             </IconContext.Provider>
@@ -34,7 +34,7 @@ export const LDLApplications = () => {
               </div>
               <button onClick={handleAddPersonClick}className ="bg-gray-700 rounded-lg  transition-all duration-300 hover:bg-slate-50   p-1" type="button" title="Add Person">
               <IconContext.Provider value={{className: "text-slate-50 hover:text-sky-700 transition-all duration-300 ", size:"30",  }}>
-                <IoPersonAddSharp />
+                <TbPlaylistAdd />
               </IconContext.Provider>
               </button>
             </div>

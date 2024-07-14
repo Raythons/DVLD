@@ -5,6 +5,7 @@ import { Avatar } from 'flowbite-react';
 import { Spinner } from 'flowbite-react';
 import CustomError from '../../components/common/CustomError';
 import EditButton from '../../components/common/EditButton';
+import { useGetPersonDetails } from '../../hooks/useGetPersonDetails';
 
 type props = {
   personIdProp?: number
@@ -13,7 +14,7 @@ const PersonDetails = ({personIdProp} : props) => {
 
     let {personId} = useParams();
 
-    if(personId === undefined)
+    if(personId === undefined )
       personId = personIdProp?.toString();
       
     const {data : PersonDetails ,isLoading: isLoadingPersonDetails, error, isError} = useGetPersonDetailsQuery(Number(personId));
@@ -101,7 +102,7 @@ const PersonDetails = ({personIdProp} : props) => {
         </div>
       </div>
         <div className='w-[90%]  flex justify-between items-center'>
-                <Avatar   img= {`../../../public/${PersonDetails?.Image}` || "../../../public/UnknownUser.jpg"}   size="lg"  rounded={true}  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>
+                <Avatar img = {`/${PersonDetails?.Image ??  "UnknownUser.jpg "}`}     size="lg"  rounded={true}  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>
         </div>
       </div>
   )
