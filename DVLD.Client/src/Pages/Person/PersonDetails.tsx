@@ -5,7 +5,6 @@ import { Avatar } from 'flowbite-react';
 import { Spinner } from 'flowbite-react';
 import CustomError from '../../components/common/CustomError';
 import EditButton from '../../components/common/EditButton';
-import { useGetPersonDetails } from '../../hooks/useGetPersonDetails';
 
 type props = {
   personIdProp?: number
