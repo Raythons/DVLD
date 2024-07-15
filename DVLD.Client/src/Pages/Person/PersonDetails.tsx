@@ -5,18 +5,29 @@ import { Avatar } from 'flowbite-react';
 import { Spinner } from 'flowbite-react';
 import CustomError from '../../components/common/CustomError';
 import EditButton from '../../components/common/EditButton';
+import { SearchBy, useGetPersonDetails } from '../../hooks/useGetPersonDetails';
 
 type props = {
-  personIdProp?: number
+  personIdProp?: number ,
+  SearchBy: SearchBy
+  
 }
-const PersonDetails = ({personIdProp} : props) => {
+const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
 
     let {personId} = useParams();
-
+    
     if(personId === undefined )
       personId = personIdProp?.toString();
+
+    console.log(personId);
+    console.log(personIdProp);
+    
+    const {data: PersonDetails, isError , isLoading: isLoadingPersonDetails , error} = 
+      useGetPersonDetails(personId as string, SearchBy);
+    // console.log(PersonDetails, isError , isLoadingPersonDetails);
+    
       
-    const {data : PersonDetails ,isLoading: isLoadingPersonDetails, error, isError} = useGetPersonDetailsQuery(Number(personId));
+    // const {data : PersonDetails ,isLoading: isLoadingPersonDetails, error, isError} = useGetPersonDetailsQuery(Number(personId));
     
   return (
   

@@ -73,6 +73,25 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 return errorData
             }
         }),
+        getPersonDetailsByNationalNumber : builder.query<GetPersonDataResponse, number>({
+            query: (personId) => (
+                {
+                    url: `${PeopleEndPoint}/NationalNo/${personId}`,
+                }
+            ),
+            providesTags: [`Person`],
+            transformResponse : (QueryReturnValue: {Response: GetPersonDataResponse})  => {
+                return QueryReturnValue.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
+        }),
         getPersonEditDetails :  builder.query<getPersonEditDetailsResponse, number>({
             query: (personId) => (
                 {
@@ -177,6 +196,8 @@ export const peopleApi =  apiSlice.injectEndpoints({
 export const {
     useGetAllQuery,
     useGetPersonDetailsQuery,
+    useLazyGetPersonDetailsQuery,
+    useLazyGetPersonDetailsByNationalNumberQuery,
     useGetPersonEditDetailsQuery,
     useCreatePersonMutation,
     useUpdatePersonDetailsMutation,

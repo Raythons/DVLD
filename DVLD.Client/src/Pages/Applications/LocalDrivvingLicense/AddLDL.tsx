@@ -31,7 +31,7 @@ const AddLDL = () => {
                     </select>
             <input onChange={(e) => handlePersonIdChange(e) } type="text" id='person-search-property' />
         </div>
-        <PersonDetails personIdProp={personId} />
+        <PersonDetails personIdProp={personId} SearchBy='Id' />
     </>
   )
 }
