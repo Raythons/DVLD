@@ -18,7 +18,7 @@ const AddLDL = () => {
 
   return (
     <>
-        <h1 className='text-sky-700 text-3xl mt-2'>New Local Driving License</h1>
+        <h1 className='text-sky-700 text-2xl mt-2'>New Local Driving License</h1>
         <div className='flex justify-center items-center gap-2 p-1 relative'>
             <label htmlFor="person-search-property" className="">Find By:</label>
                     <select defaultValue={"ID"} title='personSearchTerm' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

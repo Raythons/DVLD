@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.api\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDB29105-29CF-41CE-882F-692E72776A9E}|DVLD.API\\DVLD.API.csproj|solutionrelative:dvld.api\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|c:\\users\\h1202\\desktop\\asp.core\\dvld\\dvld.domain\\enums\\enstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14E394B0-CD66-4D98-8AB1-4DC89F97D689}|DVLD.Domain\\DVLD.Domain.csproj|solutionrelative:dvld.domain\\enums\\enstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,19 +43,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PersonController.cs",
+              "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\PersonController.cs",
+              "RelativeDocumentMoniker": "DVLD.API\\Controllers\\PersonController.cs",
+              "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.API\\Controllers\\PersonController.cs",
+              "RelativeToolTip": "DVLD.API\\Controllers\\PersonController.cs",
+              "ViewState": "AQIAACAAAAAAZGZmZmbwvykAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-15T18:13:48.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "EnStatus.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Enums\\EnStatus.cs",
               "RelativeDocumentMoniker": "DVLD.Domain\\Enums\\EnStatus.cs",
               "ToolTip": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DVLD.Domain\\Enums\\EnStatus.cs",
               "RelativeToolTip": "DVLD.Domain\\Enums\\EnStatus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-13T07:41:48.926Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GetLocalDrivvinglicensesListCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
               "RelativeDocumentMoniker": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDrivvingLicensesList\\GetLocalDrivvinglicensesListCommandHandler.cs",
@@ -63,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GetLocalDriverLicenseQueryHandller.cs",
               "DocumentMoniker": "C:\\Users\\H1202\\Desktop\\ASP.CORE\\DVLD\\DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",
               "RelativeDocumentMoniker": "DLVD.Application\\Features\\LocalDrivingLicense\\Query\\GetLocalDriverLicense\\GetLocalDriverLicenseQueryHandller.cs",

@@ -1,5 +1,4 @@
 import {  useParams } from 'react-router-dom'
-import { useGetPersonDetailsQuery } from '../../redux/api/peopleApi';
 import { ApiError } from '../../redux/api/peopleApi';
 import { Avatar } from 'flowbite-react';
 import { Spinner } from 'flowbite-react';
@@ -10,20 +9,17 @@ import { SearchBy, useGetPersonDetails } from '../../hooks/useGetPersonDetails';
 type props = {
   personIdProp?: number ,
   SearchBy: SearchBy
-  
 }
 const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
 
     let {personId} = useParams();
-    
+
+
     if(personId === undefined )
       personId = personIdProp?.toString();
-
-    console.log(personId);
-    console.log(personIdProp);
     
-    const {data: PersonDetails, isError , isLoading: isLoadingPersonDetails , error} = 
-      useGetPersonDetails(personId as string, SearchBy);
+    const {data: PersonDetails, isError, isLoading, isSuccess, error} = 
+      useGetPersonDetails(personId, SearchBy);
     // console.log(PersonDetails, isError , isLoadingPersonDetails);
     
       
@@ -31,7 +27,7 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
     
   return (
   
-    isLoadingPersonDetails 
+    isLoading 
     ?  
     <div className=' flex flex-col justify-center  items-center w-[100%]  h-[100%] gap-4'>
       <Spinner  aria-label='loading Person Data' size={"xl"}/>
@@ -39,7 +35,7 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
     :
       <div className=' flex flex-col justify-center  items-center w-[100%]  h-[100%] gap-4'>
         {
-          isError &&  personIdProp &&  <CustomError error={error ? error as ApiError : error}    />
+          isError &&  !isSuccess &&  <CustomError  error={error ? error as ApiError : undefined}    />
               
         }
           <h1 className='text-sky-700 text-3xl'>Person Details</h1>
