@@ -43,14 +43,14 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
           <div className="flex ml-4  justify-center items-center w-[90%]">
             <p className=' font-medium'>Id:</p>
             <div className="w-full group">
-                <p  className=' whitespace-nowrap' > {PersonDetails?.Id || "???"}</p>
+                <p  className=' whitespace-nowrap' > {!isError ?  PersonDetails?.Id  :  "???"}</p>
             </div>
           </div>
 
           <div className="flex   ml-4 justify-center items-center w-[90%]">
             <p className=' font-medium'>Name:</p>
             <div className="w-full  ">
-                <p  className=' whitespace-nowrap' > {PersonDetails?.FullName || "?????"}</p>
+                <p  className=' whitespace-nowrap' > { !isError ? PersonDetails?.FullName : "?????"}</p>
             </div>
           </div>
 
@@ -61,17 +61,17 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
         <div className="flex   flex-col items-start justify-between gap-4 p-1 ">
             <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Country:</p>
-                <p >{PersonDetails?.Country || "?????"} </p>
+                <p >{ !isError ? PersonDetails?.Country : "?????"} </p>
               </div>
 
               <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Gender:</p>
-                <p >{PersonDetails?.Gender || "?????"}</p>
+                <p >{ !isError ? PersonDetails?.Gender : "?????"}</p>
               </div>
 
               <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Phone :</p>
-                <p >{PersonDetails?.Phone || "?????"}</p>
+                <p >{ !isError ? PersonDetails?.Phone : "?????"}</p>
               </div>
               
               
@@ -79,16 +79,16 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
           <div className="flex  flex-col items-start justify-between gap-4 p-1 ">
             <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Email:</p>
-                <p >{PersonDetails?.Email || "???????"}</p>
+                <p >{ !isError ? PersonDetails?.Email : "???????"}</p>
             </div>
 
               <div className='flex justify-center items-center gap-4 p-1'>
                   <p className='font-medium whitespace-nowrap'>National No:</p>
-                  <p >{PersonDetails?.NationalNo || "?????"}</p>
+                  <p >{ !isError ? PersonDetails?.NationalNo : "?????"}</p>
               </div>
               <div className='flex justify-center items-center gap-4  p-1'>
                   <p className='font-medium whitespace-nowrap'>Age :</p>
-                  <p className='font-medium whitespace-nowrap'>{PersonDetails?.Age || "?????"}</p>
+                  <p className='font-medium whitespace-nowrap'>{ !isError ? PersonDetails?.Age : "?????"}</p>
               </div>
               
           </div>
@@ -96,19 +96,19 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
         <div className="flex flex-col  items-start justify-between gap-4 p-1 ">
             <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Phone:</p>
-                <p >{PersonDetails?.Phone || "?????"} </p>
+                <p >{ !isError ? PersonDetails?.Phone : "?????"} </p>
               </div>
 
               <div className='flex justify-center items-center  gap-4 mr-4 p-1'>
                 <p className='font-medium '>Address:</p>
-                <p >{PersonDetails?.Address || "?????"}</p>
+                <p >{ !isError ? PersonDetails?.Address : "?????"}</p>
               </div>
 
-              <EditButton   goTo='People'  Id={PersonDetails?.Id ?? 0}/>
+              <EditButton    goTo='People'  Id={!isError ? PersonDetails?.Id as number: 0}/>
         </div>
       </div>
         <div className='w-[90%]  flex justify-between items-center'>
-                <Avatar img = {`/${PersonDetails?.Image ??  "UnknownUser.jpg "}`}     size="lg"  rounded={true}  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>
+                <Avatar img = {`/${!isError ?PersonDetails?.Image : "UnknownUser.jpg "}`}     size="lg"  rounded={true}  className='w-1/4 h-1/4  p-4 pb-0  self-end  place-self-end'/>
         </div>
       </div>
   )
