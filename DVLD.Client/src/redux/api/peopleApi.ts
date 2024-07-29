@@ -50,14 +50,19 @@ export type GetPersonDataResponse = {
     Image: string
 } 
 
+export type GetPersonDetailsParams  = {
+    searchBy: string,
+    searchTerm: string
+}
 export type getPersonEditDetailsResponse = CreatePersonBody
 
 export const peopleApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getPersonDetails :  builder.query<GetPersonDataResponse, number>({
-            query: (personId) => (
+        getPersonDetails :  builder.query<GetPersonDataResponse, GetPersonDetailsParams>({
+            query: (getPersonDetailsParams) => (
                 {
-                    url: `${PeopleEndPoint}/${personId}`,
+                    url: `${PeopleEndPoint}/Details`,
+                    params: getPersonDetailsParams
                 }
             ),
             providesTags: [`Person`],
@@ -114,7 +119,7 @@ export const peopleApi =  apiSlice.injectEndpoints({
         }),
         getAll: builder.query<GetPersonListData[], GetAllPeopleQueryParams>({
             query: (getALLQueryParams) => ({
-                url: `${PeopleEndPoint}/`,
+                url: `${PeopleEndPoint}`,
                 params: getALLQueryParams,
             }),
             providesTags: [`AllPeople`],

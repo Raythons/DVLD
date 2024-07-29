@@ -12,6 +12,7 @@ public interface IPersonRepository
 {
     public Task<IEnumerable<Person>> All();
     public Task<bool> isConnectedEntity(int personId);
+    public Task<Person?> GetDetails(Expression<Func<Person, bool>> filterExpression);
     public Task<Person?> GetById(int id);
     public Task<IEnumerable<Person>> GetAllAsync();
     public Task<IEnumerable<Person>> GetPaginatedAsync(

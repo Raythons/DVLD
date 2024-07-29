@@ -14,6 +14,7 @@ using DVLD.Domain.Entities;
 using DLVD.App.Features.Users.Commands.CreateRefreshToken;
 using FluentResults;
 using DVLD.App.Interfaces.Persistence;
+using System.Net;
 
 namespace DVLD.API.Controllers
 {
@@ -40,7 +41,6 @@ namespace DVLD.API.Controllers
         public async Task<IActionResult> LogIn([FromBody] AuthenticateUserCommand userData)
         {
             var result = await _mediator.Send(userData);
-            Console.WriteLine("logged login");
             if (result.IsFailed)
                 return Unauthorized(result.ToResultDto(false));
             
@@ -70,7 +70,7 @@ namespace DVLD.API.Controllers
                                         .Send(new CreateRefreshTokenCommand(RefreshToken));
 
             if (createRefreshTokenResult.IsFailed)
-                return BadRequest(createRefreshTokenResult.ToResultDto(createRefreshTokenResult.ValueOrDefault));
+                return Unauthorized(createRefreshTokenResult.ToResultDto(createRefreshTokenResult.ValueOrDefault));
 
             setRefreshToken(RefreshToken);
 
@@ -90,25 +90,37 @@ namespace DVLD.API.Controllers
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = true,
-                Expires = refreshToken.ExpiresOn
+                Expires = refreshToken.ExpiresOn,
+                Secure = true,
+                Path = "/"
             };
              Response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
+             //Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:5173/");
+
         }
 
-        [HttpPost]
+
+        [HttpGet]
         [Route("Refresh")]
-        public async Task<IActionResult> RefreshToken([FromBody] string accessToken)
+        public async Task<IActionResult> RefreshToken([FromHeader] string authorization)
         {
+            Console.WriteLine(authorization);
+            authorization = authorization.Split(" ")[1];
+            Console.WriteLine("--------------------Splited Token ------------------");
+            Console.WriteLine(authorization);
+            Console.WriteLine("--------------------Splited Token ------------------");
+
 
             string refreshTokenVal = Request.Cookies.FirstOrDefault(x => x.Key == "refreshToken").Value;
+            Console.WriteLine($"refresh :  @@@#@#@#@{refreshTokenVal}");
+            var result = await VerifyRefreshAndGenerateAccess(refreshTokenVal, authorization);
 
-            var result = await VerifyRefreshAndGenerateAccess(refreshTokenVal, accessToken);
-
+            Console.WriteLine($"result is : {result}");
+            Console.WriteLine($"------------------------------------------------------------");
+            Console.WriteLine($"result Value  is : {result.ValueOrDefault}");
 
             if (result.IsFailed)
-                BadRequest(result.ToResultDto(result.Errors));
-
-
+               return Unauthorized(result.ToResultDto(result.Errors));
 
             return Ok(result.ToResultDto(result.Value));
         }

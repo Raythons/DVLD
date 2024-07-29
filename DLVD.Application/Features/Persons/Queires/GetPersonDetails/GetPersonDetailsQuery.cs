@@ -11,13 +11,18 @@ namespace DLVD.App.Features.Persons.Queires.GetPersonDetails
 {
     public class GetPersonDetailsQuery: IRequest<Result<GetPersonDetailsDto>>
     {
-        public GetPersonDetailsQuery(int id)
+        public string? SearchBy { get; set; } = "Id";
+        public string? SearchTerm { get; set; }
+
+        public GetPersonDetailsQuery() { }
+
+        public GetPersonDetailsQuery(string searchTerm,
+            string searchBy )
         {
-            Id = id;
+            SearchBy =    searchBy ?? "Id";
+            SearchTerm = searchTerm;
         }
 
-        GetPersonDetailsQuery() { }
 
-        public int Id { get; set; }
     }
 }

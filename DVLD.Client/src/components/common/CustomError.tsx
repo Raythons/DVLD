@@ -8,6 +8,7 @@ type props = {
 }
 const CustomError = ({error}: props) => {
 
+    
     const GenerateErrorHeader = (status : number | undefined ): string => {
         if (status === 404)
             return "Not Found"
@@ -22,7 +23,7 @@ const CustomError = ({error}: props) => {
         <h2 className='text-red-600  text-lg' >{GenerateErrorHeader(error?.status)}</h2>
         <div>
                 {
-                    error &&  <p className=' text-sm text-gray-700'>{error?.Message} error Code is : <span className=' text-rose-600'> {`${error?.Code || "NoCode"}`}</span></p>
+                    error !== undefined &&  <p className=' text-sm text-gray-700'>{error?.Message} error Code is : <span className=' text-rose-600'> {`${error?.Code || "NoCode"}`}</span></p>
                 }
         </div>
     </div>

@@ -5,28 +5,37 @@ import { Spinner } from 'flowbite-react';
 import CustomError from '../../components/common/CustomError';
 import EditButton from '../../components/common/EditButton';
 import { SearchBy, useGetPersonDetails } from '../../hooks/useGetPersonDetails';
+import { useEffect } from 'react';
 
 type props = {
-  personIdProp?: number ,
-  SearchBy: SearchBy
+  personTermProp?:  string ,
+  SearchBy: SearchBy,
+  setDisableNext?: React.Dispatch<React.SetStateAction<boolean>>
+  setPersonId?: React.Dispatch<React.SetStateAction<number | undefined>>
 }
-const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
+const  PersonDetails = ({personTermProp, setDisableNext, setPersonId, SearchBy = "Id" } : props) => {
 
     let {personId} = useParams();
 
-
     if(personId === undefined )
-      personId = personIdProp?.toString();
+      personId = personTermProp?.toString();
     
     const {data: PersonDetails, isError, isLoading, isSuccess, error} = 
       useGetPersonDetails(personId, SearchBy);
     // console.log(PersonDetails, isError , isLoadingPersonDetails);
     
-      
+    useEffect( () => {
+        if (setDisableNext !== undefined) {
+            setDisableNext(isError && !isSuccess)
+        }
+        if(setPersonId !=  undefined){
+          setPersonId(PersonDetails?.Id)
+        }
+    },[setDisableNext, setPersonId,  personId, isError, isSuccess, PersonDetails])
+    
     // const {data : PersonDetails ,isLoading: isLoadingPersonDetails, error, isError} = useGetPersonDetailsQuery(Number(personId));
     
   return (
-  
     isLoading 
     ?  
     <div className=' flex flex-col justify-center  items-center w-[100%]  h-[100%] gap-4'>
@@ -43,14 +52,14 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
           <div className="flex ml-4  justify-center items-center w-[90%]">
             <p className=' font-medium'>Id:</p>
             <div className="w-full group">
-                <p  className=' whitespace-nowrap' > {!isError ?  PersonDetails?.Id  :  "???"}</p>
+                <p  className=' whitespace-nowrap' > {!isError && personId ?  PersonDetails?.Id ?? "?????"  :  "?????"} </p>
             </div>
           </div>
 
           <div className="flex   ml-4 justify-center items-center w-[90%]">
             <p className=' font-medium'>Name:</p>
             <div className="w-full  ">
-                <p  className=' whitespace-nowrap' > { !isError ? PersonDetails?.FullName : "?????"}</p>
+                <p  className=' whitespace-nowrap' > { !isError && personId  ? PersonDetails?.FullName ?? "?????" : "?????"}</p>
             </div>
           </div>
 
@@ -61,17 +70,17 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
         <div className="flex   flex-col items-start justify-between gap-4 p-1 ">
             <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Country:</p>
-                <p >{ !isError ? PersonDetails?.Country : "?????"} </p>
+                <p >{ !isError && personId  ? PersonDetails?.Country ?? "?????" : "?????"} </p>
               </div>
 
               <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Gender:</p>
-                <p >{ !isError ? PersonDetails?.Gender : "?????"}</p>
+                <p >{ !isError && personId  ? PersonDetails?.Gender ?? "?????" : "?????"}</p>
               </div>
 
               <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Phone :</p>
-                <p >{ !isError ? PersonDetails?.Phone : "?????"}</p>
+                <p >{ !isError && personId  ? PersonDetails?.Phone ?? "?????" : "?????"}</p>
               </div>
               
               
@@ -79,16 +88,16 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
           <div className="flex  flex-col items-start justify-between gap-4 p-1 ">
             <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Email:</p>
-                <p >{ !isError ? PersonDetails?.Email : "???????"}</p>
+                <p >{ !isError && personId  ? PersonDetails?.Email ?? "?????" : "???????"}</p>
             </div>
 
               <div className='flex justify-center items-center gap-4 p-1'>
                   <p className='font-medium whitespace-nowrap'>National No:</p>
-                  <p >{ !isError ? PersonDetails?.NationalNo : "?????"}</p>
+                  <p >{ !isError && personId  ? PersonDetails?.NationalNo ?? "?????" : "?????"}</p>
               </div>
               <div className='flex justify-center items-center gap-4  p-1'>
                   <p className='font-medium whitespace-nowrap'>Age :</p>
-                  <p className='font-medium whitespace-nowrap'>{ !isError ? PersonDetails?.Age : "?????"}</p>
+                  <p className='font-medium whitespace-nowrap'>{ !isError && personId  ? PersonDetails?.Age ?? "?????" : "?????"}</p>
               </div>
               
           </div>
@@ -96,12 +105,12 @@ const  PersonDetails = ({personIdProp, SearchBy = "Id" } : props) => {
         <div className="flex flex-col  items-start justify-between gap-4 p-1 ">
             <div className='flex justify-center items-center  gap-4 p-1'>
                 <p className='font-medium'>Phone:</p>
-                <p >{ !isError ? PersonDetails?.Phone : "?????"} </p>
+                <p >{ !isError && personId  ? PersonDetails?.Phone ?? "?????" : "?????"} </p>
               </div>
 
               <div className='flex justify-center items-center  gap-4 mr-4 p-1'>
                 <p className='font-medium '>Address:</p>
-                <p >{ !isError ? PersonDetails?.Address : "?????"}</p>
+                <p >{ !isError && personId  ? PersonDetails?.Address ?? "?????" : "?????"}</p>
               </div>
 
               <EditButton    goTo='People'  Id={!isError ? PersonDetails?.Id as number: 0}/>

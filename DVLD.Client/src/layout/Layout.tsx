@@ -9,12 +9,15 @@ import { useLayoutEffect } from "react";
 const Layout = () => {
   const token = useSelector(selectAuthToken);
   const navigate = useNavigate();
-  
+
   useLayoutEffect (()=> {
       if(!token) {
         navigate("/", {replace: true})
       }
+      
   })
+
+
   return (
     <>
         <Header />

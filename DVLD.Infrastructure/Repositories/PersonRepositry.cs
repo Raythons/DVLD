@@ -164,5 +164,10 @@ namespace DVLD.Data.Repositories
 
             return person != null;
         }
+
+        public async Task<Person?> GetDetails(Expression<Func<Person, bool>> filterExpression)
+        {
+            return await _dbSet.Include(p => p.Country).FirstOrDefaultAsync(filterExpression);
+        }
     }
 }

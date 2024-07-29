@@ -9,9 +9,9 @@ export type authState = {
 }
 
 const initialState = {
-    accessToken : "سسس",
+    accessToken : "",
     UserName: "",
-    Image: "daddy-henry"
+    Image: ""
 } as authState
 
 // type UserDisplayData  = Pick<authState, "UserName" | "Image">
@@ -21,7 +21,7 @@ const authSlice =  createSlice({
     initialState,
     reducers:  {
         setLoggedInUser(state, action: PayloadAction<authState> ){
-            return  {...state, ...action.payload}
+            return  {...state, ...action.payload, Image: `/${action.payload.Image}`}
         },
         setAuthToken(state, action : PayloadAction<string>){
             state.accessToken = action.payload

@@ -40,7 +40,7 @@ const router = createBrowserRouter([
           },
           {
             path: "Details/:personId",
-            element: <PersonDetails /> 
+            element: <PersonDetails SearchBy='Id'/> 
           },
           {
             path: "Edit/:personId",

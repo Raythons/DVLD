@@ -59,7 +59,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Applications");
+                    b.ToTable("Applications", (string)null);
                 });
 
             modelBuilder.Entity("DVLD.Domain.Entities.ApplicationType", b =>
@@ -79,7 +79,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasKey("ApplicationTypeId");
 
-                    b.ToTable("ApplicationTypes");
+                    b.ToTable("ApplicationTypes", (string)null);
 
                     b.HasData(
                         new
@@ -140,7 +140,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries");
+                    b.ToTable("Countries", (string)null);
 
                     b.HasData(
                         new
@@ -1156,7 +1156,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasIndex("ReleasedByUserId");
 
-                    b.ToTable("DetainedLicenses");
+                    b.ToTable("DetainedLicenses", (string)null);
                 });
 
             modelBuilder.Entity("DVLD.Domain.Entities.Driver", b =>
@@ -1183,7 +1183,7 @@ namespace DVLD.Infrastructure.Migrations
                     b.HasIndex("PersonId")
                         .IsUnique();
 
-                    b.ToTable("Drivers");
+                    b.ToTable("Drivers", (string)null);
                 });
 
             modelBuilder.Entity("DVLD.Domain.Entities.InternationalDrivingLicense", b =>
@@ -1228,7 +1228,7 @@ namespace DVLD.Infrastructure.Migrations
                     b.HasIndex("IssueUsingLocalDrivingLicenseId")
                         .IsUnique();
 
-                    b.ToTable("InternationalDrivingLicenses");
+                    b.ToTable("InternationalDrivingLicenses", (string)null);
                 });
 
             modelBuilder.Entity("DVLD.Domain.Entities.License", b =>
@@ -1282,7 +1282,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasIndex("LicenseClassId");
 
-                    b.ToTable("Licenses");
+                    b.ToTable("Licenses", (string)null);
                 });
 
             modelBuilder.Entity("DVLD.Domain.Entities.LicenseClass", b =>
@@ -1312,7 +1312,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LicenseClasses");
+                    b.ToTable("LicenseClasses", (string)null);
 
                     b.HasData(
                         new
@@ -1401,7 +1401,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasIndex("LicenseClassId");
 
-                    b.ToTable("LocalDrivingLicenseApplications");
+                    b.ToTable("LocalDrivingLicenseApplications", (string)null);
                 });
 
             modelBuilder.Entity("DVLD.Domain.Entities.Person", b =>
@@ -1428,7 +1428,7 @@ namespace DVLD.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<short>("Gender")
+                    b.Property<byte>("Gender")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Image")
@@ -1461,7 +1461,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasIndex("NationalityCountryId");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Persons", (string)null);
 
                     b.HasData(
                         new
@@ -4698,7 +4698,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RefreshTokens");
+                    b.ToTable("RefreshTokens", (string)null);
                 });
 
             modelBuilder.Entity("DVLD.Domain.Entities.Test", b =>
@@ -4729,7 +4729,7 @@ namespace DVLD.Infrastructure.Migrations
                     b.HasIndex("TestAppointmentId")
                         .IsUnique();
 
-                    b.ToTable("Tests");
+                    b.ToTable("Tests", (string)null);
                 });
 
             modelBuilder.Entity("DVLD.Domain.Entities.TestAppointment", b =>
@@ -4766,7 +4766,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasIndex("TestTypeId");
 
-                    b.ToTable("TestAppointments");
+                    b.ToTable("TestAppointments", (string)null);
                 });
 
             modelBuilder.Entity("DVLD.Domain.Entities.TestType", b =>
@@ -4790,7 +4790,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TestTypes");
+                    b.ToTable("TestTypes", (string)null);
 
                     b.HasData(
                         new
@@ -4845,7 +4845,7 @@ namespace DVLD.Infrastructure.Migrations
 
                     b.HasIndex("UserName");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new

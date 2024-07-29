@@ -6,6 +6,7 @@ using DVLD.Domain.Enums;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DVLD.API.Controllers
@@ -50,12 +51,12 @@ namespace DVLD.API.Controllers
             return Ok(applicationResult.ToResultDto(applicationResult.Value));
 
         }
-
+        //[Authorize]
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> CreaterApplication(CreateApplicationCommand command)
         {
-                   
+            
             if (!ModelState.IsValid)
                 return BadRequest("Data is Bad");
 

@@ -39,12 +39,15 @@ builder.Services
 
 
 builder.Services.AddAppServices();
+
 builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll", builder =>
-                    builder.AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowAnyHeader());
+                    builder.WithOrigins("https://localhost:5173")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials()
+                           );
             });
 
 // REGISTER Dependancies
@@ -109,16 +112,21 @@ app.UseHttpsRedirection();
 app.UseMiddleware<ProfillingMiddleWare>();
 //app.UseMiddleware<ExceptionHandlerMiddleware>();
 
+app.UseRouting();
+
+//app.UseCors(builder => builder
+
+//    .WithOrigins("http://localhost:5173")
+//     .AllowAnyHeader()
+//     .AllowAnyMethod()
+//     .AllowCredentials()
+//   );
+
 app.UseAuthentication();
+
+app.UseCors("AllowAll");
+
 app.UseAuthorization();
-
 app.MapControllers();
-
-app.UseCors(builder => builder
-    .WithOrigins("http://localhost:5173")
-     .AllowAnyOrigin()
-     .AllowAnyMethod()
-     .AllowAnyHeader()
-     );
 
 app.Run();

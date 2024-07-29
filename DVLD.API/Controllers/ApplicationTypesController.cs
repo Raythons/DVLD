@@ -35,6 +35,7 @@ namespace DVLD.API.Controllers
         [Route("ApplicationFees/int:typeId")]
         public async Task<IActionResult> GetApplicationFees(int typeId)
         {
+            
             var values = await _unitOfWork.ApplicationTypeRepositry.GetApplicationTypeFees(typeId);
 
             return Ok(values);

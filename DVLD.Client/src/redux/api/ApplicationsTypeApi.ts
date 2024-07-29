@@ -18,8 +18,6 @@ export const ApplicationsTypes =  apiSlice.injectEndpoints({
                 }),
                 keepUnusedDataFor: Infinity,
                 transformResponse : (QueryReturnValue: ApplicationType[])  => {
-                    console.log(QueryReturnValue);
-                    
                     return QueryReturnValue
                 },
         })
@@ -27,4 +25,4 @@ export const ApplicationsTypes =  apiSlice.injectEndpoints({
     })
 })
 
-export const {useGetAllApplicationsTypeQuery} = ApplicationsTypes;
+export const {useGetAllApplicationsTypeQuery, useLazyGetAllApplicationsTypeQuery} = ApplicationsTypes;

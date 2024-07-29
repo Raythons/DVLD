@@ -13,7 +13,7 @@ namespace DLVD.App.Features.Applications.Command.CreateApplication
         public DateTime CreatedAt { get; } = DateTime.Now;
         public DateTime LastStatus { get; } = DateTime.Now;
         public float PaidFees { get; set; } = 15.5f;
-        public int CreatedByUserId { get; set; } 
+        public int CreatedByUserId { get; set; }  
         public int ApplicationTypeId { get; set; }
         public CreateApplicationCommand() { }
         

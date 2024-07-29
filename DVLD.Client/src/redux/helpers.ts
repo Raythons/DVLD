@@ -22,6 +22,8 @@ export function isApiError(
   )
 }
 export function handleRtkQueryErrors(error: FetchBaseQueryError): ApiError {
+          console.log(error);
+          
           if(error.status ===  "FETCH_ERROR" ){
             return  { 
                         Message:"SomeThing Went Wrong Please try again later",
@@ -43,6 +45,9 @@ export function handleRtkQueryErrors(error: FetchBaseQueryError): ApiError {
                       Reasons: []
               }
           }
+          
           const errorData = error.data as MainApiResponse
+          console.log(errorData);
+          
           return errorData.Errors[0] as ApiError
 }

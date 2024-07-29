@@ -50,7 +50,7 @@ namespace DLVD.App.Features.Persons.Queires.GetPersonsPaginitaed
             return sortCoulmn?.ToLower()
                 switch
             {
-                "FirstName" => person=> person.FirstName,
+                "FirstName" => person => person.FirstName,
                 "SecondName" => person=> person.SecondName,
                 "ThirdName" => person=> person.ThirdName,
                 "LastName" => person=> person.LastName,

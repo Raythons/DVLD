@@ -6,7 +6,7 @@ export const BaseApi = "https://localhost:7270/api"
 
 const myBaseQuery = fetchBaseQuery({
     baseUrl: BaseApi,
-    // credentials: 'include',
+    credentials: 'include',
     prepareHeaders: (headers , {getState}) => {
         const token = (getState() as RootState).auth.accessToken;
         if(token){
@@ -23,13 +23,18 @@ const myBaseQuery = fetchBaseQuery({
 //   unknown,
 //   FetchBaseQueryError
 // > = async (args, api, extraOptions) => {
-//   let result = await myBaseQuery(args, api, extraOptions)
-//   if (result.error && result.error.status === 401) {
+//     let result = await myBaseQuery(args, api, extraOptions)
+
+//     if (result.error && result.error.status === 401) {
 //     // try to get a new token
+//     console.log(result.error.status);
+//     console.log(result.error);
+    
+    
 //     const refreshResult = await myBaseQuery('/refreshToken', api, extraOptions)
 //     if (refreshResult.data) {
 //       // store the new token
-//       api.dispatch(setAuthToken({} as string))
+//         api.dispatch(setAuthToken(refreshResult.data as string))
 //       // retry the initial query
 //       result = await myBaseQuery(args, api, extraOptions)
 //     } else {
@@ -40,6 +45,9 @@ const myBaseQuery = fetchBaseQuery({
 // }
 
 
+type AccessTokenResponse = {
+    Response: string
+}
 
 const baseQueryWithReAuth: BaseQueryFn<
   string | FetchArgs,
@@ -47,13 +55,12 @@ const baseQueryWithReAuth: BaseQueryFn<
   FetchBaseQueryError
 >   = async  (args,  api,  extraOptions) =>{
         let result = await myBaseQuery(args , api, extraOptions)
-
-        if  (result?.error?.status === 403){
-            console.log("sending refresh Token")
-
-            const refreshResult = await myBaseQuery('/refresh', api, extraOptions)
+        console.log("result before error")
+        if  (result?.error?.status === 401){
+            
+            const refreshResult = await myBaseQuery('/Auth/Refresh', api, extraOptions)
             if(refreshResult?.data){
-                api.dispatch(setAuthToken(refreshResult.data as string))
+                api.dispatch(setAuthToken((refreshResult.data as AccessTokenResponse).Response))
                 result = await myBaseQuery(args, api, extraOptions)
             }  else {
                 api.dispatch(setLoggedOut())

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using DVLD.API;
 using FluentResults.Samples.WebController;
 using DLVD.App.Features.Persons.Queires.GetPersonEditDetails;
+using Microsoft.AspNetCore.Authorization;
 
 
 
@@ -19,6 +20,7 @@ using DLVD.App.Features.Persons.Queires.GetPersonEditDetails;
 
 namespace DVLD.WEB.Controllers
 {
+    //[Authorize]
     public class PersonController : BaseControllerr
     {
 
@@ -37,13 +39,12 @@ namespace DVLD.WEB.Controllers
         }
             
         [HttpGet]
-        [Route("{personId:int}")] 
-        public async Task<IActionResult> GetPerson(int personId)
+        [Route("Details")] 
+        public async Task<IActionResult> GetPerson([FromQuery] GetPersonDetailsQuery getPersonDetailsQuery)
         {
             _logger.LogInformation("Person has been hitten");
-            var query = new GetPersonDetailsQuery(personId);
 
-            var result = await _mediator.Send(query);
+            var result = await _mediator.Send(getPersonDetailsQuery);
 
             if(result.IsFailed) 
                 return NotFound(result.ToResultDto(false));
