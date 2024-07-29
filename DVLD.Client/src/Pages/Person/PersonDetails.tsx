@@ -23,15 +23,16 @@ const  PersonDetails = ({personTermProp, setDisableNext, setPersonId, SearchBy =
     const {data: PersonDetails, isError, isLoading, isSuccess, error} = 
       useGetPersonDetails(personId, SearchBy);
     // console.log(PersonDetails, isError , isLoadingPersonDetails);
+    console.log(personId);
     
     useEffect( () => {
         if (setDisableNext !== undefined) {
-            setDisableNext(isError && !isSuccess)
+            setDisableNext(personId === undefined || ( !isError && !isSuccess) )
         }
         if(setPersonId !=  undefined){
           setPersonId(PersonDetails?.Id)
         }
-    },[setDisableNext, setPersonId,  personId, isError, isSuccess, PersonDetails])
+    },[setDisableNext, setPersonId, personTermProp,  personId, isError, isSuccess, PersonDetails])
     
     // const {data : PersonDetails ,isLoading: isLoadingPersonDetails, error, isError} = useGetPersonDetailsQuery(Number(personId));
     

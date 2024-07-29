@@ -10,12 +10,6 @@ using Microsoft.Extensions.Options;
 using DVLD.API;
 using FluentResults.Samples.WebController;
 using DLVD.App.Features.Persons.Queires.GetPersonEditDetails;
-using Microsoft.AspNetCore.Authorization;
-
-
-
-
-
 
 
 namespace DVLD.WEB.Controllers

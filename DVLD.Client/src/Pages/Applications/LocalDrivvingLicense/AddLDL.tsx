@@ -12,6 +12,7 @@ const AddLDL = () => {
 
     const [personTerm, serPersonSearchTerm] = useState<string>();
     const [searchBy, setSearchBy] = useState<SearchBy>("Id");
+    const [showCreateLdlApp, setShowCreateLdlApp]  = useState<boolean>(false);
     const [personId, setPersonId] = useState<number>();
 
     const handlePersonTermChange =  (e: React.ChangeEvent<HTMLInputElement> ) => {        
@@ -35,12 +36,17 @@ const AddLDL = () => {
                             NationalNo
                         </option>
                     </select>
-            <input onChange={(e) => handlePersonTermChange(e) } type="text" id='person-search-property' />
-            <Button color="blue" disabled = {disableNext}> Next </Button>
+            <input onChange={(e) => handlePersonTermChange(e)}  type="text" id='person-search-property' />
+            <Button color="blue" disabled = {disableNext}  onClick = {() => setShowCreateLdlApp(!showCreateLdlApp)} > {showCreateLdlApp ? "Back" : "Next"} </Button>
         </div>
-        <PersonDetails personTermProp={personTerm} 
-                        setPersonId = {setPersonId} setDisableNext={setDisableNest}  SearchBy={searchBy} />
-        <CreateLDLApplication  personId={personId}/>
+        {
+            !showCreateLdlApp 
+            ? 
+            <PersonDetails personTermProp={personTerm} 
+            setPersonId = {setPersonId} setDisableNext={setDisableNest}  SearchBy={searchBy} />
+            :
+            <CreateLDLApplication  personId={personId} />
+        }
     </>
     )
 }
