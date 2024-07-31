@@ -6,7 +6,8 @@ import { useCreateLDLApplicationMutation } from '../../../redux/api/Applications
 import SuccessPopUp from '../../../components/common/SuccessPopUp';
 import CustomError from '../../../components/common/CustomError';
 import { ApiError } from '../../../redux/api/peopleApi';
-
+import { useSelector } from 'react-redux';
+import { selectUserName } from '../../../redux/Slices/authSlice';
 
 type props = {
     personId: number | undefined,
@@ -14,16 +15,18 @@ type props = {
 export type CreateLdlBody ={
   PersonId?: number | undefined,
   ApplicationTypeId?: number,
+  PaidFees?: number,
   LicenseCLassId?: number,
   CreatedByUserId: number,
 }
 const CreateLDLApplication = ({personId} : props) => {
-
+  const userName = useSelector(selectUserName)
   const [licenseCLassId, setLicenseClassId] = useState(1);
 
   const [LdlToCreate,  setLDLToCreate] = useState<CreateLdlBody>(
     { PersonId: personId as number,
       ApplicationTypeId: undefined,
+      PaidFees: undefined,
       CreatedByUserId: 1,
       LicenseCLassId:  licenseCLassId
     }
@@ -40,6 +43,7 @@ const CreateLDLApplication = ({personId} : props) => {
       setLDLToCreate(
           {...LdlToCreate,PersonId: personId,
             ApplicationTypeId: data?.find((app) => app.ApplicationTypeId === 1)?.ApplicationTypeId,
+            PaidFees: data?.find((app) => app.ApplicationTypeId === 1)?.ApplicationTypeFees,
             LicenseCLassId: licenseCLassId
           })
   }, [getAllApplicationsType, data, personId, licenseCLassId])
@@ -88,7 +92,7 @@ const CreateLDLApplication = ({personId} : props) => {
         <div className="flex  self-center  items-center w-[100%]">
             <p className='font-medium whitespace-nowrap self-start '>Created By User:</p>
             <div className='flex justify-center items-center w-[100%]'>
-                  <p  className=' whitespace-nowrap ' >Allah</p>
+                  <p  className=' whitespace-nowrap '> {userName}</p>
             </div>
         </div>
         <Button type="button" color={`blue`} onClick={handleCreateClick} className='mt-4' >Create</Button>

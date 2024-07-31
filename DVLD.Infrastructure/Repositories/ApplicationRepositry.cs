@@ -164,16 +164,24 @@ namespace DVLD.Data.Repositories
 
         public async Task<Application> GetPersonLocalApplicationsOfLicenseClass(int personId, int licenseClassId)
         {
-            var personApplicationsOfLicenseClass = await _dbSet
-                                                       .Include(a => a.LocalDrivingLicenseApplication)
-                                                       .FirstOrDefaultAsync
-                                                       (
-                                                           a => a.PersonId == personId &&                                                      
-                                                           a.LocalDrivingLicenseApplication.LicenseClassId == licenseClassId 
-                                                           && a.Status == EnStatus.New || a.Status == EnStatus.Completed
-                                                       );
+            //    var personApplicationsOfLicenseClass = await _dbSet
+            //                                               .Include(a => a.LocalDrivingLicenseApplication)
+            //                                               .FirstOrDefaultAsync
+            //                                               (
+            //                                                   a => a.PersonId == personId                                                     
+            //                                                   //a.LocalDrivingLicenseApplication.LicenseClassId == licenseClassId 
+            //                                                   && a.Status == EnStatus.New || a.Status == EnStatus.Completed
+            //                                               );
 
-            return personApplicationsOfLicenseClass;
+            var personApplicationsOfLicenseClass = await _DvldContext.LocalDrivingLicenseApplications
+                                                        .Include(a => a.Application)
+                                                        .FirstOrDefaultAsync
+                                                         (
+                                                           a => a.Application.PersonId == personId &&
+                                                           a.Application.Status == EnStatus.New || a.Application.Status == EnStatus.Completed &&
+                                                           a.LicenseClassId == licenseClassId 
+                                                        );
+            return personApplicationsOfLicenseClass?.Application ?? null;
          }
 
 

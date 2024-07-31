@@ -1,4 +1,5 @@
 ﻿using DLVD.App.Interfaces.Persistence;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DVLD.App.Interfaces.Persistence;
 
@@ -21,6 +22,6 @@ public interface IUnitOfWork
     IUserRepository UserRepository { get; }
     IRefreshTokenRepositry RefreshTokenRepositry { get; }
     Task CompleteAsync();
-    Task StartTrancation();
+    Task<IDbContextTransaction> StartTrancation();
     Task CommitTrancation();
 }

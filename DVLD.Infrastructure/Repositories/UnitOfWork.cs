@@ -1,6 +1,7 @@
 ﻿using DLVD.App.Interfaces.Persistence;
 using DVLD.App.Interfaces.Persistence;
 using DVLD.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 
 
@@ -66,7 +67,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public async Task CompleteAsync()
     {
         await _context.SaveChangesAsync();
-        _context.
     }
 
     public void Dispose()
@@ -74,9 +74,9 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         _context.Dispose();
     }
 
-    public async Task StartTrancation()
+    public async Task<IDbContextTransaction> StartTrancation()
     {
-        await _context.Database.BeginTransactionAsync();
+       return  await _context.Database.BeginTransactionAsync();
     }
     public async Task RoleBack()
     {

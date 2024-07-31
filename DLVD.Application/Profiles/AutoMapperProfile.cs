@@ -38,7 +38,7 @@ namespace DLVD.App.Profiles
             // => license fees == paid fees
             // applicationId == CreatedByApplicationId
 
-
+            CreateMap<CreateLocalDrivingLicenseCommand, Application>().ReverseMap();
             // DetainedLicense
             CreateMap<DetainLicenseRequest, DetainedLicense>().ReverseMap();
 

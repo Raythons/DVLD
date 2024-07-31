@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DVLD.API.Controllers
 {
     [Route("api/Applications/[controller]")]
-    
+
     public class LocalDrivingLicenseController : BaseControllerr
     {
         public LocalDrivingLicenseController(
@@ -31,7 +31,7 @@ namespace DVLD.API.Controllers
 
             if (result.IsFailed)
                 return BadRequest(result.ToResultDto());
-            
+
             return Ok(result.ToResultDto(result.Value));
         }
 
@@ -52,6 +52,7 @@ namespace DVLD.API.Controllers
         }
 
         [HttpPost]
+        [Route("")]
         public async Task<IActionResult> CreateLocalDrivingLicense(
                [FromBody] CreateLocalDrivingLicenseCommand command)
         {
@@ -66,46 +67,47 @@ namespace DVLD.API.Controllers
             return Ok(result.ToResultDto(result.Value));
         }
 
-        [HttpPost]
-        [Route("local-drivving-license-and-application")]
-        public async Task<IActionResult> CreateLocalDrivingLicenseApplicationWithApplication(
-               [FromBody] CreateLocalLicenseAndApplication command)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest("The Request Content Is Wrong");
+        //[HttpPost]
+        //[Route("local-drivving-license-and-application")]
+        //public async Task<IActionResult> CreateLocalDrivingLicenseApplicationWithApplication(
+        //       [FromBody] CreateLocalLicenseAndApplication command)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest("The Request Content Is Wrong");
 
-            var applicationResult = await _mediator.Send
-                                                       (new CreateApplicationCommand
-                                                           (
-                                                           command.PersonId,
-                                                           command.CreatedByUserId,
-                                                           command.ApplicationTypeId
-                                                           )
-                                                       );
+        //    var applicationResult = await _mediator.Send
+        //                                               (new CreateApplicationCommand
+        //                                                   (
+        //                                                   command.PersonId,
+        //                                                   command.CreatedByUserId,
+        //                                                   command.ApplicationTypeId
+        //                                                   )
+        //                                               );
 
-            if (applicationResult.IsFailed)
-                return BadRequest(applicationResult.ToResultDto());
+        //    if (applicationResult.IsFailed)
+        //        return BadRequest(applicationResult.ToResultDto());
 
-            var localLicenseResult = await _mediator
-                                                .Send
-                                                    (new CreateLocalDrivingLicenseCommand
-                                                          (
-                                                            applicationResult.Value,
-                                                            command.LicenseClassId
-                                                          )
-                                                     );
-            if (localLicenseResult.IsFailed)
-                return BadRequest(localLicenseResult.ToResultDto());
+        //    var localLicenseResult = await _mediator
+        //                                        .Send
+        //                                            (new CreateLocalDrivingLicenseCommand
+        //                                                  (
+        //                                                    applicationResult.Value,
+        //                                                    command.LicenseClassId
+        //                                                  )
+        //                                             );
+        //    if (localLicenseResult.IsFailed)
+        //        return BadRequest(localLicenseResult.ToResultDto());
 
-            return Ok(applicationResult.ToResultDto(applicationResult.Value));
-        }
-    }
+        //    return Ok(applicationResult.ToResultDto(applicationResult.Value));
+        //}
+    
 
     public class CreateLocalLicenseAndApplication
-    {
-        public int LicenseClassId { get; set; }
-        public int PersonId { get; set; }
-        public int CreatedByUserId { get; set; }
-        public int ApplicationTypeId { get; set; }
+        {
+            public int LicenseClassId { get; set; }
+            public int PersonId { get; set; }
+            public int CreatedByUserId { get; set; }
+            public int ApplicationTypeId { get; set; }
+        }
     }
 }

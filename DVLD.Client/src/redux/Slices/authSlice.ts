@@ -33,13 +33,14 @@ const authSlice =  createSlice({
     },
     selectors: {
         selectAuthToken: (state) => state.accessToken,
+        selectUserName: (state) => state.UserName,
         selectUserData: (state) => state
     }
 })
 
 export const {setAuthToken , setLoggedInUser, setLoggedOut} = authSlice.actions
 
-export  const {selectAuthToken ,selectUserData }  = authSlice.selectors
+export  const {selectAuthToken ,selectUserData, selectUserName }  = authSlice.selectors
 // export type AuthState = ReturnType<typeof  authSlice.selectSlice> 
 export default authSlice.reducer;
 
