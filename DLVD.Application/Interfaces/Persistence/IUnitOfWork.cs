@@ -4,6 +4,7 @@ namespace DVLD.App.Interfaces.Persistence;
 
 public interface IUnitOfWork
 {
+
     IApplicationRepositry ApplicationRepositry { get; }
     IApplicationTypeRepositry ApplicationTypeRepositry { get; }
     ICountryRepository CountryRepository { get; }
@@ -20,4 +21,6 @@ public interface IUnitOfWork
     IUserRepository UserRepository { get; }
     IRefreshTokenRepositry RefreshTokenRepositry { get; }
     Task CompleteAsync();
+    Task StartTrancation();
+    Task CommitTrancation();
 }

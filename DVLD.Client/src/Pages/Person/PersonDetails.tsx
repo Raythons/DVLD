@@ -23,7 +23,6 @@ const  PersonDetails = ({personTermProp, setDisableNext, setPersonId, SearchBy =
     const {data: PersonDetails, isError, isLoading, isSuccess, error} = 
       useGetPersonDetails(personId, SearchBy);
     // console.log(PersonDetails, isError , isLoadingPersonDetails);
-    console.log(personId);
     
     useEffect( () => {
         if (setDisableNext !== undefined) {

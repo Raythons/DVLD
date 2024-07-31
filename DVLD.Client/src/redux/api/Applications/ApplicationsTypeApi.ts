@@ -1,5 +1,6 @@
-import { apiSlice } from "./apiSlice";
+import { apiSlice } from "../apiSlice"
 // import { handleRtkQueryErrors } from "../helpers";
+
 export const ApplicationTypeEndPoint = "ApplicationTypes"
 
 
@@ -16,8 +17,11 @@ export const ApplicationsTypes =  apiSlice.injectEndpoints({
                     url: `${ApplicationTypeEndPoint}`,
                     method: "GET"
                 }),
+
                 keepUnusedDataFor: Infinity,
                 transformResponse : (QueryReturnValue: ApplicationType[])  => {
+                    console.log("Gg");
+                    
                     return QueryReturnValue
                 },
         })

@@ -55,7 +55,6 @@ const baseQueryWithReAuth: BaseQueryFn<
   FetchBaseQueryError
 >   = async  (args,  api,  extraOptions) =>{
         let result = await myBaseQuery(args , api, extraOptions)
-        console.log("result before error")
         if  (result?.error?.status === 401){
             
             const refreshResult = await myBaseQuery('/Auth/Refresh', api, extraOptions)
@@ -71,6 +70,6 @@ const baseQueryWithReAuth: BaseQueryFn<
 
 export const apiSlice = createApi({
     baseQuery : baseQueryWithReAuth,
-    tagTypes: [`Person`, `AllPeople` ],
+    tagTypes: [`Person`, `AllPeople`, `AllLDLApplications` ],
     endpoints: () => ({})
 })

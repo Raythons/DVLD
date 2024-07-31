@@ -132,7 +132,7 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 const formData = fillFormFiles(createPersonBody);
                 return {
                     url: `${PeopleEndPoint}/`,
-                    method: "PUT",
+                    method: "POST",
                     body: formData
                 }
             },

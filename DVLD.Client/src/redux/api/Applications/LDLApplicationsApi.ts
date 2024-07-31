@@ -1,5 +1,8 @@
-import { apiSlice } from "./apiSlice";
-import { PaginatedQueryParams } from "../../types/PaginatedQueryParams";
+import { apiSlice } from "../apiSlice";
+import { PaginatedQueryParams } from "../../../types/PaginatedQueryParams";
+import  { CreateLdlBody } from "../../../Pages/Applications/LocalDrivvingLicense/CreateLDLApplication";
+import { handleRtkQueryErrors } from "../../helpers";
+import { isNumber } from "../../../utils/isNumber";
 // import { CreatePersonFormFields } from "../../types/AddPersonType";
 // import fillFormFiles from "../../utils/fillFormFiles";
 // import { handleRtkQueryErrors } from "../helpers";
@@ -45,7 +48,7 @@ export type GetLDlListData = {
 
 // export type getPersonEditDetailsResponse = CreatePersonBody
 
-export const peopleApi =  apiSlice.injectEndpoints({
+export const LDLApplicationsApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         // getPersonDetails :  builder.query<GetPersonDataResponse, number>({
         //     query: (personId) => (
@@ -96,28 +99,27 @@ export const peopleApi =  apiSlice.injectEndpoints({
                 return response.Response.Items
             },
         }),
-        // createPerson: builder.mutation<number, CreatePersonBody>({
-        //     query: (createPersonBody) => {
-        //         const formData = fillFormFiles(createPersonBody);
-        //         return {
-        //             url: `${PeopleEndPoint}/`,
-        //             method: "PUT",
-        //             body: formData
-        //         }
-        //     },
-        //     invalidatesTags: [`AllPeople`],
-        //     transformResponse(response: {Response: number }) {
-        //         return response.Response
-        //     },
-        //     transformErrorResponse: (error) => {
-        //         const errorData = handleRtkQueryErrors(error)
+        CreateLDLApplication: builder.mutation<number, CreateLdlBody>({
+            query: (createLDLBody) => {
+                return {
+                    url: `${LDLApplicationsEndPoint}/`,
+                    method: "POST",
+                    body: createLDLBody
+                }
+            },
+            invalidatesTags: [`AllLDLApplications`],
+            transformResponse(response: {Response: number }) {
+                return response.Response
+            },
+            transformErrorResponse: (error) => {
+                const errorData = handleRtkQueryErrors(error)
                 
-        //         if(isNumber(error.status)) {
-        //             errorData.status  = error.status as number;
-        //         }   
-        //         return errorData
-        //     },
-        // }),
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            },
+        }),
         // updatePersonDetails: builder.mutation<boolean, UpdatePersonMutationParams>({
         //     query: ({body, id}) => {
         //         const formData = fillFormFiles(body); 
@@ -168,5 +170,6 @@ export const peopleApi =  apiSlice.injectEndpoints({
 })
 
 export const {
-        useGetAllLDLApplicationsQuery
-    } = peopleApi
+        useGetAllLDLApplicationsQuery,
+        useCreateLDLApplicationMutation
+    } = LDLApplicationsApi

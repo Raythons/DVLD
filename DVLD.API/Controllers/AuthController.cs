@@ -50,7 +50,6 @@ namespace DVLD.API.Controllers
             //    return Unauthorized(Result.ToResultDto(false));
             
             var securityTokenId = Guid.NewGuid().ToString();
-        
             var accessToken =  GenerateJwtToken(result.Value, securityTokenId);
 
             if (string.IsNullOrEmpty(accessToken))

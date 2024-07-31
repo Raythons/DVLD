@@ -11,8 +11,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private readonly DvldContext _context;
     private readonly ILogger _logger;
 
-
-
     public IApplicationRepositry ApplicationRepositry { get; }
 
     public IApplicationTypeRepositry ApplicationTypeRepositry { get; }
@@ -68,10 +66,25 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public async Task CompleteAsync()
     {
         await _context.SaveChangesAsync();
+        _context.
     }
 
     public void Dispose()
     {
         _context.Dispose();
+    }
+
+    public async Task StartTrancation()
+    {
+        await _context.Database.BeginTransactionAsync();
+    }
+    public async Task RoleBack()
+    {
+        await _context.Database.RollbackTransactionAsync();
+    }
+
+    public async Task CommitTrancation()
+    {
+        await _context.Database.CommitTransactionAsync();
     }
 }

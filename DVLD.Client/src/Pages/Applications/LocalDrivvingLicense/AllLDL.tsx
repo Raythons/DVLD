@@ -1,6 +1,6 @@
 import { Spinner } from "flowbite-react";
 import SingleDLApplication from "../../../components/Applications/localDrivingLicenses/SingleDLApplication"
-import { GetAllLDLAppQueryParams, useGetAllLDLApplicationsQuery } from "../../../redux/api/LDLApplicationsApi"
+import { GetAllLDLAppQueryParams, useGetAllLDLApplicationsQuery } from "../../../redux/api/Applications/LDLApplicationsApi"
 
 const AllLDL = () => {
     

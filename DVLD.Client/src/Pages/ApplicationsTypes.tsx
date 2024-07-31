@@ -1,7 +1,7 @@
-import { useGetAllApplicationsTypeQuery } from '../redux/api/ApplicationsTypeApi'
+import { useGetAllApplicationsTypeQuery } from '../redux/api/Applications/ApplicationsTypeApi'
 import { Spinner } from 'flowbite-react'
 
-const ApplicationsTypes = () => {
+const ApplicationsTypes = () => {   
 
     const {data: ApplicationsTypes, isLoading }= useGetAllApplicationsTypeQuery({})
     return (

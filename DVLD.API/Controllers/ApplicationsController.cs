@@ -8,6 +8,8 @@ using FluentResults.Samples.WebController;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace DVLD.API.Controllers
 {
@@ -60,6 +62,9 @@ namespace DVLD.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Data is Bad");
 
+            int.TryParse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value, out int createByUserId);
+            command.CreatedByUserId = createByUserId;
+
             var applicationResult = await _mediator.Send(command);
 
             if (applicationResult.IsFailed)
@@ -68,6 +73,7 @@ namespace DVLD.API.Controllers
             return Ok(applicationResult.ToResultDto(applicationResult.Value));
 
         }
+     
 
         [HttpPut]
         [Route("{applicationId:int}/Status")]
