@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Tests.Command.CreateTestCommand;
 using DLVD.App.Features.Tests.Query.GetTest;
-using DVLD.Domain.Entities;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
@@ -33,7 +32,7 @@ namespace DVLD.API.Controllers
             return Ok(res.ToResultDto(res.Value));
         }
         [HttpPost]
-        public async Task<IActionResult> GetTest([FromBody] CreateTestCommand cmd)
+        public async Task<IActionResult> CreateTest([FromBody] CreateTestCommand cmd)
         {
 
             if (!ModelState.IsValid)

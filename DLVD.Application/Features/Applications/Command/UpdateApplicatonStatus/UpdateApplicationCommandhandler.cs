@@ -21,10 +21,8 @@ namespace DLVD.App.Features.Applications.Command.UpdateApplicaton
             CancellationToken cancellationToken)
         {
 
-            var isSucess = await _unitOfWork.ApplicationRepositry.UpdateStatus(request.ApplicationId, request.NewStatus);
-
-
-            
+            var isSucess = await _unitOfWork.ApplicationRepositry
+                                            .MarkDeleted(request.LocalDrivvingLicenseApplicationId);
 
             if (!isSucess)
                 return Result.Fail("Couldnt Update The Status ");
@@ -32,7 +30,7 @@ namespace DLVD.App.Features.Applications.Command.UpdateApplicaton
 
             await _unitOfWork.CompleteAsync();
             return Result.Ok(true)
-                        .WithSuccess($"Status of applicationId {request.ApplicationId} Updated Successfully");
+                        .WithSuccess($"Status of applicationId {request.LocalDrivvingLicenseApplicationId} Updated Successfully");
         }
     }
 }

@@ -22,29 +22,16 @@ export type GetLDlListData = {
     Status: string
 }
 
+export type UpdateLDLApplicationStatusParams = {
+    Status: "Cancel" | "New" | "Completed",
+    LDLApplicationId : number,
+}
 
 
 // type CreatePersonBody = CreatePersonFormFields;
 // export type UpdatePersonBody = CreatePersonBody;
 
-// export type UpdatePersonMutationParams = {
-//     body: UpdatePersonBody;
-//     id: number; // Additional parameter for the ID
-// }
 
-// // type EditPersonBody = CreatePersonBody;
-// export type GetPersonDataResponse = {
-//     Id: number,
-//     FullName: string,
-//     NationalNo: string ,
-//     Gender: string,
-//     Country: string,
-//     Age: number,
-//     Address: string,
-//     Phone:string,
-//     Email: string,
-//     Image: string
-// } 
 
 // export type getPersonEditDetailsResponse = CreatePersonBody
 
@@ -120,30 +107,27 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
                 return errorData
             },
         }),
-        // updatePersonDetails: builder.mutation<boolean, UpdatePersonMutationParams>({
-        //     query: ({body, id}) => {
-        //         const formData = fillFormFiles(body); 
-        //         return {
-        //             url: `${PeopleEndPoint}/${id}`,
-        //             method: "PUT",
-        //             body: formData
-        //         }
-        //     },
-        //     // invalidatesTags: [`AllPeople`, `Person`],
-        //     transformResponse(response: {Response: boolean }) {
-        //         console.log(response);
+        updateLDLApplicationsStatus: builder.mutation<boolean, number>({
+            query: (LDLApplicationId) => {
+                return {
+                    url: `Applications/${LDLApplicationId}/Status`,
+                    method: "PUT",
+                }
+            },
+            invalidatesTags: [`AllLDLApplications`],
+            transformResponse(response: {Response: boolean }) {
+                console.log(response);
+                return response.Response
+            },
+            transformErrorResponse: (error) => {
+                const errorData = handleRtkQueryErrors(error)
                 
-        //         return response.Response
-        //     },
-        //     transformErrorResponse: (error) => {
-        //         const errorData = handleRtkQueryErrors(error)
-                
-        //         if(isNumber(error.status)) {
-        //             errorData.status  = error.status as number;
-        //         }   
-        //         return errorData
-        //     },
-        // }),
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            },
+        }),
         // deletePerson: builder.mutation<boolean, number>({
         //     query: (personId) => (
                 
@@ -171,5 +155,6 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
 
 export const {
         useGetAllLDLApplicationsQuery,
-        useCreateLDLApplicationMutation
+        useCreateLDLApplicationMutation,
+        useUpdateLDLApplicationsStatusMutation,
     } = LDLApplicationsApi

@@ -77,13 +77,13 @@ namespace DVLD.API.Controllers
 
         [HttpPut]
         [Route("{applicationId:int}/Status")]
-        public async Task<IActionResult> UpdateApplicationStatus(int applicationId, [FromBody] EnStatus status )
+        public async Task<IActionResult> DeleteApplication(int applicationId)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Inalid Data");
 
             var applicationResult = await _mediator.Send(
-                                                    new UpdateApplicationStatusCommand(applicationId, status)
+                                                    new UpdateApplicationStatusCommand(applicationId)
                                                     );
 
             if (applicationResult.IsFailed)

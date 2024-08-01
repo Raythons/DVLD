@@ -8,7 +8,7 @@ type props = {
     menu: subMenuItem[],
 }
 
-enum  ClassListBehavior {
+export enum  ClassListBehavior {
   RemoveFirst,
   AddFirst
 }

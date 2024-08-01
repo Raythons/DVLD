@@ -13,6 +13,7 @@ type props = {
     Status: string
 }
 
+
 const SingleDLApplication = (
       {
           LDLAppId,
@@ -27,6 +28,8 @@ const SingleDLApplication = (
 
     const [showAppOperations, setShowAppOperations] = useState<boolean>(false)
     const CreatedAtDate = new Date(ApplicationDate)
+
+
     const statusColor = (Status: string) => {
         switch (Status) {
           case "Canceled":
@@ -86,7 +89,7 @@ const SingleDLApplication = (
           <IconContext.Provider value={{className: "hover:text-sky-700 transition-all duration-300", size: "40"}}>
             <TbDots />
           </IconContext.Provider>
-          <LDLAppOperations show={showAppOperations} AppId={LDLAppId}/>
+          <LDLAppOperations show={showAppOperations} AppId={LDLAppId} passedTests = {PassedTests + 1}/>
         </div>
       </div>
       <div  className='flex w-full justify-start gap-5 items-center '>
@@ -108,9 +111,6 @@ const SingleDLApplication = (
       </div>
       
       </div>
-     
-     
-     
   </div>
   )
 }

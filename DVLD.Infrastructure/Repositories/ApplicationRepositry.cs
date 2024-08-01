@@ -200,5 +200,12 @@ namespace DVLD.Data.Repositories
 
 
         }
+
+        public async Task<bool> MarkDeleted(int localDrivvingLicensesApplicationId)
+        {
+            await _dbSet.Where(l => l.LocalDrivingLicenseApplication.Id == localDrivvingLicensesApplicationId)
+                        .ExecuteUpdateAsync(s => s.SetProperty(a => a.Status, EnStatus.Canceled));
+            return true;
+        }
     }   
 }

@@ -29,12 +29,6 @@ const DeletePopUp = ({show, type, deletionId, isLoading, isError, error, setShow
     
     console.log("Render Values");
     
-    console.log(isLoading);
-    console.log(isError);
-    console.log(error);
-    
-    
-    
     
     const [showResultPopUp, setShowResultPopUp] = useState<boolean>(false)
     const [showSuccessPopUp, setShowSuccessPopUp] = useState<boolean>(false)
