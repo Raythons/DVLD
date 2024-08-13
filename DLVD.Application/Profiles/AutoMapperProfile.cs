@@ -86,8 +86,16 @@ namespace DLVD.App.Profiles
             //LocalDrivvingLicenseAppliciation
             CreateMap<LocalDrivingLicenseApplication, CreateLocalDrivingLicenseCommand>()
                 .ReverseMap();
-
-            CreateMap<GetLocalDrivvingLicenseDto, LocalDrivingLicenseApplication>()
+            
+            CreateMap<LocalDrivingLicenseApplication, GetLocalDrivvingLicenseDto>()
+                .ForMember
+                        (
+                            dest => dest.LicenseClass,
+                            opts => opts.MapFrom
+                                        ( 
+                                            src => src.LicenseClass.ClassName
+                                        ) 
+                        )
                 .ReverseMap();
 
             CreateMap<CreateApplicationCommand, Application>().ReverseMap();

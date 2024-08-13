@@ -1,5 +1,4 @@
-﻿using DVLD.Domain.Entities;
-using FluentResults;
+﻿using FluentResults;
 using MediatR;
 
 
@@ -12,6 +11,7 @@ namespace DLVD.App.Features.Applications.Queries.GetApplication
         {
             Id = id;
         }
+        
         public GetApplicationQuery() { }
 
 

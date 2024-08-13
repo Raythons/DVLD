@@ -59,9 +59,8 @@ const ScheduleTest = () => {
                 {currentTestType.TestTypeIcon}
         </IconContext.Provider>
         <h2 className=' text-rose-600 text-2xl font-medium'>{currentTestType.Title}</h2>
-
-        <DrivingLicenseApplicationInfo />
-        <ApplicationBasicInfo />
+        <DrivingLicenseApplicationInfo  LDLApplicationID = { Number(LDLApplicationID) } />
+        <ApplicationBasicInfo  LDLApplicationID = { Number(LDLApplicationID) }  />
         <div>
 
         </div>

@@ -10,13 +10,14 @@ import { RiAdminFill } from "react-icons/ri";
 
 
 
-const ApplicationBasicInfo = () => {
+const ApplicationBasicInfo = (  ) => {
+
+
   return (
     <div className='flex relative justify-center items-between flex-col gap-3 border-solid border-gray-500 border-2 w-[55%]   p-6  mt-6 rounded-md '>
         <div className = 'absolute -top-4 left-4  border-slate-200 bg-slate-200 border-solid  border-2 '>
                 Basic Application Info
         </div>
-
         <div className='flex  justify-between  items-start  '>
             <div className='flex flex-col justify-center items-center ' >
 

@@ -3,6 +3,7 @@ import { PaginatedQueryParams } from "../../../types/PaginatedQueryParams";
 import  { CreateLdlBody } from "../../../Pages/Applications/LocalDrivvingLicense/CreateLDLApplication";
 import { handleRtkQueryErrors } from "../../helpers";
 import { isNumber } from "../../../utils/isNumber";
+import { ApiError } from "../peopleApi";
 // import { CreatePersonFormFields } from "../../types/AddPersonType";
 // import fillFormFiles from "../../utils/fillFormFiles";
 // import { handleRtkQueryErrors } from "../helpers";
@@ -21,7 +22,6 @@ export type GetLDlListData = {
     PassedTestCount:number
     Status: string
 }
-
 export type UpdateLDLApplicationStatusParams = {
     Status: "Cancel" | "New" | "Completed",
     LDLApplicationId : number,
@@ -31,31 +31,35 @@ export type UpdateLDLApplicationStatusParams = {
 // type CreatePersonBody = CreatePersonFormFields;
 // export type UpdatePersonBody = CreatePersonBody;
 
-
-
 // export type getPersonEditDetailsResponse = CreatePersonBody
+
+export type  GetLDLApplicationBriefInfoResponse = {
+    Id: number,
+    LicenseClass : string,
+    PassedTests : number,
+    TestsCount: number
+}
 
 export const LDLApplicationsApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        // getPersonDetails :  builder.query<GetPersonDataResponse, number>({
-        //     query: (personId) => (
-        //         {
-        //             url: `${PeopleEndPoint}/${personId}`,
-        //         }
-        //     ),
-        //     providesTags: [`Person`],
-        //     transformResponse : (QueryReturnValue: {Response: GetPersonDataResponse})  => {
-        //         return QueryReturnValue.Response
-        //     },
-        //     transformErrorResponse: (error) : ApiError  =>{
-        //         const errorData = handleRtkQueryErrors(error)
-                
-        //         if(isNumber(error.status)) {
-        //             errorData.status  = error.status as number;
-        //         }   
-        //         return errorData
-        //     }
-        // }),
+        getLDLApplicationBriefInfo :  builder.query<GetLDLApplicationBriefInfoResponse, number>({
+            query: (LDLApplicationId) => (
+                {
+                    url: `${LDLApplicationsEndPoint}/${LDLApplicationId}`,
+                }
+            ),
+            providesTags: [`Person`],
+            transformResponse : (QueryReturnValue: {Response: GetLDLApplicationBriefInfoResponse})  => {
+                return QueryReturnValue.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                const errorData = handleRtkQueryErrors(error)
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
+        }),
         // getPersonEditDetails :  builder.query<getPersonEditDetailsResponse, number>({
         //     query: (personId) => (
         //         {
@@ -154,6 +158,7 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
 })
 
 export const {
+        useGetLDLApplicationBriefInfoQuery,
         useGetAllLDLApplicationsQuery,
         useCreateLDLApplicationMutation,
         useUpdateLDLApplicationsStatusMutation,

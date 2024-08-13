@@ -2,6 +2,7 @@
 using DLVD.App.Features.Applications.Command.CreateApplication;
 using DLVD.App.Features.LocalDrivingLicense.Command.CreateLocalDrivvingLicense;
 using DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDriverLicense;
+using DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDrivvingLicenseApplication;
 using DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDrivvingLicensesList;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
@@ -28,6 +29,21 @@ namespace DVLD.API.Controllers
                 return BadRequest("The Request Content Is Wrong");
 
             var result = await _mediator.Send(new GetLocalDriverLicenseQuery(id));
+
+            if (result.IsFailed)
+                return BadRequest(result.ToResultDto());
+
+            return Ok(result.ToResultDto(result.Value));
+        }
+
+        [HttpGet]
+        [Route("applicationId/")]
+        public async Task<IActionResult> GetApplicationId(int LocalDrivvingLicenseApplicationId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("The Request Content Is Wrong");
+
+            var result = await _mediator.Send(new GetLocalDrivvingLicenseApplicationIdResquest(LocalDrivvingLicenseApplicationId));
 
             if (result.IsFailed)
                 return BadRequest(result.ToResultDto());
