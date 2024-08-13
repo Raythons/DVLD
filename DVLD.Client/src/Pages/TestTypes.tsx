@@ -4,6 +4,8 @@ import { useGetAllTestTypesQuery } from '../redux/api/TestTypesApi'
 const TestTypes = () => {
 
     const {data: TestTypes, isLoading }= useGetAllTestTypesQuery({})
+    console.log(TestTypes);
+    
     return (
         <div  className=" flex flex-col items-center justify-center  w-[100%] h-[100%]">
             {

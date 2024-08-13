@@ -13,6 +13,7 @@ import ApplicationsTypes from './Pages/ApplicationsTypes'
 import TestTypes from './Pages/TestTypes'
 import { LDLApplications } from './layout/LDLApplications'
 import AddLDL from './Pages/Applications/LocalDrivvingLicense/AddLDL'
+import ScheduleTest from './components/Applications/TestAppointments/ScheduleTest'
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
           {
             path: "Add/",
             element: < AddLDL />
+          },
+          {
+            path: "Tests/Add/:LDLApplicationID",
+            element :  <ScheduleTest />
           }
         ]
       },

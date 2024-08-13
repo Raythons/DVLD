@@ -104,7 +104,7 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
                 {
                     OperationName: "Schedule Vision Test",
                     OperationIcon: <FaEye />,
-                    clickHandler: () => {console.log('Schedule Vision Test')},
+                    clickHandler: () => {navigate(`Tests/Add/${AppId}` , {state: {title:"Vision"},  })},
                     clickable: true
                 } ,
                 {

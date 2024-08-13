@@ -32,7 +32,6 @@ namespace DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDriverLicense
                                                 Map<GetLocalDrivvingLicenseDto>(LocalDrivvingLicenseApp);
 
 
-
             return LocalDrivvingLicenseAppDto;
             
         }

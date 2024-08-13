@@ -15,8 +15,7 @@ namespace DLVD.App.Features.Applications.Queries.GetApplication
 {
     public class GetApplicationDto
     {
-        
-        
+           
         public int Id { get; set; }
         public GetPersonDetailsDto Person { get; set; }
 
