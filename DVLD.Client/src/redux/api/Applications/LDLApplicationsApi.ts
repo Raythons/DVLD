@@ -48,8 +48,24 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
                     url: `${LDLApplicationsEndPoint}/${LDLApplicationId}`,
                 }
             ),
-            providesTags: [`Person`],
             transformResponse : (QueryReturnValue: {Response: GetLDLApplicationBriefInfoResponse})  => {
+                return QueryReturnValue.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                const errorData = handleRtkQueryErrors(error)
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
+        }),
+        getLDLApplicationId:  builder.query<number, number>({
+            query: (LDLApplicationId) => (
+                {
+                    url: `${LDLApplicationsEndPoint}/applicationId/${LDLApplicationId}`,
+                }
+            ),
+            transformResponse : (QueryReturnValue: {Response: number})  => {                
                 return QueryReturnValue.Response
             },
             transformErrorResponse: (error) : ApiError  =>{
@@ -158,6 +174,7 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
 })
 
 export const {
+        useGetLDLApplicationIdQuery,
         useGetLDLApplicationBriefInfoQuery,
         useGetAllLDLApplicationsQuery,
         useCreateLDLApplicationMutation,

@@ -37,7 +37,7 @@ namespace DVLD.API.Controllers
         }
 
         [HttpGet]
-        [Route("applicationId/")]
+        [Route("applicationId/{LocalDrivvingLicenseApplicationId:int}")]
         public async Task<IActionResult> GetApplicationId(int LocalDrivvingLicenseApplicationId)
         {
             if (!ModelState.IsValid)

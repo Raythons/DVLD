@@ -5,6 +5,7 @@ import { FaEye } from 'react-icons/fa6'
 import { useLocation, useParams } from 'react-router-dom'
 import DrivingLicenseApplicationInfo from './DrivingLicenseApplicationInfo'
 import ApplicationBasicInfo from './ApplicationBasicInfo'
+import { useGetLDLApplicationIdQuery } from '../../../redux/api/Applications/LDLApplicationsApi'
 
 type TestTypeInfo = {
     Type :  "Vision" | "Written" | "Street",
@@ -43,14 +44,15 @@ const ScheduleTest = () => {
   const state = Location.state as State ?? "Vision"
   console.log(state.title);
   
+  const {data : ApplicationID  ,isSuccess} = useGetLDLApplicationIdQuery(Number(LDLApplicationID));
   useEffect (() => {
       TestTypesData.map((TestType) => {
           if (TestType.Type ===  state.title)
             setCurrentTestType(TestType);
       })
   }, [state]) 
+  console.log(`this is Application Id In Test ${ApplicationID}`);
   
-  console.log(LDLApplicationID);
   
   return (
 
@@ -60,7 +62,7 @@ const ScheduleTest = () => {
         </IconContext.Provider>
         <h2 className=' text-rose-600 text-2xl font-medium'>{currentTestType.Title}</h2>
         <DrivingLicenseApplicationInfo  LDLApplicationID = { Number(LDLApplicationID) } />
-        <ApplicationBasicInfo  LDLApplicationID = { Number(LDLApplicationID) }  />
+        <ApplicationBasicInfo  ApplicationID = { isSuccess? ApplicationID : 0 }  />
         <div>
 
         </div>

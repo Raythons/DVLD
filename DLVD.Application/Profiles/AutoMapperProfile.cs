@@ -110,6 +110,24 @@ namespace DLVD.App.Profiles
                                    src => src.User.UserName
                                 )
                     )
+                .ForMember
+                    (
+                        dest => dest.FullName,
+                        opts => opts.MapFrom
+                                (
+                                    src =>
+                                       $"{src.Person.FirstName} {src.Person.SecondName}" +
+                                       $" {src.Person.ThirdName} {src.Person.LastName}"
+                                )
+                    )
+                .ForMember
+                    (
+                        dest => dest.ApplicationTypeTitle,
+                        opts => opts.MapFrom
+                                (
+                                   src => src.ApplicationType.ApplicationTypeTitle
+                                )
+                    )
                     .ReverseMap();
 
             CreateMap<Application, GetApplicationListDto>()

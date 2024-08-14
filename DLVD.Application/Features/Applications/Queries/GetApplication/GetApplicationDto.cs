@@ -14,19 +14,20 @@ using System.Threading.Tasks;
 namespace DLVD.App.Features.Applications.Queries.GetApplication
 {
     public class GetApplicationDto
-    {
-           
+    { 
         public int Id { get; set; }
-        public GetPersonDetailsDto Person { get; set; }
+        public string  FullName { get; set; }
 
         [JsonConverter(typeof(EnStatusJsonConverter))]
         public EnStatus Status {  get; set; }
 
-        //public ApplicationType ApplicationType { get; set; }
+        public string ApplicationTypeTitle { get; set; }
+
+        [JsonConverter(typeof(EnDateJsonConverter))]
         public DateTime CreatedAt { set; get; }
+        [JsonConverter(typeof(EnDateJsonConverter))]
         public DateTime LastStatusDate { set; get; }
         public float PaidFees { set; get; }
         public string CreatedByUser { get; set; }
-
     }
 }
