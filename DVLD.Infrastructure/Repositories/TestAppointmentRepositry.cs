@@ -2,6 +2,8 @@
 using DVLD.App.Interfaces.Persistence;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using DLVD.App.Features.Common;
+using System.Linq.Expressions;
 
 namespace DVLD.Data.Repositories
 {
@@ -26,7 +28,29 @@ namespace DVLD.Data.Repositories
             await _dbSet.AddAsync(entity);
             return true;
         }
-       
+
+        public async Task<PagedList<TProjection>> GetAllByProjectionAsync<TProjection>(
+           Expression<Func<TestAppointment, TProjection>> selector,
+           Expression<Func<TestAppointment, bool>> filter = null,
+           Expression<Func<TestAppointment, object>> orderBy = null,
+           bool descending = true,
+           int page = 1,
+           int pageSize = 2)
+        {
+            ArgumentNullException.ThrowIfNull(selector);
+            var query = _dbSet.AsNoTracking();
+
+            if (filter is not null)
+                query = query.Where(filter);
+
+            orderBy ??= l => l.Id;
+
+            query = descending ? query.OrderByDescending(orderBy)
+                              : query.OrderBy(orderBy);
+
+
+            return await PagedList<TProjection>.CreateAsync(query.Select(selector), page, pageSize);
+        }
         public Task<IEnumerable<TestAppointment>> All()
         {
             throw new NotImplementedException();

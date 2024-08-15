@@ -6,6 +6,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import DrivingLicenseApplicationInfo from './DrivingLicenseApplicationInfo'
 import ApplicationBasicInfo from './ApplicationBasicInfo'
 import { useGetLDLApplicationIdQuery } from '../../../redux/api/Applications/LDLApplicationsApi'
+import AllTestAppointments from './AllTestAppointments'
 
 type TestTypeInfo = {
     Type :  "Vision" | "Written" | "Street",
@@ -55,7 +56,6 @@ const ScheduleTest = () => {
   
   
   return (
-
     <div  className=" flex flex-col items-center justify-center  w-[100%]">
         <IconContext.Provider  value={{className: "text-sky-700" , size: "120"}}>
                 {currentTestType.TestTypeIcon}
@@ -63,13 +63,7 @@ const ScheduleTest = () => {
         <h2 className=' text-rose-600 text-2xl font-medium'>{currentTestType.Title}</h2>
         <DrivingLicenseApplicationInfo  LDLApplicationID = { Number(LDLApplicationID) } />
         <ApplicationBasicInfo  ApplicationID = { isSuccess? ApplicationID : 0 }  />
-        <div>
-
-        </div>
-
-        <div>
-
-        </div>
+        < AllTestAppointments />
     </div>
   )
 }

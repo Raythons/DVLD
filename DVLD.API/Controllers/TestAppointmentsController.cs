@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment;
+using DLVD.App.Features.TestAppointments.Quries.GetTestAppointment;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
@@ -27,6 +28,18 @@ namespace DVLD.API.Controllers
 
         //    return Ok(result.ToResultDto());
         //}
+
+        [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> GetTestAppointment([FromQuery]GetTestAppointmentRequest req)
+        {
+            var result = await _mediator.Send(req);
+
+            if (result.IsFailed)
+                return BadRequest(result.ToResultDto());
+
+            return Ok(result.ToResultDto(result.Value));
+        }
 
         [HttpPost]
         

@@ -85,7 +85,6 @@ namespace DVLD.Data.Repositories
                               : query.OrderBy(orderBy);
 
             return await PagedList<LocalDrivvingLicenseApplicationsView>.CreateAsync(query, page, pageSize);
-
         }
 
         public async Task<int> GetApplicationId (int LocalDrivvingLicenseApplicationId)
