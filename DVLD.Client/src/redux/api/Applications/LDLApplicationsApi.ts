@@ -102,7 +102,6 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
                 params: getALLQueryParams,
             }),
             transformResponse: (response: {Response:  {Items: GetLDlListData[] }}) => {
-                console.log(response);
                 return response.Response.Items
             },
         }),

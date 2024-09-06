@@ -14,12 +14,9 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
         public float PaidFees { get; set; }
         public int CreatedByUserId { get; set; }
         public int PersonId { get; set; }
-        public int ApplicationTypeId { get; set; }
         public EnStatus Status { get; } = EnStatus.New;
         public DateTime CreatedAt { get; } = DateTime.Now;
         public DateTime LastStatus { get; } = DateTime.Now;
-
-
 
 
         public CreateTestAppointmentCommand() { }

@@ -19,7 +19,7 @@ const SuccessPopUp = ({show, type, creationId, operation, setShowPopUp} : props)
         <ModalBody  >
           <div className="flex justify-center items-center flex-col w-[100%]">
               <h1 className="text-green-500 text-2xl">Success</h1>
-              <p className="text-lg text-gray-700 pb-3">{type} {operation} Successfully With the Id: {creationId}</p>
+              <p className="text-lg text-gray-700 pb-3">{type} {operation} Successfully  {creationId != 0 ? `With the Id: ${creationId}` : "" }</p>
               <div className="flex  justify-center items-center w-[90%]">
                   <Button color="blue" className="" onClick={() => (navigate("../.."))}>Home</Button>
               </div>

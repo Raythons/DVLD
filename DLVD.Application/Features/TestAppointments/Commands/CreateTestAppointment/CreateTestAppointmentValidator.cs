@@ -25,8 +25,6 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
                 .WithMessage("Person Already Passed the tets cannot make An Apointment to It")
 
                 .MustAsync(DontHaveActiveTest).WithMessage($"There Is Already An Active TestAppointment.");
-        
-        
         }
 
         private async Task<bool> DidntPassedTheTest(

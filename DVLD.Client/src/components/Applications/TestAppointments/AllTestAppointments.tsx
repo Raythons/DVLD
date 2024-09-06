@@ -1,45 +1,39 @@
 import React from 'react'
+import { useGetLDLApplicationTestAppointmentsListQuery } from '../../../redux/api/TestAppointmentsApi'
+import SingleTestAppointment from './SingleTestAppointment';
+import { Spinner } from 'flowbite-react';
 
-const AllTestAppointments = () => {
+
+
+
+type props  = {
+  LDLApplicationID: number,
+  testTypeId: number;
+}
+const AllTestAppointments = ({LDLApplicationID , testTypeId} : props) => {
+
+   const { data : TestAppointmentsList , isLoading } 
+   = useGetLDLApplicationTestAppointmentsListQuery({
+                                                    localDrivingLicenseApplicationId: LDLApplicationID, 
+                                                    testTypeId
+                                                  });
     
   return (
-    <div className='flex  flex-col  justify-start items-center gap-2 p-4  overflow-y-scroll 
-          bg-slate-100 rounded-md w-[90%]  relative overflow-hidden '>
-             <div className='flex   max-h-full  w-full justify-between items-center p-2 
-      rounded-md bg-gray-700  text-slate-50    transition-all duration-300 hover:p-3'>
-        <div className=' flex justify-center items-center p-1'>
-            <p className=' font-bold  mr-1'> 
-              ID: 
-            </p>
-            <p className='p-1'>
-              {2}
-            </p>
-        </div>
-        <div className=' flex justify-center items-center p-1'>
-            <p className=' font-bold  mr-1'> 
-              FullName:  
-            </p>
-            <p className='p-1'>
-              {3}
-            </p>
-        </div>
-        <div className=' flex justify-center items-center p-1'>
-            <p className=' font-bold mr-1  '> 
-              Age: 
-            </p>
-            <p className='p-1 '>
-              {22}
-            </p>
-        </div>
-        <div className=' flex justify-center items-center p-1'>
-            <p className=' font-bold  mr-1'> 
-              Gender: 
-            </p>
-            <p className='p-1 '>
-              {"f"}
-            </p>
-        </div>
-      </div>
+    <div className='flex  flex-col  justify-start items-center gap-2 p-6 mt-5  overflow-y-scroll 
+          bg-slate-100 rounded-md w-[90%] h-[90%]  relative overflow-hidden  '>
+      {
+        isLoading ? <Spinner size = "xl" className="" /> 
+        :
+        TestAppointmentsList?.map((appointment) => (
+          <SingleTestAppointment 
+            key={appointment.AppointmentId}
+            AppointmentId ={appointment.AppointmentId}
+            AppointmentDate = {appointment.AppointmentDate}
+            PaidFees = {appointment.PaidFees}
+            IsLocked = {appointment.IsLocked}
+          />
+        ))
+      }
     </div>
   )
 }

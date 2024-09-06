@@ -11,6 +11,7 @@ namespace DLVD.App.Features.TestAppointments.Quries.GetTestAppointment
         public DateTime AppointmentDate { get; set; }
         public float PaidFees { get; set; }
         public bool IsLocked { get; set; }
+
     }
 
 }

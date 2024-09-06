@@ -12,7 +12,6 @@ const AllLDL = () => {
     
     <div className='flex  flex-col  justify-start items-center gap-2 p-4  overflow-y-scroll 
           bg-slate-100 rounded-md w-[90%]  relative overflow-hidden '>
-
       {
         isLoading ? <Spinner size = "xl" className="" /> 
         :

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Common;
 using DVLD.App.Interfaces.Persistence;
+using DVLD.Domain.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -23,6 +24,7 @@ namespace DLVD.App.Features.TestAppointments.Quries.GetTestAppointment
         public async Task<Result<PagedList<GetTestAppointmentListResponse>>> Handle(
             GetTestAppointmentRequest request, CancellationToken cancellationToken)
         {
+            
             var testAppointment =  await _unitOfWork.TestAppointmentRepositry
                                                 .GetAllByProjectionAsync<GetTestAppointmentListResponse>
                                                  (
@@ -34,7 +36,7 @@ namespace DLVD.App.Features.TestAppointments.Quries.GetTestAppointment
                                                           PaidFees = s.PaidFees,
                                                       },
                                                       x => x.TestTypeId == request.TestTypeId &&
-                                                           x.LocalDrivingLicenseApplicationId == request.LocalDrivvingLicneseApplicationId,
+                                                           x.LocalDrivingLicenseApplicationId == request.LocalDrivingLicenseApplicationId,
 
                                                     x => x.AppointmentDate
                                                  );

@@ -30,9 +30,9 @@
 //            var isApplicationAdd = await _unitOfWork.ApplicationRepositry.Add(applicationToCreate);
 //            if (!isApplicationAdd)
 //                return Result.Fail("Could Noit Crate ReTake Application");
-        
+
 //            var testAppointmentToCreate = _mapper.Map<TestAppointment>(request);
-           
+
 
 //            var isAppointmentAdded = await _unitOfWork.TestAppointmentRepositry.Add(testAppointmentToCreate);
 

@@ -31,7 +31,7 @@ namespace DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDriverLicense
             var LocalDrivvingLicenseAppDto = _mapper.
                                                 Map<GetLocalDrivvingLicenseDto>(LocalDrivvingLicenseApp);
 
-
+            
             return LocalDrivvingLicenseAppDto;
             
         }

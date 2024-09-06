@@ -19,9 +19,7 @@ export const ApplicationsTypes =  apiSlice.injectEndpoints({
                 }),
 
                 keepUnusedDataFor: Infinity,
-                transformResponse : (QueryReturnValue: ApplicationType[])  => {
-                    console.log("Gg");
-                    
+                transformResponse : (QueryReturnValue: ApplicationType[])  => {                    
                     return QueryReturnValue
                 },
         })

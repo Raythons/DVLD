@@ -8,7 +8,6 @@ export type TestType  = {
     TestTypeTitle:string,
     TestTypeDescription: string,
     TestTypeFees: number,
-
 }
 
 export const TestTypesApi =  apiSlice.injectEndpoints({
@@ -23,7 +22,6 @@ export const TestTypesApi =  apiSlice.injectEndpoints({
                     return QueryReturnValue
                 },
         })
-        // editPerson: builder.mutation<boolean, EditPersonBody>( )
     })
 })
 

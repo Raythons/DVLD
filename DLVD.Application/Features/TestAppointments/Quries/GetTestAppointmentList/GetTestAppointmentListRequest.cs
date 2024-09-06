@@ -12,13 +12,13 @@ namespace DLVD.App.Features.TestAppointments.Quries.GetTestAppointment
     public class GetTestAppointmentRequest: 
         IRequest<Result<PagedList<GetTestAppointmentListResponse>>>
     {
-        public int LocalDrivvingLicneseApplicationId { get; set; }
+        public int LocalDrivingLicenseApplicationId { get; set; }
         public int TestTypeId { get; set; }
 
         public GetTestAppointmentRequest(){ }
-        public GetTestAppointmentRequest(int localDrivvingLicneseApplicationId, int tetsTypeId)
+        public GetTestAppointmentRequest(int localDrivingLicenseApplicationId, int tetsTypeId)
         {
-            LocalDrivvingLicneseApplicationId = localDrivvingLicneseApplicationId;
+            LocalDrivingLicenseApplicationId = localDrivingLicenseApplicationId;
             TestTypeId = tetsTypeId;
         }
     }
