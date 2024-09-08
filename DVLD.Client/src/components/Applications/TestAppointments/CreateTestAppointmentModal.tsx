@@ -11,6 +11,8 @@ import { CreateTestAppointmentRequestParams, useCreateTestAppointmentMutation } 
 import SuccessPopUp from '../../common/SuccessPopUp';
 import CustomError from '../../common/CustomError';
 import { ApiError } from '../../../redux/api/peopleApi';
+import { useSelector } from 'react-redux';
+import { selectAuthToken } from '../../../redux/Slices/authSlice';
 
 
 type props = {
@@ -39,6 +41,7 @@ const CreateTestAppointmentModal = ({
     const {data: LDLApplicationData} = useGetLDLApplicationBriefInfoQuery(LDLApplicationID);
     const {data : ApplicationBasicInfo } = useGetApplicationBasicInfoQuery(ApplicationId);
     const {data: TestTypes , isSuccess: testTypesSuccess} = useGetAllTestTypesQuery({});
+    const useId = useSelector(selectAuthToken);
 
     const [createTestAppointment, {isSuccess, isError, error}] = useCreateTestAppointmentMutation();
 
@@ -65,9 +68,12 @@ const CreateTestAppointmentModal = ({
                                         LocalDrivingLicenseApplicationId:LDLApplicationID,
                                         CreatedByUserId: 1
                                     })
-    })
+    },[TestTypeId, LDLApplicationID])
 
+    console.log(testAppointmentToCreate);
+    
     const handleCreateTestAppointment =  async () => {
+        console.log(testAppointmentToCreate);
         try {
             const s =  await  createTestAppointment(testAppointmentToCreate).unwrap();
             console.log(s);
@@ -81,7 +87,7 @@ const CreateTestAppointmentModal = ({
     const customTheme ={
         popup : {
             root: {
-            inner: " absolute rounded-lg bg-white p-4 shadow-lg -top-[375px] "
+            inner: " absolute rounded-lg bg-white p-4 shadow-lg -top-[375px]"
             },
     }}
 
@@ -128,18 +134,18 @@ const CreateTestAppointmentModal = ({
                 </div>
                     <AlignedPairWithIcon fieldName={"Total Fees"} icon={<BsFillDatabaseFill />} value={testTypeFees}/>
             </div>
-            <Button  onClick={() => handleCreateTestAppointment}  color="blue" className=' self-end'>
+            <Button  onClick={() => handleCreateTestAppointment()}  color="blue" className=' self-end'>
                 Create
             </Button>
-            {
-                isSuccess && !isError ? <SuccessPopUp show = {showSuccessModal}
+            
+            {   isSuccess && !isError && <SuccessPopUp show = {showSuccessModal}
                                                     setShowPopUp={setShowSuccesModal}
                                                     operation='Created'
                                                     creationId={0} 
                                                     type='TestAppointment'/>
-                :
-                <CustomError error={error ? error as ApiError : error} />
             }
+            {isError && <CustomError error={error ? error as ApiError : error} />}    
+            
 
         </Modal.Body>
     </Modal>

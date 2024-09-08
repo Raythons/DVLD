@@ -7,15 +7,12 @@ export const TestAppointmentsEndPoint = "TestAppointments"
 
 export type GetAllPeopleQueryParams = PaginatedQueryParams;
 
-
-
 type GetLDLApplicationTestAppointmentsListResponse = {
     AppointmentId: number
     AppointmentDate: string
     PaidFees: number
     IsLocked: boolean
 } 
-
 
 export type CreateTestAppointmentRequestParams = {
     TestTypeId: number,
@@ -30,6 +27,7 @@ export type GetApplicationTestAppointmentsListParams = {
     testTypeId: number
 }
 
+
 export const TestAppointmentApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getLDLApplicationTestAppointmentsList :  builder.query<GetLDLApplicationTestAppointmentsListResponse[] ,GetApplicationTestAppointmentsListParams>({
@@ -41,7 +39,6 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
                 }
             ),
             transformResponse : (QueryReturnValue: {Response: {Items: GetLDLApplicationTestAppointmentsListResponse[]}} )  => {                
-                console.log(QueryReturnValue.Response.Items);
                 
                 return QueryReturnValue.Response.Items
             },
@@ -59,20 +56,27 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
                 {
                     url: `${TestAppointmentsEndPoint}`,
                     method: "POST",
-                    params
+                    body: params
                 }
             ),
-            transformResponse : (QueryReturnValue: {Response: boolean} )  => {                
+            transformResponse : (QueryReturnValue: {Response: boolean} )  => {    
+                console.log(`response ${QueryReturnValue.Response}`);
+
                 console.log(QueryReturnValue.Response);
                 
                 return QueryReturnValue.Response
             },
             transformErrorResponse: (error) : ApiError  =>{
+                console.log(`error %%%%%`);
+                console.log(error.data);
+                
                 const errorData = handleRtkQueryErrors(error)
                 
                 if(isNumber(error.status)) {
                     errorData.status  = error.status as number;
                 }   
+                console.log(errorData.Reasons);
+
                 return errorData
             },
         }),

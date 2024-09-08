@@ -13,7 +13,6 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
         public DateTime AppointmentDate { get; set; }
         public float PaidFees { get; set; }
         public int CreatedByUserId { get; set; }
-        public int PersonId { get; set; }
         public EnStatus Status { get; } = EnStatus.New;
         public DateTime CreatedAt { get; } = DateTime.Now;
         public DateTime LastStatus { get; } = DateTime.Now;

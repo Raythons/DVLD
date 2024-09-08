@@ -22,7 +22,6 @@ export function isApiError(
   )
 }
 export function handleRtkQueryErrors(error: FetchBaseQueryError): ApiError {
-          console.log(error);
           
           if(error.status ===  "FETCH_ERROR" ){
             return  { 
@@ -47,7 +46,6 @@ export function handleRtkQueryErrors(error: FetchBaseQueryError): ApiError {
           }
           
           const errorData = error.data as MainApiResponse
-          console.log(errorData);
           
           return errorData.Errors[0] as ApiError
 }

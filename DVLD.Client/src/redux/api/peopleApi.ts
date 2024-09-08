@@ -15,10 +15,14 @@ export type GetPersonListData = {
     Gender: string
 }
 
+export type Reason = {
+    Message: string,
+    MetaData : unknown
+}
 export type ApiError = {
     Code?: string,
     Message: string,
-    Reasons: string[],
+    Reasons: Reason[],
     status?: number;
 }
 

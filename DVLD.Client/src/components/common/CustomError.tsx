@@ -18,12 +18,26 @@ const CustomError = ({error}: props) => {
     }
 
 
+    error?.Reasons?.map(message => console.log(message.Message));
+
+
     return (
     <div  className=' flex flex-col justify-center items-center gap-2'>
         <h2 className='text-red-600  text-lg' >{GenerateErrorHeader(error?.status)}</h2>
         <div>
                 {
-                    error !== undefined &&  <p className=' text-sm text-gray-700'>{error?.Message} error Code is : <span className=' text-rose-600'> {`${error?.Code || "NoCode"}`}</span></p>
+                    error !== undefined &&  
+                            <div className=' text-sm text-gray-700'>{error?.Message} error Code is :
+                                <span className=' text-rose-600'> {`${error?.Code || "NoCode"}`}</span>
+                                <p className='text-orange-400 font-bold'>
+                                    Reasons:
+                                    {
+                                        error?.Reasons?.map(reason => <span key={reason.Message[0]}> {reason.Message} <br></br> </span>)
+                                        
+                                    }
+                                </p>
+                            </div>
+                            
                 }
         </div>
     </div>
