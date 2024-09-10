@@ -33,10 +33,12 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
             CancellationToken token
             )
         {
-            bool hasPassedTest = await _testRepositry
-              .HasPassedTestOfType(localDrivingLicenseApplicationId, testTypeId);
+            var LastTestResult = await _testRepositry
+              .LastTestTypeResult(localDrivingLicenseApplicationId, testTypeId);
 
-            return !hasPassedTest;
+            if (LastTestResult == DVLD.Domain.EnTestResult.Pass)
+                return false;
+            return true;
         }
 
         private async Task<bool> DontHaveActiveTest(int localDrivingLicenseApplicationId, 

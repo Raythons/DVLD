@@ -1,4 +1,5 @@
 ﻿using DVLD.Domain;
+using FluentResults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace DLVD.App.Features.Tests.Query.GetTestResult
 {
     public class GetTestResultResponse 
     {
-        EnTestResult result { get; set; } 
+         public EnTestResult  TestResult { get; set; } 
     }
 }

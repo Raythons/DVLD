@@ -7,10 +7,12 @@ import { BsCardText, BsFillDatabaseFill } from 'react-icons/bs';
 import { useGetLDLApplicationBriefInfoQuery } from '../../../redux/api/Applications/LDLApplicationsApi';
 import { useGetApplicationBasicInfoQuery } from '../../../redux/api/Applications/BasicApplicationsApi';
 import { useGetAllTestTypesQuery } from '../../../redux/api/TestTypesApi';
-import { CreateTestAppointmentRequestParams, getLastTestTypeResult, getLastTestTypeResultParams, useCreateTestAppointmentMutation } from '../../../redux/api/TestAppointmentsApi';
+import { CreateTestAppointmentRequestParams, getLastTestTypeResultParams, useCreateTestAppointmentMutation, useGetLastTestTypeResultQuery } from '../../../redux/api/TestAppointmentsApi';
 import SuccessPopUp from '../../common/SuccessPopUp';
 import CustomError from '../../common/CustomError';
 import { ApiError } from '../../../redux/api/peopleApi';
+import { useGetAllApplicationsTypeQuery } from '../../../redux/api/Applications/ApplicationsTypeApi';
+import { EnApplicationTypes } from '../../../enums/applicationTypes';
 
 
 type props = {
@@ -38,13 +40,15 @@ const CreateTestAppointmentModal = ({
     
     const {data: LDLApplicationData} = useGetLDLApplicationBriefInfoQuery(LDLApplicationID);
     const {data : ApplicationBasicInfo } = useGetApplicationBasicInfoQuery(ApplicationId);
-    const {data: TestTypes , isSuccess: testTypesSuccess} = useGetAllTestTypesQuery({});
 
-    const {data: HaveFailureTest, isSuccess: FailureTestSuccess} = useGetLastTestTypeResult({LocalDrivingLicenseApplicationId:LDLApplicationID, TestTypeId } as getLastTestTypeResultParams);
+    const {data: TestTypes , isSuccess: testTypesSuccess} = useGetAllTestTypesQuery({}); 
+    const {data : ApplicationsTypes, isSuccess: applicationsTypesSuccess} =  useGetAllApplicationsTypeQuery({});
+    
+    const {data: HaveFailureTest, isSuccess: FailureTestSuccess} = useGetLastTestTypeResultQuery({LocalDrivingLicenseApplicationId:LDLApplicationID, TestTypeId } as getLastTestTypeResultParams);
 
     const [createTestAppointment, {isSuccess, isError, error}] = useCreateTestAppointmentMutation();
 
-    const [testAppointmentToCreate, setTestAppointmentToCreate] = useState<CreateTestAppointmentRequest>({TestTypeId: 0, LocalDrivingLicenseApplicationId: 1,AppointmentDate:"aas", PaidFees: 0,CreatedByUserId: - 1,});
+    const [testAppointmentToCreate, setTestAppointmentToCreate] = useState<CreateTestAppointmentRequest>({TestTypeId: 0, LocalDrivingLicenseApplicationId: 1,AppointmentDate:"aas", PaidFees: 0,CreatedByUserId: - 1, ApplicationsTypeId: -1});
     const [testTypeFees , setTestTypeFees] = useState(0);
 
     const [showSuccessModal , setShowSuccesModal] = useState<boolean>(false);
@@ -59,7 +63,16 @@ const CreateTestAppointmentModal = ({
                     if(testType.Id == TestTypeId)
                         setTestTypeFees(testType.TestTypeFees)
                 })
-    })
+            if(FailureTestSuccess && applicationsTypesSuccess){
+                    if (HaveFailureTest.testResult == 0){
+                        setTestAppointmentToCreate({...testAppointmentToCreate,
+                            ApplicationsTypeId:  EnApplicationTypes.RetakeTest,
+                            ApplicationTypeFees: ApplicationsTypes.find((appType) => appType.ApplicationTypeId === EnApplicationTypes.RetakeTest)?.ApplicationTypeFees
+                        })
+                    }
+                }
+
+    },[testTypesSuccess, FailureTestSuccess, applicationsTypesSuccess])
 
 
     useEffect (() => {
@@ -129,10 +142,10 @@ const CreateTestAppointmentModal = ({
                 </div>
 
                 <div className='flex - flex-col items-center justify-center'>
-                    <AlignedPairWithIcon fieldName={"R.App.Fees"} icon={<BsFillDatabaseFill />} value={5}/>
+                    <AlignedPairWithIcon fieldName={"R.App.Fees"} icon={<BsFillDatabaseFill />} value={testAppointmentToCreate.PaidFees }/>
                     <AlignedPairWithIcon fieldName={"R.Test.App.ID"} icon={< BsCardText/>} value={"N/A"}/>
                 </div>
-                    <AlignedPairWithIcon fieldName={"Total Fees"} icon={<BsFillDatabaseFill />} value={testTypeFees}/>
+                    <AlignedPairWithIcon fieldName={"Total Fees"} icon={<BsFillDatabaseFill />} value={testAppointmentToCreate.PaidFees + (testAppointmentToCreate.ApplicationTypeFees ? testAppointmentToCreate.ApplicationTypeFees : 0)}/>
             </div>
             <Button  onClick={() => handleCreateTestAppointment()}  color="blue" className=' self-end'>
                 Create
@@ -153,6 +166,4 @@ const CreateTestAppointmentModal = ({
 
 export default CreateTestAppointmentModal
 
-function useGetLastTestTypeResult(arg0: {}): { data: any; isSuccess: any; } {
-    throw new Error('Function not implemented.');
-}
+

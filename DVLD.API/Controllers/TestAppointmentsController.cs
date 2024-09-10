@@ -61,7 +61,6 @@ namespace DVLD.API.Controllers
         
         public async Task<IActionResult> CreateTestAppointment([FromBody] CreateTestAppointmentCommand cmd)
         {
-            Console.WriteLine("WORKED");
             if (!ModelState.IsValid)
                 return BadRequest("");
 
@@ -70,22 +69,12 @@ namespace DVLD.API.Controllers
             else
                 return Unauthorized();
 
-            Console.WriteLine(User.Claims);
-            Console.WriteLine(User.Identity);
-            Console.WriteLine(User);
-
-            //Console.WriteLine(User.Claims[0]);
-
-            Console.WriteLine(User.Claims);
-
-
             var result = await _mediator.Send(cmd);
 
             if(result.IsFailed)
                 return BadRequest(result.ToResultDto());
 
             return Ok(result.ToResultDto());
-
         }
     }
 }

@@ -4,6 +4,7 @@ import { handleRtkQueryErrors } from "../helpers";
 import { isNumber } from "../../utils/isNumber";
 import { ApiError } from "./peopleApi";
 export const TestAppointmentsEndPoint = "TestAppointments"
+export const TestEndPoint = "Tests"
 
 export type GetAllPeopleQueryParams = PaginatedQueryParams;
 
@@ -20,6 +21,8 @@ export type CreateTestAppointmentRequestParams = {
     AppointmentDate: string,
     PaidFees: number,
     CreatedByUserId: number,
+    ApplicationsTypeId?: number,
+    ApplicationTypeFees?: number
 }
 
 export type GetApplicationTestAppointmentsListParams = {
@@ -91,7 +94,7 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
         getLastTestTypeResult :  builder.query<getLastTestTypeResult ,getLastTestTypeResultParams>({
             query: (getLastTestTypeResultParams) => (
                 {
-                    url: `${TestAppointmentsEndPoint}/TestResult`,
+                    url: `${TestEndPoint}/TestResult`,
                     method: "GET",
                     params: getLastTestTypeResultParams
                 }

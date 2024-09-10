@@ -21,10 +21,10 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
             CreateTestAppointmentCommand request,
             CancellationToken cancellationToken)
         {
-            var hasFailedTest = await _unitOfWork.TestRepositry
-                    .HasFailedTest(request.LocalDrivingLicenseApplicationId);
+            var LastTestResult = await _unitOfWork.TestRepositry
+                    .LastTestTypeResult(request.LocalDrivingLicenseApplicationId, request.TestTypeId);
 
-            if (hasFailedTest)
+            if (LastTestResult == DVLD.Domain.EnTestResult.Fail)
                   CreateRetakeApplication(_mapper.Map<Application>(request));
 
             var testAppointment = _mapper.Map<TestAppointment>(request);

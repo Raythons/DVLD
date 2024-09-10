@@ -61,8 +61,9 @@ namespace DVLD.Data.Repositories
             //               && t.TestResult == EnTestResult.Fail)
             //.OrderByDescending(t => t.TestAppointment.AppointmentDate);
 
-
-            return lastTest.TestResult;
+            if (lastTest == null)
+                return EnTestResult.Fail;
+            return lastTest.TestResult; 
         }
 
 

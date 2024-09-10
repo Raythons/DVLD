@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Common;
 using DVLD.App.Interfaces.Persistence;
+using DVLD.Domain;
 using FluentResults;
 using MediatR;
 
@@ -19,9 +20,9 @@ namespace DLVD.App.Features.Tests.Query.GetTestResult
             CancellationToken cancellationToken)
         {
 
+            var testResult = await _unitOfWork.TestRepositry.LastTestTypeResult(request.LocalDrivingLicenseApplicationId, request.TestTypeId);
 
-            var testResult = await _unitOfWork.TestRepositry.All();
-            throw new NotImplementedException();
+            return new GetTestResultResponse() { TestResult = testResult };
         }
     }
 }

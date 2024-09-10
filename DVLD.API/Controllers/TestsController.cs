@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Tests.Command.CreateTestCommand;
 using DLVD.App.Features.Tests.Query.GetTest;
+using DLVD.App.Features.Tests.Query.GetTestResult;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
@@ -31,6 +32,23 @@ namespace DVLD.API.Controllers
 
             return Ok(res.ToResultDto(res.Value));
         }
+
+        [HttpGet]
+        [Route("TestResult/")]
+        public async Task<IActionResult> GetTestResult([FromQuery]  GetTestResultRequest request)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest("Missing An Id");
+
+            var res = await _mediator.Send(request);
+
+            if (res.IsFailed)
+                return BadRequest(res.ToResultDto());
+
+            return Ok(res.ToResultDto(res.Value));
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateTest([FromBody] CreateTestCommand cmd)
         {
