@@ -28,6 +28,14 @@ export type GetApplicationTestAppointmentsListParams = {
 }
 
 
+export type getLastTestTypeResult  = {
+    testResult : number
+}
+
+export type getLastTestTypeResultParams = {
+    LocalDrivingLicenseApplicationId: number,
+    TestTypeId: number
+}
 export const TestAppointmentApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getLDLApplicationTestAppointmentsList :  builder.query<GetLDLApplicationTestAppointmentsListResponse[] ,GetApplicationTestAppointmentsListParams>({
@@ -80,10 +88,33 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
                 return errorData
             },
         }),
+        getLastTestTypeResult :  builder.query<getLastTestTypeResult ,getLastTestTypeResultParams>({
+            query: (getLastTestTypeResultParams) => (
+                {
+                    url: `${TestAppointmentsEndPoint}/TestResult`,
+                    method: "GET",
+                    params: getLastTestTypeResultParams
+                }
+            ),
+            transformResponse : (QueryReturnValue: {Response: getLastTestTypeResult} )  => {                
+                console.log(QueryReturnValue.Response);
+                
+                return QueryReturnValue.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            },
+        }),
     })
 })
 
 export const {
     useGetLDLApplicationTestAppointmentsListQuery,
+    useGetLastTestTypeResultQuery,
     useCreateTestAppointmentMutation
     } = TestAppointmentApi

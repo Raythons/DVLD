@@ -7,12 +7,10 @@ import { BsCardText, BsFillDatabaseFill } from 'react-icons/bs';
 import { useGetLDLApplicationBriefInfoQuery } from '../../../redux/api/Applications/LDLApplicationsApi';
 import { useGetApplicationBasicInfoQuery } from '../../../redux/api/Applications/BasicApplicationsApi';
 import { useGetAllTestTypesQuery } from '../../../redux/api/TestTypesApi';
-import { CreateTestAppointmentRequestParams, useCreateTestAppointmentMutation } from '../../../redux/api/TestAppointmentsApi';
+import { CreateTestAppointmentRequestParams, getLastTestTypeResult, getLastTestTypeResultParams, useCreateTestAppointmentMutation } from '../../../redux/api/TestAppointmentsApi';
 import SuccessPopUp from '../../common/SuccessPopUp';
 import CustomError from '../../common/CustomError';
 import { ApiError } from '../../../redux/api/peopleApi';
-import { useSelector } from 'react-redux';
-import { selectAuthToken } from '../../../redux/Slices/authSlice';
 
 
 type props = {
@@ -41,7 +39,8 @@ const CreateTestAppointmentModal = ({
     const {data: LDLApplicationData} = useGetLDLApplicationBriefInfoQuery(LDLApplicationID);
     const {data : ApplicationBasicInfo } = useGetApplicationBasicInfoQuery(ApplicationId);
     const {data: TestTypes , isSuccess: testTypesSuccess} = useGetAllTestTypesQuery({});
-    const useId = useSelector(selectAuthToken);
+
+    const {data: HaveFailureTest, isSuccess: FailureTestSuccess} = useGetLastTestTypeResult({LocalDrivingLicenseApplicationId:LDLApplicationID, TestTypeId } as getLastTestTypeResultParams);
 
     const [createTestAppointment, {isSuccess, isError, error}] = useCreateTestAppointmentMutation();
 
@@ -62,13 +61,14 @@ const CreateTestAppointmentModal = ({
                 })
     })
 
+
     useEffect (() => {
             setTestAppointmentToCreate({...testAppointmentToCreate,
                                         TestTypeId,
                                         LocalDrivingLicenseApplicationId:LDLApplicationID,
-                                        CreatedByUserId: 1
+                                        PaidFees:  testAppointmentToCreate.PaidFees + testTypeFees
                                     })
-    },[TestTypeId, LDLApplicationID])
+    },[TestTypeId, LDLApplicationID, testTypeFees])
 
     console.log(testAppointmentToCreate);
     
@@ -152,3 +152,7 @@ const CreateTestAppointmentModal = ({
 )}
 
 export default CreateTestAppointmentModal
+
+function useGetLastTestTypeResult(arg0: {}): { data: any; isSuccess: any; } {
+    throw new Error('Function not implemented.');
+}

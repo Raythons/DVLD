@@ -45,16 +45,24 @@ namespace DVLD.Data.Repositories
 
             return hasPassedTest;
         }
-        public async Task<bool> HasFailedTest(int applicationId)
+        public async Task<EnTestResult> LastTestTypeResult(int LocalDrivingLicenseApplicationId, int testTypeId)
         {
 
-            var hasFailedTest = await _dbSet
+            var lastTest = await _dbSet
                                       .Include(t => t.TestAppointment)
-                                      .AnyAsync(t => t.TestAppointment
-                                                     .LocalDrivingLicenseApplicationId == applicationId
-                                                 && t.TestResult == EnTestResult.Fail);
+                                      .OrderByDescending(t => t.TestAppointment.AppointmentDate)
+                                      .FirstOrDefaultAsync(
+                                                           t => t.TestAppointment.LocalDrivingLicenseApplicationId == LocalDrivingLicenseApplicationId &&
+                                                           t.TestAppointment.TestTypeId == testTypeId
+                                                           );
+            //.SingleOrDefaultAsync(t => t.TestAppointment
+            //               .LocalDrivingLicenseApplicationId == LocalDrivingLicenseApplicationId
+            //               && t.TestAppointment.TestType.Id == testTypeId
+            //               && t.TestResult == EnTestResult.Fail)
+            //.OrderByDescending(t => t.TestAppointment.AppointmentDate);
 
-            return hasFailedTest;
+
+            return lastTest.TestResult;
         }
 
 
@@ -93,5 +101,11 @@ namespace DVLD.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        //public async Task<bool> GetLastTestResult(int LocalDrivingLicenseApplicationId, int testType)
+        //{
+        //    var testResult = await _dbSet
+        //                    .Where(t => t.TestAppointment.LocalDrivingLicenseApplicationId == LocalDrivingLicenseApplicationId).ToList()
+        //}
     }
 }

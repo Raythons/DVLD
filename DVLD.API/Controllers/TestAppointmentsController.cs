@@ -44,6 +44,18 @@ namespace DVLD.API.Controllers
             return Ok(result.ToResultDto(result.Value));
         }
 
+        //[HttpGet]
+        //[Route("")]
+        //public async Task<IActionResult> GetTestAppointment([FromQuery] GetTestAppointmentRequest req)
+        //{
+        //    var result = await _mediator.Send(req);
+
+        //    if (result.IsFailed)
+        //        return BadRequest(result.ToResultDto());
+
+        //    return Ok(result.ToResultDto(result.Value));
+        //}
+
         [HttpPost]
         [Route("")]
         
@@ -61,8 +73,6 @@ namespace DVLD.API.Controllers
             Console.WriteLine(User.Claims);
             Console.WriteLine(User.Identity);
             Console.WriteLine(User);
-
-
 
             //Console.WriteLine(User.Claims[0]);
 
