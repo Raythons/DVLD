@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment;
+using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithNewApplication;
 using DLVD.App.Features.TestAppointments.Quries.GetTestAppointment;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
@@ -57,9 +58,8 @@ namespace DVLD.API.Controllers
         //}
 
         [HttpPost]
-        [Route("")]
-        
-        public async Task<IActionResult> CreateTestAppointment([FromBody] CreateTestAppointmentCommand cmd)
+        [Route("")]   
+        public async Task<IActionResult> CreateTestAppointment([FromBody] CreateTestAppointmentRequest cmd)
         {
             if (!ModelState.IsValid)
                 return BadRequest("");

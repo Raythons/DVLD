@@ -38,6 +38,7 @@ namespace DLVD.App.Profiles
         {
 
             // 
+            CreateMap<CreateTestAppointmentRequest, TestAppointment>().ReverseMap();
             CreateMap<CreateTestAppointmentRequest, Application>()
                 .ForMember(
                        dest => dest.PaidFees,

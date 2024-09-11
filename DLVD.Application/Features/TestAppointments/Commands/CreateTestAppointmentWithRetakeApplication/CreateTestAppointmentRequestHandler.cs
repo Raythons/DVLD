@@ -25,39 +25,33 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithN
             CreateTestAppointmentRequest request,
             CancellationToken cancellationToken)
         {
-            HandlePlan(request);
-
-            var applicationToCreate = _mapper.Map<Application>(request);
-
-            var isApplicationAdd = await _unitOfWork.ApplicationRepositry.Add(applicationToCreate);
-
-            if (!isApplicationAdd)
-                return Result.Fail("Could Noit Crate ReTake Application");
-
-            var testAppointmentToCreate = _mapper.Map<TestAppointment>(request);
-
-            var isAppointmentAdded = await _unitOfWork.TestAppointmentRepositry
-                    .Add(testAppointmentToCreate);
-
-            if (!isAppointmentAdded)
-                return Result.Fail("Could Not Crate testAppointment Application");
-
-
-            return true;
+             return  await HandlePlan(request);
         }
 
-        private async static  Task<Result<bool>> HandlePlan(CreateTestAppointmentRequest request)
+        private async Task<Result<bool>> HandlePlan(CreateTestAppointmentRequest request)
         {
-            if (request.ApplicationTypeId == -1)
+            if (request.ApplicationTypeId != null)
                  return  await CreateTestAppointmentWithRetakeApplication(request);
-            
-                return CreateTestAppointment(request);
+            else
+                return await CreateTestAppointment(request);
 
         }
 
-        private static Result<bool> CreateTestAppointment(CreateTestAppointmentRequest request)
+        private   async Task<Result<bool>> CreateTestAppointment(CreateTestAppointmentRequest request)
         {
-            throw new NotImplementedException();
+            var testAppointmentToCreate = _mapper.Map<TestAppointment>(request);
+            var result =  await _unitOfWork.TestAppointmentRepositry.Add(testAppointmentToCreate);
+
+            if (!result)
+                return Result.Fail("Failed To Create Test Appointment ");
+            await _unitOfWork.CompleteAsync();
+            return Result.Ok(result);
+        }
+        private async Task<Result<int>> CreateReTakeApplication(CreateTestAppointmentRequest application)
+        {
+            var applicationToCreate = _mapper.Map<Application>(application);
+            await _unitOfWork.CompleteAsync();
+            return applicationToCreate.Id;
         }
 
         private async  Task<Result<bool>> CreateTestAppointmentWithRetakeApplication(
@@ -67,16 +61,22 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithN
 
             try
             {
-                var applicationToCreate = _mapper.Map<Application>(request);
+                var applicationId = CreateReTakeApplication(request);
 
+                var CreatedSuccessfully =  await CreateTestAppointment(request);
 
+                await _unitOfWork.CommitTrancation();
+
+                return CreatedSuccessfully;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                // USE Logger Insted
+                // TODO
+                Console.WriteLine(ex.ToString());
+                transaction.Rollback();
+                return Result.Fail("Something  UnExpected Happened Please Contact With The Technical Team");
             }
-            return Result.Ok();
         }
     }
 }

@@ -51,7 +51,7 @@ const CreateTestAppointmentModal = ({
     const [testAppointmentToCreate, setTestAppointmentToCreate] = useState<CreateTestAppointmentRequest>({TestTypeId: 0, LocalDrivingLicenseApplicationId: 1,AppointmentDate:"aas", PaidFees: 0,CreatedByUserId: - 1, ApplicationsTypeId: -1});
     const [testTypeFees , setTestTypeFees] = useState(0);
 
-    const [showSuccessModal , setShowSuccesModal] = useState<boolean>(false);
+    const [showSuccessModal , setShowSuccessModal] = useState<boolean>(false);
 
     const handleDateChange = (date: Date) => {
         setTestAppointmentToCreate({...testAppointmentToCreate, AppointmentDate: date.toISOString()})
@@ -89,7 +89,7 @@ const CreateTestAppointmentModal = ({
         console.log(testAppointmentToCreate);
         try {
             const s =  await  createTestAppointment(testAppointmentToCreate).unwrap();
-            console.log(s);
+            setShowSuccessModal(s);
             console.log("it worked");
         } catch (error) {
             console.log(error);
@@ -152,7 +152,7 @@ const CreateTestAppointmentModal = ({
             </Button>
             
             {   isSuccess && !isError && <SuccessPopUp show = {showSuccessModal}
-                                                    setShowPopUp={setShowSuccesModal}
+                                                    setShowPopUp={setShowSuccessModal}
                                                     operation='Created'
                                                     creationId={0} 
                                                     type='TestAppointment'/>

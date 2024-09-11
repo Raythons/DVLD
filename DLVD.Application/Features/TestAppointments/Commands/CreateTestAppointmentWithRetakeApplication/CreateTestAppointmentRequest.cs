@@ -20,11 +20,10 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithN
         public DateTime LastStatus { get; } = DateTime.Now;
 
 
-        public CreateTestAppointmentCommand(
-         int testTypeId, int applicationTypeId,
-         int localDrivingLicenseApplicationId,
-         DateTime appointmentDate, float paidFees,
-         int createdByUserId, int personId, float? applicationTypeFees)
+        public CreateTestAppointmentRequest(
+         int testTypeId, int localDrivingLicenseApplicationId,
+         DateTime appointmentDate, float paidFees, int createdByUserId,
+         int? applicationTypeId, int? personId, float? applicationTypeFees)
         {
             TestTypeId = testTypeId;
             ApplicationTypeId = applicationTypeId;

@@ -1,4 +1,7 @@
 import React from 'react'
+import { IconContext } from 'react-icons';
+import { FaLock } from "react-icons/fa";
+import { FaUnlock } from "react-icons/fa";
 
 
 
@@ -40,8 +43,18 @@ const SingleTestAppointment = ({AppointmentId ,AppointmentDate , PaidFees, IsLoc
             <p className=' font-bold  mr-1'> 
             IsLocked: 
             </p>
-            <p className='p-1 '>
-              {IsLocked}
+            <p className='p-1    '>
+              { 
+                IsLocked 
+                ?
+                <IconContext.Provider  value={{className: "text-red-600"  , size: ""}}>
+                  <FaLock />              
+                </IconContext.Provider>
+                : 
+                <IconContext.Provider  value={{className: "text-green-600"  , size: ""}}>
+                  <FaUnlock />              
+                </IconContext.Provider>
+              }
             </p>
         </div>
       </div>
