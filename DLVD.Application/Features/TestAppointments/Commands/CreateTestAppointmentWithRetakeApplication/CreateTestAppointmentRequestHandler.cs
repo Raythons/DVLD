@@ -12,27 +12,29 @@ using System.Threading.Tasks;
 
 namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithNewApplication
 {
-    public class CreateTestAppointmentWithNewApplicationHandler : BaseHandler,
-        IRequestHandler<CreateTestAppointmentWithNewApplicationCommand, Result<bool>>
+    public class CreateTestAppointmentRequestHandler : BaseHandler,
+        IRequestHandler<CreateTestAppointmentRequest, Result<bool>>
     {
-        public CreateTestAppointmentWithNewApplicationHandler(
+        public CreateTestAppointmentRequestHandler(
             IUnitOfWork unitOfWork,
             IMapper mapper) : base(unitOfWork, mapper)
         {
         }
 
         public async Task<Result<bool>> Handle(
-            CreateTestAppointmentWithNewApplicationCommand request,
+            CreateTestAppointmentRequest request,
             CancellationToken cancellationToken)
         {
+            HandlePlan(request);
+
             var applicationToCreate = _mapper.Map<Application>(request);
 
             var isApplicationAdd = await _unitOfWork.ApplicationRepositry.Add(applicationToCreate);
+
             if (!isApplicationAdd)
                 return Result.Fail("Could Noit Crate ReTake Application");
 
             var testAppointmentToCreate = _mapper.Map<TestAppointment>(request);
-
 
             var isAppointmentAdded = await _unitOfWork.TestAppointmentRepositry
                     .Add(testAppointmentToCreate);
@@ -42,6 +44,39 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithN
 
 
             return true;
+        }
+
+        private async static  Task<Result<bool>> HandlePlan(CreateTestAppointmentRequest request)
+        {
+            if (request.ApplicationTypeId == -1)
+                 return  await CreateTestAppointmentWithRetakeApplication(request);
+            
+                return CreateTestAppointment(request);
+
+        }
+
+        private static Result<bool> CreateTestAppointment(CreateTestAppointmentRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async  Task<Result<bool>> CreateTestAppointmentWithRetakeApplication(
+            CreateTestAppointmentRequest request)
+        {
+            using var transaction = await _unitOfWork.StartTrancation();
+
+            try
+            {
+                var applicationToCreate = _mapper.Map<Application>(request);
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Result.Ok();
         }
     }
 }

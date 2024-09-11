@@ -19,6 +19,7 @@ using DLVD.App.Features.Persons.Commands.UpdatePerson;
 using DLVD.App.Features.Persons.Queires.GetPersonEditDetails;
 using DLVD.App.Features.Persons.Queires.GetPersonsList;
 using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment;
+using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithNewApplication;
 using DLVD.App.Features.Tests.Command.CreateTestCommand;
 using DLVD.App.Features.Tests.Query.GetTest;
 using DLVD.App.Features.Users.Commands.AuthenticateUserCommand;
@@ -35,6 +36,14 @@ namespace DLVD.App.Profiles
 
         public AutoMapperProfile()
         {
+
+            // 
+            CreateMap<CreateTestAppointmentRequest, Application>()
+                .ForMember(
+                       dest => dest.PaidFees,
+                       config => config.MapFrom(src => src.ApplicationTypeFees)
+                       ).ReverseMap();
+
             // => license fees == paid fees
             // applicationId == CreatedByApplicationId
 

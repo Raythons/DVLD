@@ -5,7 +5,7 @@ using MediatR;
 
 namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithNewApplication
 {
-    public class CreateTestAppointmentWithNewApplicationCommand: IRequest<Result<bool>>
+    public class CreateTestAppointmentRequest: IRequest<Result<bool>>
     {
         public int TestTypeId { get; set; }
         public int? ApplicationTypeId { get; set; }
@@ -20,7 +20,7 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithN
         public DateTime LastStatus { get; } = DateTime.Now;
 
 
-        public CreateTestAppointmentWithNewApplicationCommand(
+        public CreateTestAppointmentCommand(
          int testTypeId, int applicationTypeId,
          int localDrivingLicenseApplicationId,
          DateTime appointmentDate, float paidFees,
