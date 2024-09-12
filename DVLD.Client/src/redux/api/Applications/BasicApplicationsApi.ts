@@ -69,5 +69,6 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
 })
 
 export const {
-    useGetApplicationBasicInfoQuery
+    useGetApplicationBasicInfoQuery,
+    useLazyGetApplicationBasicInfoQuery
     } = LDLApplicationsApi

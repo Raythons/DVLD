@@ -50,6 +50,7 @@ namespace DVLD.API.Controllers
         }
 
         [HttpPost]
+        [Route("")]
         public async Task<IActionResult> CreateTest([FromBody] CreateTestCommand cmd)
         {
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { useGetLDLApplicationTestAppointmentsListQuery } from '../../../redux/api/TestAppointmentsApi'
 import SingleTestAppointment from './SingleTestAppointment';
 import { Spinner } from 'flowbite-react';
@@ -9,8 +9,11 @@ import { Spinner } from 'flowbite-react';
 type props  = {
   LDLApplicationID: number,
   testTypeId: number;
+  TestTypeIcon: ReactNode,
+  TestTypeTitle: string
 }
-const AllTestAppointments = ({LDLApplicationID , testTypeId} : props) => {
+
+const AllTestAppointments = ({LDLApplicationID , testTypeId ,TestTypeIcon, TestTypeTitle} : props) => {
 
    const { data : TestAppointmentsList , isLoading } 
    = useGetLDLApplicationTestAppointmentsListQuery({
@@ -27,10 +30,13 @@ const AllTestAppointments = ({LDLApplicationID , testTypeId} : props) => {
         TestAppointmentsList?.map((appointment) => (
           <SingleTestAppointment 
             key={appointment.AppointmentId}
+            LDLApplicationID = {LDLApplicationID}
             AppointmentId ={appointment.AppointmentId}
             AppointmentDate = {appointment.AppointmentDate}
             PaidFees = {appointment.PaidFees}
             IsLocked = {appointment.IsLocked}
+            TestTypeIcon = {TestTypeIcon}
+            TestTypeTitle = {TestTypeTitle}
           />
         ))
       }

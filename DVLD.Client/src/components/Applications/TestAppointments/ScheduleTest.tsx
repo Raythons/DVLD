@@ -97,7 +97,9 @@ const ScheduleTest = () => {
                       /> 
         </div>
 
-        < AllTestAppointments testTypeId={currentTestType.Id} LDLApplicationID={Number(LDLApplicationID)}  />
+        < AllTestAppointments TestTypeIcon = {currentTestType.TestTypeIcon} 
+                            TestTypeTitle = {currentTestType.Type} testTypeId={currentTestType.Id} 
+                            LDLApplicationID={Number(LDLApplicationID)}  />
 
         <div className='flex justify-between items-center  w-[90%] p-4'>
           <span>Records:##</span>

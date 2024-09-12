@@ -3,8 +3,8 @@ import { PaginatedQueryParams } from "../../types/PaginatedQueryParams";
 import { handleRtkQueryErrors } from "../helpers";
 import { isNumber } from "../../utils/isNumber";
 import { ApiError } from "./peopleApi";
+import { TestEndPoint } from "./Tests";
 export const TestAppointmentsEndPoint = "TestAppointments"
-export const TestEndPoint = "Tests"
 
 export type GetAllPeopleQueryParams = PaginatedQueryParams;
 

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { ReactNode, useState } from 'react'
 import { IconContext } from 'react-icons';
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
+import TestAppointmentOperations from './TestAppointmentOperations';
+import { TbDots } from 'react-icons/tb';
 
 
 
@@ -10,8 +12,13 @@ type props =  {
     AppointmentDate: string
     PaidFees: number
     IsLocked: boolean
+    LDLApplicationID: number
+    TestTypeIcon: ReactNode,
+    TestTypeTitle: string
 }
-const SingleTestAppointment = ({AppointmentId ,AppointmentDate , PaidFees, IsLocked}: props) => {
+const SingleTestAppointment = ({AppointmentId, LDLApplicationID, AppointmentDate , PaidFees, IsLocked,TestTypeIcon,TestTypeTitle}: props) => {
+  const [showTestAppointmentOperations, setShowTestAppointmentOperations] = useState<boolean>(false)
+
   return (
     <div className='flex   max-h-full  w-full justify-between items-center p-2 
       rounded-md bg-gray-700  text-slate-50    transition-all duration-300 hover:p-3'>
@@ -56,6 +63,12 @@ const SingleTestAppointment = ({AppointmentId ,AppointmentDate , PaidFees, IsLoc
                 </IconContext.Provider>
               }
             </p>
+            <div className='relative cursor-pointer' onClick={() => setShowTestAppointmentOperations(!showTestAppointmentOperations)} title='Person Config' >
+              <IconContext.Provider value={{className: "hover:text-sky-700 transition-all duration-300", size: "40"}}>
+                <TbDots />
+              </IconContext.Provider>
+              <TestAppointmentOperations show={showTestAppointmentOperations} TestAppointmentId={AppointmentId} TestTypeIcon={TestTypeIcon}   TestTypeTitle= {TestTypeTitle}  LDLApplicationID= {LDLApplicationID} />
+            </div>
         </div>
       </div>
   )
