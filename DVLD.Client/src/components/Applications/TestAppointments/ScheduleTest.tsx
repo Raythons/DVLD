@@ -71,10 +71,13 @@ const ScheduleTest = () => {
   
   return (
     <div  className=" flex flex-col items-center justify-center  w-[100%]">
+      <div className='flex flex-col justify-center items-center gap-3  '>
         <IconContext.Provider  value={{className: "text-sky-700" , size: "120"}}>
-                {currentTestType.TestTypeIcon}
-        </IconContext.Provider>
-        <h2 className=' text-rose-600 text-2xl font-medium'>{currentTestType.Title}</h2>
+                  {currentTestType.TestTypeIcon}
+          </IconContext.Provider>
+          <h2 className=' text-rose-600 text-2xl font-medium'>{currentTestType.Title}</h2>
+      </div>
+    
 
         <DrivingLicenseApplicationInfo  LDLApplicationID = { Number(LDLApplicationID) } />
         <ApplicationBasicInfo  ApplicationID = { isSuccess? ApplicationID : 0 }  />

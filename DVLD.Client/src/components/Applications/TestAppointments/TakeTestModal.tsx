@@ -39,7 +39,7 @@ const TakeTestModal = ({
     const [takeTestRequest, setTakeTestRequest] = useState<TakeTestParams>({} as TakeTestParams);
     const [testResult, setTestResult] = useState<number | null>(takeTestRequest?.TestResult || null); // Initialize based on takeTestRequest
 
-    const [takeTest, {isError, isSuccess: takeTestSuccess, error}] = useTakeTestTestMutation();
+    const [takeTest, {isError, error}] = useTakeTestTestMutation();
 
     const [personName, setPersonName] = useState("");
     

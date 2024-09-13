@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { ClassListBehavior } from '../../Header/MainMenu'
 import { IoIosPaper } from 'react-icons/io'
 import TakeTestModal from './TakeTestModal'
+import { Button } from 'flowbite-react'
 
 
 
@@ -13,6 +14,7 @@ type props = {
     LDLApplicationID: number,
     TestTypeIcon: ReactNode,
     TestTypeTitle: string,
+    isLocked: boolean,
 }
 
 export type  TestAppointmentOperations = {
@@ -22,7 +24,7 @@ export type  TestAppointmentOperations = {
     clickable?: boolean,
 }
 
-const TestAppointmentOperations = ({show, TestAppointmentId, LDLApplicationID, TestTypeIcon, TestTypeTitle} : props) => {
+const TestAppointmentOperations = ({show, TestAppointmentId,  LDLApplicationID, TestTypeIcon, TestTypeTitle ,isLocked} : props) => {
     
     const navigate = useNavigate();
     const [showTakeTestModal, setShowTakeTestModal] = useState<boolean>(false)
@@ -71,7 +73,7 @@ const TestAppointmentOperations = ({show, TestAppointmentId, LDLApplicationID, T
 
     
     return (
-        <ul className={`absolute  ${show ? "flex" : "hidden"} flex-col justify-center items-center
+        <ul  className={`absolute  ${show ? "flex" : "hidden"} flex-col justify-center items-center
                 absolute  transition  duration-500 right-10 top-[-11px]  rounded-md   bg-slate-50    border-solid border-2`}>
             {
                 TestAppointmentOperations.map((operation) => (
@@ -84,9 +86,9 @@ const TestAppointmentOperations = ({show, TestAppointmentId, LDLApplicationID, T
                         gap-1  border-solid border-b  border-cyan-400 flex-nowrap hover:bg-blue-500 
                         min-w-full`}>
                         {operation.OperationIcon}
-                        <button  onClick = {operation.clickHandler} type="button" className="text-lg  min-w-32  justify-self-start">
+                        <Button color={"blue"} disabled = {isLocked}  onClick = {operation.clickHandler} type="button" className="text-lg  min-w-32  justify-self-start">
                             {operation.OperationName}
-                        </button>
+                        </Button>
                     </li>
                 ))
             }

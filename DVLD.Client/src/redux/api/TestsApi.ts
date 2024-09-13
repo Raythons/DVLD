@@ -13,7 +13,7 @@ export type TakeTestParams = {
     Notes: string;
 }
 
-export const TestAppointmentApi =  apiSlice.injectEndpoints({
+export const TestApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         TakeTestTest :  builder.mutation<boolean ,TakeTestParams>({
             query: (body) => (
@@ -23,6 +23,7 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
                     body
                 }
             ),
+            invalidatesTags: [`TestAppointments`, `Tests`, `AllLDLApplications`],
             transformResponse : (QueryReturnValue: {Response: boolean} )  => {    
                 console.log(`response ${QueryReturnValue.Response}`);
                 console.log(QueryReturnValue.Response);
@@ -48,4 +49,4 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
 
 export const {
         useTakeTestTestMutation
-    } = TestAppointmentApi
+    } = TestApi

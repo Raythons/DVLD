@@ -67,7 +67,7 @@ const SingleTestAppointment = ({AppointmentId, LDLApplicationID, AppointmentDate
               <IconContext.Provider value={{className: "hover:text-sky-700 transition-all duration-300", size: "40"}}>
                 <TbDots />
               </IconContext.Provider>
-              <TestAppointmentOperations show={showTestAppointmentOperations} TestAppointmentId={AppointmentId} TestTypeIcon={TestTypeIcon}   TestTypeTitle= {TestTypeTitle}  LDLApplicationID= {LDLApplicationID} />
+              <TestAppointmentOperations isLocked ={IsLocked} show={showTestAppointmentOperations} TestAppointmentId={AppointmentId} TestTypeIcon={TestTypeIcon}   TestTypeTitle= {TestTypeTitle}  LDLApplicationID= {LDLApplicationID} />
             </div>
         </div>
       </div>

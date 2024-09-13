@@ -90,12 +90,10 @@ const CreateTestAppointmentModal = ({
         try {
             const s =  await  createTestAppointment(testAppointmentToCreate).unwrap();
             setShowSuccessModal(s);
-            console.log("it worked");
         } catch (error) {
             console.log(error);
         }
     }
-
 
     const customTheme ={
         popup : {
@@ -156,6 +154,7 @@ const CreateTestAppointmentModal = ({
                                                     operation='Created'
                                                     creationId={0} 
                                                     type='TestAppointment'/>
+                
             }
             {isError && <CustomError error={error ? error as ApiError : error} />}    
             

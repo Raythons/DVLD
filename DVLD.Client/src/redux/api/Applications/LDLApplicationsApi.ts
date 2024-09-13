@@ -48,6 +48,7 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
                     url: `${LDLApplicationsEndPoint}/${LDLApplicationId}`,
                 }
             ),
+            providesTags: ["ApplicationBriefInfo"],
             transformResponse : (QueryReturnValue: {Response: GetLDLApplicationBriefInfoResponse})  => {
                 return QueryReturnValue.Response
             },
@@ -76,31 +77,12 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
                 return errorData
             }
         }),
-        // getPersonEditDetails :  builder.query<getPersonEditDetailsResponse, number>({
-        //     query: (personId) => (
-        //         {
-        //             url: `${PeopleEndPoint}/to-edit/${personId}`,
-        //         }
-                
-        //     ),
-        //     providesTags: [`Person`],
-        //     transformResponse : (QueryReturnValue: {Response: getPersonEditDetailsResponse})  => {                
-        //         return QueryReturnValue.Response
-        //     },
-        //     transformErrorResponse: (error) : ApiError  =>{
-        //         const errorData = handleRtkQueryErrors(error)
-                
-        //         if(isNumber(error.status)) {
-        //             errorData.status  = error.status as number;
-        //         }   
-        //         return errorData
-        //     }
-        // }),
         getAllLDLApplications: builder.query<GetLDlListData[], GetAllLDLAppQueryParams>({
             query: (getALLQueryParams) => ({
                 url: `${LDLApplicationsEndPoint}/`,
                 params: getALLQueryParams,
             }),
+            providesTags: ["AllLDLApplications"],
             transformResponse: (response: {Response:  {Items: GetLDlListData[] }}) => {
                 return response.Response.Items
             },
@@ -147,28 +129,6 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
                 return errorData
             },
         }),
-        // deletePerson: builder.mutation<boolean, number>({
-        //     query: (personId) => (
-                
-        //         {
-        //             url: `${PeopleEndPoint}/${personId}`,
-        //             method: `Delete`,   
-        //         }
-        //     ),
-        //     invalidatesTags: [`AllPeople`, `Person`],
-        //     transformResponse : (baseQueryReturnValue) => {
-        //         return baseQueryReturnValue as boolean
-        //     },
-        //     transformErrorResponse: (error) =>  {
-        //         const errorData = handleRtkQueryErrors(error)
-                
-        //         if(isNumber(error.status)) {
-        //             errorData.status  = error.status as number;
-        //         }                  
-        //         return errorData;
-        //     },
-        // })
-        // editPerson: builder.mutation<boolean, EditPersonBody>( )
     })
 })
 

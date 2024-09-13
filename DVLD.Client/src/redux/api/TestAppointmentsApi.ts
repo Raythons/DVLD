@@ -53,6 +53,7 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
                 
                 return QueryReturnValue.Response.Items
             },
+            providesTags: ["TestAppointments", `Tests`, ],
             transformErrorResponse: (error) : ApiError  =>{
                 const errorData = handleRtkQueryErrors(error)
                 
@@ -70,12 +71,9 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
                     body: params
                 }
             ),
-            transformResponse : (QueryReturnValue: {Response: boolean} )  => {    
-                console.log(`response ${QueryReturnValue.Response}`);
-
-                console.log(QueryReturnValue.Response);
-                
-                return QueryReturnValue.Response
+            invalidatesTags: [`TestAppointments` , `Tests`],
+            transformResponse : (QueryReturnValue: {IsSuccess: boolean} )  => {  
+                return QueryReturnValue.IsSuccess
             },
             transformErrorResponse: (error) : ApiError  =>{
                 console.log(`error %%%%%`);
