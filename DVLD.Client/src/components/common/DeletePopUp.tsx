@@ -27,7 +27,6 @@ const DeletePopUp = ({show, type, deletionId, isLoading, isError, error, setShow
         setShowResultPopUp(!showResultPopUp)
     }
     
-    console.log("Render Values");
     
     
     const [showResultPopUp, setShowResultPopUp] = useState<boolean>(false)
@@ -49,7 +48,7 @@ const DeletePopUp = ({show, type, deletionId, isLoading, isError, error, setShow
                             </div>
                         </div>
                     }
-                    { isError && !isLoading
+                    {isError && !isLoading
                         ?  
                             <CustomError error={error ? error as ApiError : error} />
                         :

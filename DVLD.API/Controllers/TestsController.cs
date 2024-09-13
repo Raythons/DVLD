@@ -6,12 +6,13 @@ using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace DVLD.API.Controllers
 {
-    public class TestsController : BaseControllerr
+    public class TestController : BaseControllerr
     {
-        public TestsController(
+        public TestController(
             IMapper mapper, 
             IMediator mediator) : base(mapper, mediator)
         {
@@ -53,6 +54,11 @@ namespace DVLD.API.Controllers
         [Route("")]
         public async Task<IActionResult> CreateTest([FromBody] CreateTestCommand cmd)
         {
+
+            if (int.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value, out var userId))
+                cmd.CreatedByUserId = userId;
+            else
+                return Unauthorized();
 
             if (!ModelState.IsValid)
                 return BadRequest("Missing An Id");

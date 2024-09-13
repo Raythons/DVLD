@@ -20,7 +20,6 @@ export type  TestAppointmentOperations = {
     OperationIcon: React.ReactNode
     clickHandler?: MouseEventHandler<HTMLElement>,
     clickable?: boolean,
- 
 }
 
 const TestAppointmentOperations = ({show, TestAppointmentId, LDLApplicationID, TestTypeIcon, TestTypeTitle} : props) => {
@@ -91,7 +90,7 @@ const TestAppointmentOperations = ({show, TestAppointmentId, LDLApplicationID, T
                     </li>
                 ))
             }
-            <TakeTestModal TestTypeIcon = {TestTypeIcon} TestTypeTitle = {TestTypeTitle} LDLApplicationID={LDLApplicationID} showModal = {showTakeTestModal}  setShowModal={setShowTakeTestModal}/> 
+            <TakeTestModal  TestAppointmentId={TestAppointmentId} TestTypeIcon = {TestTypeIcon} TestTypeTitle = {TestTypeTitle as "Vision" | "Written" | "Street"}    LDLApplicationID={LDLApplicationID}  showModal = {showTakeTestModal}  setShowModal={setShowTakeTestModal}/> 
         </ul>
     )
 }

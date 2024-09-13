@@ -2,6 +2,7 @@
 using DLVD.App.Features.Persons.Commands.CreatePerson;
 using DLVD.App.Features.Persons.Commands.UpdatePerson;
 using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment;
+using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithNewApplication;
 using DLVD.App.Features.Users.Commands.CreateUser;
 using DLVD.App.Features.Users.Commands.UpdateUser;
 using FluentResults;
@@ -28,7 +29,8 @@ namespace DLVD.App
                 // Start Of User Registeration
                 .AddValidation<CreateUserCommand, Result<bool>>()
                 .AddValidation<UpdateUserCommand, Result<bool>>()
-                .AddValidation<CreateTestAppointmentCommand, Result<bool>>()
+                //.AddValidation<CreateTestAppointmentCommand, Result<bool>>()
+                .AddValidation<CreateTestAppointmentRequest, Result<bool>>()
                 //.AddValidation<DeleteUserCommand, Result<bool>>()
                 // 
                 );

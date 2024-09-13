@@ -15,7 +15,7 @@ export type TakeTestParams = {
 
 export const TestAppointmentApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        createTestAppointment :  builder.mutation<boolean ,TakeTestParams>({
+        TakeTestTest :  builder.mutation<boolean ,TakeTestParams>({
             query: (body) => (
                 {
                     url: `${TestEndPoint}`,
@@ -47,5 +47,5 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
 })
 
 export const {
-        useCreateTestAppointmentMutation
+        useTakeTestTestMutation
     } = TestAppointmentApi

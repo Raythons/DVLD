@@ -1,12 +1,13 @@
-﻿using DVLD.App.Interfaces.Persistence;
-using DVLD.Domain.Entities;
+﻿using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment;
+using DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithNewApplication;
+using DVLD.App.Interfaces.Persistence;
 using FluentValidation;
 
 
-namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
+namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointmentWithRetakeApplication
 {
-    public class CreateTestAppointmentValidator:
-        AbstractValidator<CreateTestAppointmentCommand>
+    public class CreateTestAppointmentValidator :
+         AbstractValidator<CreateTestAppointmentRequest>
     {
         private readonly ITestAppointmentRepositry _testAppointmentRepositry;
         private readonly ITestRepositry _testRepositry;
@@ -21,7 +22,7 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
                 .GreaterThan(DateTime.Now);
 
             RuleFor(t => t.LocalDrivingLicenseApplicationId)
-                .MustAsync(async (cmd, ldla ,c)=>await DidntPassedTheTest(cmd.TestTypeId,ldla,c))
+                .MustAsync(async (cmd, ldla, c) => await DidntPassedTheTest(cmd.TestTypeId, ldla, c))
                 .WithMessage("Person Already Passed the tets cannot make An Apointment to It")
 
                 .MustAsync(DontHaveActiveTest).WithMessage($"There Is Already An Active TestAppointment.");
@@ -29,7 +30,7 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
 
         private async Task<bool> DidntPassedTheTest(
             int testTypeId,
-            int localDrivingLicenseApplicationId,       
+            int localDrivingLicenseApplicationId,
             CancellationToken token
             )
         {
@@ -41,7 +42,7 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
             return true;
         }
 
-        private async Task<bool> DontHaveActiveTest(int localDrivingLicenseApplicationId, 
+        private async Task<bool> DontHaveActiveTest(int localDrivingLicenseApplicationId,
             CancellationToken token)
         {
             bool hasActiveTest = await _testAppointmentRepositry
@@ -49,6 +50,6 @@ namespace DLVD.App.Features.TestAppointments.Commands.CreateTestAppointment
 
             return !hasActiveTest;
         }
-        
+
     }
 }

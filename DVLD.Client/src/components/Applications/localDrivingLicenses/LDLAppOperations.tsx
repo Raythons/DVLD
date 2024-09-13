@@ -17,6 +17,7 @@ import { IoNewspaperOutline } from "react-icons/io5";
 import SubOperations from './SubOperations'
 import { ClassListBehavior } from '../../Header/MainMenu'
 import { FaCarAlt } from "react-icons/fa";
+import { Button } from 'flowbite-react'
 
 
 type props = {
@@ -110,13 +111,13 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
                 {
                     OperationName: "Schedule Written Test",
                     OperationIcon: <IoNewspaperOutline />,
-                    clickHandler: () => {console.log('Schedule Written Test')},
+                    clickHandler: () => {navigate(`Tests/Add/${AppId}` , {state: {title:"Written"},  })},
                     clickable: true
                 },
                 {
                     OperationName: "Schedule Street Test",
                     OperationIcon: <FaCarAlt />,
-                    clickHandler: () => {console.log('Schedule Street Test')},
+                    clickHandler: () => {navigate(`Tests/Add/${AppId}` , {state: {title:"Street"},})},
                     clickable: true
                 }
             ]
@@ -124,26 +125,31 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
         {
             OperationName: "Issue License",
             OperationIcon:  <GoIssueClosed /> ,
-            clickHandler: () => {console.log("Phone Clicked")}
+            clickHandler: () => {console.log("Phone Clicked")},
+            clickable: passedTests  === 4,
         },
         {
             OperationName: "Show License",
             OperationIcon:  <TbLicense /> ,
-            clickHandler: () => {console.log("Phone Clicked")}
+            clickHandler: () => {console.log("Phone Clicked")},
+            clickable: true
         },
         {
             OperationName: "License History",
             OperationIcon:  <MdOutlineManageHistory /> ,
-            clickHandler: () => {console.log("Phone Clicked")}
+            clickHandler: () => {console.log("Phone Clicked")},
+            clickable: true
+
         },
     ]
-
-
+    
+    
     return (
         <ul className={`absolute  ${show ? "flex" : "hidden"} flex-col justify-center items-center
                 absolute  transition  duration-500 right-10 top-[-11px]  rounded-md   bg-slate-50    border-solid border-2`}>
             {
                 LDLApplicationOperations.map((operation) => (
+                    
                     <li  key={operation.OperationName} 
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
@@ -153,14 +159,15 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
                         gap-1  border-solid border-b  border-cyan-400 flex-nowrap hover:bg-blue-500 
                         min-w-full`}>
                         {operation.OperationIcon}
-                        <button  onClick = {operation.clickHandler} type="button" className="text-lg  min-w-32  justify-self-start">
+                        <Button color={"blue"} disabled = {!operation.clickable && operation.OperationName.split(" ")[0].toLocaleLowerCase() === "issue"}  onClick = {operation.clickHandler} type="button" className="text-lg  min-w-32  justify-self-start">
                             {operation.OperationName}
-                        </button>
+                        </Button>
                         {
                             operation.subOperations ? 
                             <SubOperations operations = {operation.subOperations} passedTests = {passedTests} />
                             : <></>
                         }
+                        
                     </li>
                 ))
             }

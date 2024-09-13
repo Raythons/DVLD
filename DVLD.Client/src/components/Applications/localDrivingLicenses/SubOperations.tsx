@@ -26,7 +26,6 @@ const SubOperations = ({operations, passedTests} : props) => {
     }
   };
 
-  console.log(passedTests);
   
   return (
     <menu className=" absolute right-[154px] right-  hidden  top-[50%] rounded-md   bg-slate-50  flex-col  border-solid border-2">
