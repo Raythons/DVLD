@@ -32,7 +32,7 @@ export type GetApplicationTestAppointmentsListParams = {
 
 
 export type getLastTestTypeResult  = {
-    testResult : number
+    TestResult : number
 }
 
 export type getLastTestTypeResultParams = {
@@ -97,6 +97,7 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
                     params: getLastTestTypeResultParams
                 }
             ),
+            providesTags: [`ApplicationBriefInfo`, `Tests`, `TestAppointments`],
             transformResponse : (QueryReturnValue: {Response: getLastTestTypeResult} )  => {                
                 console.log(QueryReturnValue.Response);
                 

@@ -27,7 +27,7 @@ type State =  {
 
 const ScheduleTest = () => {
 
-  const [currentTestType, setCurrentTestType] = useState<TestTypeInfo>({Id: 1, Type :"Vision" ,Title: "Vision Test TestAppointment" , TestTypeIcon : <FaEye /> })
+  const [currentTestType, setCurrentTestType] = useState<TestTypeInfo>({} as TestTypeInfo)
   const TestTypesData  : TestTypeInfo[]=  
   [
     {
@@ -52,7 +52,10 @@ const ScheduleTest = () => {
 
   const {LDLApplicationID} = useParams();
   const Location = useLocation()
+  console.log(Location.state);
+
   const state = Location.state as State ?? "Vision"
+  console.log(state);
   
   const {data : ApplicationID, isSuccess} = useGetLDLApplicationIdQuery(Number(LDLApplicationID));
   
@@ -89,7 +92,7 @@ const ScheduleTest = () => {
                 <TbPlaylistAdd />
               </IconContext.Provider>
             </button>
-            <CreateTestAppointmentModal 
+            {currentTestType.Id && <CreateTestAppointmentModal 
                       showModal={showCreateTestAppointmentModal}
                       setShowModal = {setShowCreateTestAppointmentModal}
                       LDLApplicationID = {Number(LDLApplicationID)}
@@ -97,8 +100,8 @@ const ScheduleTest = () => {
                       TestAppointmentIcon = {currentTestType.TestTypeIcon}
                       TestTypeId={currentTestType.Id}
                       TestTypeTitle = {currentTestType.Type}
-                      /> 
-        </div>
+                      /> }
+        </div> 
 
         < AllTestAppointments TestTypeIcon = {currentTestType.TestTypeIcon} 
                             TestTypeTitle = {currentTestType.Type} testTypeId={currentTestType.Id} 

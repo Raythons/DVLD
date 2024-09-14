@@ -43,6 +43,9 @@ const CreateTestAppointmentModal = ({
 
     const {data: TestTypes , isSuccess: testTypesSuccess} = useGetAllTestTypesQuery({}); 
     const {data : ApplicationsTypes, isSuccess: applicationsTypesSuccess} =  useGetAllApplicationsTypeQuery({});
+    console.log(TestTypes);
+    console.log(ApplicationsTypes);
+    
     
     const {data: HaveFailureTest, isSuccess: FailureTestSuccess} = useGetLastTestTypeResultQuery({LocalDrivingLicenseApplicationId:LDLApplicationID, TestTypeId } as getLastTestTypeResultParams);
 
@@ -58,19 +61,26 @@ const CreateTestAppointmentModal = ({
     }
 
     useEffect(() => {
+        console.log("Worked");
             if(testTypesSuccess)
                 TestTypes.map((testType) => {
                     if(testType.Id == TestTypeId)
                         setTestTypeFees(testType.TestTypeFees)
                 })
+            console.log(FailureTestSuccess);
+            console.log(applicationsTypesSuccess);
+                
+
             if(FailureTestSuccess && applicationsTypesSuccess){
-                    if (HaveFailureTest.testResult == 0){
+                console.log(HaveFailureTest.TestResult);
+                
+                    if (HaveFailureTest.TestResult == 0){
                         setTestAppointmentToCreate({...testAppointmentToCreate,
                             ApplicationsTypeId:  EnApplicationTypes.RetakeTest,
                             ApplicationTypeFees: ApplicationsTypes.find((appType) => appType.ApplicationTypeId === EnApplicationTypes.RetakeTest)?.ApplicationTypeFees
                         })
                     }
-                }
+                }              
 
     },[testTypesSuccess, FailureTestSuccess, applicationsTypesSuccess])
 
@@ -83,7 +93,9 @@ const CreateTestAppointmentModal = ({
                                     })
     },[TestTypeId, LDLApplicationID, testTypeFees])
 
-    console.log(testAppointmentToCreate);
+    console.log(testAppointmentToCreate.PaidFees);
+    console.log(testAppointmentToCreate.ApplicationTypeFees);
+
     
     const handleCreateTestAppointment =  async () => {
         console.log(testAppointmentToCreate);
@@ -134,7 +146,7 @@ const CreateTestAppointmentModal = ({
             </div>
 
             
-            <div className='flex  relative items-center justify-between  border-solid w-[90%] p-3 border-gray-500 border-2 rounded-md gap-3  mt-4'>
+            <div className= {`flex ${!testAppointmentToCreate.ApplicationTypeFees  ? " opacity-50": ""} relative items-center justify-between  border-solid w-[90%] p-3 border-gray-500 border-2 rounded-md gap-3  mt-4`}>
                 <div className = 'absolute -top-4 left-4  border-white bg-white border-solid  border-2'>
                     Retake Test Info
                 </div>

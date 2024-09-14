@@ -23,7 +23,7 @@ export const TestApi =  apiSlice.injectEndpoints({
                     body
                 }
             ),
-            invalidatesTags: [`TestAppointments`, `Tests`, `AllLDLApplications`],
+            invalidatesTags: [`TestAppointments`, `Tests`, `AllLDLApplications`, `ApplicationBriefInfo`],
             transformResponse : (QueryReturnValue: {Response: boolean} )  => {    
                 console.log(`response ${QueryReturnValue.Response}`);
                 console.log(QueryReturnValue.Response);
