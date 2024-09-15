@@ -28,6 +28,7 @@ namespace DVLD.App.Interfaces.Persistence
 
         public Task<IEnumerable<LocalDrivingLicenseApplication>> GetPaginated(int Page);
         public Task<LocalDrivingLicenseApplication?> GetById(int LocalDrivingLicenseApplicationId);
+        public Task<int> GetLicenseClassId (int LocalDrivingLicenseApplicationId);
         public Task<bool> Add(LocalDrivingLicenseApplication entity);
         public Task<bool> Update(LocalDrivingLicenseApplication entity);
         public Task<bool> Update(int id);

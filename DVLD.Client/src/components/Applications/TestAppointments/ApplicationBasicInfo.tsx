@@ -25,8 +25,8 @@ const ApplicationBasicInfo = ( {ApplicationID}: props ) => {
     ?
         <Spinner />
     : 
-    <div className='flex relative justify-center items-between flex-col gap-3 border-solid border-gray-500 border-2 w-[55%]   p-6  mt-6 rounded-md '>
-        <div className = 'absolute -top-4 left-4  border-slate-200 bg-slate-200 border-solid  border-2 '>
+    <div className='flex relative justify-center items-between flex-col gap-3 border-solid border-gray-500 border-2 w-[80%]   p-6  mt-6 rounded-md '>
+        <div className = 'absolute -top-4 left-4  border-slate-200 bg-slate-200 border-solid  border-2 w-[95%] '>
                 Basic Application Info
         </div>
     {
@@ -34,7 +34,7 @@ const ApplicationBasicInfo = ( {ApplicationID}: props ) => {
     }
         <div className='flex  justify-between  items-start  '>
             <div className='flex flex-col justify-center items-center ' >
-                <AlignedPairWithIcon fieldName='ID' icon = {<RxIdCard />} value = {ApplicationBasicInfo?.Id} />
+                <AlignedPairWithIcon  fieldName='ID' icon = {<RxIdCard />} value = {ApplicationBasicInfo?.Id} />
                 <AlignedPairWithIcon fieldName='Status' icon = {<BsCardText />} value = {ApplicationBasicInfo?.Status} />
                 <AlignedPairWithIcon fieldName='Fees' icon = {<BsFillDatabaseFill />} value = {ApplicationBasicInfo?.PaidFees} />
                 <AlignedPairWithIcon fieldName='Type' icon = {<FaClipboardQuestion />} value = {ApplicationBasicInfo?.ApplicationTypeTitle} />

@@ -89,9 +89,9 @@ const TakeTestModal = ({
     }
 
     return (
-        <Modal  show={showModal} size="2xl" popup onClose={() => setShowModal(false)}>
+        <Modal className=' bg-slate-200'  show={showModal} size="2xl" popup onClose={() => setShowModal(false)}>
             <Modal.Header/>
-            <Modal.Body className='flex flex-col justify-center items-center gap-3 p-14'>
+            <Modal.Body className='flex flex-col justify-center items-center gap-3 p-14 bg-slate-200'>
                 <div className='flex flex-col items-center justify-center relative border-solid w-[90%] border-gray-500 border-2 rounded-md gap-3 mt-20'>
                     <div className = 'absolute -top-4 left-4  border-white bg-white border-solid  border-2'>
                         {TestTypeTitle} Test 

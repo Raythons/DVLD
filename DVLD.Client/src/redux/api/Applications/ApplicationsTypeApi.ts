@@ -17,7 +17,7 @@ export const ApplicationsTypes =  apiSlice.injectEndpoints({
                     url: `${ApplicationTypeEndPoint}`,
                     method: "GET"
                 }),
-
+                providesTags: ['ApplicationBriefInfo', 'TestAppointments'],
                 keepUnusedDataFor: Infinity,
                 transformResponse : (QueryReturnValue: ApplicationType[])  => {                    
                     return QueryReturnValue

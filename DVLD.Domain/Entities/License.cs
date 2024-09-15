@@ -17,7 +17,7 @@ public class License
     public DateTime ExpirationDate { get; set; }
     public string Notes { get; set; }
     public float PaidFees { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
     public string IssueReason { get; set; }
     public int CreatedByUserId { get; set; }
     public User User { get; set; }

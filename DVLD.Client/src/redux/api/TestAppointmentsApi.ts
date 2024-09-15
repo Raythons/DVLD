@@ -97,7 +97,8 @@ export const TestAppointmentApi =  apiSlice.injectEndpoints({
                     params: getLastTestTypeResultParams
                 }
             ),
-            providesTags: [`ApplicationBriefInfo`, `Tests`, `TestAppointments`],
+            keepUnusedDataFor: 1,
+            providesTags: [`ApplicationBriefInfo`, `Tests`, `TestAppointments`, 'AllLDLApplications'],
             transformResponse : (QueryReturnValue: {Response: getLastTestTypeResult} )  => {                
                 console.log(QueryReturnValue.Response);
                 

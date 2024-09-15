@@ -55,18 +55,12 @@ namespace DVLD.Data.Repositories
                                                            t => t.TestAppointment.LocalDrivingLicenseApplicationId == LocalDrivingLicenseApplicationId &&
                                                            t.TestAppointment.TestTypeId == testTypeId
                                                            );
-            //.SingleOrDefaultAsync(t => t.TestAppointment
-            //               .LocalDrivingLicenseApplicationId == LocalDrivingLicenseApplicationId
-            //               && t.TestAppointment.TestType.Id == testTypeId
-            //               && t.TestResult == EnTestResult.Fail)
-            //.OrderByDescending(t => t.TestAppointment.AppointmentDate);
+   
 
             if (lastTest == null)
-                return EnTestResult.Fail;
+                return EnTestResult.NotTaken;
             return lastTest.TestResult; 
         }
-
-
         public Task<IEnumerable<Test>> All()
         {
             throw new NotImplementedException();

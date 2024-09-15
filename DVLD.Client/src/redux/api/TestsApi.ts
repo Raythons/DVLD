@@ -39,7 +39,6 @@ export const TestApi =  apiSlice.injectEndpoints({
                     errorData.status  = error.status as number;
                 }   
                 console.log(errorData.Reasons);
-
                 return errorData
             },
         }),

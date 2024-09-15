@@ -18,6 +18,7 @@ import SubOperations from './SubOperations'
 import { ClassListBehavior } from '../../Header/MainMenu'
 import { FaCarAlt } from "react-icons/fa";
 import { Button } from 'flowbite-react'
+import IssueLicenseModal from '../../Liccense/IssueLicenseModal'
 
 
 type props = {
@@ -125,7 +126,7 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
         {
             OperationName: "Issue License",
             OperationIcon:  <GoIssueClosed /> ,
-            clickHandler: () => {console.log("Phone Clicked")},
+            clickHandler: () => {setIssueLicenseModal(!issueLicenseModal)},
             clickable: passedTests  === 4,
         },
         {
@@ -142,7 +143,7 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
 
         },
     ]
-    
+    const [issueLicenseModal, setIssueLicenseModal] = useState<boolean>(false)
     
     return (
         <ul className={`absolute  ${show ? "flex" : "hidden"} flex-col justify-center items-center
@@ -167,7 +168,6 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
                             <SubOperations operations = {operation.subOperations} passedTests = {passedTests} />
                             : <></>
                         }
-                        
                     </li>
                 ))
             }
@@ -178,6 +178,11 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
                 error={error as ApiError}
                 setShowPopUp={setShowDeletePopUp} type='Person'
                 mutation = {updateLDLApplication}/>
+            <IssueLicenseModal 
+                        showModal = {issueLicenseModal}
+                        setShowModal={setIssueLicenseModal}
+                        LDLApplicationID={AppId}
+                    />
         </ul>
     )
 }

@@ -38,14 +38,11 @@ const CreateTestAppointmentModal = ({
     } :props) => {
     
     
-    const {data: LDLApplicationData} = useGetLDLApplicationBriefInfoQuery(LDLApplicationID);
+    const {data: LDLApplicationData} =   useGetLDLApplicationBriefInfoQuery(LDLApplicationID);
     const {data : ApplicationBasicInfo } = useGetApplicationBasicInfoQuery(ApplicationId);
 
     const {data: TestTypes , isSuccess: testTypesSuccess} = useGetAllTestTypesQuery({}); 
     const {data : ApplicationsTypes, isSuccess: applicationsTypesSuccess} =  useGetAllApplicationsTypeQuery({});
-    console.log(TestTypes);
-    console.log(ApplicationsTypes);
-    
     
     const {data: HaveFailureTest, isSuccess: FailureTestSuccess} = useGetLastTestTypeResultQuery({LocalDrivingLicenseApplicationId:LDLApplicationID, TestTypeId } as getLastTestTypeResultParams);
 
@@ -61,44 +58,38 @@ const CreateTestAppointmentModal = ({
     }
 
     useEffect(() => {
-        console.log("Worked");
             if(testTypesSuccess)
                 TestTypes.map((testType) => {
                     if(testType.Id == TestTypeId)
                         setTestTypeFees(testType.TestTypeFees)
                 })
-            console.log(FailureTestSuccess);
-            console.log(applicationsTypesSuccess);
-                
 
             if(FailureTestSuccess && applicationsTypesSuccess){
-                console.log(HaveFailureTest.TestResult);
-                
-                    if (HaveFailureTest.TestResult == 0){
+                    if (HaveFailureTest.TestResult === 0){
+                        console.log(ApplicationsTypes.find((appType) => appType.ApplicationTypeId === EnApplicationTypes.RetakeTest)?.ApplicationTypeFees);
+                        
                         setTestAppointmentToCreate({...testAppointmentToCreate,
-                            ApplicationsTypeId:  EnApplicationTypes.RetakeTest,
+                            ApplicationsTypeId:  Number(EnApplicationTypes.RetakeTest),
                             ApplicationTypeFees: ApplicationsTypes.find((appType) => appType.ApplicationTypeId === EnApplicationTypes.RetakeTest)?.ApplicationTypeFees
                         })
                     }
                 }              
+    },[FailureTestSuccess, applicationsTypesSuccess, ApplicationBasicInfo,])
 
-    },[testTypesSuccess, FailureTestSuccess, applicationsTypesSuccess])
-
+    console.log(testAppointmentToCreate);
+    
 
     useEffect (() => {
             setTestAppointmentToCreate({...testAppointmentToCreate,
                                         TestTypeId,
                                         LocalDrivingLicenseApplicationId:LDLApplicationID,
-                                        PaidFees:  testAppointmentToCreate.PaidFees + testTypeFees
+                                        PaidFees:  testAppointmentToCreate.PaidFees + testTypeFees,
                                     })
     },[TestTypeId, LDLApplicationID, testTypeFees])
 
-    console.log(testAppointmentToCreate.PaidFees);
-    console.log(testAppointmentToCreate.ApplicationTypeFees);
 
     
     const handleCreateTestAppointment =  async () => {
-        console.log(testAppointmentToCreate);
         try {
             const s =  await  createTestAppointment(testAppointmentToCreate).unwrap();
             setShowSuccessModal(s);

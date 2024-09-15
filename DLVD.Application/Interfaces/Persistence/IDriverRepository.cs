@@ -20,6 +20,7 @@ public interface IDriverRepository
       int page = 1,
       int pageSize = 20);
     public Task<Driver?> GetById(int id);
+    public Task<int> GetIdByPersonId(int personId);
     public Task<bool> Add(Driver entity);
     public Task<bool> Update(Driver entity);
     public Task<bool> Update(int driverId);

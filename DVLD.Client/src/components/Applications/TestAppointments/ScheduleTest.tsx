@@ -52,10 +52,7 @@ const ScheduleTest = () => {
 
   const {LDLApplicationID} = useParams();
   const Location = useLocation()
-  console.log(Location.state);
-
   const state = Location.state as State ?? "Vision"
-  console.log(state);
   
   const {data : ApplicationID, isSuccess} = useGetLDLApplicationIdQuery(Number(LDLApplicationID));
   
@@ -67,6 +64,7 @@ const ScheduleTest = () => {
   }, [state]) 
 
   const [showCreateTestAppointmentModal,setShowCreateTestAppointmentModal ] = useState(false);
+
   const handleAddTestAppointmentClick = () => {
     setShowCreateTestAppointmentModal(!showCreateTestAppointmentModal);
   } 
@@ -87,11 +85,12 @@ const ScheduleTest = () => {
 
         <div className='flex justify-between items-center  w-[90%]'>
             <p>Appointments:</p>
-            <button onClick={handleAddTestAppointmentClick}className ="bg-gray-700 rounded-lg  transition-all duration-300 hover:bg-slate-50   p-1" type="button" title="Add Person">
+            <button onClick={ () => handleAddTestAppointmentClick()} className ="bg-gray-700 rounded-lg  transition-all duration-300 hover:bg-slate-50   p-1" type="button" title="Add Person">
               <IconContext.Provider value={{className: "text-slate-50 hover:text-sky-700 transition-all duration-300 ", size:"26",  }}>
                 <TbPlaylistAdd />
               </IconContext.Provider>
             </button>
+
             {currentTestType.Id && <CreateTestAppointmentModal 
                       showModal={showCreateTestAppointmentModal}
                       setShowModal = {setShowCreateTestAppointmentModal}

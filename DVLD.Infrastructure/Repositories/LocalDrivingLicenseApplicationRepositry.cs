@@ -113,6 +113,13 @@ namespace DVLD.Data.Repositories
             return await _dbSet.Include(x => x.LicenseClass).FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<int> GetLicenseClassId(int LocalDrivingLicenseApplicationId)
+        {
+            return await _dbSet.Where(ldl => ldl.Id == LocalDrivingLicenseApplicationId)
+                                .Select(ldl => ldl.LicenseClassId)
+                                .SingleOrDefaultAsync();
+        }
+
         public Task<IEnumerable<LocalDrivingLicenseApplication>> GetPaginated(int Page)
         {
             throw new NotImplementedException();

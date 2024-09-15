@@ -94,6 +94,18 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<int> GetIdByPersonId(int personId)
+        {
+            var Id = await _dbSet.Where(x => x.Id == personId)
+                                        .Select(x => x.Id)
+                                        .SingleOrDefaultAsync();
+            if (Id == 0)
+                return -1;
+
+            
+            return Id;
+        }
+
         public Task<InternationalDrivingLicense> GetInternationalDrivingLicense()
         {
             throw new NotImplementedException();
