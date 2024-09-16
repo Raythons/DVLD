@@ -87,6 +87,13 @@ namespace DVLD.Data.Repositories
             return await PagedList<LocalDrivvingLicenseApplicationsView>.CreateAsync(query, page, pageSize);
         }
 
+        public async Task<int> GetApplicantId(int localDrivvingLicenseApplicationId)
+        {
+            return await _dbSet.Where(ldl => ldl.Id == localDrivvingLicenseApplicationId)
+                            .Select(ldl => ldl.Application.PersonId)
+                            .SingleOrDefaultAsync();
+        }
+
         public async Task<int> GetApplicationId (int LocalDrivvingLicenseApplicationId)
         {
             return await _dbSet.Where(x => x.Id == LocalDrivvingLicenseApplicationId)

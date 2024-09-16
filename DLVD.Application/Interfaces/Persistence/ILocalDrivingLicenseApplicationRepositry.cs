@@ -10,6 +10,7 @@ namespace DVLD.App.Interfaces.Persistence
         public Task<IEnumerable<LocalDrivvingLicenseApplicationsView>> All();
         public Task<bool> HasPassedAllTests(int LocalDrivingLicenseApplicationId);
         public  Task<int> GetApplicationId(int LocalDrivvingLicenseApplicationId);
+        public Task<int> GetApplicantId(int LocalDrivvingLicenseApplicationId);
 
        public Task<PagedList<LocalDrivvingLicenseApplicationsView>> GetAllPaginatedAsync(
        Expression<Func<LocalDrivvingLicenseApplicationsView, bool>> filter = null,

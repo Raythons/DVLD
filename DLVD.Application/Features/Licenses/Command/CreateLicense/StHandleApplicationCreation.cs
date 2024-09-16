@@ -10,14 +10,14 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
     public struct StHandleApplicationCreation
     {
         public int ApplicationTypeId;
-        public int PaidFees;
+        public float PaidFees;
         public int PersonId;
         public int CreatedByUserId;
         public DateTime CreatedDate = DateTime.Now;
         public DateTime LastStatusDate = DateTime.Now;
         public EnStatus Status = EnStatus.Completed;
 
-        public StHandleApplicationCreation(int applicationTypeId, int paidFees, int personId, int createdByUserId)
+        public StHandleApplicationCreation(int applicationTypeId, float paidFees, int personId, int createdByUserId)
         {
             ApplicationTypeId = applicationTypeId;
             PaidFees = paidFees;

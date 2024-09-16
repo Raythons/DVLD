@@ -17,9 +17,9 @@ type props = {
 const IssueLicenseModal = ( {showModal, setShowModal, LDLApplicationID} : props) => {
     // const {data: LDLApplicationData} = useGetLDLApplicationBriefInfoQuery(LDLApplicationID);
     const {data : ApplicationID, isSuccess} = useGetLDLApplicationIdQuery(Number(LDLApplicationID));
-
-    const [licenseToCreate, setLicenseToCreate] = useState<issueLicenseParams>({} as issueLicenseParams);
-    const [issueLicense , {isIssueSuccess, isError, error}] = useIssueLicenseMutation();
+    
+    const [licenseToCreate, setLicenseToCreate] = useState<issueLicenseParams>({IssueReason: "None"} as issueLicenseParams);
+    const [issueLicense , {isSuccess: isIssueSuccess, isError, error}] = useIssueLicenseMutation();
 
     const {data: ApplicationsTypes , isSuccess : ApplicationsTypesSuccess} = useGetAllApplicationsTypeQuery({});
 
@@ -28,10 +28,13 @@ const IssueLicenseModal = ( {showModal, setShowModal, LDLApplicationID} : props)
                 setLicenseToCreate({
                         ...licenseToCreate, LocalDrivingLicenseApplicationId: LDLApplicationID, 
                         ApplicationTypeId: EnApplicationTypes.NewLocalDrivingLicenseService,
-                        PaidFees: ApplicationsTypes.find(type => type.ApplicationTypeId ===  EnApplicationTypes.NewLocalDrivingLicenseService)!.ApplicationTypeFees
+                        PaidFees: 15
                     })
     }, [LDLApplicationID, ApplicationID, ApplicationsTypes])
 
+    console.log(licenseToCreate);
+    console.log(error);
+    
     const handleNotesChange = (value : string): void => {
         setLicenseToCreate({...licenseToCreate, Notes: value })
     }

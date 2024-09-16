@@ -25,9 +25,9 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
             
             if (!await HasPassedAllTests(request.LocalDrivingLicenseApplicationId))
                 return Result.Fail("The Person Didnt Passed All Of The Tests Required");
-   
-            
-            await _unitOfWork.StartTrancation();
+
+            request.PersonId = await GetPersonId(request.LocalDrivingLicenseApplicationId);
+
             using var transaction = await _unitOfWork.StartTrancation();
             try
             {
@@ -65,6 +65,12 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
                 transaction.Rollback();
                 return Result.Fail("Falied To Create The License Please CALL The Developers " );
             }
+        }
+
+        private async Task<int> GetPersonId(int localDrivingLicenseApplicationId)
+        {
+            return await _unitOfWork.LocalDrivingLicenseApplicationRepositry
+                        .GetApplicantId(localDrivingLicenseApplicationId);
         }
 
         private async Task<int> HandleApplicationCreation(StHandleApplicationCreation applicationCreationFileds)

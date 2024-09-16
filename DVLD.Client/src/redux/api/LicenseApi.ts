@@ -35,7 +35,7 @@ export const LicenseApi =  apiSlice.injectEndpoints({
         issueLicense: builder.mutation<boolean, issueLicenseParams>({
             query: (body) => ({
                 url: `${LicensesEndPoint}/`,
-                method: "Post",
+                method: "POST",
                 body
             }),
             transformResponse: (response: {Response: boolean }) => {

@@ -57,7 +57,7 @@ namespace DVLD.API.Controllers
 
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> CreateLicense(CreateLicenseCommand cmd)
+        public async Task<IActionResult> CreateLicense([FromBody] CreateLicenseCommand cmd)
         {
      
             if (!ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace DVLD.API.Controllers
         }
 
         [HttpPost]
-        [Route("detain")]
+        [Route("/detain")]
         public async Task<IActionResult> DetainLicense(DetainLicenseRequest cmd)
         {
             if (!ModelState.IsValid)
