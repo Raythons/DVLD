@@ -23,7 +23,6 @@ export const ApplicationsTypes =  apiSlice.injectEndpoints({
                     return QueryReturnValue
                 },
         })
-        // editPerson: builder.mutation<boolean, EditPersonBody>( )
     })
 })
 

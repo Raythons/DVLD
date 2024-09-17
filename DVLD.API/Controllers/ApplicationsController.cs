@@ -2,8 +2,10 @@
 using DLVD.App.Features.Applications.Command.CreateApplication;
 using DLVD.App.Features.Applications.Command.UpdateApplicaton;
 using DLVD.App.Features.Applications.Queries.GetApplication;
+using DVLD.App.Interfaces.Persistence;
 using DVLD.Domain.Enums;
 using DVLD.WEB.Controllers;
+using FluentResults;
 using FluentResults.Samples.WebController;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -15,10 +17,13 @@ namespace DVLD.API.Controllers
 {
     public class ApplicationsController : BaseControllerr
     {
+        private IUnitOfWork _unitOfWork;
         public ApplicationsController(
             IMapper mapper,
-            IMediator mediator) : base(mapper, mediator)
+            IMediator mediator,
+            IUnitOfWork unitOfWork) : base(mapper, mediator)
         {
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
@@ -51,6 +56,23 @@ namespace DVLD.API.Controllers
                 return BadRequest(applicationResult.ToResultDto(applicationResult.Errors));
 
             return Ok(applicationResult.ToResultDto(applicationResult.Value));
+        }
+
+        [HttpGet]
+        [Route("{applicationId:int}/IssuedLicense")]
+        public async Task<IActionResult> IsApplicationAssociatedWithLicense(int applicationId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Data is Bad");
+
+            var IssuedLicense =  await  _unitOfWork.ApplicationRepositry.IsAssociatedWithLicense(applicationId);
+
+            await _unitOfWork.CompleteAsync();
+
+            if (IssuedLicense)
+                return NotFound(Result.Ok(false).ToResultDto());
+
+            return Ok(Result.Ok(true).ToResultDto());
 
         }
         //[Authorize]

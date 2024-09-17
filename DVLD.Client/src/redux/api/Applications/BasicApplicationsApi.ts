@@ -31,7 +31,7 @@ export type UpdateLDLApplicationStatusParams = {
 // export type UpdatePersonBody = CreatePersonBody;
 
 // export type getPersonEditDetailsResponse = CreatePersonBody
-
+// IssuedLicense
 export type  GetApplicationBasicInfo = {
     Id: number,
     FullName: string,
@@ -65,10 +65,31 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
                 return errorData
             }
         }),
+        isAssociatedWithLicense :  builder.query<boolean, number>({
+            query: (applicationId) => (
+                {
+                    url: `${ApplicationsEndPoint}/${applicationId}/IssuedLicense`,
+                }
+            ),
+            transformResponse : (QueryReturnValue: {Response: boolean})  => {
+                console.log(QueryReturnValue.Response);
+                
+                return QueryReturnValue.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                const errorData = handleRtkQueryErrors(error)
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
+        }),
     })
 })
 
 export const {
     useGetApplicationBasicInfoQuery,
-    useLazyGetApplicationBasicInfoQuery
+    useLazyGetApplicationBasicInfoQuery,
+    useIsAssociatedWithLicenseQuery,
+    useLazyIsAssociatedWithLicenseQuery
     } = LDLApplicationsApi

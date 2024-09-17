@@ -137,9 +137,14 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> IsAssociatedWithLicense(int applicatonId)
+        public async Task<bool> IsAssociatedWithLicense(int applicatonId)
         {
-            throw new NotImplementedException();
+            var License = await _dbSet.Where(a => a.Id == applicatonId)
+                                .Select(a => a.License)
+                                .SingleOrDefaultAsync();
+            if (License is null)
+                return false;
+            return true;
         }
 
         public Task<bool> Update(Application entity)
@@ -206,6 +211,11 @@ namespace DVLD.Data.Repositories
             await _dbSet.Where(l => l.LocalDrivingLicenseApplication.Id == localDrivvingLicensesApplicationId)
                         .ExecuteUpdateAsync(s => s.SetProperty(a => a.Status, EnStatus.Canceled));
             return true;
+        }
+
+        public Task<bool> ApplicationHaveIssuedLicense(int applicationId)
+        {
+            throw new NotImplementedException();
         }
     }   
 }

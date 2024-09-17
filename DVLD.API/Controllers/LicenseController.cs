@@ -6,13 +6,16 @@ using DLVD.App.Features.Licenses.Command.ReplaceLicense;
 using DLVD.App.Features.Licenses.Query.GetDetainedLicense;
 using DLVD.App.Features.Licenses.Query.GetLicense;
 using DLVD.App.Features.Licenses.Query.GetLicensesList;
+using DVLD.Domain.Entities;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace DVLD.API.Controllers
 {
+    
     public class LicenseController : BaseControllerr
     {
         public LicenseController(
@@ -63,9 +66,14 @@ namespace DVLD.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Bad Data");
 
+            if (int.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value, out var userId))
+                cmd.CreatedByUserId = userId;
+            else
+                return Unauthorized();
+    
             var result = await _mediator.Send(cmd);
-
-
+            
+                
             if (result.IsFailed)
                 return BadRequest(result.ToResultDto(result.Errors));
 

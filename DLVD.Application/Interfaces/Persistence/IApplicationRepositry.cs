@@ -10,6 +10,7 @@ namespace DVLD.App.Interfaces.Persistence
         public Task<Application> GetPersonLocalApplicationsOfLicenseClass(int personId, int licenseClassId);
         public Task<bool> MarkDeleted(int localDrivvingLicensesApplicationId);
         public Task<bool> UpdateStatus(int applicationId , EnStatus status);
+        public Task<bool> ApplicationHaveIssuedLicense(int applicationId);
         public Task<IEnumerable<Application>> All();
         public Task<Application?> GetById(int id);
         public Task<Application?> GetPersonApplications(int id);

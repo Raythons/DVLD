@@ -3,9 +3,12 @@ import ApplicationBasicInfo from '../Applications/TestAppointments/ApplicationBa
 import { Button, Label, Modal, Textarea } from 'flowbite-react';
 import {  useGetLDLApplicationIdQuery } from '../../redux/api/Applications/LDLApplicationsApi';
 import { useEffect, useState } from 'react';
-import { issueLicenseParams, useIssueLicenseMutation } from '../../redux/api/LicenseApi';
+import {issueLicenseParams, useIssueLicenseMutation } from '../../redux/api/LicenseApi';
 import { EnApplicationTypes } from '../../enums/applicationTypes';
 import { useGetAllApplicationsTypeQuery } from '../../redux/api/Applications/ApplicationsTypeApi';
+import SuccessPopUp from '../common/SuccessPopUp';
+import CustomError from '../common/CustomError';
+import { ApiError } from '../../redux/api/peopleApi';
 
 
 type props = {
@@ -21,6 +24,8 @@ const IssueLicenseModal = ( {showModal, setShowModal, LDLApplicationID} : props)
     const [licenseToCreate, setLicenseToCreate] = useState<issueLicenseParams>({IssueReason: "None"} as issueLicenseParams);
     const [issueLicense , {isSuccess: isIssueSuccess, isError, error}] = useIssueLicenseMutation();
 
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+
     const {data: ApplicationsTypes , isSuccess : ApplicationsTypesSuccess} = useGetAllApplicationsTypeQuery({});
 
     useEffect (() => {
@@ -28,7 +33,7 @@ const IssueLicenseModal = ( {showModal, setShowModal, LDLApplicationID} : props)
                 setLicenseToCreate({
                         ...licenseToCreate, LocalDrivingLicenseApplicationId: LDLApplicationID, 
                         ApplicationTypeId: EnApplicationTypes.NewLocalDrivingLicenseService,
-                        PaidFees: 15
+                        PaidFees: ApplicationsTypes.find(type => type.ApplicationTypeId === EnApplicationTypes.NewLocalDrivingLicenseService)!.ApplicationTypeFees
                     })
     }, [LDLApplicationID, ApplicationID, ApplicationsTypes])
 
@@ -63,6 +68,13 @@ return (
                 <Button color={"blue"} onClick={()=> handleIssueLicense()}>
                     Create
                 </Button>
+                {   isIssueSuccess && !isError && <SuccessPopUp show = {showSuccessModal}
+                                                        setShowPopUp={setShowSuccessModal}
+                                                        operation= 'Issued'
+                                                        creationId={0} 
+                                                        type='License'/>
+                }
+                {isError && <CustomError error={error ? error as ApiError : error} />}    
             </Modal.Body>
     </Modal>
     )}

@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState, MouseEvent } from 'react'
+import React, { MouseEventHandler, useState, MouseEvent, useEffect } from 'react'
 import { IconContext } from 'react-icons'
 import { FaUserEdit } from 'react-icons/fa'
 import { TiUserDelete } from 'react-icons/ti'
@@ -9,7 +9,7 @@ import { GoIssueClosed } from "react-icons/go";
 import { MdOutlineManageHistory } from "react-icons/md";
 import { TbLicense } from "react-icons/tb";
 import { FcCancel } from "react-icons/fc";
-import { useUpdateLDLApplicationsStatusMutation } from '../../../redux/api/Applications/LDLApplicationsApi'
+import { useGetLDLApplicationIdQuery, useUpdateLDLApplicationsStatusMutation } from '../../../redux/api/Applications/LDLApplicationsApi'
 import { ApiError } from '../../../redux/api/peopleApi'
 import DeletePopUp from '../../common/DeletePopUp'
 import { FaEye } from 'react-icons/fa6'
@@ -19,6 +19,7 @@ import { ClassListBehavior } from '../../Header/MainMenu'
 import { FaCarAlt } from "react-icons/fa";
 import { Button } from 'flowbite-react'
 import IssueLicenseModal from '../../Liccense/IssueLicenseModal'
+import { useLazyIsAssociatedWithLicenseQuery } from '../../../redux/api/Applications/BasicApplicationsApi'
 
 
 type props = {
@@ -42,6 +43,12 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
 
     const [updateLDLApplication, {isLoading, isError,  error}] = useUpdateLDLApplicationsStatusMutation();
 
+    const {data : ApplicationID, isSuccess} = useGetLDLApplicationIdQuery(Number(AppId));
+
+    const [IsAssociatedWithLicenseQuery] = useLazyIsAssociatedWithLicenseQuery();
+
+    const [haveIssuedLicense, setHaveIssuedLicense] = useState<boolean>(true);
+
     const handleClassBehavior = (behavior: ClassListBehavior ,element: HTMLElement) => {
         if(behavior == ClassListBehavior.AddFirst) {
         element.lastElementChild?.classList.add("flex")
@@ -52,27 +59,35 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
             element.lastElementChild?.classList.remove("flex")
             element.lastElementChild?.classList.add("hidden")
         }
-  }
+}
 
-  const isLastCHildMenu = (target: HTMLElement): boolean =>{
+    const isLastCHildMenu = (target: HTMLElement): boolean =>{
       return target.lastElementChild?.tagName.toLocaleLowerCase() === "menu"
-  } 
+} 
 
-  const handleMouseEnter = (e: MouseEvent<HTMLLIElement>) => {
+    const handleMouseEnter = (e: MouseEvent<HTMLLIElement>) => {
     if(isLastCHildMenu(e.currentTarget))
         handleClassBehavior(ClassListBehavior.AddFirst , e.currentTarget)
-  };
+    };
 
-  const handleMouseLeave = (e: MouseEvent<HTMLLIElement>) => {
+    const handleMouseLeave = (e: MouseEvent<HTMLLIElement>) => {
     if(isLastCHildMenu(e.currentTarget))
       handleClassBehavior(ClassListBehavior.RemoveFirst , e.currentTarget)
-  };
+    };
 
-//   const handleMenuMouseLeave = (e: MouseEvent) => {
-//     e.currentTarget.classList.remove("flex")
-//     e.currentTarget.classList.add("hidden")
-//     // handleClassBehavior(ClassListBehavior.RemoveFirst,  e.currentTarget)
-//   }
+    useEffect(() => {
+        const func  =  async () => {
+                if(isSuccess){
+                    try {
+                        const res = await IsAssociatedWithLicenseQuery(ApplicationID).unwrap();
+                        setHaveIssuedLicense(res);
+                    } catch (error) {
+                        console.log(error);
+                    }
+            }}
+        func();
+
+    },[ApplicationID])
 
     const LDLApplicationOperations: AppOperations[] = [
         {
@@ -127,7 +142,7 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
             OperationName: "Issue License",
             OperationIcon:  <GoIssueClosed /> ,
             clickHandler: () => {setIssueLicenseModal(!issueLicenseModal)},
-            clickable: passedTests  === 4,
+            clickable: passedTests  === 4 && haveIssuedLicense,
         },
         {
             OperationName: "Show License",

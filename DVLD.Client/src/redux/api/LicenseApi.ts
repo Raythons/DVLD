@@ -9,18 +9,18 @@ export type GetAllPeopleQueryParams = PaginatedQueryParams;
 
 
 
-export type ApiError = {
-    Code?: string,
-    Message: string,
-    Reasons: string[],
-    status?: number;
-}
+// export type ApiError = {
+//     Code?: string,
+//     Message: string,
+//     Reasons: string[],
+//     status?: number;
+// }
 
-export type MainApiResponse  =  {
-    Errors: ApiError[]
-    IsSuccess: boolean,
-    Response: unknown,
-}
+// export type MainApiResponse  =  {
+//     Errors: ApiError[]
+//     IsSuccess: boolean,
+//     Response: unknown,
+// }
 
 export type issueLicenseParams = {
     ApplicationTypeId: number,

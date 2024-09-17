@@ -9,7 +9,6 @@ using MediatR;
 
 namespace DLVD.App.Features.Licenses.Command.CreateLicense
 {
-
     public class CreateLicenseCommandHandler : BaseHandler,
         IRequestHandler<CreateLicenseCommand, Result<bool>>
     {
@@ -33,15 +32,8 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
             {
                 
                 request.DriverId = await HandleGetDriverId(request.PersonId , request.CreatedByUserId);
-                var ApplicationCreationHelper =  new StHandleApplicationCreation
-                                                        (
-                                                         request.ApplicationTypeId,
-                                                         request.PaidFees,
-                                                         request.PersonId, 
-                                                         request.CreatedByUserId
-                                                        );
            
-                request.ApplicationId = await  HandleApplicationCreation(ApplicationCreationHelper);
+                request.ApplicationId = await  HandleGetApplicationId(request.LocalDrivingLicenseApplicationId);
                 request.LicenseClassId = await _unitOfWork.LocalDrivingLicenseApplicationRepositry
                                                         .GetLicenseClassId(request.LocalDrivingLicenseApplicationId);
 
@@ -73,11 +65,11 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
                         .GetApplicantId(localDrivingLicenseApplicationId);
         }
 
-        private async Task<int> HandleApplicationCreation(StHandleApplicationCreation applicationCreationFileds)
+        private async Task<int> HandleGetApplicationId(int LocalDrivingLicenseApplicationId)
         {
-            var applicationToCreate = _mapper.Map<Application>(applicationCreationFileds);
+            var applicationId = await _unitOfWork.LocalDrivingLicenseApplicationRepositry.GetApplicationId(LocalDrivingLicenseApplicationId);
             await _unitOfWork.CompleteAsync();
-            return applicationToCreate.Id;
+            return applicationId;
         }
 
         private async Task<int> HandleGetDriverId(int personId, int createdByUserId)

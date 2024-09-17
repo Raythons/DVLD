@@ -12,7 +12,6 @@ namespace DVLD.App.Interfaces.Persistence
         public Task<IEnumerable<LicenseClass>> All();
         public Task<LicenseClass?> GetById(int licenseClassId);
         public Task<int> GetClassExpirationYears(int licenseClassId);
-
         public Task<bool> Add(LicenseClass entity);
         public Task<bool> Update(Application entity);
         public Task<bool> Update(int LicenseClassId);
