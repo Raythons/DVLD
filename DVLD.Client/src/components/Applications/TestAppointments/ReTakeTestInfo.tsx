@@ -1,13 +1,13 @@
-import React from 'react'
+// import React from 'react'
 
 
-type props = {
+// type props = {
     
-}
-const ReTakeTestInfo = () => {
-  return (
-    <div>ReTakeTestInfo</div>
-  )
-}
+// }
+// const ReTakeTestInfo = () => {
+//   return (
+//     <div>ReTakeTestInfo</div>
+//   )
+// }
 
-export default ReTakeTestInfo
+// export default ReTakeTestInfo

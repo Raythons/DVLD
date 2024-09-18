@@ -90,7 +90,10 @@ namespace DVLD.Data.Repositories
 
         public async Task<License?> GetById(int id)
         {
-            var FoundedLicense = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            var FoundedLicense = await _dbSet
+                        .Include(l => l.Driver.Person)
+                        .Include(l => l.LicenseClass)
+                        .FirstOrDefaultAsync(x => x.Id == id);
             return FoundedLicense;
         }
 

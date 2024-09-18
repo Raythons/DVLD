@@ -64,7 +64,7 @@ namespace DLVD.App.Profiles
                        config => config.MapFrom(src => src.CreatedByApplicationId)
                          )
                .ReverseMap();
-            // ReNewLicenseRequest
+            // ReNewLicenseRequestFge
             CreateMap<RenewLicenseRerquest, License>()
                 .ForMember(
                         dest => dest.PaidFees,
@@ -83,7 +83,35 @@ namespace DLVD.App.Profiles
             //License
             CreateMap<CreateLicenseCommand, License>();
 
-            CreateMap<GetLicenseResponse, License>().ReverseMap();
+            CreateMap<License, GetLicenseResponse>()
+                 .ForMember(
+                        dest => dest.Name,
+                        config => config.MapFrom(
+                            src => src.Driver.Person.FirstName + " " + src.Driver.Person.SecondName + " "
+                            + src.Driver.Person.ThirdName + " " + src.Driver.Person.LastName
+                            )
+                        )
+                 .ForMember(
+                        dest => dest.DateOfBirth,
+                        config => config.MapFrom(src => src.Driver.Person.BirthDate)
+                        ).
+                 ForMember(
+                        dest => dest.Gedner,
+                        config => config.MapFrom(src => src.Driver.Person.Gender)
+                        ).
+                 ForMember(
+                        dest => dest.NationalNo,
+                        config => config.MapFrom(src => src.Driver.Person.NationalNo)
+                        ).
+                  ForMember(
+                        dest => dest.LicenseClass,
+                        config => config.MapFrom(src => src.Driver.Person.NationalNo)
+                        ).
+                  ForMember(
+                        dest => dest.ImagePath,
+                        config => config.MapFrom(src => src.Driver.Person.Image)
+                        )
+                .ReverseMap();
             //Driver
             CreateMap<CreateDriverCommand, Driver>();
             CreateMap<Driver, GetDriverDto>();

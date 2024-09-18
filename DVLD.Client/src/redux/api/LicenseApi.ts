@@ -30,6 +30,26 @@ export type issueLicenseParams = {
     IssueReason?: string
 }
 
+export type GetLicenseInfoResponse = {
+    Id: number,
+    DriverId: number,
+    LicenseClass : string,
+    Name: string,
+    IssueReason?: string
+    Gender: string,
+    NationalNo: string,
+    DateOfBirth: string,
+    IssueDate: string,
+    ExpirationDate: string,
+    Notes : string,
+    isActive: boolean;
+    CreatedByUserId: number,
+    ImagePath: string
+}
+
+
+
+
 export const LicenseApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         issueLicense: builder.mutation<boolean, issueLicenseParams>({
@@ -42,9 +62,20 @@ export const LicenseApi =  apiSlice.injectEndpoints({
                 return response.Response
             },
         }),
+        getLicenseInfo: builder.query<GetLicenseInfoResponse, number>({
+            query: (licenseId) => ({
+                url: `${LicensesEndPoint}/${licenseId}`,
+                method: "Get",
+            }),
+            transformResponse: (QueryReturnValue: {Response: GetLicenseInfoResponse }) => {
+                return QueryReturnValue.Response
+            },
+        }),
     })
 })
 
 export const {
-        useIssueLicenseMutation
+        useIssueLicenseMutation,
+        useGetLicenseInfoQuery,
+        useLazyGetLicenseInfoQuery
     } = LicenseApi

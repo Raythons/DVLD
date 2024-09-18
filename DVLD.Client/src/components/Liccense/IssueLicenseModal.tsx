@@ -68,7 +68,7 @@ return (
                 <Button color={"blue"} onClick={()=> handleIssueLicense()}>
                     Create
                 </Button>
-                {   isIssueSuccess && !isError && <SuccessPopUp show = {isIssueSuccess}
+                {   isIssueSuccess && !isError && <SuccessPopUp show = {showSuccessModal}
                                                         setShowPopUp={setShowSuccessModal}
                                                         operation= 'Issued'
                                                         creationId={0} 
