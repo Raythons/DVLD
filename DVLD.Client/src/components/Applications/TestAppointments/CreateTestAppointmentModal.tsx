@@ -45,7 +45,8 @@ const CreateTestAppointmentModal = ({
     const {data : ApplicationsTypes, isSuccess: applicationsTypesSuccess} =  useGetAllApplicationsTypeQuery({});
     
     const {data: HaveFailureTest, isSuccess: FailureTestSuccess} = useGetLastTestTypeResultQuery({LocalDrivingLicenseApplicationId:LDLApplicationID, TestTypeId } as getLastTestTypeResultParams);
-
+    console.log(`LDLApplicationID ${LDLApplicationID} have ${HaveFailureTest ? "failed" : "no failed"} `);
+        
     const [createTestAppointment, {isSuccess, isError, error}] = useCreateTestAppointmentMutation();
 
     const [testAppointmentToCreate, setTestAppointmentToCreate] = useState<CreateTestAppointmentRequest>({TestTypeId: 0, LocalDrivingLicenseApplicationId: 1,AppointmentDate:"aas", PaidFees: 0,CreatedByUserId: - 1, ApplicationsTypeId: -1});
@@ -69,7 +70,7 @@ const CreateTestAppointmentModal = ({
                         console.log(ApplicationsTypes.find((appType) => appType.ApplicationTypeId === EnApplicationTypes.RetakeTest)?.ApplicationTypeFees);
                         
                         setTestAppointmentToCreate({...testAppointmentToCreate,
-                            ApplicationsTypeId:  Number(EnApplicationTypes.RetakeTest),
+                            ApplicationsTypeId:  EnApplicationTypes.RetakeTest,
                             ApplicationTypeFees: ApplicationsTypes.find((appType) => appType.ApplicationTypeId === EnApplicationTypes.RetakeTest)?.ApplicationTypeFees
                         })
                     }

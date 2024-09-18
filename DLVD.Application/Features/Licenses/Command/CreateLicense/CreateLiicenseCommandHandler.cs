@@ -42,6 +42,8 @@ namespace DLVD.App.Features.Licenses.Command.CreateLicense
                 var LicenseToCreate = _mapper.Map<DVLD.Domain.Entities.License>(request);
                 var isCreated = await _unitOfWork.LicenseRepositry.Add(LicenseToCreate);
 
+                await _unitOfWork.ApplicationRepositry.UpdateStatus(request.ApplicationId, EnStatus.Completed);
+
                 if (!isCreated)
                     Result.Fail("Something Went Wrong");
                 await _unitOfWork.CompleteAsync();

@@ -85,9 +85,10 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
                         console.log(error);
                     }
             }}
-        func();
+        if(isSuccess)
+            func();
 
-    },[ApplicationID])
+    },[isSuccess])
 
     const LDLApplicationOperations: AppOperations[] = [
         {
@@ -142,7 +143,7 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
             OperationName: "Issue License",
             OperationIcon:  <GoIssueClosed /> ,
             clickHandler: () => {setIssueLicenseModal(!issueLicenseModal)},
-            clickable: passedTests  === 4 && haveIssuedLicense,
+            clickable: passedTests  === 4 && !haveIssuedLicense,
         },
         {
             OperationName: "Show License",
@@ -159,6 +160,7 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
         },
     ]
     const [issueLicenseModal, setIssueLicenseModal] = useState<boolean>(false)
+    console.log(` the app :${AppId} is ${haveIssuedLicense ? "true" : "false"}`);
     
     return (
         <ul className={`absolute  ${show ? "flex" : "hidden"} flex-col justify-center items-center

@@ -96,7 +96,7 @@ namespace DVLD.Data.Repositories
 
         public async Task<int> GetIdByPersonId(int personId)
         {
-            var Id = await _dbSet.Where(x => x.Id == personId)
+            var Id = await _dbSet.Where(x => x.PersonId == personId)
                                         .Select(x => x.Id)
                                         .SingleOrDefaultAsync();
             if (Id == 0)

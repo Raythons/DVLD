@@ -24,7 +24,7 @@ const IssueLicenseModal = ( {showModal, setShowModal, LDLApplicationID} : props)
     const [licenseToCreate, setLicenseToCreate] = useState<issueLicenseParams>({IssueReason: "None"} as issueLicenseParams);
     const [issueLicense , {isSuccess: isIssueSuccess, isError, error}] = useIssueLicenseMutation();
 
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
 
     const {data: ApplicationsTypes , isSuccess : ApplicationsTypesSuccess} = useGetAllApplicationsTypeQuery({});
 
@@ -37,8 +37,7 @@ const IssueLicenseModal = ( {showModal, setShowModal, LDLApplicationID} : props)
                     })
     }, [LDLApplicationID, ApplicationID, ApplicationsTypes])
 
-    console.log(licenseToCreate);
-    console.log(error);
+
     
     const handleNotesChange = (value : string): void => {
         setLicenseToCreate({...licenseToCreate, Notes: value })
@@ -46,7 +45,8 @@ const IssueLicenseModal = ( {showModal, setShowModal, LDLApplicationID} : props)
 
     const handleIssueLicense =  async () => {
         try {
-            const isIssued = issueLicense(licenseToCreate).unwrap();
+            const isIssued =  await issueLicense(licenseToCreate).unwrap();
+            // showSuccessModal(isIssued);
             console.log(isIssued);
         } catch (error) {
             console.log(error);
@@ -68,7 +68,7 @@ return (
                 <Button color={"blue"} onClick={()=> handleIssueLicense()}>
                     Create
                 </Button>
-                {   isIssueSuccess && !isError && <SuccessPopUp show = {showSuccessModal}
+                {   isIssueSuccess && !isError && <SuccessPopUp show = {isIssueSuccess}
                                                         setShowPopUp={setShowSuccessModal}
                                                         operation= 'Issued'
                                                         creationId={0} 

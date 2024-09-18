@@ -52,11 +52,10 @@ namespace DVLD.Data.Repositories
                                       .Include(t => t.TestAppointment)
                                       .OrderByDescending(t => t.TestAppointment.AppointmentDate)
                                       .FirstOrDefaultAsync(
-                                                           t => t.TestAppointment.LocalDrivingLicenseApplicationId == LocalDrivingLicenseApplicationId &&
+            t => t.TestAppointment.LocalDrivingLicenseApplicationId == LocalDrivingLicenseApplicationId &&
                                                            t.TestAppointment.TestTypeId == testTypeId
-                                                           );
-   
-
+                                                          );
+            
             if (lastTest == null)
                 return EnTestResult.NotTaken;
             return lastTest.TestResult; 
