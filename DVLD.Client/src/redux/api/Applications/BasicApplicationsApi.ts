@@ -73,6 +73,7 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
             ),
             transformResponse : (QueryReturnValue: {Response: boolean})  => {
                 console.log(QueryReturnValue);
+                console.log(`query return value is ${QueryReturnValue.Response}`);
 
                 return QueryReturnValue.Response
             },

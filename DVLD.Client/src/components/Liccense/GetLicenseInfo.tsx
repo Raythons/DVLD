@@ -34,8 +34,6 @@ const GetLicenseInfo = ({LicenseId} : props) => {
         func();
     },[LicenseId])
     
- 
-    
     return (
         isLoading 
         ?
@@ -46,7 +44,7 @@ const GetLicenseInfo = ({LicenseId} : props) => {
             isError    &&  <CustomError  error={error ? error as ApiError : undefined}    />
         }
             <div className='flex  justify-between relative  items-start  gap-3 border-solid border-gray-500 border-2 w-[100%]   p-6  mt-6 rounded-md'>
-                <div className = 'absolute -top-4 left-4  border-slate-200 bg-slate-200 border-solid  border-2 w-[17%] '>
+                <div className = 'absolute -top-4 left-4  border-slate-200 bg-slate-200 border-solid  border-2  '>
                         Basic Application Info
                 </div>
                 <div className='flex flex-col justify-center items-center  ' >

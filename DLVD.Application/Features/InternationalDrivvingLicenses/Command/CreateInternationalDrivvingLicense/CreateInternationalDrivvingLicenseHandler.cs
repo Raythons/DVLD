@@ -42,16 +42,18 @@ namespace DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternat
                 request.ApplicationId = applicationToCreate.Id;
 
                 var LicenseToCreate = _mapper.Map<InternationalDrivingLicense>(request);
+                LicenseToCreate.IssueUsingLocalDrivingLicenseId = request.LicenseId;
 
                 var IssueResult = await _unitOfWork.InternationalDrivingLicenseRepositry
                                         .Add(LicenseToCreate);
+
                 await _unitOfWork.CompleteAsync();
 
                 await _unitOfWork.CommitTrancation();
                 if (!IssueResult)
                     return Result.Fail("Couldnt Create the InterNationalLicense Something Went Wrong");
 
-                return Result.Ok();
+                return Result.Ok(true);
             }
             catch (Exception e)
             {
@@ -72,7 +74,6 @@ namespace DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternat
                 return Result.Fail("License Expired Please Re-new It");
 
             return Result.Ok();
-
         }
         private async Task<bool> AlreadyHaveInternatonalLicense(int driverId)
         {

@@ -5,8 +5,8 @@ using DLVD.App.Features.Licenses.Command.RenewLicense;
 using DLVD.App.Features.Licenses.Command.ReplaceLicense;
 using DLVD.App.Features.Licenses.Query.GetDetainedLicense;
 using DLVD.App.Features.Licenses.Query.GetLicense;
+using DLVD.App.Features.Licenses.Query.GetLicenseId;
 using DLVD.App.Features.Licenses.Query.GetLicensesList;
-using DVLD.Domain.Entities;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
@@ -41,6 +41,7 @@ namespace DVLD.API.Controllers
             return Ok(result.ToResultDto(result.Value));
         }
 
+
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetLicense([FromQuery] GetLicensesListRequest cmd)
@@ -56,7 +57,20 @@ namespace DVLD.API.Controllers
             return Ok(result.ToResultDto(result.Value));
         }
 
+        [HttpGet]
+        [Route("licenseid/{applicationId:int}")]
+        public async Task<IActionResult> GetLicenseId(int  applicationId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Bad Data");
 
+            var result = await _mediator.Send( new GetLicenseIdRequest(applicationId));
+
+            if (result.IsFailed)
+                return BadRequest(result.ToResultDto(result.Errors));
+
+            return Ok(result.ToResultDto(result.Value));
+        }
 
         [HttpPost]
         [Route("")]
@@ -72,8 +86,7 @@ namespace DVLD.API.Controllers
                 return Unauthorized();
     
             var result = await _mediator.Send(cmd);
-            
-                
+                    
             if (result.IsFailed)
                 return BadRequest(result.ToResultDto(result.Errors));
 
@@ -139,6 +152,5 @@ namespace DVLD.API.Controllers
 
             return Ok(result.ToResultDto(result.Value));
         }
-
     }
 }

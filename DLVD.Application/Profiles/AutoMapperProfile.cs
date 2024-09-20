@@ -41,8 +41,8 @@ namespace DLVD.App.Profiles
             CreateMap<CreateInternationalDrivvingLicenseRequest, InternationalDrivingLicense>()
                    .ForMember(
                       dest => dest.IssueUsingLocalDrivingLicenseId,
-                      config => config.MapFrom(src => src.LicenseId)
-                   ).ReverseMap();
+                      config => config.MapFrom(c => c.LicenseId)
+                   );
 
             CreateMap<CreateInternationalDrivvingLicenseRequest, Application>()
                     .ForMember(

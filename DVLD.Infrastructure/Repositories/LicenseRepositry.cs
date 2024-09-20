@@ -150,6 +150,11 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
-       
+        public async Task<int> GetLicenseIdByApplicationId(int applicationId)
+        {
+            return await _dbSet.Where(l => l.ApplicationId == applicationId)
+                    .Select(l => l.Id)
+                    .SingleOrDefaultAsync();
+        }
     }
 }

@@ -22,7 +22,8 @@ export const ApplicationsTypes =  apiSlice.injectEndpoints({
                 transformResponse : (QueryReturnValue: ApplicationType[])  => {                    
                     return QueryReturnValue
                 },
-        })
+        }),
+        
     })
 })
 

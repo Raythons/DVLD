@@ -20,6 +20,7 @@ import { FaCarAlt } from "react-icons/fa";
 import { Button } from 'flowbite-react'
 import IssueLicenseModal from '../../Liccense/IssueLicenseModal'
 import { useLazyIsAssociatedWithLicenseQuery } from '../../../redux/api/Applications/BasicApplicationsApi'
+import ShowDriverLicenseInfoModal from '../../Liccense/ShowDriverLicenseInfoModal'
 
 
 type props = {
@@ -47,7 +48,7 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
 
     const [IsAssociatedWithLicenseQuery] = useLazyIsAssociatedWithLicenseQuery();
 
-    const [haveIssuedLicense, setHaveIssuedLicense] = useState<boolean>(true);
+    const [haveIssuedLicense, setHaveIssuedLicense] = useState<boolean>(false);
 
     const handleClassBehavior = (behavior: ClassListBehavior ,element: HTMLElement) => {
         if(behavior == ClassListBehavior.AddFirst) {
@@ -87,7 +88,10 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
             }}
         if(isSuccess)
             func();
-    },[isSuccess])
+    },[isSuccess, haveIssuedLicense,ApplicationID])
+
+    const [showDriverLicenseInfo, setShowDriverLicenseInfo] = useState<boolean>(false)
+
 
     const LDLApplicationOperations: AppOperations[] = [
         {
@@ -147,20 +151,20 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
         {
             OperationName: "Show License",
             OperationIcon:  <TbLicense /> ,
-            clickHandler: () => {console.log("Phone Clicked")},
-            clickable: true
+            clickHandler: () => {setShowDriverLicenseInfo(!showDriverLicenseInfo)},
+            clickable: !haveIssuedLicense
         },
         {
             OperationName: "License History",
             OperationIcon:  <MdOutlineManageHistory /> ,
             clickHandler: () => {console.log("Phone Clicked")},
             clickable: true
-
         },
     ]
+
     const [issueLicenseModal, setIssueLicenseModal] = useState<boolean>(false)
-    console.log(` the app :${AppId} is ${haveIssuedLicense ? "true" : "false"}`);
-    console.log( passedTests  === 4 && haveIssuedLicense);
+
+
     
     
     return (
@@ -178,7 +182,7 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
                         gap-1  border-solid border-b  border-cyan-400 flex-nowrap hover:bg-blue-500 
                         min-w-full`}>
                         {operation.OperationIcon}
-                        <Button color={"blue"} disabled = {!operation.clickable && operation.OperationName.split(" ")[0].toLocaleLowerCase() === "issue"}  onClick = {operation.clickHandler} type="button" className="text-lg  min-w-32  justify-self-start">
+                        <Button color={"blue"} disabled = {!operation.clickable && operation.OperationName.split(" ")[0].toLocaleLowerCase() === "issue" || operation.clickable}  onClick = {operation.clickHandler} type="button" className="text-lg  min-w-32  justify-self-start">
                             {operation.OperationName}
                         </Button>
                         {
@@ -196,11 +200,16 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
                 error={error as ApiError}
                 setShowPopUp={setShowDeletePopUp} type='Person'
                 mutation = {updateLDLApplication}/>
+                
             <IssueLicenseModal 
                         showModal = {issueLicenseModal}
                         setShowModal={setIssueLicenseModal}
                         LDLApplicationID={AppId}
                     />
+
+            <ShowDriverLicenseInfoModal showModal= {showDriverLicenseInfo}
+                                        setShowModal={setShowDriverLicenseInfo}
+                                        LDLApplicationID={AppId}    />
         </ul>
     )
 }

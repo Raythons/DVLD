@@ -1,5 +1,8 @@
 import { apiSlice } from "./apiSlice";
 import { PaginatedQueryParams } from "../../types/PaginatedQueryParams";
+import { handleRtkQueryErrors } from "../helpers";
+import { ApiError } from "./peopleApi";
+import { isNumber } from "../../utils/isNumber";
 // import { handleRtkQueryErrors } from "../helpers";
 // import { isNumber } from "../../utils/isNumber";
 
@@ -73,11 +76,30 @@ export const LicenseApi =  apiSlice.injectEndpoints({
                 return QueryReturnValue.Response
             },
         }),
+        getLicenseIdByApplicationId: builder.query<number, number>({
+            query: (AppId) => ({
+                url: `${LicensesEndPoint}/licenseid/${AppId}`,
+                method: "Get",
+            }),
+            transformResponse: (QueryReturnValue: {Response: number }) => {
+                console.log(QueryReturnValue.Response);
+                return QueryReturnValue.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
+        }),
     })
 })
 
 export const {
         useIssueLicenseMutation,
         useGetLicenseInfoQuery,
-        useLazyGetLicenseInfoQuery
+        useLazyGetLicenseInfoQuery,
+        useLazyGetLicenseIdByApplicationIdQuery
     } = LicenseApi

@@ -67,12 +67,12 @@ namespace DVLD.API.Controllers
 
             var IssuedLicense =  await  _unitOfWork.ApplicationRepositry.IsAssociatedWithLicense(applicationId);
 
-            await _unitOfWork.CompleteAsync();
+            //await _unitOfWork.CompleteAsync();
 
-            if (IssuedLicense)
+            if (!IssuedLicense)
                 return Ok(Result.Ok(false).ToResultDto(false));
 
-            return Ok(Result.Ok(true).ToResultDto());
+            return Ok(Result.Ok(true).ToResultDto(true));
 
         }
         //[Authorize]
