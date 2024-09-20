@@ -26,7 +26,7 @@ namespace DVLD.API.Controllers
 
 
         [HttpGet]
-        [Route("licenseId:int")]
+        [Route("{licenseId:int}")]
         public async Task<IActionResult> GetLicense(int licenseId) 
         { 
             if(!ModelState.IsValid)

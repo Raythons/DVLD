@@ -70,7 +70,7 @@ namespace DVLD.API.Controllers
             await _unitOfWork.CompleteAsync();
 
             if (IssuedLicense)
-                return Ok(Result.Ok(false).ToResultDto());
+                return Ok(Result.Ok(false).ToResultDto(false));
 
             return Ok(Result.Ok(true).ToResultDto());
 

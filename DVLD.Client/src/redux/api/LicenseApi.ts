@@ -42,7 +42,7 @@ export type GetLicenseInfoResponse = {
     IssueDate: string,
     ExpirationDate: string,
     Notes : string,
-    isActive: boolean;
+    IsActive: boolean;
     CreatedByUserId: number,
     ImagePath: string
 }
@@ -68,6 +68,8 @@ export const LicenseApi =  apiSlice.injectEndpoints({
                 method: "Get",
             }),
             transformResponse: (QueryReturnValue: {Response: GetLicenseInfoResponse }) => {
+                console.log(QueryReturnValue.Response);
+                
                 return QueryReturnValue.Response
             },
         }),

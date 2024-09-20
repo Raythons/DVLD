@@ -87,7 +87,6 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
             }}
         if(isSuccess)
             func();
-
     },[isSuccess])
 
     const LDLApplicationOperations: AppOperations[] = [
@@ -161,6 +160,8 @@ const LDLAppOperations = ({show, AppId, passedTests} : props) => {
     ]
     const [issueLicenseModal, setIssueLicenseModal] = useState<boolean>(false)
     console.log(` the app :${AppId} is ${haveIssuedLicense ? "true" : "false"}`);
+    console.log( passedTests  === 4 && haveIssuedLicense);
+    
     
     return (
         <ul className={`absolute  ${show ? "flex" : "hidden"} flex-col justify-center items-center

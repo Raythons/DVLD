@@ -19,6 +19,7 @@ public interface IDriverRepository
       bool descending = true,
       int page = 1,
       int pageSize = 20);
+    public Task<int> GetPersonId(int driverId);
     public Task<Driver?> GetById(int id);
     public Task<int> GetIdByPersonId(int personId);
     public Task<bool> Add(Driver entity);

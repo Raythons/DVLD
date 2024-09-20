@@ -15,6 +15,7 @@ namespace DVLD.App.Interfaces.Persistence
             Expression<Func<InternationalDrivingLicense, object>> orderBy = null,
             bool aescending = true);
         public Task<InternationalDrivingLicense?> GetById(int id);
+        public Task<bool> HaveInternationalLicense(int driverId);
         public Task<bool> Add(InternationalDrivingLicense entity);
         public Task<bool> Update(InternationalDrivingLicense entity);
         public Task<bool> Update(int driverId);

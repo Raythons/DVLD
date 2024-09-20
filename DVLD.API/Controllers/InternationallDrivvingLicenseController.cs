@@ -5,6 +5,7 @@ using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace DVLD.API.Controllers
 {
@@ -32,13 +33,19 @@ namespace DVLD.API.Controllers
         }
 
         [HttpPost]
+        [Route("")]
         public async Task<IActionResult> CreatInternationallDrivingLicense(
-            [FromBody] CreateInternationalDrivvingLicenseRequest command)
+            [FromBody] CreateInternationalDrivvingLicenseRequest cmd)
         {
             if (!ModelState.IsValid)
                 return BadRequest("The Request Content Is Wrong");
 
-            var result = await _mediator.Send(command);
+            if (int.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value, out var userId))
+                cmd.CreatedByUserId = userId;
+            else
+                return Unauthorized();
+
+            var result = await _mediator.Send(cmd);
 
             if (result.IsFailed)
                 return BadRequest(result.ToResultDto());

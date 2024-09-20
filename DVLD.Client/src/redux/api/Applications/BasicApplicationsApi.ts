@@ -71,8 +71,10 @@ export const LDLApplicationsApi =  apiSlice.injectEndpoints({
                     url: `${ApplicationsEndPoint}/${applicationId}/IssuedLicense`,
                 }
             ),
-            transformResponse : (QueryReturnValue: {IsSuccess: boolean})  => {
-                return QueryReturnValue.IsSuccess
+            transformResponse : (QueryReturnValue: {Response: boolean})  => {
+                console.log(QueryReturnValue);
+
+                return QueryReturnValue.Response
             },
             transformErrorResponse: (error) : ApiError  =>{
                 const errorData = handleRtkQueryErrors(error)

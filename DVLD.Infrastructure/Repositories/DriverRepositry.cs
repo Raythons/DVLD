@@ -100,15 +100,20 @@ namespace DVLD.Data.Repositories
                                         .Select(x => x.Id)
                                         .SingleOrDefaultAsync();
             if (Id == 0)
-                return -1;
-
-            
+                return -1;      
             return Id;
         }
 
         public Task<InternationalDrivingLicense> GetInternationalDrivingLicense()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<int> GetPersonId(int driverId)
+        {
+            return await _dbSet.Where(d => d.Id == driverId)
+                        .Select(d => d.PersonId)
+                        .SingleOrDefaultAsync();
         }
 
         public Task<bool> Update(Driver entity)

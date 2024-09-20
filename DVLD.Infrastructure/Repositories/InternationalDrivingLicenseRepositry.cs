@@ -3,7 +3,6 @@ using DVLD.App.Interfaces.Persistence;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DVLD.Data.Repositories
 {
@@ -91,6 +90,13 @@ namespace DVLD.Data.Repositories
                 return InternationalLicense.IsActive == true;
 
             return false;
+        }
+
+        public async Task<bool> HaveInternationalLicense(int driverId)
+        {
+            return await _dbSet.Where(l => l.DriverId == driverId)
+                        .Select(l => l.Id)
+                        .SingleOrDefaultAsync() != 0;
         }
 
         public Task<bool> Update(InternationalDrivingLicense entity)

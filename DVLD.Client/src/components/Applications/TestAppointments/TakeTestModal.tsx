@@ -89,7 +89,7 @@ const TakeTestModal = ({
     }
 
     return (
-        <Modal className=' bg-slate-200'  show={showModal} size="2xl" popup onClose={() => setShowModal(false)}>
+        <Modal className=' bg-slate-200'  show={showModal} size="3xl" popup onClose={() => setShowModal(false)}>
             <Modal.Header/>
             <Modal.Body className='flex flex-col justify-center items-center gap-3 p-14 bg-slate-200'>
                 <div className='flex flex-col items-center justify-center relative border-solid w-[90%] border-gray-500 border-2 rounded-md gap-3 mt-20'>
@@ -132,7 +132,7 @@ const TakeTestModal = ({
                                                         setShowPopUp={setShowSuccessModal}
                                                         operation= 'Created'
                                                         creationId={0} 
-                                                        type='Test'/>
+                                                        type='InternationalLicense'/>
                 }
                 {isError && <CustomError error={error ? error as ApiError : error} />}    
             </Modal.Body>

@@ -2,7 +2,6 @@
 using DLVD.App.Features.Common;
 using DVLD.App.Interfaces.Persistence;
 using DVLD.Domain.Entities;
-using DVLD.Domain.Enums;
 using FluentResults;
 using MediatR;
 
@@ -26,41 +25,59 @@ namespace DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternat
             CreateInternationalDrivvingLicenseRequest request,
             CancellationToken cancellationToken)
         {
-            if (!await SatisfiesRequirements(request.IssueUsingLocalDrivingLicenseId))
-                Result.Fail("Either The License Is InActive Or Its Expired Please Check It");
+            var result = await SatisfiesRequirements(request.LicenseId , request.DriverId);
+            if (result.IsFailed)
+                return result;
 
 
-            // override default value 
-            request.CreateApplicationCommand.Status = EnStatus.Completed;
-            var applicationIdResult = await _mediator.Send(request.CreateApplicationCommand, cancellationToken);
+            using var transaction = await _unitOfWork.StartTrancation();
+            try
+            {
 
-            if (applicationIdResult.IsFailed)
-                return Result.Fail("Something Went Wrong");
+                var applicationToCreate = _mapper.Map<Application>(request);
+                applicationToCreate.PersonId = await _unitOfWork.DriverRepository.GetPersonId(request.DriverId);
+                await _unitOfWork.ApplicationRepositry.Add(applicationToCreate);
 
+                await _unitOfWork.CompleteAsync();
+                request.ApplicationId = applicationToCreate.Id;
 
-            request.ApplicationId = applicationIdResult.Value;
+                var LicenseToCreate = _mapper.Map<InternationalDrivingLicense>(request);
 
-            var InterNationalLicenseToCreate = _mapper.Map<InternationalDrivingLicense>(request);
+                var IssueResult = await _unitOfWork.InternationalDrivingLicenseRepositry
+                                        .Add(LicenseToCreate);
+                await _unitOfWork.CompleteAsync();
 
-            var isSucess = await _unitOfWork
-                                    .InternationalDrivingLicenseRepositry
-                                    .Add(InterNationalLicenseToCreate);
+                await _unitOfWork.CommitTrancation();
+                if (!IssueResult)
+                    return Result.Fail("Couldnt Create the InterNationalLicense Something Went Wrong");
 
-            if (!isSucess)
-                return Result.Fail("").WithError("Something Went Worng While Creating The InterNational License");
-            
-
-            await _unitOfWork.CompleteAsync();
-
-            return Result.Ok(true).WithSuccess("InterNationalDrivvingLicense Created Succefully");
-
+                return Result.Ok();
+            }
+            catch (Exception e)
+            {
+                // Logger System TO Do
+                Console.WriteLine(e);
+                transaction.Rollback();
+                throw;
+            }
         }
      
-        private async Task <bool> SatisfiesRequirements(int licenseId)
+        private async Task<Result<bool> >SatisfiesRequirements(int licenseId, int driverId)
         {
+            if (await AlreadyHaveInternatonalLicense(driverId))
+                return Result.Fail("Driver Already Have International License");
+            if (await HasActiveInternationalLicense(licenseId))
+                return Result.Fail("There is Already  An Active InternationalLicense connected With current License}");
+            if (await DidLicenseExpired(licenseId))
+                return Result.Fail("License Expired Please Re-new It");
 
-            return  !(await HasActiveInternationalLicense(licenseId)) && ! (await DidLicenseExpired(licenseId) );
+            return Result.Ok();
 
+        }
+        private async Task<bool> AlreadyHaveInternatonalLicense(int driverId)
+        {
+            return await _unitOfWork.InternationalDrivingLicenseRepositry
+                                .HaveInternationalLicense(driverId);
         }
 
         private async Task<bool> DidLicenseExpired(int LicenseId)
@@ -74,6 +91,7 @@ namespace DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternat
         {
             return await _unitOfWork.InternationalDrivingLicenseRepositry
                                 .HasActiveInternationaLicense(LicenseId);
+
         }
     }
 }

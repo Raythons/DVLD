@@ -37,7 +37,20 @@ namespace DLVD.App.Profiles
         public AutoMapperProfile()
         {
 
-            // 
+            // InternationalDrivingLicense
+            CreateMap<CreateInternationalDrivvingLicenseRequest, InternationalDrivingLicense>()
+                   .ForMember(
+                      dest => dest.IssueUsingLocalDrivingLicenseId,
+                      config => config.MapFrom(src => src.LicenseId)
+                   ).ReverseMap();
+
+            CreateMap<CreateInternationalDrivvingLicenseRequest, Application>()
+                    .ForMember(
+                       dest => dest.PaidFees,
+                       config => config.MapFrom(src => src.ApplicationTypeFees)
+                    ).ReverseMap();
+             
+
             CreateMap<StHandleApplicationCreation ,Application>().ReverseMap();
             CreateMap<CreateTestAppointmentRequest, TestAppointment>().ReverseMap();
             CreateMap<CreateTestAppointmentRequest, Application>()
@@ -96,7 +109,7 @@ namespace DLVD.App.Profiles
                         config => config.MapFrom(src => src.Driver.Person.BirthDate)
                         ).
                  ForMember(
-                        dest => dest.Gedner,
+                        dest => dest.Gender,
                         config => config.MapFrom(src => src.Driver.Person.Gender)
                         ).
                  ForMember(
