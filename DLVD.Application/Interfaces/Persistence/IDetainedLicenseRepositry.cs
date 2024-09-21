@@ -7,10 +7,11 @@ namespace DVLD.App.Interfaces.Persistence
 {
     public interface IDetainedLicenseRepositry
     {
-        public Task <TProjection> GetById<TProjection>(int id ,
+        public Task <TProjection> GetByLicenseId<TProjection>(int id ,
             Expression<Func<DetainedLicense, TProjection>> selector);
 
         public  Task<bool> IsDetained(int licenseId);
+        public Task<bool> ReleaseLicense(int licenseId, int releasedByUser);
         public Task<DetainedLicense?> GetById(int id);
         public  Task<PagedList<DetainedLicenseView>> GetAllPaginatedAsync(
           Expression<Func<DetainedLicenseView, bool>> filter = null,

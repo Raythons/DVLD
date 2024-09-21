@@ -2,17 +2,21 @@ import { Button } from 'flowbite-react';
 import React from 'react'
 import { IconContext } from 'react-icons';
 import { FaCreditCard } from "react-icons/fa";
+import { ReleaseLicenseRequest } from '../../redux/api/LicenseApi';
 
 
 type props = {
     setLicenseId: React.Dispatch<React.SetStateAction<number>>
+    setReleaseLicenseId?:React.Dispatch<React.SetStateAction<ReleaseLicenseRequest>>
 }
 
 const SearchLicenseComponent = ({setLicenseId}: props) => {
     
-    const handlePersonTermChange =  (e: React.ChangeEvent<HTMLInputElement> ) => {        
+    const handlePersonTermChange =  (e: React.ChangeEvent<HTMLInputElement> ) => {    
         setLicenseId(Number(e.currentTarget.value));
     }
+
+
 
     return (
     <div className='flex justify-between items-center gap-4 p-8'>

@@ -77,10 +77,21 @@ export type ApplicationReplacementLicenseInfoRequest = {
     CreatedBy: string,
 }
 
+
+export type ReleaseLicenseRequest = {
+    ReleaseId: number,
+    DetainId: number,
+    FineFees: number,
+    DetainDate: string,
+    ApplicationTypeId: number,
+    ApplicationFees: number,
+    LicenseId: number,
+    CreatedBy: string,
+}
+
 export type DetainLicenseInfoRequest = {
     DetainedLicenseId: number,
     FineFees: number,
-    RenewedLicenseId: number,
     LicenseId : number,
     CreatedBy: string,
 }
@@ -95,6 +106,14 @@ export type  RenewLicenseResponse = {
     ApplicationId:number,
     PreviousLicenseId: number,
     NewLicenseId: number,
+}
+export type ReleaseLicenseResponse = {
+    ReleaseId: number,
+}
+export type GetDetainedLicenseInfoResponse = {
+    DetainDate: string
+    CreatedBy: string
+    FineFees: number,
 }
 
 export const LicenseApi =  apiSlice.injectEndpoints({
@@ -128,6 +147,15 @@ export const LicenseApi =  apiSlice.injectEndpoints({
                 return errorData
             }
         }),
+        getDetainedLicenseInfo: builder.query<GetDetainedLicenseInfoResponse, number>({
+            query: (licenseId) => ({
+                url: `${LicensesEndPoint}/detain/${licenseId}`,
+                method: "Get",
+            }),
+            transformResponse: (QueryReturnValue: {Response: GetDetainedLicenseInfoResponse }) => {
+                return QueryReturnValue.Response
+            },
+        }),
         detainLicense: builder.mutation<DetainLicenseResponse, DetainLicenseInfoRequest>({
             query: (body) => ({
                 url: `${LicensesEndPoint}/detain`,
@@ -139,6 +167,24 @@ export const LicenseApi =  apiSlice.injectEndpoints({
             },
             transformErrorResponse: (error) : ApiError  =>{
                 console.log(error);
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
+        }),
+        releaseLicense: builder.mutation<ReleaseLicenseResponse, ReleaseLicenseRequest>({
+            query: (body) => ({
+                url: `${LicensesEndPoint}/release`,
+                method: "POST",
+                body
+            }),
+            transformResponse: (response: {Response: ReleaseLicenseResponse }) => {
+                return response.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
                 const errorData = handleRtkQueryErrors(error)
                 
                 if(isNumber(error.status)) {
@@ -173,8 +219,6 @@ export const LicenseApi =  apiSlice.injectEndpoints({
                 method: "Get",
             }),
             transformResponse: (QueryReturnValue: {Response: GetLicenseInfoResponse }) => {
-                console.log(QueryReturnValue.Response);
-                
                 return QueryReturnValue.Response
             },
         }),
@@ -206,5 +250,7 @@ export const {
         useLazyGetLicenseIdByApplicationIdQuery,
         useRenewLicenseMutation,
         useReplaceLicenseMutation,
-        useDetainLicenseMutation
+        useDetainLicenseMutation,
+        useReleaseLicenseMutation,
+        useLazyGetDetainedLicenseInfoQuery
     } = LicenseApi

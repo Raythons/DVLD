@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Licenses.Command.CreateLicense;
 using DLVD.App.Features.Licenses.Command.DetainLicense;
+using DLVD.App.Features.Licenses.Command.ReleaseLicense;
 using DLVD.App.Features.Licenses.Command.RenewLicense;
 using DLVD.App.Features.Licenses.Command.ReplaceLicense;
 using DLVD.App.Features.Licenses.Query.GetDetainedLicense;
@@ -151,9 +152,29 @@ namespace DVLD.API.Controllers
             if (result.IsFailed)
                 return BadRequest(result.ToResultDto(result.Errors));
 
-            return Ok(result.ToResultDto(result.Value));
+            return Ok(result.ToResultDto(result.ToResultDto()));
         }
 
+        [HttpPost]
+        [Route("release")]
+        public async Task<IActionResult> ReleaseLicense([FromBody] ReleaseLicenseRequest cmd)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Bad Data");
+
+
+            if (int.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value, out var userId))
+                cmd.CreatedByUserId = userId;
+            else
+                return Unauthorized();
+
+            var result = await _mediator.Send(cmd);
+
+            if (result.IsFailed)
+                return BadRequest(result.ToResultDto(result.Errors));
+
+            return Ok(result.ToResultDto(result.ToResultDto()));
+        }
         [HttpGet]
         [Route("detain/{licenseId:int}")]
         public async Task<IActionResult> GetDetainLicense(int licenseId)

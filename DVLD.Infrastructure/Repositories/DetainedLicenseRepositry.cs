@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using DLVD.App.Features.Common;
 using DVLD.Domain.Entities.Views;
 using System.Linq.Expressions;
+using DVLD.Domain.Enums;
 
 namespace DVLD.Data.Repositories
 {
@@ -25,7 +26,7 @@ namespace DVLD.Data.Repositories
             await _dbSet.AddAsync(entity);
             return true;
         }
-        public async Task<TProjection> GetById<TProjection>(int licenseId,
+        public async Task<TProjection> GetByLicenseId<TProjection>(int licenseId,
             Expression<Func<DetainedLicense, TProjection>> selector)
         {
             ArgumentNullException.ThrowIfNull(selector);
@@ -87,7 +88,7 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<DetainedLicense?> GetById(int id)
+        public Task<DetainedLicense?> GetById(int licenseId)
         {
             throw new NotImplementedException();
         }
@@ -137,6 +138,21 @@ namespace DVLD.Data.Repositories
             throw new NotImplementedException();
         }
 
-       
+        //await _dbSet.Where(l => l.LocalDrivingLicenseApplication.Id == localDrivvingLicensesApplicationId)
+        //
+        //         .ExecuteUpdateAsync(s => s.SetProperty(a => a.Status, EnStatus.Canceled));
+        
+        public async Task<bool> ReleaseLicense(int licenseId, int releasedByUser)
+        {
+            await _dbSet.Where(dl => dl.LicenseId == licenseId)
+                       .ExecuteUpdateAsync(s => 
+                        s.SetProperty(a => a.ReleasedByUserId, releasedByUser)
+                        .SetProperty(a => a.IsReleased, true)
+                        .SetProperty(a => a.ReleaseDate, DateTime.Now)
+                        );
+             return true;           
+        }
+
+      
     }
 }

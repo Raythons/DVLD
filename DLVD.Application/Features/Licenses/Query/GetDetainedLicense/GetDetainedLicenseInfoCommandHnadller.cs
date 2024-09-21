@@ -22,16 +22,12 @@ namespace DLVD.App.Features.Licenses.Query.GetDetainedLicense
         {
 
             var DetainedLicenseInfo = await _unitOfWork.DetainedLicenseRepositry
-                                            .GetById(request.LicenseId,
+                                            .GetByLicenseId(request.LicenseId,
                                                 dl => new GetDetainedLicenseInfoResponse()
                                                 {
-                                                    ApplicationFees = (int)dl.Application.PaidFees,
-                                                    DetainId = dl.Id,
-                                                    LicenseID = dl.LicenseId,
-                                                    DetainTime = dl.DetainDate,
-                                                    CreatedByUser = dl.CreateUser.UserName,
+                                                    CreatedBy = dl.CreateUser.UserName,
+                                                    DetainDate = dl.DetainDate,
                                                     FineFees = dl.FineFees,
-                                                    
                                                 }
                                             );
 

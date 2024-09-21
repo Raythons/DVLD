@@ -1,14 +1,17 @@
 ﻿
 
+using DLVD.App.Features.Common.Converters;
+using System.ComponentModel;
+using System.Text.Json.Serialization;
+
 namespace DLVD.App.Features.Licenses.Query.GetDetainedLicense
 {
     public class GetDetainedLicenseInfoResponse
     {
-        public int DetainId { get; set; }
-        public int LicenseID { get; set; }
-        public DateTime DetainTime { get; set; }
-        public string CreatedByUser { get; set; } = string.Empty;
-        public int ApplicationFees { get; set; }
+
+        [JsonConverter(typeof(EnDateJsonConverter))]
+        public DateTime DetainDate { get; set; }
+        public string CreatedBy { get; set; } 
         public float FineFees { get; set; }
     }
 }

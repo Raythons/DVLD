@@ -18,6 +18,7 @@ import IssueInternationalLicense from './components/Applications/internationalDr
 import RenewLicense from './Pages/License/RenewLicense'
 import ReplaceLicense from './Pages/License/ReplaceLicense'
 import DetainLicense from './Pages/License/DetainLicense'
+import ReleaseDetainedLicense from './Pages/License/ReleaseDetainedLicense'
 
 const router = createBrowserRouter([
   {
@@ -83,7 +84,7 @@ const router = createBrowserRouter([
             element: < DetainLicense />
           },
           {
-            path: "Detain/",
+            path: "Release/",
             element: < ReleaseDetainedLicense />
           },
           {

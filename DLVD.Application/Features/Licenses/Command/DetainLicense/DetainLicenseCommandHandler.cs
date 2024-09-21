@@ -35,9 +35,9 @@ namespace DLVD.App.Features.Licenses.Command.DetainLicense
 
 
             await _unitOfWork.CompleteAsync();
-            var respopnse = new DetainLicenseResponse(LicenseToDetain.Id);
+            var response = new DetainLicenseResponse(LicenseToDetain.Id);
 
-            return Result.Ok(respopnse);
+            return Result.Ok(response);
         }
 
         private async Task<Result<bool>> ValidLicenseToDetain(int LicenseIdToDetain)

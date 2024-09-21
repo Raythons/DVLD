@@ -137,6 +137,11 @@ namespace DVLD.Data.Repositories
             await _dbSet.Where(l => l.Id == licenseId)
                        .ExecuteUpdateAsync(l => l.SetProperty(l => l.IsActive, false));
         }
+        public async Task ReActivateLicense(int licenseId)
+        {
+            await _dbSet.Where(l => l.Id == licenseId)
+                       .ExecuteUpdateAsync(l => l.SetProperty(l => l.IsActive, true));
+        }
 
         public async Task<bool> IsActiveLicense(int licenseId)
         {

@@ -4,6 +4,7 @@ using DLVD.App.Features.LocalDrivingLicense.Command.CreateLocalDrivvingLicense;
 using DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDriverLicense;
 using DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDrivvingLicenseApplication;
 using DLVD.App.Features.LocalDrivingLicense.Query.GetLocalDrivvingLicensesList;
+using DVLD.Domain.Entities;
 using DVLD.WEB.Controllers;
 using FluentResults.Samples.WebController;
 using MediatR;
@@ -20,6 +21,7 @@ namespace DVLD.API.Controllers
             IMediator mediator) : base(mapper, mediator)
         {
         }
+        
 
         [HttpGet]
         [Route("{id:int}")]

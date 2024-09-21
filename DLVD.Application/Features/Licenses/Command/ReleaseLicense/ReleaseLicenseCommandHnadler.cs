@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using DLVD.App.Features.Applications.Command.CreateApplication;
 using DLVD.App.Features.Common;
+using DLVD.App.Features.Licenses.Command.RenewLicense;
 using DVLD.App.Interfaces.Persistence;
+using DVLD.Domain.Entities;
 using FluentResults;
 using MediatR;
 
@@ -30,20 +32,38 @@ namespace DLVD.App.Features.Licenses.Command.ReleaseLicense
             if (satisfyRulesResult.IsFailed)
                 return Result.Fail(satisfyRulesResult.Errors);
 
-            int releaseApplicationId;
+            using var transaction = await _unitOfWork.StartTrancation();
             try
             {
-                releaseApplicationId = await CreateApplication(request.CreateApplicationCommand);
+                request.DriverId = await _unitOfWork.LicenseRepositry.GetDriverIdByLicenseId(request.LicenseId);
+                request.PersonId = await _unitOfWork.DriverRepository.GetPersonId(request.DriverId);
+                var applicationToCreate = _mapper.Map<Application>(request);
+
+                await _unitOfWork.ApplicationRepositry.Add(applicationToCreate);
+
+                await _unitOfWork.CompleteAsync();
+                request.ApplicationId = applicationToCreate.Id;
+
+
+                await _unitOfWork.DetainedLicenseRepositry.ReleaseLicense(request.LicenseId, request.CreatedByUserId);
+                await _unitOfWork.CompleteAsync();
+                await ActivateLicense(request.LicenseId);
+
+                await _unitOfWork.CommitTrancation();               //await _unitOfWork.LocalDrivingLicenseApplicationRepositry.Add();
+
+                
+                return Result.Ok(applicationToCreate.Id);
+
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return Result.Fail("couldn't Create Application To The License");
+                // TO DO LOGGER SYSTEM
+                Console.WriteLine(ex.ToString());
+                transaction.Rollback();
+                return Result.Fail("Falied To Create The Local Driving License Application");
             }
 
-            await ActivateLicense(request.LicenseId);
-
-            return Result.Ok(releaseApplicationId);
-
+  
         }
 
         private async Task<Result<bool>> ValidLicenseToRelease(int detainedLicenseId)
@@ -61,9 +81,9 @@ namespace DLVD.App.Features.Licenses.Command.ReleaseLicense
         {
             return await _unitOfWork.DetainedLicenseRepositry.IsDetained(detainedLicenseId);
         }
-        private async Task ActivateLicense(int previousLicenseId)
+        private async Task ActivateLicense(int licenseId)
         {
-            await _unitOfWork.LicenseRepositry.DeActivateLicense(previousLicenseId);
+            await _unitOfWork.LicenseRepositry.ReActivateLicense(licenseId);
         }
 
         private async Task<int> CreateApplication(CreateApplicationCommand createApplicationCommand)

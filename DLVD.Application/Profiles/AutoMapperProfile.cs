@@ -9,6 +9,7 @@ using DLVD.App.Features.InternationalDrivvingLicenses.Command.CreateInternationa
 using DLVD.App.Features.LicenseClasses.Query.GetAllLicenseClasses;
 using DLVD.App.Features.Licenses.Command.CreateLicense;
 using DLVD.App.Features.Licenses.Command.DetainLicense;
+using DLVD.App.Features.Licenses.Command.ReleaseLicense;
 using DLVD.App.Features.Licenses.Command.RenewLicense;
 using DLVD.App.Features.Licenses.Command.ReplaceLicense;
 using DLVD.App.Features.Licenses.Query.GetLicense;
@@ -38,6 +39,7 @@ namespace DLVD.App.Profiles
         {
 
 
+            CreateMap<ReleaseLicenseRequest, Application>().ReverseMap();
             CreateMap<RenewLicenseRerquest, Application>()
                  .ForMember(
                     dest => dest.PaidFees,

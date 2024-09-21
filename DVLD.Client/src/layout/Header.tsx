@@ -132,6 +132,7 @@ function Header() {
                 title: "Release Detain Licenses",
                 icon: <PiLockOpenFill />,
                 subMenu: [],
+                onClick: () => navigate("Applications/localDrivingLicenses/Release"),
                 hasSubMenu: false,
               }
             ],
