@@ -77,6 +77,16 @@ export type ApplicationReplacementLicenseInfoRequest = {
     CreatedBy: string,
 }
 
+export type DetainLicenseInfoRequest = {
+    RenewApplicationId: number,
+    Fees: number,
+    RenewedLicenseId: number,
+    PreviousLicenseId : number,
+    CreatedBy: string,
+}
+
+export type  DetainLicenseResponse = RenewLicenseResponse ;
+
 export type  ReplaceLicenseResponse = RenewLicenseResponse ;
 
 export type  RenewLicenseResponse = {
@@ -101,6 +111,25 @@ export const LicenseApi =  apiSlice.injectEndpoints({
             query: (body) => ({
                 url: `${LicensesEndPoint}/replace`,
                 method: "PUT",
+                body
+            }),
+            transformResponse: (response: {Response: RenewLicenseResponse }) => {
+                return response.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                console.log(error);
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
+        }),
+        detainLicense: builder.mutation<DetainLicenseResponse, DetainLicenseInfoRequest>({
+            query: (body) => ({
+                url: `${LicensesEndPoint}/detain`,
+                method: "POST",
                 body
             }),
             transformResponse: (response: {Response: RenewLicenseResponse }) => {
@@ -174,5 +203,6 @@ export const {
         useLazyGetLicenseInfoQuery,
         useLazyGetLicenseIdByApplicationIdQuery,
         useRenewLicenseMutation,
-        useReplaceLicenseMutation
+        useReplaceLicenseMutation,
+        useDetainLicenseMutation
     } = LicenseApi

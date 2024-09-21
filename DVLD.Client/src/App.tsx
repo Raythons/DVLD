@@ -17,6 +17,7 @@ import ScheduleTest from './components/Applications/TestAppointments/ScheduleTes
 import IssueInternationalLicense from './components/Applications/internationalDrivingLicenses/IssueInternationalLicense'
 import RenewLicense from './Pages/License/RenewLicense'
 import ReplaceLicense from './Pages/License/ReplaceLicense'
+import DetainLicense from './Pages/License/DetainLicense'
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
           {
             path: "Replace/",
             element: < ReplaceLicense />
+          },
+          {
+            path: "Detain/",
+            element: < DetainLicense />
           },
           {
             path: "Tests/Add/:LDLApplicationID",

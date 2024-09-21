@@ -117,11 +117,6 @@ namespace DVLD.API.Controllers
         [Route("replace")]
         public async Task<IActionResult> ReplaceLicense(ReplaceLicenseRequest cmd)
         {
-            Console.WriteLine("##########################################");
-
-            Console.WriteLine(cmd.PreviousLicenseId);
-            Console.WriteLine("##########################################");
-
             if (!ModelState.IsValid)
                 return BadRequest("Bad Data");
 
@@ -140,7 +135,7 @@ namespace DVLD.API.Controllers
         }
 
         [HttpPost]
-        [Route("/detain")]
+        [Route("detain")]
         public async Task<IActionResult> DetainLicense(DetainLicenseRequest cmd)
         {
             if (!ModelState.IsValid)
