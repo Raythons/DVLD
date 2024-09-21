@@ -66,12 +66,14 @@ function Header() {
                     title: "Renew Driving License",
                     icon: <MdOutlineAutorenew />,
                     subMenu: [],
+                    onClick: () => navigate("Applications/localDrivingLicenses/Re-new"),
                     hasSubMenu: false,
                   },
                   {
                     title: "License Replacement",
                     icon: <VscReplaceAll />,
                     subMenu: [],
+                    onClick: () => navigate("Applications/localDrivingLicenses/Replace"),
                     hasSubMenu: false,
                   },
                   {

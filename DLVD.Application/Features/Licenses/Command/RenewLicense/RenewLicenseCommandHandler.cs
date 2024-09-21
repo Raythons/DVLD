@@ -2,6 +2,7 @@
 using DLVD.App.Features.Applications.Command.CreateApplication;
 using DLVD.App.Features.Common;
 using DVLD.App.Interfaces.Persistence;
+using DVLD.Domain.Entities;
 using FluentResults;
 using MediatR;
 using License = DVLD.Domain.Entities.License;
@@ -26,34 +27,46 @@ namespace DLVD.App.Features.Licenses.Command.RenewLicense
         {
             var SatisfyRulesResult = await ValidLicenseToRenew(request.PreviousLicenseId);
 
-
             if (SatisfyRulesResult.IsFailed)
                 return Result.Fail(SatisfyRulesResult.Errors);
 
-            // jsut For DRY 
+            using var transaction = await _unitOfWork.StartTrancation();
             try
             {
-                request.CreatedByApplicationId = await CreateApplication(request.CreateApplicationCommand);
-            }
-            catch (Exception e)
-            {
-                return Result.Fail("couldn't Create Application To The License");
-            }
+                request.DriverId = await _unitOfWork.LicenseRepositry.GetDriverIdByLicenseId(request.PreviousLicenseId);
+                request.PersonId = await _unitOfWork.DriverRepository.GetPersonId(request.DriverId);
+                var applicationToCreate = _mapper.Map<Application>(request);
 
-            request.ExpirationDate = await GetExpirationDate(request.LicenseClassId);
+                await _unitOfWork.ApplicationRepositry.Add(applicationToCreate);
 
-            var CreatedLicenseId = await CreateLicense(request);
-
-            await DeActivedLicense(request.PreviousLicenseId);
+                await _unitOfWork.CompleteAsync();
+                request.ApplicationId = applicationToCreate.Id;
+                request.LicenseClassId = await _unitOfWork.LicenseRepositry.GetLicenseClassId(request.PreviousLicenseId);
+                request.ExpirationDate = await GetExpirationDate(request.LicenseClassId);
 
 
+                var LicenseToCreate = _mapper.Map<License>(request);
 
-            var respopnse = new RenewLicenseResponse(request.CreatedByApplicationId,
+                await _unitOfWork.LicenseRepositry.Add(LicenseToCreate);
+                await _unitOfWork.CompleteAsync();
+
+                await DeActivedLicense(request.PreviousLicenseId);
+
+                await _unitOfWork.CommitTrancation();               //await _unitOfWork.LocalDrivingLicenseApplicationRepositry.Add();
+
+                var respopnse = new RenewLicenseResponse(request.ApplicationId,
                                                      request.PreviousLicenseId,
-                                                     CreatedLicenseId);
+                                                     LicenseToCreate.Id);
+                return Result.Ok(respopnse);
 
-            return Result.Ok(respopnse);
-
+            }
+            catch (Exception ex)
+            {
+                // TO DO LOGGER SYSTEM
+                Console.WriteLine(ex.ToString());
+                transaction.Rollback();
+                return Result.Fail("Falied To Create The Local Driving License Application");
+            }
         }
 
         private async Task<Result<bool>> ValidLicenseToRenew(int previousLicenseId)

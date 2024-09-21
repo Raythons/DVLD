@@ -156,5 +156,19 @@ namespace DVLD.Data.Repositories
                     .Select(l => l.Id)
                     .SingleOrDefaultAsync();
         }
+
+        public async Task<int> GetDriverIdByLicenseId(int licenseId)
+        {
+            return await _dbSet.Where(l => l.Id == licenseId)
+                            .Select(l => l.DriverId)
+                            .SingleOrDefaultAsync();
+        }
+
+        public async Task<int> GetLicenseClassId(int licenseId)
+        {
+            return await _dbSet.Where(l => l.Id == licenseId)
+                        .Select(l => l.LicenseClassId)
+                        .SingleOrDefaultAsync();
+        }
     }
 }

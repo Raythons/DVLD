@@ -17,7 +17,7 @@ namespace DVLD.API.Controllers
 {
     
     public class LicenseController : BaseControllerr
-    {
+    { 
         public LicenseController(
             IMapper mapper, 
             IMediator mediator) : base(mapper, mediator)
@@ -93,12 +93,17 @@ namespace DVLD.API.Controllers
             return Ok(result.ToResultDto(result.Value));
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("renew")]
-        public async Task<IActionResult> RenewLicense(RenewLicenseRerquest cmd)
+        public async Task<IActionResult> RenewLicense([FromBody] RenewLicenseRerquest cmd)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Bad Data");
+
+            if (int.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value, out var userId))
+                cmd.CreatedByUserId = userId;
+            else
+                return Unauthorized();
 
             var result = await _mediator.Send(cmd);
 

@@ -15,6 +15,8 @@ import { LDLApplications } from './layout/LDLApplications'
 import AddLDL from './Pages/Applications/LocalDrivvingLicense/AddLDL'
 import ScheduleTest from './components/Applications/TestAppointments/ScheduleTest'
 import IssueInternationalLicense from './components/Applications/internationalDrivingLicenses/IssueInternationalLicense'
+import RenewLicense from './Pages/License/RenewLicense'
+import ReplaceLicense from './Pages/License/ReplaceLicense'
 
 const router = createBrowserRouter([
   {
@@ -66,6 +68,14 @@ const router = createBrowserRouter([
           {
             path: "Add/",
             element: < AddLDL />
+          },
+          {
+            path: "Re-new/",
+            element: < RenewLicense />
+          },
+          {
+            path: "Replace/",
+            element: < ReplaceLicense />
           },
           {
             path: "Tests/Add/:LDLApplicationID",

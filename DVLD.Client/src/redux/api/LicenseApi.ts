@@ -3,6 +3,7 @@ import { PaginatedQueryParams } from "../../types/PaginatedQueryParams";
 import { handleRtkQueryErrors } from "../helpers";
 import { ApiError } from "./peopleApi";
 import { isNumber } from "../../utils/isNumber";
+import { EnReplacementType } from "../../enums/ReplacmentType";
 // import { handleRtkQueryErrors } from "../helpers";
 // import { isNumber } from "../../utils/isNumber";
 
@@ -51,7 +52,38 @@ export type GetLicenseInfoResponse = {
 }
 
 
+export type ApplicationNewLicenseInfoRequest = {
+    RenewApplicationId: number,
+    ApplicationDate: string,
+    IssueDate : string
+    ApplicationTypeId: number,
+    ApplicationFees: number,
+    LicenseFees: number,
+    RenewedLicenseId: number,
+    PreviousLicenseId : number,
+    CreatedBy: string,
+    TotalFees : number 
+    Notes: string
+}
 
+export type ApplicationReplacementNewLicenseInfoRequest = {
+    RenewApplicationId: number,
+    ApplicationDate: string,
+    ApplicationTypeId: number,
+    ApplicationFees: number,
+    RenewedLicenseId: number,
+    PreviousLicenseId : number,
+    ReplacementType: EnReplacementType
+    CreatedBy: string,
+}
+
+export type  ReplaceLicenseResponse = RenewLicenseResponse ;
+
+export type  RenewLicenseResponse = {
+    ApplicationId:number,
+    PreviousLicenseId: number,
+    NewLicenseId: number,
+}
 
 export const LicenseApi =  apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -64,6 +96,45 @@ export const LicenseApi =  apiSlice.injectEndpoints({
             transformResponse: (response: {Response: boolean }) => {
                 return response.Response
             },
+        }),
+        replaceLicense: builder.mutation<ReplaceLicenseResponse, ApplicationReplacementNewLicenseInfoRequest>({
+            query: (body) => ({
+                url: `${LicensesEndPoint}/replace`,
+                method: "PUT",
+                body
+            }),
+            transformResponse: (response: {Response: RenewLicenseResponse }) => {
+                return response.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                console.log(error);
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
+        }),
+        renewLicense: builder.mutation<RenewLicenseResponse, ApplicationNewLicenseInfoRequest>({
+            query: (body) => ({
+                url: `${LicensesEndPoint}/renew`,
+                method: "POST",
+                body
+            }),
+            transformResponse: (response: {Response: RenewLicenseResponse }) => {
+                return response.Response
+            },
+            transformErrorResponse: (error) : ApiError  =>{
+                console.log(error);
+                
+                const errorData = handleRtkQueryErrors(error)
+                
+                if(isNumber(error.status)) {
+                    errorData.status  = error.status as number;
+                }   
+                return errorData
+            }
         }),
         getLicenseInfo: builder.query<GetLicenseInfoResponse, number>({
             query: (licenseId) => ({
@@ -101,5 +172,7 @@ export const {
         useIssueLicenseMutation,
         useGetLicenseInfoQuery,
         useLazyGetLicenseInfoQuery,
-        useLazyGetLicenseIdByApplicationIdQuery
+        useLazyGetLicenseIdByApplicationIdQuery,
+        useRenewLicenseMutation,
+        useReplaceLicenseMutation
     } = LicenseApi

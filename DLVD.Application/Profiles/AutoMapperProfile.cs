@@ -37,6 +37,13 @@ namespace DLVD.App.Profiles
         public AutoMapperProfile()
         {
 
+
+            CreateMap<RenewLicenseRerquest, Application>()
+                 .ForMember(
+                    dest => dest.PaidFees,
+                    config => config.MapFrom(c => c.ApplicationFees)
+                 );
+                
             // InternationalDrivingLicense
             CreateMap<CreateInternationalDrivvingLicenseRequest, InternationalDrivingLicense>()
                    .ForMember(
@@ -85,7 +92,7 @@ namespace DLVD.App.Profiles
                         )
                 .ForMember(
                         dest => dest.ApplicationId,
-                        config => config.MapFrom(src => src.CreatedByApplicationId)
+                        config => config.MapFrom(src => src.ApplicationId)
                           )
                 .ReverseMap();
 
