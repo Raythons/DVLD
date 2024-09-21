@@ -94,7 +94,7 @@ namespace DVLD.Data.Repositories
                         .Include(l => l.Driver.Person)
                         .Include(l => l.LicenseClass)
                         .FirstOrDefaultAsync(x => x.Id == id);
-            return FoundedLicense;
+           return FoundedLicense;
         }
 
         public Task<IEnumerable<DetainedLicense?>> GetDetainedLicenses()
@@ -169,6 +169,13 @@ namespace DVLD.Data.Repositories
             return await _dbSet.Where(l => l.Id == licenseId)
                         .Select(l => l.LicenseClassId)
                         .SingleOrDefaultAsync();
+        }
+
+        public async Task<bool> IsLicenseDetained(int licenseId)
+        {
+            return await _dbSet.Where(l => l.Id == licenseId)
+                            .Select(l => l.IsActive)
+                            .SingleOrDefaultAsync();
         }
     }
 }

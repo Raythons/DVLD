@@ -19,7 +19,7 @@ const DetainLicense = () => {
         setDetainLicenseInfoRequest(
                 {
                     ...detainLicenseInfoRequest,
-                    PreviousLicenseId: LicenseID,
+                    LicenseId: LicenseID,
                 }
             )
     },[LicenseID])
@@ -29,25 +29,24 @@ const DetainLicense = () => {
 
     const handleDetainLicense = async () =>{
         try {
-            const response =  await DetainLicense(detainLicenseInfoRequest);
+            const response =  await DetainLicense(detainLicenseInfoRequest).unwrap();
             setDetainLicenseInfoRequest({...detainLicenseInfoRequest
-                                            ,RenewedLicenseId: Number(response.data?.NewLicenseId),
-                                            RenewApplicationId: Number(response.data?.ApplicationId)
+                                            ,DetainedLicenseId: Number(response.DetainLicenseId),
                                             })
             setShowSuccessModal(!showSuccessModal)
         } catch (error) {
         console.log(error);
     }   
 }
-
+    console.log(detainLicenseInfoRequest);
+    
     return (
     <div  className=" flex flex-col items-center gap-1 justify-center  w-[90%]">
         <SearchLicenseComponent setLicenseId={setLicenseID} />
         <GetLicenseInfo LicenseId={LicenseID} />
-        {
-        detainLicenseInfoRequest.PreviousLicenseId &&
+
         <DetainLicenseInfo detainLicenseInfoRequest={detainLicenseInfoRequest} setDetainInfoRequest = {setDetainLicenseInfoRequest} />
-        }
+        
         <Button className='p-1 mt-2 ' color={"blue"} onClick={handleDetainLicense} >
             Create
         </Button>

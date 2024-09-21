@@ -18,7 +18,7 @@ const AlignedPairWithIcon = ({fieldName, icon, value} : props) => {
           {icon}
           </IconContext.Provider>
       <span className='  text-lg text-nowrap   '>{value}</span>
-
+    
       </div>
   </div>
   )

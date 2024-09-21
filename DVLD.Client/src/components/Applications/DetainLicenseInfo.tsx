@@ -5,6 +5,7 @@ import {  BsCardText, BsFillDatabaseFill } from 'react-icons/bs'
 import { MdOutlineDateRange } from 'react-icons/md'
 import { format } from '../../utils/formatDate'
 import {DetainLicenseInfoRequest } from '../../redux/api/LicenseApi'
+import { Label, TextInput } from 'flowbite-react'
 
 type props = {
     detainLicenseInfoRequest: DetainLicenseInfoRequest,
@@ -17,8 +18,11 @@ type props = {
 const DetainLicenseInfo = ({detainLicenseInfoRequest, setDetainInfoRequest} : props) => {
 
     const handleFeesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDetainInfoRequest({...detainLicenseInfoRequest, Fees: Number(e.target.value )})
+        console.log(e.currentTarget.value);
+        
+        setDetainInfoRequest({...detainLicenseInfoRequest, FineFees: Number(e.target.value )})
     }
+    
     
     return (
         <div className='flex relative justify-center items-center flex-col gap-3  w-[80%]  '>
@@ -27,15 +31,18 @@ const DetainLicenseInfo = ({detainLicenseInfoRequest, setDetainInfoRequest} : pr
                         New Application Info
                 </div>
                 <div className='flex flex-col justify-center items-center  ' >
-                    <AlignedPairWithIcon  fieldName='RenewApplicationId' icon = {<RxIdCard />} value = {detainLicenseInfoRequest?.RenewApplicationId ??  "???"} />
+                    <AlignedPairWithIcon  fieldName='RenewApplicationId' icon = {<RxIdCard />} value = {detainLicenseInfoRequest?.DetainedLicenseId ??  "???"} />
                     <AlignedPairWithIcon fieldName='ApplicationDate' icon = {<BsCardText />} value = {format(new Date())} />
-                    <AlignedPairWithIcon fieldName='Application Fees' icon = {<BsFillDatabaseFill />} value ={detainLicenseInfoRequest.Fees ?? "??"}   />
-                    <label htmlFor="">Fine Fees</label>
-                    <input type="text" id='fees' name='fees' placeholder='0' onChange={handleFeesChange} />
+                    <div className=' flex justify-center items-center gap-1'>
+                    <AlignedPairWithIcon fieldName='Application Fees' icon = {<BsFillDatabaseFill />} value ={detainLicenseInfoRequest.FineFees ?? "??"}   />
+                        <Label></Label>
+                        <TextInput onChange={handleFeesChange} id="input-gray" placeholder="Fine Fees" required color="gray" />
+                    </div>
+                    
                 </div>
                 <div className='flex flex-col justify-center items-start' >
-                    <AlignedPairWithIcon fieldName='RenewedLicenseId' icon = {<MdOutlineDateRange />} value = {detainLicenseInfoRequest?.RenewedLicenseId ??  "???"} />
-                    <AlignedPairWithIcon fieldName='Old LicenseId' icon = {<MdOutlineDateRange />} value = {detainLicenseInfoRequest.PreviousLicenseId} />
+                    <AlignedPairWithIcon fieldName='RenewedLicenseId' icon = {<MdOutlineDateRange />} value = {detainLicenseInfoRequest?.LicenseId ??  "???"} />
+                    <AlignedPairWithIcon fieldName='Created By' icon = {<MdOutlineDateRange />} value = {"Rasheed"} />
                 </div>
             </div>
         </div>

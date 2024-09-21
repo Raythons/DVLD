@@ -12,7 +12,7 @@ public class DetainedLicense
     public float FineFees { get; set; }
     public int CreatedByUserId { get; set; }
     public User CreateUser { get; set; }
-    public bool IsReleased { get; set; }
+    public bool IsReleased { get; set; } 
     public DateTime? ReleaseDate { get; set; }
     public int? ReleasedByUserId { get; set; }
     public User? ReleasedByUser { get; set; }

@@ -10,6 +10,7 @@ namespace DVLD.App.Interfaces.Persistence
         // WE Will Never Use This Just In The Begining
         public Task<IEnumerable<License>> All();
         public Task<int> GetLicenseIdByApplicationId(int applicationId);
+        public Task<bool> IsLicenseDetained(int licenseId);
         public Task<int> GetLicenseClassId(int licenseId);
         public Task<int> GetDriverIdByLicenseId(int licenseId);
         public Task DeActivateLicense(int licenseId);

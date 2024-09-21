@@ -141,6 +141,11 @@ namespace DVLD.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Bad Data");
 
+
+            if (int.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value, out var userId))
+                cmd.CreatedByUserId = userId;
+            else
+                return Unauthorized();
             var result = await _mediator.Send(cmd);
 
             if (result.IsFailed)

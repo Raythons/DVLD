@@ -118,12 +118,14 @@ function Header() {
                 title: "Manage Detain Licenses",
                 icon: <IoNewspaperSharp />,
                 subMenu: [],
+                onClick: () => navigate("Applications/localDrivingLicenses/manage-detains"),
                 hasSubMenu: false,
               },
               {
                 title: "Detain License",
                 icon: <AiFillStop />,
                 subMenu: [],
+                onClick: () => navigate("Applications/localDrivingLicenses/Detain"),
                 hasSubMenu: false,
               },
               {

@@ -78,17 +78,19 @@ export type ApplicationReplacementLicenseInfoRequest = {
 }
 
 export type DetainLicenseInfoRequest = {
-    RenewApplicationId: number,
-    Fees: number,
+    DetainedLicenseId: number,
+    FineFees: number,
     RenewedLicenseId: number,
-    PreviousLicenseId : number,
+    LicenseId : number,
     CreatedBy: string,
 }
 
-export type  DetainLicenseResponse = RenewLicenseResponse ;
 
 export type  ReplaceLicenseResponse = RenewLicenseResponse ;
 
+export type DetainLicenseResponse = {
+    DetainLicenseId: number
+}
 export type  RenewLicenseResponse = {
     ApplicationId:number,
     PreviousLicenseId: number,
@@ -132,7 +134,7 @@ export const LicenseApi =  apiSlice.injectEndpoints({
                 method: "POST",
                 body
             }),
-            transformResponse: (response: {Response: RenewLicenseResponse }) => {
+            transformResponse: (response: {Response: DetainLicenseResponse }) => {
                 return response.Response
             },
             transformErrorResponse: (error) : ApiError  =>{

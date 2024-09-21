@@ -83,6 +83,10 @@ const router = createBrowserRouter([
             element: < DetainLicense />
           },
           {
+            path: "Detain/",
+            element: < ReleaseDetainedLicense />
+          },
+          {
             path: "Tests/Add/:LDLApplicationID",
             element :  <ScheduleTest />
           }

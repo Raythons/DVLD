@@ -38,7 +38,6 @@ namespace DLVD.App.Features.Licenses.Command.DetainLicense
             var respopnse = new DetainLicenseResponse(LicenseToDetain.Id);
 
             return Result.Ok(respopnse);
-
         }
 
         private async Task<Result<bool>> ValidLicenseToDetain(int LicenseIdToDetain)
@@ -50,8 +49,18 @@ namespace DLVD.App.Features.Licenses.Command.DetainLicense
             if (!IsActive)
                 res.WithError("Cannot Detain DeActivated License");
 
+            var IsDetained = await _unitOfWork.LicenseRepositry.IsLicenseDetained(LicenseIdToDetain);
+
+            if (!IsDetained)
+                res.WithError("License Already Detained");
+
             return res;
         }
+        private async Task<Result<bool>> isLicenseDetained(int LicenseIdToDetain)
+        {
+            return await _unitOfWork.LicenseRepositry.IsLicenseDetained(LicenseIdToDetain);
+        }
+
 
         private async Task<bool> IsActiveLicense(int previousLicenseId)
         {
