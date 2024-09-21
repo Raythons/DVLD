@@ -47,7 +47,6 @@ const TakeTestModal = ({
     
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newTestResult = parseInt(event.target.value);
-
         setTestResult(newTestResult);
         setTakeTestRequest( {...takeTestRequest, TestResult : newTestResult } );
     };

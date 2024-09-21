@@ -74,15 +74,13 @@ namespace DLVD.App.Profiles
             CreateMap<DetainLicenseRequest, DetainedLicense>().ReverseMap();
 
             // ReplaceLicenseRequest 
+            CreateMap<ReplaceLicenseRequest, Application>().ReverseMap();
+
             CreateMap<ReplaceLicenseRequest, License>()
                .ForMember(
                        dest => dest.PaidFees,
-                       config => config.MapFrom(src => src.LicenseFees)
+                       config => config.MapFrom(src => src.ApplicationFees)
                        )
-               .ForMember(
-                       dest => dest.ApplicationId,
-                       config => config.MapFrom(src => src.CreatedByApplicationId)
-                         )
                .ReverseMap();
             // ReNewLicenseRequestFge
             CreateMap<RenewLicenseRerquest, License>()

@@ -66,7 +66,7 @@ export type ApplicationNewLicenseInfoRequest = {
     Notes: string
 }
 
-export type ApplicationReplacementNewLicenseInfoRequest = {
+export type ApplicationReplacementLicenseInfoRequest = {
     RenewApplicationId: number,
     ApplicationDate: string,
     ApplicationTypeId: number,
@@ -97,7 +97,7 @@ export const LicenseApi =  apiSlice.injectEndpoints({
                 return response.Response
             },
         }),
-        replaceLicense: builder.mutation<ReplaceLicenseResponse, ApplicationReplacementNewLicenseInfoRequest>({
+        replaceLicense: builder.mutation<ReplaceLicenseResponse, ApplicationReplacementLicenseInfoRequest>({
             query: (body) => ({
                 url: `${LicensesEndPoint}/replace`,
                 method: "PUT",

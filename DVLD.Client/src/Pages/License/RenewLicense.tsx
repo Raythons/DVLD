@@ -39,6 +39,7 @@ const RenewLicense = () => {
         TotalFees: applicationNewLicenseInfoRequest.ApplicationFees + applicationNewLicenseInfoRequest.LicenseFees
       })
   }, [applicationNewLicenseInfoRequest.ApplicationFees])
+
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   
   const handleRenewLicense = async () =>{
@@ -48,6 +49,7 @@ const RenewLicense = () => {
                                           ,RenewedLicenseId: Number(response.data?.NewLicenseId),
                                             RenewApplicationId: Number(response.data?.ApplicationId)
                                           })
+      setShowSuccessModal(!showSuccessModal)
     } catch (error) {
       console.log(error);
     }

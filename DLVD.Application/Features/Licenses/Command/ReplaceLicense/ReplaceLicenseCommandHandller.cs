@@ -36,27 +36,43 @@ namespace DLVD.App.Features.Licenses.Command.ReplaceLicense
             if (SatisfyRulesResult.IsFailed)
                 return Result.Fail(SatisfyRulesResult.Errors);
 
-            // jsut For DRY 
+            using var transaction = await _unitOfWork.StartTrancation();
             try
             {
-                request.CreatedByApplicationId = await CreateApplication(request.CreateApplicationCommand);
-            }
-            catch (Exception e)
-            {
-                return Result.Fail("couldn't Create Application To The License");
-            }
+                request.DriverId = await _unitOfWork.LicenseRepositry.GetDriverIdByLicenseId(request.PreviousLicenseId);
+                request.PersonId = await _unitOfWork.DriverRepository.GetPersonId(request.DriverId);
+                var applicationToCreate = _mapper.Map<Application>(request);
 
-            request.ExpirationDate = await GetExpirationDate(request.LicenseClassId);
+                await _unitOfWork.ApplicationRepositry.Add(applicationToCreate);
 
-            var CreatedLicenseId = await CreateLicense(request);
+                await _unitOfWork.CompleteAsync();
+                request.ApplicationId = applicationToCreate.Id;
+                request.LicenseClassId = await _unitOfWork.LicenseRepositry.GetLicenseClassId(request.PreviousLicenseId);
+                request.ExpirationDate = await GetExpirationDate(request.LicenseClassId);
+                request.IssueReason = request.ReplacementType.ToString();
 
-            await DeActivedLicense(request.PreviousLicenseId);
+                var LicenseToCreate = _mapper.Map<License>(request);
 
-            var respopnse = new ReplaceLicenseResponse(request.CreatedByApplicationId,
+                await _unitOfWork.LicenseRepositry.Add(LicenseToCreate);
+                await _unitOfWork.CompleteAsync();
+
+                await DeActivedLicense(request.PreviousLicenseId);
+
+                await _unitOfWork.CommitTrancation();               //await _unitOfWork.LocalDrivingLicenseApplicationRepositry.Add();
+
+                var response = new ReplaceLicenseResponse(request.ApplicationId,
                                                      request.PreviousLicenseId,
-                                                     CreatedLicenseId);
+                                                     LicenseToCreate.Id);
+                return Result.Ok(response);
 
-            return Result.Ok(respopnse);
+            }
+            catch (Exception ex)
+            {
+                // TO DO LOGGER SYSTEM
+                Console.WriteLine(ex.ToString());
+                transaction.Rollback();
+                return Result.Fail("Falied To Create The Local Driving License Application");
+            }
 
         }
 
@@ -66,12 +82,12 @@ namespace DLVD.App.Features.Licenses.Command.ReplaceLicense
 
 
             var isExpired = await DidLicenseExpired(previousLicenseId);
-            if (!isExpired)
-                res.WithError("Cannot Re-New UnExpired License");
+            if (isExpired)
+                res.WithError("Cannot Rplace UnExpired License");
 
             var IsActive = await IsActiveLicense(previousLicenseId);
             if (!IsActive)
-                res.WithError("Cannot ReNew DeActivated License");
+                res.WithError("Cannot Replace DeActivated License");
 
             return res;
 

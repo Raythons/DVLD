@@ -16,31 +16,34 @@ namespace DLVD.App.Features.Licenses.Command.ReplaceLicense
         [JsonIgnore]
         public DateTime ExpirationDate { get; set; }
         [JsonIgnore]
+        public string Notes { get; set; } = "";
+        [JsonIgnore]
         public int DriverId { get; set; }
         public float ApplicationFees { get; set; }
         [JsonIgnore]
         public int CreatedByUserId { get; set; }
-        public string IssueReason { get; set; }
-        public string Notes { get; set; }
         public int ApplicationTypeId { get; set; }
         [JsonIgnore]
         public int PersonId { get; set; }
         [JsonIgnore]
         public int LicenseClassId { get; set; }
-        [JsonConverter(typeof(EnReplacementTypeConverter))]
-        public EnReplacementType ReplacementType { get; set; } 
+        public EnReplacementType ReplacementType { get; set; }
+        public EnStatus  Status {get;} = EnStatus.Completed;
         public bool IsActive { get; } = true;
+        [JsonIgnore]
+        public string? IssueReason { get; set; } = "";
+
 
         public ReplaceLicenseRequest(
          int previousLicenseId,
          float applicationFees,
-         string issueReason,
+         EnReplacementType replacementType,
          int applicationTypeId
           )
         {
             PreviousLicenseId = previousLicenseId;
             ApplicationFees = applicationFees;
-            IssueReason = issueReason;
+            ReplacementType = replacementType;
             ApplicationTypeId = applicationTypeId;
         }
     }
