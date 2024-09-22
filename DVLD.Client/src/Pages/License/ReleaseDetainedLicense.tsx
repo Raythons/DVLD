@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import SearchLicenseComponent from '../../components/Liccense/SearchLicenseComponent'
 import GetLicenseInfo from '../../components/Liccense/GetLicenseInfo'
 import { Button } from 'flowbite-react'
@@ -31,16 +31,23 @@ const ReleaseDetainedLicense = () => {
                 }
             )
         }
+    },[releaseLicenseInfoRequest.ApplicationFees, applicationsTypesSuccess])
+
+    useLayoutEffect(() => {
+        
+        // setReleaseLicenseInfoRequest({...releaseLicenseInfoRequest, LicenseId: LicenseID})
+
         const handleFetch =  async () => {
             if(LicenseID != 0){
                 try {
+                    releaseLicenseInfoRequest.LicenseId = LicenseID
                     const response = await getDetainedLicenseInfo(LicenseID).unwrap();
                     setReleaseLicenseInfoRequest({
                         ...releaseLicenseInfoRequest,
                         CreatedBy: response.CreatedBy,
                         DetainDate : response.DetainDate,
                         FineFees: response.FineFees,
-                        LicenseId: LicenseID
+                        // LicenseId: LicenseID
                     })
                 } catch (error) {
                     console.log(error);
@@ -48,7 +55,7 @@ const ReleaseDetainedLicense = () => {
             }
         }
         handleFetch();
-    },[LicenseID, releaseLicenseInfoRequest.ApplicationFees, applicationsTypesSuccess])
+    }, [LicenseID])
 
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     
@@ -59,7 +66,7 @@ const ReleaseDetainedLicense = () => {
             setReleaseLicenseInfoRequest(
                 {
                     ...releaseLicenseInfoRequest,
-                    ReleaseId: Number(response.ReleaseId)
+                    ReleaseId: response
                 }
             )
             setShowSuccessModal(!showSuccessModal)
@@ -69,13 +76,16 @@ const ReleaseDetainedLicense = () => {
     }
     console.log(releaseLicenseInfoRequest);
     
+    
     return (
     <div  className=" flex flex-col items-center gap-1 justify-center  w-[90%]">
-        <SearchLicenseComponent setLicenseId={setLicenseID} setReleaseLicenseId = {setReleaseLicenseInfoRequest} />
+        <SearchLicenseComponent setLicenseId={setLicenseID}
+                                setReleaseLicenseId = {setReleaseLicenseInfoRequest} 
+                                releaseLicenseInfoRequest = {releaseLicenseInfoRequest} />
         
-        <GetLicenseInfo LicenseId={LicenseID} />
+        <GetLicenseInfo LicenseId={LicenseID}  />
         
-        <ReleaseLicenseInfo releaseLicenseLicenseInfo={releaseLicenseInfoRequest}   />
+        <ReleaseLicenseInfo releaseLicenseLicenseInfo={releaseLicenseInfoRequest}    />
         <Button className='p-1 mt-2 ' color={"blue"} onClick={handleReleaseLicense} >
             Create
         </Button>

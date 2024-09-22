@@ -152,7 +152,7 @@ namespace DVLD.API.Controllers
             if (result.IsFailed)
                 return BadRequest(result.ToResultDto(result.Errors));
 
-            return Ok(result.ToResultDto(result.ToResultDto()));
+            return Ok(result.ToResultDto(result.Value));
         }
 
         [HttpPost]
@@ -173,7 +173,7 @@ namespace DVLD.API.Controllers
             if (result.IsFailed)
                 return BadRequest(result.ToResultDto(result.Errors));
 
-            return Ok(result.ToResultDto(result.ToResultDto()));
+            return Ok(result.ToResultDto(result.Value));
         }
         [HttpGet]
         [Route("detain/{licenseId:int}")]

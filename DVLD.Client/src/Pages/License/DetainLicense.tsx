@@ -27,13 +27,19 @@ const DetainLicense = () => {
 
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
+    useEffect(() => {
+        if(detainLicenseInfoRequest.DetainedLicenseId != undefined)
+            setShowSuccessModal(!showSuccessModal)
+
+    },[detainLicenseInfoRequest.DetainedLicenseId])
+
     const handleDetainLicense = async () =>{
         try {
             const response =  await DetainLicense(detainLicenseInfoRequest).unwrap();
             setDetainLicenseInfoRequest({...detainLicenseInfoRequest
-                                            ,DetainedLicenseId: Number(response.DetainLicenseId),
-                                            })
-            setShowSuccessModal(!showSuccessModal)
+                                            ,DetainedLicenseId: response.DetainLicenseId,
+                                        })
+            // setShowSuccessModal(!showSuccessModal)
         } catch (error) {
         console.log(error);
     }   
@@ -42,7 +48,7 @@ const DetainLicense = () => {
     
     return (
     <div  className=" flex flex-col items-center gap-1 justify-center  w-[90%]">
-        <SearchLicenseComponent setLicenseId={setLicenseID} />
+        <SearchLicenseComponent setLicenseId={setLicenseID}  />
         <GetLicenseInfo LicenseId={LicenseID} />
 
         <DetainLicenseInfo detainLicenseInfoRequest={detainLicenseInfoRequest} setDetainInfoRequest = {setDetainLicenseInfoRequest} />
@@ -53,7 +59,7 @@ const DetainLicense = () => {
         {   isSuccess && !isError && <SuccessPopUp show = {showSuccessModal}
                                                         setShowPopUp={setShowSuccessModal}
                                                         operation= 'Detained'
-                                                        creationId={detainLicenseInfoRequest.RenewedLicenseId} 
+                                                        creationId={detainLicenseInfoRequest.DetainedLicenseId} 
                                                         type='License'/>
         }
         {isError && <CustomError error={error ? error as ApiError : error} />}    

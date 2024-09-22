@@ -163,6 +163,8 @@ export const LicenseApi =  apiSlice.injectEndpoints({
                 body
             }),
             transformResponse: (response: {Response: DetainLicenseResponse }) => {
+                console.log(response.Response);
+                
                 return response.Response
             },
             transformErrorResponse: (error) : ApiError  =>{
@@ -175,13 +177,13 @@ export const LicenseApi =  apiSlice.injectEndpoints({
                 return errorData
             }
         }),
-        releaseLicense: builder.mutation<ReleaseLicenseResponse, ReleaseLicenseRequest>({
+        releaseLicense: builder.mutation<number, ReleaseLicenseRequest>({
             query: (body) => ({
                 url: `${LicensesEndPoint}/release`,
                 method: "POST",
                 body
             }),
-            transformResponse: (response: {Response: ReleaseLicenseResponse }) => {
+            transformResponse: (response: {Response: number }) => {
                 return response.Response
             },
             transformErrorResponse: (error) : ApiError  =>{

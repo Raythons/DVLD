@@ -6,13 +6,16 @@ import { ReleaseLicenseRequest } from '../../redux/api/LicenseApi';
 
 
 type props = {
-    setLicenseId: React.Dispatch<React.SetStateAction<number>>
+    setLicenseId: React.Dispatch<React.SetStateAction<number>>,
+    releaseLicenseInfoRequest?: ReleaseLicenseRequest
     setReleaseLicenseId?:React.Dispatch<React.SetStateAction<ReleaseLicenseRequest>>
 }
 
-const SearchLicenseComponent = ({setLicenseId}: props) => {
+const SearchLicenseComponent = ({setLicenseId,setReleaseLicenseId,releaseLicenseInfoRequest}: props) => {
     
     const handlePersonTermChange =  (e: React.ChangeEvent<HTMLInputElement> ) => {    
+        // if(setReleaseLicenseId != undefined)
+        //     setReleaseLicenseId({...releaseLicenseInfoRequest, LicenseId: Number(e.currentTarget.value)  })
         setLicenseId(Number(e.currentTarget.value));
     }
 

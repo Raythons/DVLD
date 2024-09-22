@@ -13,6 +13,7 @@ import { RiAdminFill } from 'react-icons/ri'
 
 type props = {
     LicenseId: number
+    
 }
 
 const GetLicenseInfo = ({LicenseId} : props) => {

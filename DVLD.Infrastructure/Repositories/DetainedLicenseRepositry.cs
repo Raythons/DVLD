@@ -33,8 +33,9 @@ namespace DVLD.Data.Repositories
 
             var ProjectedValue = await _dbSet
                                         .Where(l => l.LicenseId == licenseId)
+                                        .OrderByDescending(l => l.DetainDate)
                                         .Select(selector)
-                                        .SingleOrDefaultAsync();
+                                        .FirstOrDefaultAsync();
             return ProjectedValue;
 
         }
@@ -63,8 +64,9 @@ namespace DVLD.Data.Repositories
         {
             var IsReleased = await _dbSet 
                                     .Where(dl => dl.LicenseId == licenseId)
+                                    .OrderByDescending(dl => dl.DetainDate)
                                     .Select(dl => dl.IsReleased)
-                                    .SingleOrDefaultAsync();
+                                    .FirstOrDefaultAsync();
             return !IsReleased;
         }
 
