@@ -23,9 +23,9 @@ namespace DLVD.App.Features.Applications.Queries.GetApplication
 
         public string ApplicationTypeTitle { get; set; }
 
-        [JsonConverter(typeof(EnDateJsonConverter))]
+        [JsonConverter(typeof(DateJsonConverter))]
         public DateTime CreatedAt { set; get; }
-        [JsonConverter(typeof(EnDateJsonConverter))]
+        [JsonConverter(typeof(DateJsonConverter))]
         public DateTime LastStatusDate { set; get; }
         public float PaidFees { set; get; }
         public string CreatedByUser { get; set; }

@@ -33,6 +33,7 @@ namespace DVLD.API.Controllers
         }
 
         [HttpGet]
+        [Route("")]
         public async Task<IActionResult> CreateDriver([FromQuery] GetDriverListRequest cmd)
         {
             if (!ModelState.IsValid)

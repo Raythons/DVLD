@@ -21,11 +21,11 @@ namespace DLVD.App.Features.Licenses.Query.GetLicense
         [JsonConverter(typeof(EnGednerJsonConverter))]
         public EnGender Gender { get; set; }
         public string NationalNo { get; set; }
-        [JsonConverter(typeof (EnDateJsonConverter))]
+        [JsonConverter(typeof (DateJsonConverter))]
         public DateTime DateOfBirth { get; set; }
-        [JsonConverter(typeof(EnDateJsonConverter))]
+        [JsonConverter(typeof(DateJsonConverter))]
         public DateTime IssueDate { get; set; }
-        [JsonConverter(typeof(EnDateJsonConverter))]
+        [JsonConverter(typeof(DateJsonConverter))]
         public DateTime ExpirationDate { get; set; }
         public string Notes { get; set; }
         public bool IsActive { get; set; }

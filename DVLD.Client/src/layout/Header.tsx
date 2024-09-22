@@ -163,7 +163,9 @@ function Header() {
     {
       title: 'Drivers',
       subMenu: [],
-      hasSubMenu: false
+      hasSubMenu: false,
+      onClick: () => navigate("Drivers")
+
     },
     {
       title: 'Users',

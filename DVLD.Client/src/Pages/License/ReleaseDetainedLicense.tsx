@@ -36,7 +36,6 @@ const ReleaseDetainedLicense = () => {
     useLayoutEffect(() => {
         
         // setReleaseLicenseInfoRequest({...releaseLicenseInfoRequest, LicenseId: LicenseID})
-
         const handleFetch =  async () => {
             if(LicenseID != 0){
                 try {
@@ -79,9 +78,7 @@ const ReleaseDetainedLicense = () => {
     
     return (
     <div  className=" flex flex-col items-center gap-1 justify-center  w-[90%]">
-        <SearchLicenseComponent setLicenseId={setLicenseID}
-                                setReleaseLicenseId = {setReleaseLicenseInfoRequest} 
-                                releaseLicenseInfoRequest = {releaseLicenseInfoRequest} />
+        <SearchLicenseComponent setLicenseId={setLicenseID} />
         
         <GetLicenseInfo LicenseId={LicenseID}  />
         

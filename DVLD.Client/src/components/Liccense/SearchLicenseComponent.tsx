@@ -2,16 +2,13 @@ import { Button } from 'flowbite-react';
 import React from 'react'
 import { IconContext } from 'react-icons';
 import { FaCreditCard } from "react-icons/fa";
-import { ReleaseLicenseRequest } from '../../redux/api/LicenseApi';
 
 
 type props = {
     setLicenseId: React.Dispatch<React.SetStateAction<number>>,
-    releaseLicenseInfoRequest?: ReleaseLicenseRequest
-    setReleaseLicenseId?:React.Dispatch<React.SetStateAction<ReleaseLicenseRequest>>
 }
 
-const SearchLicenseComponent = ({setLicenseId,setReleaseLicenseId,releaseLicenseInfoRequest}: props) => {
+const SearchLicenseComponent = ({setLicenseId}: props) => {
     
     const handlePersonTermChange =  (e: React.ChangeEvent<HTMLInputElement> ) => {    
         // if(setReleaseLicenseId != undefined)

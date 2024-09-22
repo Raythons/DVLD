@@ -36,6 +36,17 @@ const router = createBrowserRouter([
       element: <div>Iam Application uwu</div>
       },
       {
+        path: "Drivers",
+        element: < WhiteContainer />,
+        children: 
+        [
+          {
+            index: true,
+            element: <Drivers  />,
+          },
+        ]
+        },
+      {
         path: "People",
         element: <WhiteContainer/> ,
         children:

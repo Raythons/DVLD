@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace DLVD.App.Features.Common.Converters
 {
-    public class EnDateJsonConverter : JsonConverter<DateTime>
+    public class DateJsonConverter : JsonConverter<DateTime>
     {
         public override DateTime Read(ref Utf8JsonReader reader,
             Type typeToConvert, JsonSerializerOptions options)
