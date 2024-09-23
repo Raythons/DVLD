@@ -12,9 +12,14 @@
   Then Restore All The c# Packages  using
   ``` dotnet restore ```
   ### Executing program
-  * Create The Database From Ef core using These command
-      ```  dotnet ef migrations Add "Initial Migation" --project  C:\<Full_Path_To_Project>\DVLD\DVLD.Infrastructure --startup-project C:<Full_Path_To_Project>\DVLD\DVLD.API ```
-      ```  dotnet ef database Add C:\<Full_Path_To_Project>\DVLD\DVLD.Infrastructure --startup-project C:<Full_Path_To_Project>\DVLD\DVLD.API ```
+  * Create The Initial Migration From Ef core using These command:
+      ```
+        dotnet ef migrations Add "Initial Migation" --project  C:\<Full_Path_To_Project>\DVLD\DVLD.Infrastructure --startup-project C:<Full_Path_To_Project>\DVLD\DVLD.API
+     ```
+  * Now Create The DataBase using:
+      ```
+         dotnet ef database Add C:\<Full_Path_To_Project>\DVLD\DVLD.Infrastructure --startup-project C:<Full_Path_To_Project>\DVLD\DVLD.API
+       ```
   * Now Change The Coonection string And The Password  in The Json.Setting In Api Project To Match Your Connection string And Password
   * Now You Can run The api Project :) using
     ``` dotnet run ```
