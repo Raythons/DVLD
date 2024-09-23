@@ -25,7 +25,7 @@
     ``` dotnet run ```
 
   Here are some screenshots showcasing the Local Driving License Management Department project.
-  ![Login](https://drive.google.com/file/d/17crNmCzVRyDeFvEYlPDeasRAFKjortM8/view?usp=sharing)
+  [Login](https://drive.google.com/file/d/17crNmCzVRyDeFvEYlPDeasRAFKjortM8/view?usp=sharing)
   ![People](https://github.com/user-attachments/assets/57391ab9-637f-48be-a9c4-d6a1ba57fd46)
   ![LDL APPLICATIONS ](https://github.com/user-attachments/assets/0596fc5c-9a1a-4e56-9d31-d4bf6c456d28)
   ![PEOPLE](https://github.com/user-attachments/assets/fbfcfabf-ad21-4386-a1ea-b2342bb11f95)
